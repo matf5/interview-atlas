@@ -86,12 +86,12 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="wrap">
 <header class="hero">
 <h1>看图记原理，<br>开口不卡壳。</h1>
-<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；React Native 按理解层讲线程、桥接与首屏。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
+<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；React Native 按理解层讲线程、桥接与首屏。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
 <div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
 </header>
 
 <nav class="toc" aria-label="目录">
-<a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a><a href="#loop">事件循环</a><a href="#dsl">DSL 架构</a><a href="#agent">AI Agent</a><a href="#rag">RAG</a><a href="#more">深拷贝·设计模式</a><a href="#react">React ★</a><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a><a href="#css">CSS 布局</a><a href="#build">构建·TS</a><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#rn">React Native ★</a>
+<a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a><a href="#loop">事件循环</a><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">RAG</a><a href="#more">深拷贝·设计模式</a><a href="#react">React ★</a><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a><a href="#css">CSS 布局</a><a href="#build">构建·TS</a><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#i18n">国际化/本地化 ★</a><a href="#rn">React Native ★</a>
 </nav>
 
 <!-- VUE2 -->
@@ -326,9 +326,73 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="say"><b>一分钟讲法：</b><p>「DSL 解决的核心问题是<strong>解耦变更</strong>：编辑器怎么改、渲染端怎么升级，互不绑架，中间靠版本化的 JSON 合同。代价是表达能力受限、要长期维护迁移链——所以适用判断是：内容结构多变、但交互模式收敛的场景才值得上 DSL，普通页面直接写代码更划算。」先讲价值、再讲取舍、最后讲边界，这是你这道题的满分结构。</p></div>
 </section>
 
+<!-- DSL LINKAGE -->
+<section class="card" id="dsl-link">
+<div class="kicker">架构 · 09 · 你刚追问的那道 ★</div><h2>DSL 组件怎么联动：数据是源头，表达式是开关，动作只是声明</h2>
+<p class="sub">一句话：DSL 本身不跑业务逻辑，它只声明「谁跟谁有关」。联动只给三类能力——绑定、条件、动作——组件之间不直接互相调对方。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">第一层 · 数据联动：绑同一个字段，源头只有一份</p>
+<div class="flow">
+<div class="node teal"><b>数据源字段</b><small>如一份商品数据<br>列表 / 价格 / 库存都从这里取</small></div><div class="arrow">→</div>
+<div class="node blue"><b>组件 A · 商品列表</b><small>绑商品数据字段<br>渲染标题、主图</small></div><div class="arrow">→</div>
+<div class="node blue"><b>组件 B · 价格区</b><small>绑同一份商品数据<br>渲染价格、库存</small></div><div class="arrow">→</div>
+<div class="node green"><b>数据一变</b><small>依赖它的组件<br>一起重新渲染</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">第二层 · 条件联动：表达式决定显隐与样式</p>
+<div class="flow">
+<div class="node amber"><b>条件表达式</b><small>写在 DSL 里，如<br>「库存 &gt; 0 才显示购买按钮」</small></div><div class="arrow">→</div>
+<div class="node teal"><b>AST 解析求值</b><small>先解析成 AST 再计算<br>不用 <code>new Function</code> / <code>eval</code></small></div><div class="arrow">→</div>
+<div class="node green"><b>成立 → 显示</b><small>购买按钮出现<br>样式按条件切换</small></div><div class="arrow">→</div>
+<div class="node plain"><b>不成立 → 不渲染</b><small>改显售罄态<br>或整块隐藏</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">第三层 · 行为联动：DSL 只声明类型，执行在代码里</p>
+<div class="flow">
+<div class="node plain"><b>用户点击</b><small>点商品卡 / 点按钮<br>切 Tab</small></div><div class="arrow">→</div>
+<div class="node amber"><b>DSL 声明动作类型</b><small>只写类型，如「跳商品详情」<br>不写执行代码</small></div><div class="arrow">→</div>
+<div class="node blue"><b>运行时映射表</b><small>按动作类型查表<br>找到对应的处理函数</small></div><div class="arrow">→</div>
+<div class="node green"><b>代码里的处理函数执行</b><small>跳转 / 领券 / 切 Tab<br>逻辑写死在代码里</small></div>
+</div>
+<div class="loop-note">一句话记：数据是源头，表达式是开关，动作只是声明，执行在代码里。</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>为什么不让组件直接互相调？</h4><p>组件 A 直接调 B，模板就没法整体校验，出了问题也定位不到是哪个字段的错。把联动收敛到<strong>数据 + 表达式</strong>这两处，依赖关系能画出来、能在发布前检查，代价是跨组件的复杂交互写起来绕。</p></div>
+<div class="box"><h4>复杂多步联动怎么办？</h4><p>别在 DSL 里拼逻辑。先在<strong>业务层把状态算好</strong>，再把算好的结果下发给 DSL，DSL 只负责按结果显示。多步、带顺序、带副作用的事，天生属于代码，不属于配置。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「联动分三层。第一层数据联动：多个组件绑同一个数据源字段，数据一变一起重渲染。第二层条件联动：显隐和样式用表达式写，走 AST 解析求值，不用 <code>new Function</code>。第三层行为联动：DSL 里只声明动作类型，运行时按类型映射到代码里写死的处理函数。组件之间不直接互调，所以模板能整体校验、问题能定位到字段。」</p></div>
+<div class="trap"><strong>翻车点（主动说）：</strong>一是<strong>循环依赖</strong>——A 的显隐依赖 B、B 又依赖 A，发布前靠 Schema 校验和依赖检查拦住；二是<strong>表达式写错悄悄不显示还不报错</strong>，线上很难发现，所以发布前要拿 mock 数据把长文案、空列表、零库存这些边界都跑一遍；三是字段缺失或动作类型没映射到，要按默认值兜底、打日志给降级提示，别让整块无声消失。另外提醒自己：<strong>「轻量渲染引擎 / 适配器模式」别当成已确认的落地说法去讲</strong>，被追问接口和翻车点时讲不清反而扣分，就按上面三层讲。</div>
+</section>
+
+<!-- FIGMA TO DSL -->
+<section class="card" id="figma-dsl">
+<div class="kicker">架构 · 10 · 四场反复被追的链路 ★</div><h2>Figma 转 DSL：设计稿不是业务结构，中间必须有一层映射</h2>
+<p class="sub">一句话：Figma 给的是视觉节点树，渲染要的是业务组件树，两者不能直接划等号——这条链的价值全在中间的清洗、转换和校验。</p>
+<div class="diagram">
+<div class="flow">
+<div class="node plain"><b>1 设计规范先行</b><small>图层命名规范<br>什么能转、什么不能转，先约定</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 读 Figma 节点</b><small>拿到节点树<br>类型 / 样式 / 布局原始数据</small></div><div class="arrow">→</div>
+<div class="node rose"><b>3 清洗脏数据</b><small>去掉隐藏节点、重复节点<br>未用图层不进转换</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 布局转换</b><small>Auto Layout → Flex<br>设计排版语义翻成前端布局语义</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node teal"><b>5 组件识别与映射</b><small>视觉节点 → 业务组件<br>没映射到的标 UNMAPPED，绝不猜</small></div><div class="arrow">→</div>
+<div class="node amber"><b>6 字段补齐 + 兜底</b><small>业务字段设计稿里没有的<br>按规则补默认值、留兜底</small></div><div class="arrow">→</div>
+<div class="node blue"><b>7 存库成 DSL JSON</b><small>结构化 JSON 入库<br>带 schemaVersion，可版本升级</small></div><div class="arrow">→</div>
+<div class="node green"><b>8 运行时解析渲染</b><small>渲染器按 DSL 解析<br>渲染成原子 / 复合组件</small></div>
+</div>
+<div class="loop-note">发布前最后一道门：Schema 校验 + 截图回归——拿渲染结果和设计稿截图对比，差异超阈值就拦住，不让错版模板直接上线。</div>
+<div class="grid3" style="margin-top:12px">
+<div class="box"><h4>为什么不能直接用节点数据渲染？</h4><p>设计稿节点是<strong>视觉结构</strong>（这个块多大、什么颜色），渲染要的是<strong>业务结构</strong>（这是商品卡、要绑商品数据）。中间缺了组件识别和字段补齐，直接用就会变成一堆死样式、没有数据。</p></div>
+<div class="box"><h4>难点到底在哪三处？</h4><ul><li>命名不规范：同一种组件十种叫法，识别规则对不上</li><li>隐藏 / 重复节点：不清洗就会转出多余甚至错误的结构</li><li>Auto Layout 嵌套：层层套娃，转 Flex 时方向和间距容易错位</li></ul></div>
+<div class="box"><h4>方法是逐个排查吗？</h4><p>不是。先按规则批量转，再把失败的 case <strong>归类成新规则补回去</strong>——规则越滚越全，人工只处理长尾。逐个手改既慢、又没法复用。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「这条链分八步：命名规范先行，读节点后先清洗隐藏和重复节点，再把 Auto Layout 转成 Flex，然后做组件识别——视觉节点映射成业务组件，映射不到的标 UNMAPPED 不猜；业务字段补齐后存库成带版本的 DSL JSON，运行时再解析渲染。发布前还有 Schema 校验和截图回归两道门。核心判断就一句：<strong>设计稿是视觉结构，不能直接当业务结构用</strong>。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「还原度能到 100% 吗？」→ 不能，瓶颈在尺寸间距、字体、图片裁剪这些设计稿本身说不清的地方，所以才要用 DSL + 校验把还原度从「看运气」变成「可验收」。模板数量、转换提速这类数字口径没统一过，别当硬数字报，就讲链路和规则怎么滚起来的。</div>
+</section>
+
 <!-- AGENT -->
 <section class="card" id="agent">
-<div class="kicker">AI · 09</div><h2>AI Agent 思路：一个带工具的循环，不是一次问答</h2>
+<div class="kicker">AI · 11</div><h2>AI Agent 思路：一个带工具的循环，不是一次问答</h2>
 <p class="sub">一句话：LLM 负责想下一步，工具负责真干活，观察结果再喂回去想——直到任务完成或触达停止条件。</p>
 <div class="diagram">
 <div class="flow">
@@ -347,9 +411,77 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="say"><b>诚实口径（重要）：</b><p>你没有落地写过 MCP Server，面试原话就这么说：「MCP Server 我没落地写过，只用过 Figma / Confluence MCP；让我设计的话……」然后按上图讲：哪些能力 Skill 就够、哪条通道必须 MCP。把设计讲透，比假装落地安全——这道题考的是判断力，不是经历堆砌。</p></div>
 </section>
 
+<!-- AIDOD -->
+<section class="card" id="aidod">
+<div class="kicker">AI · 12 · 你的 AI 项目主线 ★</div><h2>AIDOD 定位链路：工单进来，怎么一步步定位到根因</h2>
+<p class="sub">口径先定：AIDOD 是独立平台，你负责前端、读懂了后端链路；生产后端是 Go 的状态机，不是 LangGraph。下面这条链按你纠正过两轮的表设计口径讲，属面试答法，不冒充生产库表实证。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">主链路 · 从工单到人批 MR</p>
+<div class="flow">
+<div class="node plain"><b>1 工单进入</b><small>Jira / 平台问题经 Webhook 关联<br>客服不知分派哪个团队时也先进这里</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 幂等建任务</b><small>按 <code>ticket_id</code> 唯一键建瘦任务<br>重复 Webhook 不建新任务</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 收集上下文与证据</b><small>工单快照、截图进证据表<br>店铺/用户加密存、哈希查</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 定代码范围</b><small>判断要不要拉前端代码<br>从 CMDB 查候选库与相关路由</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node blue"><b>5 查日志窗口</b><small>以后端日志为主、前端日志补充<br>按服务 + 时间窗查，不存全文</small></div><div class="arrow">→</div>
+<div class="node teal"><b>6 指纹查知识库</b><small><code>hash(服务+错误码+堆栈顶部+路由)</code><br>精确匹配，命中就复用旧结论</small></div><div class="arrow">→</div>
+<div class="node rose"><b>7 Codex 根因分析</b><small>只依据日志、代码、证据分析<br>加限制防模型捏造事实</small></div><div class="arrow">→</div>
+<div class="node amber"><b>8 置信度打分</b><small>代码命中、日志命中等逐项加分<br>★ 明细之和必须等于总分</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node green"><b>9 SSE 流式回结果</b><small>分析边跑边推<br>下一节单独画流式与续跑</small></div><div class="arrow">→</div>
+<div class="node blue"><b>10 人工审批 MR</b><small>人看结论、批 MR<br>驳回可重跑，审批留审计</small></div><div class="arrow">→</div>
+<div class="node teal"><b>11 沉淀回知识库</b><small>确认的根因按指纹回写<br>下次同类问题先命中这里</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">表设计 · 瘦主表 + 分表（一个 task_id 串全链路）</p>
+<div class="grid3">
+<div class="box"><h4>dod_task 瘦主表</h4><p>只放任务流转：状态机、优先级、乐观锁 <code>version</code>、当前分析 id。<strong>标题、shop_id、user_id、screenshot_url 都不放这里</strong>——标题属工单系统、主体涉隐私、截图是一对多。</p></div>
+<div class="box"><h4>上下文 / 主体 / 证据分表</h4><p><code>dod_ticket_context</code> 存工单快照；<code>dod_subject</code> 存 shop/user（加密存、哈希查、单独控权限）；<code>dod_evidence</code> 存截图与日志片段，只存对象存储的 <code>storage_key</code>，不存死 URL。</p></div>
+<div class="box"><h4>代码 / 分析 / 评分 / 审批 / 知识</h4><p><code>dod_code_context</code> 只存仓库、<code>commit_sha</code> 与路由；<code>dod_analysis</code> 存模型与提示词版本、<code>thread_id</code>、报告文件地址；<code>dod_score_detail</code> 存打分明细；<code>dod_review</code> 存人批 MR；<code>dod_knowledge</code> 按指纹精确匹配；<code>dod_event</code> 只追加，存进度与审计。</p></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>客服不知道分派给哪个团队，工单怎么路由？</h4><p>先别靠人猜：工单进来先走这条链的第 3–6 步，用服务、错误码、路由和指纹把问题<strong>先定位到候选团队 / 候选库</strong>，置信度够高再分派，够不上就带着已收集的证据转人工分诊——分派依据是证据和指纹，不是客服的经验。</p></div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「AIDOD 一句话：工单经 Webhook 进来，按 ticket_id 幂等建一条瘦任务；先收集工单快照、截图和主体信息，再从 CMDB 定代码范围、查日志窗口，用指纹先查知识库，命中就复用，没命中才交 Codex 在证据范围内做根因分析，按明细规则打置信度，过程用 SSE 流式推给前端，最后一定是<strong>人批 MR</strong> 才算完，确认的结论再按指纹沉淀回知识库。」</p></div>
+<div class="trap"><strong>红线（主动守住）：</strong>「定位从小时级降到分钟级、误判率可控」这类数字<strong>没有证据，别报</strong>；指纹是<strong>精确匹配，不是向量检索</strong>，别把这套讲成 RAG；被追问「分怎么来的」就落到 score_detail——每项规则加多少分、对应哪条证据，明细必须等于总分，不是模型拍脑袋给个分。</div>
+</section>
+
+<!-- SSE -->
+<section class="card" id="sse">
+<div class="kicker">AI · 13 · AIDOD 的流式底座 ★</div><h2>SSE 流式：中间内容不存库，断了靠 thread_id 续跑</h2>
+<p class="sub">一句话：AIDOD 只需要服务端单向推，所以用 SSE 不用 WebSocket；难点不在「推」，在流式内容怎么存、前端怎么渲染、断线怎么续。</p>
+<div class="diagram">
+<div class="flow">
+<div class="node teal"><b>1 Codex 边跑边产出</b><small>分析内容流 + 任务进度流<br>两层流别混为一谈</small></div><div class="arrow">→</div>
+<div class="node amber"><b>2 内存 / Redis 缓冲</b><small>chunk 先攒在缓冲里<br>攒一批再推，不逐 token 写库</small></div><div class="arrow">→</div>
+<div class="node blue"><b>3 SSE 推送</b><small>基于 HTTP、浏览器自动重连<br>进度小事件同时进 dod_event 表</small></div><div class="arrow">→</div>
+<div class="node green"><b>4 前端增量渲染</b><small>rAF 批量更新，只渲染已闭合的块<br>未闭合的部分先出骨架</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node green"><b>5 跑完落文件</b><small>完整内容拼成文件写对象存储<br>DB 只存 thread_id、storage_key、状态</small></div><div class="arrow">→</div>
+<div class="node rose"><b>6 断线了</b><small>前端断开 / 后端重启<br>不从库里重放 chunk</small></div><div class="arrow">→</div>
+<div class="node blue"><b>7 靠 thread_id 续跑</b><small>拿 Codex 的 thread_id / session 续上<br>找不到才开新 attempt 用摘要重跑</small></div><div class="arrow">→</div>
+<div class="node plain"><b>8 重连先快照后增量</b><small>先拿当前已产出的快照<br>再接上后续增量，不从头再来</small></div>
+</div>
+<div class="loop-note">两个 ID 别搞混：<code>thread_id</code> 是 Codex 那边的会话 ID，管续跑；<code>stream_id</code> 是我们给前端那条 SSE 连接的 ID，管重连定位。</div>
+<table>
+<tr><th style="width:18%">方案</th><th style="width:34%">机制</th><th>什么时候选</th></tr>
+<tr><td><strong>SSE</strong></td><td>服务端单向推，基于 HTTP，自带重连</td><td>通知、AI 流式输出——AIDOD 就是这个，只推不收</td></tr>
+<tr><td><strong>WebSocket</strong></td><td>全双工长连接，双向高频</td><td>聊天、协同、行情；单向场景用它是过度设计</td></tr>
+<tr><td><strong>轮询</strong></td><td>客户端定时来问</td><td>低频、实现最简时凑合；流式场景延迟和请求量都吃亏</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>为什么不建分片表存流式内容？</h4><p>每来一个 token 写一次 MySQL 是<strong>写放大</strong>，MySQL 也不适合存 append-only 大文本。正确分工：流式中放内存 / Redis 缓冲，跑完整体存文件，DB 只留元数据——便宜、好做版本、查全文直接读文件。</p></div>
+<div class="box"><h4>前端渲染的三个坑</h4><ul><li>别 per-token <code>setState</code>，用 rAF 攒批再渲染，不然主线程被打满</li><li>Markdown 流没闭合就全量重解析会卡且闪，只解析已闭合块</li><li>AIDOD 当时只做了纯 Markdown 流式；表格 / 图表是「如果让我接」的设计——靠约定代码块 + Schema 校验后交图表组件，失败回退显示原始代码块，别说成已落地</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「SSE 这题我按三段讲：为什么选它——单向推、走 HTTP、自带重连，WebSocket 是过度设计；中间内容怎么存——缓冲加文件，绝不逐 token 写库；断了怎么续——进度靠事件表按序重放，分析靠 Codex 的 <code>thread_id</code> 续跑，前端重连先拉快照再接增量。把这三段讲清，SSE 和 WebSocket 的区别自然就出来了。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「SSE 断了 30 秒丢的事件怎么追？」→ 进度类小事件有 <code>dod_event</code> 的序号可按序补，分析内容靠 Redis 快照 + thread_id 续跑，两条线分开答，别混成一句「重连就行」。</div>
+</section>
+
 <!-- RAG -->
 <section class="card" id="rag">
-<div class="kicker">AI · 10</div><h2>RAG：先检索再生成，别让模型背全公司文档</h2>
+<div class="kicker">AI · 14</div><h2>RAG：先检索再生成，别让模型背全公司文档</h2>
 <p class="sub">一句话：把文档切块向量化存好，提问时先捞出最相关的几块，塞进提示词让模型「开卷答题」。</p>
 <div class="diagram">
 <p style="font-weight:700;font-size:14px;margin:0 0 8px">离线建库（文档变了才重跑）</p>
@@ -372,7 +504,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- MORE -->
 <section class="card" id="more">
-<div class="kicker">基础补漏 · 11</div><h2>深拷贝 &amp; 设计模式：一页速记</h2>
+<div class="kicker">基础补漏 · 15</div><h2>深拷贝 &amp; 设计模式：一页速记</h2>
 <div class="grid2">
 <div class="box"><h4>深拷贝的四个层次</h4><ul>
 <li><code>JSON.parse(JSON.stringify())</code>：丢函数/undefined/Symbol，循环引用直接报错，Date 变字符串</li>
@@ -391,7 +523,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- REACT -->
 <section class="card" id="react">
-<div class="kicker">框架 · 12 · DBS 重点</div><h2>React：一次更新怎么走完 + 状态放哪</h2>
+<div class="kicker">框架 · 16 · DBS 重点</div><h2>React：一次更新怎么走完 + 状态放哪</h2>
 <p class="sub">一句话：setState 不是立刻改 UI，而是标记更新 → 重新执行组件函数生成新元素 → diff 出最小变更 → 提交到 DOM → 最后跑 Effect。</p>
 <div class="diagram">
 <div class="flow">
@@ -417,7 +549,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- BROWSER -->
 <section class="card" id="browser">
-<div class="kicker">浏览器 · 13</div><h2>输入 URL 到页面展示 + 浏览器存储</h2>
+<div class="kicker">浏览器 · 17</div><h2>输入 URL 到页面展示 + 浏览器存储</h2>
 <p class="sub">这道题考的是链路完整度：别只背渲染，要从 DNS 一路讲到合成层，每一步说一句「这里会慢在哪」。</p>
 <div class="diagram">
 <div class="flow">
@@ -444,7 +576,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- HTTP -->
 <section class="card" id="http">
-<div class="kicker">网络 · 14</div><h2>HTTP / 缓存 / 跨域：一套图讲完</h2>
+<div class="kicker">网络 · 18</div><h2>HTTP / 缓存 / 跨域：一套图讲完</h2>
 <p class="sub">一句话：HTTP 解决「怎么传」，缓存解决「能不能不传」，跨域解决「浏览器同源策略下怎么安全地传」。</p>
 <div class="diagram">
 <p style="margin:0 0 8px;font-weight:700;font-size:14px">浏览器缓存决策链（每次请求先走这一遍）</p>
@@ -465,7 +597,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- SECURITY -->
 <section class="card" id="security">
-<div class="kicker">安全 · 15</div><h2>XSS / CSRF + 登录鉴权：攻击怎么发生，防在哪层</h2>
+<div class="kicker">安全 · 19</div><h2>XSS / CSRF + 登录鉴权：攻击怎么发生，防在哪层</h2>
 <div class="diagram">
 <div class="grid2">
 <div class="box"><h4>XSS：把脚本注入页面</h4><p><strong>存储型</strong>（评论入库，别人打开中招）· <strong>反射型</strong>（参数回显）· <strong>DOM 型</strong>（前端拼 innerHTML）。</p><p>防：输出编码/框架默认转义、富文本用白名单净化（如 DOMPurify）、<code>CSP</code> 兜底、Cookie 设 HttpOnly 让脚本偷不到。</p></div>
@@ -484,7 +616,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- CSS -->
 <section class="card" id="css">
-<div class="kicker">CSS · 16</div><h2>CSS 布局速记：盒模型、BFC、Flex / Grid</h2>
+<div class="kicker">CSS · 20</div><h2>CSS 布局速记：盒模型、BFC、Flex / Grid</h2>
 <div class="diagram">
 <div class="grid2">
 <div class="box"><h4>盒模型 + box-sizing</h4><p>标准模型 width 只算 content；<code>box-sizing: border-box</code> 后 width 含 padding + border，布局可预测，全局默认设它。margin 塌陷：相邻块级元素上下 margin 会合并取大值。</p></div>
@@ -499,7 +631,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- BUILD -->
 <section class="card" id="build">
-<div class="kicker">工程化 · 17</div><h2>Webpack vs Vite + TypeScript 速记</h2>
+<div class="kicker">工程化 · 21</div><h2>Webpack vs Vite + TypeScript 速记</h2>
 <div class="diagram">
 <div class="flow">
 <div class="node amber"><b>Webpack 思路</b><small>先全量打包再启动<br>Loader 转文件 · Plugin 管流程</small></div><div class="arrow">→</div>
@@ -521,7 +653,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- BACKEND -->
 <section class="card" id="backend">
-<div class="kicker">后端 · 18 · 全栈题主线 ★</div><h2>后端全链路：一个请求在服务端经历什么</h2>
+<div class="kicker">后端 · 22 · 全栈题主线 ★</div><h2>后端全链路：一个请求在服务端经历什么</h2>
 <p class="sub">前端转全栈最常被问的一题。按链路讲，每一层只说三件事：它干什么、慢了怎么查、和前端的契约在哪。</p>
 <div class="diagram">
 <div class="flow">
@@ -544,7 +676,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- API -->
 <section class="card" id="api">
-<div class="kicker">后端 · 19</div><h2>接口设计：REST、分页、错误码与幂等</h2>
+<div class="kicker">后端 · 23</div><h2>接口设计：REST、分页、错误码与幂等</h2>
 <div class="diagram">
 <table><tr><th>设计点</th><th>约定</th><th>为什么</th></tr>
 <tr><td>资源命名</td><td>名词复数 <code>/accounts/{id}/transactions</code>，动作少用动词</td><td>方法语义交给 GET/POST/PUT/PATCH/DELETE</td></tr>
@@ -567,7 +699,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- DB -->
 <section class="card" id="db">
-<div class="kicker">后端 · 20</div><h2>数据库：索引、事务与表设计（前端要懂的那部分）</h2>
+<div class="kicker">后端 · 24</div><h2>数据库：索引、事务与表设计（前端要懂的那部分）</h2>
 <div class="diagram">
 <div class="grid2">
 <div class="box"><h4>索引为什么快：B+ 树</h4><p>索引是一棵按字段排序的 B+ 树，查一条从全表扫描变树上定位。代价：占空间、写时要维护索引，所以<strong>不是越多越好</strong>。联合索引讲清最左前缀：<code>(a,b)</code> 能帮只查 a 的，帮不了只查 b 的。</p></div>
@@ -582,7 +714,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- CACHE / MQ -->
 <section class="card" id="cache">
-<div class="kicker">后端 · 21</div><h2>缓存三大问题、消息队列与实时通信</h2>
+<div class="kicker">后端 · 25</div><h2>缓存三大问题、消息队列与实时通信</h2>
 <div class="diagram">
 <table><tr><th>问题</th><th>发生什么</th><th>解法</th></tr>
 <tr><td>缓存穿透</td><td>查根本不存在的 key，每次都打到 DB</td><td>空值也缓存（短过期）/ 布隆过滤器先拦</td></tr>
@@ -598,12 +730,12 @@ details p,details li{font-size:14px;color:var(--muted)}
 <tr><td>WebSocket</td><td>全双工长连接</td><td>聊天、协同、行情等双向高频</td></tr></table>
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「缓存题我按穿透、击穿、雪崩三个词展开，每个都是‘请求绕过缓存打 DB’的不同姿势，解法都是在入口拦、在回源收口。实时通信按方向选：只需服务端推用 SSE，双向高频才上 WebSocket，别默认什么都 WebSocket。」</p></div>
-<div class="trap"><strong>收尾提醒：</strong>后端这四节（18–21）是「理解层」弹药：目标是能画链路、能对齐协作、能定位问题在哪一层。任何一节被追到实现细节，统一用「这块后端主导 / 我到理解层，我能确定的是……」收住，再把话头拉回你真做过的部分（接口契约、幂等、缓存失效、表设计评审）。</div>
+<div class="trap"><strong>收尾提醒：</strong>后端这四节（22–25）是「理解层」弹药：目标是能画链路、能对齐协作、能定位问题在哪一层。任何一节被追到实现细节，统一用「这块后端主导 / 我到理解层，我能确定的是……」收住，再把话头拉回你真做过的部分（接口契约、幂等、缓存失效、表设计评审）。</div>
 </section>
 
 <!-- NEXT -->
 <section class="card" id="next">
-<div class="kicker">框架 · 22 · 对照你的 SSR 经验讲</div><h2>Next.js：不是新渲染原理，是把渲染策略做成框架约定</h2>
+<div class="kicker">框架 · 26 · 对照你的 SSR 经验讲</div><h2>Next.js：不是新渲染原理，是把渲染策略做成框架约定</h2>
 <p class="sub">资深口径先定调：Next 没发明新东西，它把你在店铺页手搓过的那套——服务端直出 HTML、注水、静态预渲染、缓存失效——产品化成路由级约定。面试考的不是 API 背诵，是<strong>每个页面选哪种渲染、为什么、代价是什么、出错怎么定位</strong>。</p>
 <div class="diagram">
 <div class="flow">
@@ -656,7 +788,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 
 <!-- NUXT -->
 <section class="card" id="nuxt">
-<div class="kicker">框架 · 23 · Vue 版的 Next，按原理讲</div><h2>Nuxt.js：同一套 SSR 思想，换成 Vue + Nitro 来实现</h2>
+<div class="kicker">框架 · 27 · Vue 版的 Next，按原理讲</div><h2>Nuxt.js：同一套 SSR 思想，换成 Vue + Nitro 来实现</h2>
 <p class="sub">定调：Nuxt 之于 Vue，就是 Next 之于 React——它没有另一套渲染原理，赢在把 Vue 的 SSR 基建（路由、取数、注水、预渲染、服务端）做成约定。你<strong>没在生产用过 Nuxt</strong>（趣丸那场就暴露过），讲法是「Vue 和 SSR 原理我熟，Nuxt 是把它们框架化，缺的是它的约定细节」，别说成落地经验。</p>
 <div class="diagram">
 <p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 一次请求在 Nuxt 3 内部怎么走</p>
@@ -692,9 +824,51 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="trap"><strong>三套 SSR 终局对照（系统设计题收尾用）：</strong>自研（Company）胜在贴合业务、可控，代价是基建全自己养；Next 胜在 React 生态与 RSC，代价是四层缓存和约定复杂度；Nuxt 胜在 Vue 生态与 routeRules 的灵活分路由，代价同样是养服务端与注水治理。选型先问三句：<strong>团队是 React 还是 Vue 栈？页面里静态/动态/后台各占多少？SEO 与首屏值多少钱？</strong>答完这三句再报框架名，顺序别反。</div>
 </section>
 
+<!-- I18N -->
+<section class="card" id="i18n">
+<div class="kicker">框架 · 28 · 多市场背景，按理解与使用讲 ★</div><h2>国际化 / 本地化：语言是请求级上下文，不是全局变量</h2>
+<p class="sub">口径先定：国际化是 Shop Deco 东南亚多市场的<strong>背景</strong>，不是你主导设计的系统；货币包是平台团队的，你是使用者，只讲理解和使用。先分清两个词：<strong>i18n 是工程使能、做一次</strong>（抽文案、格式化、RTL、资源加载）；<strong>l10n 是每个市场落一次</strong>（翻译、当地格式、素材合规），翻译只是 l10n 的一部分。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · locale 怎么定：协商顺序 + 四个维度分开存</p>
+<div class="flow">
+<div class="node teal"><b>1 显式选择优先</b><small>用户自己选的语言<br>权重最高</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 URL / 账号偏好</b><small>链接里带的语言<br>其次账号里存的偏好</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 Accept-Language</b><small>浏览器语言列表逐个匹配<br>匹配上哪个用哪个</small></div><div class="arrow">→</div>
+<div class="node plain"><b>4 默认语言兜底</b><small>全没匹配上<br>才落到默认语言</small></div>
+</div>
+<div class="loop-note">四个维度分开存、互不推导：界面语言 ≠ 内容语言 ≠ 货币 ≠ 时区。人在泰国、用英文界面、看新加坡元价格，三者可以同时成立。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · SSR 里语言怎么隔离：串了就是偶发难复现的事故</p>
+<div class="flow">
+<div class="node plain"><b>请求进来</b><small>协商出本次 locale<br>带在请求里</small></div><div class="arrow">→</div>
+<div class="node rose"><b>请求级上下文</b><small>语言进请求级上下文<br>★ 绝不放服务端全局变量</small></div><div class="arrow">→</div>
+<div class="node teal"><b>按本次语言渲染</b><small>服务端用这个 locale 出 HTML<br>并发请求互不串话</small></div><div class="arrow">→</div>
+<div class="node green"><b>注水复用同一语言</b><small>只带本次真正用过的文案集合<br>客户端不重新协商另一套</small></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>缓存键必须带语言维度</h4><p>同一个人、同一个 URL，语言不同就是<strong>不同的渲染任务</strong>。整页 / 片段缓存的键要含语言 + 设备 + 版本，发布时失效；且只有匿名共享内容能整页缓存，个性化内容绝不进——和 Company SSR 那节是同一条红线。</p></div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 翻译 key 与缺失兜底：新加语言不改代码，缺翻译不露裸 key</p>
+<div class="grid3">
+<div class="box"><h4>key 怎么设计</h4><p>语义化 key、按业务域分层、按 collection 分片加载；文案<strong>整句一条 + 占位符</strong>，不许把一句话拆开拼接——语序每个语言都不一样，拼出来必错。</p></div>
+<div class="box"><h4>缺 key 怎么兜底</h4><p>兜底链：当前语言 → 英语 → 可读兜底文案，<strong>绝不把裸 key 露给用户</strong>。缺失按 locale + key + 页面去重上报，回流到翻译流程治理。</p></div>
+<div class="box"><h4>新加一种语言</h4><p>只加资源文件和配置，<strong>不改组件代码</strong>——进新市场还要改代码，说明 i18n 当初就没做好，这是面试官爱用的判断句。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 格式别手写：复数、日期、货币走规则，不走 if</p>
+<div class="grid2">
+<div class="box"><h4>复数：CLDR 只有六类</h4><p><code>Intl.PluralRules</code> 是分类器、ICU 语法负责选文案，类别只有 <code>zero / one / two / few / many / other</code> 六类。手写 <code>num &gt; 1</code> 必错：阿拉伯语 0 是 zero、2 是 two，法语 0 是 one，俄语 21 是 one。</p></div>
+<div class="box"><h4>日期与金额：参数分开传</h4><p>金额用 <code>Intl.NumberFormat</code>，locale 和 currency <strong>分开传</strong>；日期用 <code>Intl.DateTimeFormat</code> 并<strong>显式传时区</strong>，不传就按机器时区走，服务端和用户端能差出一天。</p></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>那货币包为什么不用 Intl、要手搓？（按这个顺序答）</h4><p>先说口径：那个货币包是 <strong>Company Web FE Platform Team</strong> 的，你是使用者，手头只有 dist 和类型定义、没有源码，平台内部是否用 Intl 未证实，你讲的是「业务层为什么看不到 Intl」。它的做法是按国家 / 币种硬编码配置表（符号、精度、分隔符、符号位置）+ 服务端数字先放大换算（一般放大 1e5，IR 的 IRR 为 1e6）再格式化，compact 数字按国家 + 语言分表。原因按重要性排：</p><ul><li><strong>RN 的 Intl 历史不可靠</strong>——跨端要同一套结果，不能赌各端 ICU 实现</li><li><strong>跨端价格必须确定性一致</strong>——价格差一位都是事故，不能「差不多」</li><li><strong>主维度是国家、不是语言</strong>——同一语言多个国家的价格规则不同，Intl 的 locale 维度对不上</li><li><strong>自定义日期 pattern 超出 Intl 预设</strong>——业务要的格式，预设给不出来</li><li><strong>ICU polyfill 体积</strong>——不适合低端机，包体积是真约束</li></ul><p>收尾必加一句：<strong>纯 Web 新项目直接用 Intl 完全没问题</strong>，别把这套讲成「Intl 不好」——是多端 + 强一致的约束把平台层逼成了收敛自研，代价是新国家、新币种都要改配置发版。</p></div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>RTL 与文本膨胀</h4><p>根节点 <code>dir</code> 由语言配置驱动，样式全面改逻辑属性（<code>margin-inline-start</code> 这类），不用左右硬编码。镜像要分类：导航、进度该翻，播放图标、Logo、数字不翻。译文比原文长是常态，靠弹性布局 + 按最长语言验收，别写死高宽；字体按脚本子集化，防缺字变豆腐块。</p></div>
+<div class="box"><h4>翻译管线怎么接开发流程</h4><p>代码仓是文案源头 → 增量同步到 TMS → 译者带着上下文审校 → 资源<strong>独立版本发布、不跟代码发版绑死</strong>；原文改了要让旧译文失效待复核。治理三道防线：CI 校验 key 与 ICU 语法、伪本地化提前暴露硬编码和截断、线上缺失上报回流。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「国际化我按四句讲：语言靠协商链定、进请求级上下文，SSR 里绝不放全局变量；文案是整句 key 加占位符，缺失走兜底链不露裸 key；复数、日期、货币走 Intl 和 CLDR 规则不手写 if；货币包那种手搓是平台层在多端强一致约束下的收敛，纯 Web 项目我直接用 Intl。最后补定位：<strong>这是多市场项目的背景，我是使用者和理解层，不是这套系统的设计者</strong>。」</p></div>
+<div class="trap"><strong>翻车点（面试官就等这三个）：</strong>语言放服务端全局变量、并发一上来就串话；复数写 <code>num &gt; 1</code>；缺翻译直接露裸 key。还有一个口径坑：别把 Intl 跨端差异说成 Company 真踩过的事故，那是原理层风险，不是已证实的 incident。</div>
+</section>
+
 <!-- RN -->
 <section class="card" id="rn">
-<div class="kicker">移动端 · 24 · 理解层，老实讲</div><h2>React Native：JS 写逻辑，原生画界面，瓶颈在「过桥」</h2>
+<div class="kicker">移动端 · 29 · 理解层，老实讲</div><h2>React Native：JS 写逻辑，原生画界面，瓶颈在「过桥」</h2>
 <p class="sub">先划边界：你没做过 RN 原生层落地、没读过它源码，这一节是<strong>理解层弹药</strong>——目标是能画出线程与桥接、能说清首屏慢在哪一段、能讲清为什么选 RN 或不选。被追到原生实现细节，用本节末尾的收法，别硬编。</p>
 <div class="diagram">
 <p style="margin:0 0 8px;font-weight:700;font-size:14px">旧架构：一句话画清三条线</p>
@@ -717,7 +891,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="trap"><strong>收尾提醒：</strong>被追问「桥的源码怎么实现的 / 秒开的具体原生方案做过吗」——直接认：「没读过源码、没做过原生侧落地，我能确定的是线程模型和瓶颈位置，具体实现要看版本和源码。」你之前在面试里就是这么答 MCP 的，效果比硬编好。这一节的价值是<strong>框架和定位方法</strong>，不是经历。</div>
 </section>
 
-<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、React、后端全链路、Next、Nuxt、RN）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Next（22）与 Nuxt（23）对照讲自研与框架的取舍。后端四节（18–21）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN（24）没做过原生层、只讲线程桥接与首屏分段。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历。</footer>
+<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、DSL 联动、Figma 转 DSL、AIDOD、SSE、React、后端全链路、Next、Nuxt、国际化、RN）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ Figma 转 DSL（10）连着练；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Next（26）与 Nuxt（27）对照讲自研与框架的取舍 → 国际化（28）补 SSR 语言隔离与缓存键。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN（29）没做过原生层、只讲线程桥接与首屏分段。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
 </div>
 <script>
 (function(){
