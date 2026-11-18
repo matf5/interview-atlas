@@ -27,10 +27,14 @@ a{color:var(--teal)}
 .hero p{color:var(--muted);margin:0;max-width:640px;font-size:16px}
 .howto{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 .howto span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px}
-nav.toc{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%, transparent);backdrop-filter:blur(8px);padding:12px 0;border-bottom:1px solid var(--line);margin:20px 0 8px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
-nav.toc::-webkit-scrollbar{display:none}
-nav.toc a{display:inline-flex;align-items:center;min-height:36px;padding:6px 14px;margin-right:8px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-size:14px}
-nav.toc a:active{background:var(--teal-bg)}
+nav.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:10px 16px 12px;margin:20px 0 8px}
+.toc-group{display:flex;align-items:flex-start;gap:10px;padding:6px 0}
+.toc-group+.toc-group{border-top:1px dashed var(--line)}
+.toc-label{flex:0 0 92px;padding-top:7px;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--teal);line-height:1.4}
+.toc-links{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:0}
+nav.toc a{display:inline-flex;align-items:center;min-height:32px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.3}
+nav.toc a:active,nav.toc a:hover{background:var(--teal-bg);border-color:var(--teal)}
+@media(max-width:640px){nav.toc{padding:8px 14px 10px}.toc-group{flex-direction:column;gap:4px;padding:8px 0}.toc-label{flex:none;padding-top:0}}
 section.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin:20px 0}
 section.card h2{margin:0;font-size:22px;line-height:1.3}
 .kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:700}
@@ -80,18 +84,27 @@ summary{min-height:36px;display:flex;align-items:center;cursor:pointer;font-weig
 details p,details li{font-size:14px;color:var(--muted)}
 .stepbtn{min-height:40px;padding:8px 18px;border-radius:999px;border:1px solid var(--teal);background:var(--teal);color:#fff;font-weight:600;cursor:pointer;font-size:14px}
 .stepout{margin-top:10px;font-size:14px;min-height:44px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.codeblock{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;overflow-x:auto;font-size:13px;line-height:1.55}
+.codeblock code{background:none;border:none;padding:0;font-size:13px;white-space:pre}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="hero">
 <h1>看图记原理，<br>开口不卡壳。</h1>
-<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；React Native 按理解层讲线程、桥接与首屏。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
+<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
 <div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
 </header>
 
 <nav class="toc" aria-label="目录">
-<a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a><a href="#loop">事件循环</a><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">RAG</a><a href="#more">深拷贝·设计模式</a><a href="#react">React ★</a><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a><a href="#css">CSS 布局</a><a href="#build">构建·TS</a><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#i18n">国际化/本地化 ★</a><a href="#rn">React Native ★</a>
+<div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#react">React ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a></div></div>
+<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a></div></div>
+<div class="toc-group"><span class="toc-label">DSL 与架构</span><div class="toc-links"><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#expr-engine">表达式引擎 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a></div></div>
+<div class="toc-group"><span class="toc-label">AI 应用</span><div class="toc-links"><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">AI 专题 · RAG ★</a><a href="#agent-memory">Agent 记忆 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a><a href="#build">构建·TS</a></div></div>
+<div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a></div></div>
+<div class="toc-group"><span class="toc-label">后端全链路</span><div class="toc-links"><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a></div></div>
+<div class="toc-group"><span class="toc-label">跨端与国际化</span><div class="toc-links"><a href="#i18n">国际化/本地化 ★</a><a href="#rn">跨端总论 · RN ★</a><a href="#engines">渲染/JS引擎 · CPU/GPU ★</a></div></div>
 </nav>
 
 <!-- VUE2 -->
@@ -362,6 +375,130 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="trap"><strong>翻车点（主动说）：</strong>一是<strong>循环依赖</strong>——A 的显隐依赖 B、B 又依赖 A，发布前靠 Schema 校验和依赖检查拦住；二是<strong>表达式写错悄悄不显示还不报错</strong>，线上很难发现，所以发布前要拿 mock 数据把长文案、空列表、零库存这些边界都跑一遍；三是字段缺失或动作类型没映射到，要按默认值兜底、打日志给降级提示，别让整块无声消失。另外提醒自己：<strong>「轻量渲染引擎 / 适配器模式」别当成已确认的落地说法去讲</strong>，被追问接口和翻车点时讲不清反而扣分，就按上面三层讲。</div>
 </section>
 
+<!-- EXPR ENGINE -->
+<section class="card" id="expr-engine">
+<div class="kicker">架构 · 09B · DSL 联动的底层引擎 ★</div><h2>表达式引擎全流程：不用 eval，怎么安全算出 DSL 里的表达式</h2>
+<p class="sub">口径先定：下面按<strong>这份实现</strong>讲——就是本轮贴出来的那份解析器代码（jsep 解析 + 编译成闭包 + 两级缓存）。面试时说「这份实现是这样设计的」，不要扩成未经确认的生产规模或线上指标。一句话：DSL 里的 <code>expression</code>、<code>:prop</code>、<code>show</code>、<code>each</code> 全是字符串，不能用 <code>eval</code> / <code>new Function</code> 直接跑，所以要先解析成 AST，再编译成可缓存的求值闭包。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">全流程图 · 从 DSL 字段到渲染结果</p>
+<div class="flow">
+<div class="node plain"><b>1 DSL JSON 字段</b><small>expression / :style / show / each<br>全是待求值的字符串</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 jsep 解析</b><small>只 parse 不执行<br>注册 object + template 插件</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 AST 语法树</b><small>Binary / Member / Call<br>Conditional / Template 等节点</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 compileExpr 编译</b><small>AST 节点 → 求值闭包 EvalFn<br>编译期分发一次，运行期不分发</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node amber"><b>5 exprCache 缓存</b><small>Map 按表达式字符串存闭包<br>同字符串只编译一次</small></div><div class="arrow">→</div>
+<div class="node blue"><b>6 compileNode 编译元素树</b><small>静态属性与 : 动态属性分离<br>show / each 编成包装函数</small></div><div class="arrow">→</div>
+<div class="node teal"><b>7 渲染时求值</b><small>闭包吃 scope<br>原型链查 GLOBALS + 渲染数据</small></div><div class="arrow">→</div>
+<div class="node green"><b>8 handler 产出结果</b><small>合并后的 element + data + children<br>交给 Row Model / 框架组件</small></div>
+</div>
+<div class="loop-note">记住主线：解析只做一次、编译只做一次，渲染时只跑闭包和拼装——贵的事全挪到编译期。</div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">阶段表 · 每一步吃什么、吐什么、关键设计是什么</p>
+<table>
+<tr><th style="width:16%">阶段</th><th style="width:24%">输入</th><th style="width:24%">输出</th><th>关键设计</th></tr>
+<tr><td><strong>词法 / 语法</strong></td><td>表达式字符串，如 <code>stock &gt; 0 ? '买' : '缺货'</code></td><td>jsep AST</td><td>jsep 本体只认基础语法，DSL 在 <code>:style</code> 和 <code>expression</code> 里重度使用对象字面量 <code>{...}</code> 与模板字符串，所以必须额外注册 <code>@jsep-plugin/object</code> 与 <code>@jsep-plugin/template</code>，否则这两类直接解析失败。jsep 只负责 parse，<strong>不执行任何代码</strong>。</td></tr>
+<tr><td><strong>编译</strong></td><td>AST 节点</td><td><code>EvalFn = (scope) =&gt; any</code> 闭包树</td><td><code>compileExpr</code> 按 <code>node.type</code> 递归，把每个节点编译成一个闭包，子节点先编译成子闭包再组合。好处是把「按类型 switch 分发」的成本付在编译期一次；朴素树遍历解释器每次求值都要对每个节点重新 switch，渲染高频调用时这就是主要开销。</td></tr>
+<tr><td><strong>表达式缓存</strong></td><td>表达式源字符串</td><td>已编译闭包</td><td>第一级缓存：<code>exprCache: Map&lt;string, EvalFn&gt;</code>，以源字符串为 key。同一模板里重复出现的表达式、同一表达式在多处使用时，只 parse + compile 一次。</td></tr>
+<tr><td><strong>元素缓存</strong></td><td>DSL element 对象</td><td>已编译的元素渲染函数</td><td>第二级缓存：<code>createParser</code> 内部用 <code>WeakMap&lt;Element, CompiledElement&gt;</code> 按 element 对象存。WeakMap 不阻止对象被回收，模板下线后缓存自动释放。两级分工：Map 管「字符串 → 闭包」，WeakMap 管「对象 → 整棵编译树」。</td></tr>
+<tr><td><strong>元素编译</strong></td><td>element（含静态 / 动态属性、children、show、each）</td><td><code>(scope) =&gt; handler(...)</code></td><td>编译期就把静态属性收进 <code>staticEl</code>、把 <code>:</code> 开头的动态属性收进 <code>patch</code> 列表（属性名去掉冒号 + 对应闭包）。渲染时若有 patch，先用 <code>buildMerged</code> 在静态元素的<strong>浅拷贝</strong>上合并，绝不原地改缓存里的静态对象。</td></tr>
+<tr><td><strong>作用域与求值</strong></td><td>渲染数据 data + 当前 scope</td><td>表达式的值</td><td>根 scope 用原型链搭：<code>Object.assign(Object.create(GLOBALS), data)</code>——查标识符先查数据、再落到 GLOBALS 白名单。<code>each</code> 的子作用域用 <code>Object.create(scope)</code> 再挂 alias / index，天然实现循环变量遮蔽外层同名字段，循环结束不污染外层。</td></tr>
+</table>
+
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>安全设计 · 三道线（这份代码的安全关键点）</h4><ul>
+<li><strong>拦原型链逃逸：</strong><code>UNSAFE_PROP = { constructor, __proto__, prototype }</code>，所有成员访问都走 <code>getProp</code> 先查这张黑名单。为什么这三个最危险：<code>x.constructor.constructor('...')()</code> 能顺着原型链拿到 <code>Function</code> 构造器，进而执行任意代码，等同于 RCE。</li>
+<li><strong>不用 eval / new Function：</strong>模板来自运营配置与外部输入，一旦能进 <code>Function</code> 就等于把代码执行权交出去；同时很多运行环境（CSP、小程序沙箱、安全审计）直接禁用它。</li>
+<li><strong>GLOBALS 白名单：</strong>自由标识符只能落到白名单里，目前只放 <code>Math</code>，且用 <code>Object.create(null)</code> 起底、无副作用、无 I/O。模板要用新全局，必须显式加进白名单。</li>
+<li><strong>空值与非法调用兜底：</strong>成员访问时对象为 <code>null / undefined</code> 直接抛 <code>TypeError</code> 并带属性名，方便定位是哪条表达式写错；调用的不是函数时返回 <code>undefined</code> 而不是让整页崩掉。</li>
+</ul></div>
+<div class="box"><h4>性能与取舍 · 编译一次，渲染多次</h4><ul>
+<li><strong>收益：</strong>同一模板反复渲染时，只付闭包调用 + 拼装的钱，不再付 parse、switch 分发、深拷贝的钱。旧的 <code>new Function</code> 版本每次渲染都要深克隆 element 再改克隆体，这份实现用浅拷贝合并替代了它。</li>
+<li><strong>代价一 · 首次编译成本：</strong>第一次遇到模板要付 parse + compile，冷启动或模板量极大时要考虑预编译或懒编译时机。</li>
+<li><strong>代价二 · 内存：</strong>两级缓存都以多占内存换少算，靠 WeakMap 让元素缓存可回收，表达式 Map 则随模板集合大小增长，需要有上限意识。</li>
+<li><strong>代价三 · 元素视为不可变（必须主动说）：</strong>编译结果按 element 对象缓存，调用方若在两次渲染之间改了 element，缓存不会感知、会拿到旧结果。旧实现因为每次深克隆，反而能吃到这种 mutation——这是一个明确的行为差异，不是 bug，是用不可变约定换性能。</li>
+</ul></div>
+</div>
+
+<div class="box" style="margin-top:12px"><h4>失败与降级 · 宁可编译期大声失败，不要运行期悄悄算错</h4><ul>
+<li><strong>不支持的节点 / 运算符：</strong><code>compileExpr</code> 的 <code>default</code> 直接抛 <code>Unsupported AST node type / operator</code>，在编译期暴露，而不是渲染时静默给错值。</li>
+<li><strong>each 解构：</strong><code>processEach</code> 用正则拆 <code>alias in/of exp</code> 与迭代器 <code>(alias, index)</code>。旧 <code>new Function</code> 路径支持 <code>({a, b}, i) in list</code> 这类解构写法，但真实模板没人这么用；这份实现用 <code>IDENTIFIER_RE</code> 校验 alias，不是合法标识符就直接抛错——<strong>大声失败好过静默算错</strong>。</li>
+<li><strong>保留的历史怪癖：</strong>无 <code>expression</code> 时取 <code>value</code>，但 falsy 的 <code>value</code>（<code>0 / '' / false / null</code>）会被转成空字符串 <code>''</code>——这是刻意保留的旧行为，改它之前要先确认存量模板没有依赖。</li>
+<li><strong>children 展平过滤：</strong><code>show</code> 为假返回 <code>false</code>、<code>each</code> 返回数组，最后由 <code>flattenFilter</code> 把嵌套数组展平并滤掉 falsy 子节点，handler 拿到的永远是干净的一维 children。</li>
+</ul></div>
+</div>
+
+<p style="font-weight:700;font-size:14px;margin:18px 0 4px">代码骨架 · 面试时能默写的四段（细节看展开）</p>
+<details><summary>① 对外入口 createParser：WeakMap 缓存 + 原型链 scope</summary>
+<pre class="codeblock"><code>export function createParser(handler, debug) {
+  const cache = new WeakMap(); // element 对象 -&gt; 已编译渲染函数
+  return function parse(element, data) {
+    let root = cache.get(element);
+    if (!root) {
+      root = compileNode(element, handler, new Map()); // Map 是 exprCache
+      cache.set(element, root);
+    }
+    // 原型链 scope：先查 data，再落 GLOBALS 白名单（只有 Math）
+    const scope = Object.assign(Object.create(GLOBALS), data);
+    return root(scope);
+  };
+}</code></pre>
+<p>讲法：公开契约和旧版完全一致，还是 <code>(element, data) =&gt; T</code>，替换的是内部实现——调用方无感，这也是敢重构的前提。</p>
+</details>
+<details><summary>② compileExpr 核心：短路逻辑 + 成员调用的 this 绑定</summary>
+<pre class="codeblock"><code>function compileExpr(ast) {
+  switch (ast.type) {
+    case 'Literal': { const v = ast.value; return () =&gt; v; }
+    case 'Identifier': return scope =&gt; scope[ast.name];
+    case 'LogicalExpression': // &amp;&amp; / || 必须短路，不能两侧都先求值
+      if (ast.operator === '&amp;&amp;') {
+        const l = compileExpr(ast.left), r = compileExpr(ast.right);
+        return scope =&gt; { const v = l(scope); return v ? r(scope) : v; };
+      }
+      // || 同理
+    case 'MemberExpression': // 所有成员访问都过 getProp 查黑名单
+      return scope =&gt; getProp(compileExpr(ast.object)(scope), ast.property.name);
+    case 'CallExpression':
+      // 方法调用 fn.apply(obj, args) 保住 this；普通函数调用 apply(null, args)
+  }
+}</code></pre>
+<p>两个最容易被深挖的点：<code>&amp;&amp; / ||</code> 要返回操作数本身且短路，不能编译成布尔运算；成员方法调用必须把宿主对象绑回 <code>this</code>，否则 <code>list.includes(x)</code> 这类依赖 this 的方法会出错。</p>
+</details>
+<details><summary>③ compileNode：show / each 包装 + 静态与动态分离</summary>
+<pre class="codeblock"><code>function compileNode(element, handler, exprCache) {
+  if (element.each != null) {
+    const { exp, alias, index } = processEach(element.each); // 正则拆 alias in list
+    const getList = expr(exp);                               // 走 exprCache
+    const inner = compileNode(restWithoutEach, handler, exprCache);
+    return scope =&gt; getList(scope).map((item, i) =&gt; {
+      const child = Object.create(scope); // 子作用域：原型链继承外层
+      child[alias] = item; if (index) child[index] = i;
+      return inner(child);
+    });
+  }
+  if (element.show != null) {
+    const getShow = expr(element.show);
+    const inner = compileNode(restWithoutShow, handler, exprCache);
+    return scope =&gt; getShow(scope) ? inner(scope) : false; // 假 -&gt; false，后续被过滤
+  }
+  // 普通节点：静态属性进 staticEl，':' 开头进 patch；渲染时 buildMerged 浅拷贝合并
+}</code></pre>
+<p>设计要点：<code>show / each</code> 不是在渲染时用 if 判断一遍，而是编译期就把内层编译函数包一层——渲染路径里没有指令判断，只有函数调用。</p>
+</details>
+<details><summary>④ 安全拦截 getProp：一行守住逃逸入口</summary>
+<pre class="codeblock"><code>const UNSAFE_PROP = new Set(['constructor', '__proto__', 'prototype']);
+function getProp(obj, key) {
+  if (UNSAFE_PROP.has(key)) throw new Error('Forbidden property access: ' + key);
+  return obj[key];
+}</code></pre>
+<p>为什么只拦这三个就够堵住主逃逸链：从任意对象出发，能通向 <code>Function</code> 构造器的路都要经过 <code>constructor</code>，能改原型污染的路都要经过 <code>__proto__ / prototype</code>，把这三个口子封死，模板表达式就只能读数据、调白名单内的方法。</p>
+</details>
+
+<div class="say"><b>一分钟讲法（按这份代码讲，照这个顺序）：</b><p>「先说为什么不用 <code>eval</code> 和 <code>new Function</code>：模板是外部可配置的，等于把执行权交出去，而且 CSP 和小程序沙箱也禁。这份实现分三步：第一步 jsep 只做解析，把表达式字符串变成 AST，对象字面量和模板字符串靠插件补齐，jsep 本身不执行代码；第二步 <code>compileExpr</code> 把 AST 编译成闭包树，把按类型分发的成本付在编译期，渲染时只跑闭包；第三步 <code>compileNode</code> 把整棵元素树编译掉，静态属性和冒号动态属性分离，<code>show</code> 和 <code>each</code> 编成包装函数，<code>each</code> 用原型链子作用域挂循环变量。缓存分两级：表达式按字符串进 Map，元素按对象进 WeakMap。安全靠三条：成员访问统一过 <code>getProp</code> 拦 <code>constructor / __proto__ / prototype</code>，全局只给白名单里的 <code>Math</code>，不支持的语法在编译期直接抛错，不静默算错。」</p></div>
+<div class="trap"><strong>深挖追问预警：</strong>「为什么不直接用 <code>new Function</code>？」→ 安全（模板可注入）、环境（CSP / 小程序沙箱禁用）、可缓存性（字符串拼函数难以按节点做编译缓存与拦截）。「闭包编译比直接遍历 AST 快在哪？」→ 遍历解释器每次求值都要对每个节点做类型分发，闭包把分发提前到编译期一次付清，渲染越高频差距越大。「缓存什么时候失效？」→ 元素缓存按对象身份，约定元素不可变，改模板就是换新对象、自然换新缓存；若调用方原地 mutation，缓存会过期——这是明确写出来的取舍。「原型链 scope 有什么坑？」→ 查标识符会一路往上找到 GLOBALS 和 <code>Object.prototype</code>，所以数据侧 key 命名要避开白名单名，子作用域的 alias 会遮蔽外层同名字段，这正是 <code>each</code> 想要的语义。「方法调用 this 怎么处理？」→ 成员调用用 <code>fn.apply(obj, args)</code> 把宿主绑回去，普通函数调用 <code>apply(null, ...)</code>，两者在编译期就按 callee 类型分开编译。</div>
+</section>
+
 <!-- FIGMA TO DSL -->
 <section class="card" id="figma-dsl">
 <div class="kicker">架构 · 10 · 四场反复被追的链路 ★</div><h2>Figma 转 DSL：设计稿不是业务结构，中间必须有一层映射</h2>
@@ -479,27 +616,138 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="trap"><strong>追问预警：</strong>「SSE 断了 30 秒丢的事件怎么追？」→ 进度类小事件有 <code>dod_event</code> 的序号可按序补，分析内容靠 Redis 快照 + thread_id 续跑，两条线分开答，别混成一句「重连就行」。</div>
 </section>
 
-<!-- RAG -->
+<!-- RAG / AI TOPIC -->
 <section class="card" id="rag">
-<div class="kicker">AI · 14</div><h2>RAG：先检索再生成，别让模型背全公司文档</h2>
-<p class="sub">一句话：把文档切块向量化存好，提问时先捞出最相关的几块，塞进提示词让模型「开卷答题」。</p>
+<div class="kicker">AI · 14 · AI 专题 ★</div><h2>AI 专题：LLM → RAG → Agent → 评测安全，给模型加约束的四层工程</h2>
+<p class="sub">一句话总纲：LLM 本质是按上下文预测下一个 token，强在语言理解与生成，弱在实时知识、私有数据与精确计算，所以它会幻觉。所有 AI 工程都不是在「让模型更聪明」，而是在给它加约束——给它查真实数据的工具、给它只能依据的片段、给它校验与回滚。面试按四层讲，缺一层都会被追问。</p>
 <div class="diagram">
-<p style="font-weight:700;font-size:14px;margin:0 0 8px">离线建库（文档变了才重跑）</p>
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">全景图 · 四层怎么叠</p>
 <div class="flow">
-<div class="node plain"><b>文档</b><small>手册 / 工单 / 代码</small></div><div class="arrow">→</div>
-<div class="node blue"><b>切块 Chunk</b><small>按语义切 + 重叠<br>太大不准、太小丢上下文</small></div><div class="arrow">→</div>
-<div class="node teal"><b>Embedding</b><small>文本 → 向量</small></div><div class="arrow">→</div>
-<div class="node amber"><b>向量库</b><small>存向量 + 原文 + 元数据</small></div>
+<div class="node plain"><b>第一层 · LLM 本身</b><small>能干什么、不能干什么<br>Token / 上下文 / 幻觉从哪来</small></div><div class="arrow">→</div>
+<div class="node teal"><b>第二层 · RAG</b><small>先检索再生成<br>别让模型背文档</small></div><div class="arrow">→</div>
+<div class="node blue"><b>第三层 · Agent</b><small>带工具的循环<br>模型决策、工具干活</small></div><div class="arrow">→</div>
+<div class="node amber"><b>第四层 · 评测与安全</b><small>Eval 量化 + 护栏收敛<br>没这层就只是 demo</small></div>
 </div>
-<p style="font-weight:700;font-size:14px;margin:14px 0 8px">在线问答（每次提问跑一遍）</p>
+<div class="loop-note">读法：先用第一层解释「为什么需要后面三层」，再用第二、三层讲怎么做，最后用第四层证明你做过工程、不是调了个 API。</div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">第一层 · 大模型本身：先说清边界，再谈方案</p>
+<div class="grid3">
+<div class="box"><h4>它到底在算什么？</h4><p>给定上文，预测下一个 token 的概率分布，再逐个采样生成。所谓「理解」是统计意义上的语言建模，不是查数据库。所以它<strong>不知道自己不知道</strong>——没依据时也会按最像的说法编下去，这就是幻觉的根源，不是偶尔的 bug。</p></div>
+<div class="box"><h4>三个硬约束（选型必答）</h4><ul><li><strong>上下文窗口有限：</strong>塞进去的不只是问题，还有系统提示、历史、检索片段、工具结果，超了就截断或涨成本</li><li><strong>知识有截止且无私有数据：</strong>训练后发生的事、公司内网文档，它一概没有——这是 RAG 存在的理由</li><li><strong>不擅长精确计算与实时状态：</strong>价格、库存、订单状态必须查真实系统，不许让模型「算」或「记」</li></ul></div>
+<div class="box"><h4>前端要懂的几个词</h4><ul><li><strong>Token：</strong>计费与长度单位，中英文切分不同，别按字数估成本</li><li><strong>Temperature：</strong>采样随机性，事实问答调低、创意生成调高</li><li><strong>结构化输出：</strong>要求按 JSON Schema 返回，再做校验，自由文本没法接进系统</li><li><strong>流式输出：</strong>逐 token 返回，前端靠 SSE 增量渲染（见 <a href="#sse">SSE 那节</a>）</li></ul></div>
+</div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">第二层 · RAG：离线建库和在线问答是两条线，别混成一条</p>
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">离线建库（文档变了才重跑）</p>
 <div class="flow">
-<div class="node plain"><b>问题向量化</b><small>同一个 Embedding 模型</small></div><div class="arrow">→</div>
-<div class="node teal"><b>Top-K 检索</b><small>余弦相似度捞 3–5 块<br>可加关键词混合检索</small></div><div class="arrow">→</div>
-<div class="node blue"><b>拼 Prompt</b><small>问题 + 检索片段<br>要求只依据片段作答</small></div><div class="arrow">→</div>
-<div class="node green"><b>生成 + 引用</b><small>答案带出处<br>捞不到就说不知道</small></div>
+<div class="node plain"><b>文档接入</b><small>手册 / 工单 / 帮助中心 / 代码<br>先清洗：去噪、去重、保留结构</small></div><div class="arrow">→</div>
+<div class="node blue"><b>切块 Chunk</b><small>按语义切，常见 512–1024 token<br>带 10%–20% 重叠防断句</small></div><div class="arrow">→</div>
+<div class="node teal"><b>Embedding 向量化</b><small>文本 → 向量<br>建库与查询必须用同一个模型</small></div><div class="arrow">→</div>
+<div class="node amber"><b>向量库</b><small>存向量 + 原文 + 元数据<br>来源 / 时间 / 权限一起存</small></div>
+</div>
+<p style="margin:14px 0 8px;font-weight:700;font-size:14px">在线问答（每次提问跑一遍）</p>
+<div class="flow">
+<div class="node plain"><b>问题向量化</b><small>必要时先改写 / 补全指代<br>口语问题先归一再检索</small></div><div class="arrow">→</div>
+<div class="node teal"><b>混合检索召回</b><small>向量捞语义 + BM25 捞精确词<br>先宽召回 Top-K 10–20</small></div><div class="arrow">→</div>
+<div class="node blue"><b>重排 Rerank</b><small>重排模型精排<br>筛到 3–5 块才进 Prompt</small></div><div class="arrow">→</div>
+<div class="node green"><b>拼 Prompt 生成</b><small>只依据片段作答 + 带出处<br>捞不到就明确说不知道</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>切块是第一个坑（深挖高频）</h4><ul><li>切太碎：答案被切成两半，哪块都不完整，检索到了也答不全</li><li>切太大：噪音多、相关句被稀释，还挤占上下文、抬高成本</li><li>按结构切优先于按字数切：标题、段落、表格、代码块别切散，块上带上所属标题当上下文</li><li>重叠是补救不是万能：重叠越大库越大、重复召回越多，要一起调</li></ul></div>
+<div class="box"><h4>为什么不能只用向量检索？</h4><ul><li><strong>向量检索</strong>擅长语义相近（换个说法也能捞到），但对型号、错误码、人名这类精确词不敏感</li><li><strong>BM25 关键词检索</strong>正好相反：精确词一击命中，但同义改写就漏</li><li>所以生产做法是<strong>两路召回再合并去重</strong>，然后统一重排——只讲向量一路，会被判没做过真实项目</li><li>Top-K 也不是越大越好：进 Prompt 的片段越多，噪音越多、成本越高，模型还容易被不相关片段带偏</li></ul></div>
+</div>
+<table>
+<tr><th style="width:18%">方案</th><th style="width:41%">适合</th><th>不适合 / 代价</th></tr>
+<tr><td><strong>Prompt 工程</strong></td><td>固定流程、规则明确、知识量小到能塞进提示词</td><td>知识会变、要查私有库——提示词改一次发一次版，跟不上</td></tr>
+<tr><td><strong>RAG</strong></td><td>知识会变、要出处、要实时更新、私有文档问答</td><td>要改模型的行为、语气、输出格式——检索改不了这些</td></tr>
+<tr><td><strong>微调</strong></td><td>改行为、改风格、学特定任务的格式与话术</td><td>往模型里灌知识：更新一次训一次，成本高，还会灾难性遗忘；知识天天变的场景别选它</td></tr>
+</table>
+<div class="box" style="margin-top:12px"><h4>答不准的排查链（按这个顺序，别先怪模型）</h4><p><strong>① 查切块</strong>：正确答案所在的原文有没有被切碎、标题和正文有没有分离 → <strong>② 查检索</strong>：正确的片段在不在召回的 Top-K 里，不在就是检索问题（改切块、改混合比例、改问题改写） → <strong>③ 查重排</strong>：正确片段召回了但排名太靠后、没进最终 3–5 块 → <strong>④ 最后才查生成</strong>：片段都给对了还答错，才是提示词约束或模型能力问题。能说出这条链，面试官就知道你真排过障。</p></div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">第三层 · Agent：不是一次问答，是想 → 调工具 → 看结果的循环</p>
+<div class="flow">
+<div class="node teal"><b>ReAct 循环</b><small>Thought → Action → Observation<br>细图见 <a href="#agent">Agent 那节</a>，这里只补三件套</small></div><div class="arrow">→</div>
+<div class="node blue"><b>记忆分两层</b><small>短期：窗口内对话，长了摘要压缩<br>长期：偏好与结论写进库 / 向量库</small></div><div class="arrow">→</div>
+<div class="node amber"><b>规划先拆步</b><small>大任务先拆成可验证的小步<br>每步可回滚，别一步到位放飞</small></div><div class="arrow">→</div>
+<div class="node green"><b>工具才是手脚</b><small>查库 / 调 API / 渲染都是工具<br>LLM 只负责决定调哪个、传什么参</small></div>
+</div>
+<table>
+<tr><th style="width:18%">概念</th><th style="width:41%">它解决什么</th><th>判断标准（你定死的那条）</th></tr>
+<tr><td><strong>Skill</strong></td><td>教模型「怎么做」：流程、规范、模板、检查清单</td><td>不提供新通道。凡是靠说明和本地脚本能解决的，都归 Skill</td></tr>
+<tr><td><strong>Function Calling</strong></td><td>让模型按 Schema 选工具、填参数，由宿主程序执行</td><td>工具在自己系统内时用它就够，轻量、直接</td></tr>
+<tr><td><strong>MCP</strong></td><td>给模型接上它「够不着的真实系统」的标准协议通道</td><td>只有缺一条通往真实系统的路时才需要——如线上模板库、预览渲染服务、线上观测数据；Skill 解决不了的能力缺口，才轮到 MCP</td></tr>
+</table>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">第四层 · 评测与安全：没这层，前面全是 demo</p>
+<div class="grid2">
+<div class="box"><h4>Eval 怎么做（别凭感觉说「变好了」）</h4><ul><li>先攒一批<strong>有标准答案的问答集</strong>（真实问题 + 期望答案 + 应命中的文档），改任何一环都全量重跑</li><li><strong>检索看命中：</strong>正确片段有没有进 Top-K、排在第几（Recall@K / 命中率）</li><li><strong>生成看对错：</strong>答案与标准答案的吻合度、引用出处对不对、有没有编造片段里没有的内容</li><li>分开记检索分和生成分——总分变差时才知道是哪一层退化，对应上面那条排查链</li></ul></div>
+<div class="box"><h4>安全与护栏（幻觉防不住，只能收敛）</h4><ul><li><strong>防提示注入：</strong>用户输入和检索回来的文档都是「数据」不是「指令」，别直接拼进系统提示当命令执行；文档里的诱导语句要隔离</li><li><strong>敏感数据不进 Prompt：</strong>隐私、密钥、未脱敏的主体信息先脱敏或不送模型（和 AIDOD 主体加密存是同一条意识）</li><li><strong>工具最小权限：</strong>工具白名单、最大步数、失败重试上限，写操作一律<strong>先出方案、人确认再执行</strong>，且可回滚、可审计</li><li><strong>成本与延迟：</strong>小模型做分类/改写、大模型做生成；高频问题缓存答案；别拿最贵的模型跑所有请求</li></ul></div>
+</div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">落到前端 · 你能讲的三类活（别贪多，讲透一类即可）</p>
+<div class="grid3">
+<div class="box"><h4>① AI Coding 工作流</h4><p>你用 Codex 的那套：意图先写成文档、Plan 拆步骤、Skill 沉淀团队规则、多 Agent 做 Code Review、历史修复沉淀成规则。资深的考点是<strong>全局把控</strong>——拆解、校验、兜底，而不是会调哪个工具。</p></div>
+<div class="box"><h4>② 产品里的 AI 功能</h4><p>搜索、推荐、生成、体检类功能本质都是 RAG 或 Agent 的壳。前端难点不在调接口，在<strong>流式渲染</strong>（见 SSE 节）和<strong>状态同步</strong>：生成式 UI 要能中断、能重试、能在人确认后才落真实操作。</p></div>
+<div class="box"><h4>③ AIDOD 那条链（守住口径）</h4><p>AIDOD 的知识库是<strong>指纹精确匹配，不是向量 RAG</strong>：指纹哈希精确查、规则 + 关键词召回，向量只做置信度打分那一侧的事。面试官问 RAG 别拿 AIDOD 顶，问 AIDOD 也别说成 RAG——两套是不同的召回思路，混了就是没分清。详见 <a href="#aidod">AIDOD 那节</a>。</p></div>
 </div>
 </div>
-<div class="say"><b>追问怎么答：</b><p>「RAG 答不准先别怪模型，按链路排查：切块是否把答案切碎了 → 检索 Top-K 里有没有正确片段（没有是检索问题）→ 有片段还答错才是生成问题。RAG 适合<strong>知识会变、要出处</strong>的场景；固定流程规范用 Skill/提示词更便宜，别什么都向量化。」</p></div>
+<div class="say"><b>一分钟讲法 · RAG 版（直接背）：</b><p>「知识天天变就别微调，先检索再生成。离线把文档按语义切块、向量化建库；在线用向量 + BM25 混合检索宽召回，再重排筛到 3–5 块拼进 Prompt，要求只依据片段作答、带出处，捞不到就说不知道。答不准先查切块、再查检索、最后查生成。」</p></div>
+<div class="say"><b>一分钟讲法 · Agent 版（直接背）：</b><p>「Agent 是想、调工具、看结果的循环，模型只做决策，工具做真活。Skill 管怎么做，MCP 管够不着的系统，写操作人确认、可回滚。MCP Server 我没落地写过，只用过 Figma 和 Confluence 的；让我设计，就按模板库、预览渲染、线上观测这三个 Skill 够不着的缺口讲。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「切块大小怎么定？」→ 没有万能值，按文档类型试：手册类偏大保完整、问答类偏小保精准，用 Eval 集量出来，别报一个数字装懂。「向量库怎么选？」→ 先看量级与现有栈：量小直接用现有数据库的向量能力，量大再上专用库，选型服从运维成本，别为简历堆组件。「RAG 和长上下文谁更好？」→ 长上下文省了检索但贵且慢、还稀释注意力，知识量大、要更新、要出处时 RAG 仍是正解，两者可以叠：检索先筛，长上下文兜底读全篇。</div>
+</section>
+
+<!-- AGENT MEMORY -->
+<section class="card" id="agent-memory">
+<div class="kicker">AI · 14B · Agent 记忆 ★</div><h2>Agent 上下文管理与记忆：模型本身无记忆，记忆是工程外挂</h2>
+<p class="sub">口径先定：这一节按<strong>原理与设计</strong>讲，不冒充落地过完整的记忆系统。一句话：LLM 是无状态的，每次调用都是一张白纸——所谓「Agent 有记忆」，全是外面的工程在每次调用前把该记的东西重新塞进上下文，调用后把该存的结论再写回库里。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">总图 · 记忆不在模型里，在模型外面这一圈</p>
+<div class="flow">
+<div class="node plain"><b>无状态的模型</b><small>每次调用互不相识<br>关掉窗口就全忘</small></div><div class="arrow">→</div>
+<div class="node teal"><b>短期记忆</b><small>就是本次的上下文窗口<br>对话历史 + 工具结果 + 当前状态</small></div><div class="arrow">→</div>
+<div class="node blue"><b>长期记忆（外部库）</b><small>事实 / 情节 / 做法三类<br>存在数据库里，不在权重里</small></div><div class="arrow">→</div>
+<div class="node amber"><b>取回再拼装</b><small>下次调用前按需捞 3–5 条<br>拼进 Prompt，模型才「想起来」</small></div>
+</div>
+<div class="loop-note">记住这句：记忆 = 存得对 + 捞得准 + 塞得进。模型只负责最后一步的「读」，前两步全是工程。</div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">短期记忆 · 上下文窗口就这么大，长任务靠三招续命</p>
+<div class="grid3">
+<div class="box"><h4>① 截断：最笨但必须有</h4><p>窗口满了先丢最老的：早期闲聊、已完成的中间步骤先出局，<strong>系统提示和最近几轮永远保留</strong>。截断要有策略地丢，不能从中间乱切把一问一答切散。代价也直说：丢掉的细节模型就真忘了，所以重要结论不能只活在历史里。</p></div>
+<div class="box"><h4>② 摘要压缩：把历史压成小抄</h4><p>把已走完的一大段对话 / 工具结果压成一段摘要（目标是什么、试过什么、结论是什么），用摘要替换原文继续往下跑。压缩本身也花一次模型调用，所以要<strong>攒够一段再压</strong>，别每轮都压；压的时候只留事实和结论，寒暄和试错过程全扔。</p></div>
+<div class="box"><h4>③ 结构化状态表：关键状态不靠「聊出来」</h4><p>任务进度、已确认参数、待办清单维护成一张<strong>结构化状态</strong>（如 JSON / 表格）放在上下文固定位置，每步更新它。这样哪怕历史被截断、被压缩，模型低头看状态表就知道干到哪了——长任务不跑偏靠的是它，不是靠模型记性好。</p></div>
+</div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">长期记忆 · 分三类存，别混成一锅</p>
+<div class="grid3">
+<div class="box"><h4>事实记忆 · 关于用户和世界</h4><p>稳定的事实与偏好：用户是谁、项目用什么栈、某个口径已经拍板。特点是<strong>条目化、可增删改</strong>，一条一个事实，变了就改那一条。</p></div>
+<div class="box"><h4>情节记忆 · 发生过什么事</h4><p>带时间的事件与结论：上次那个问题最后怎么定的、某次任务做到哪一步、踩过什么坑。查的时候<strong>时效性权重高</strong>，旧情节要让位给新情节。</p></div>
+<div class="box"><h4>做法记忆 · 应该怎么做</h4><p>流程、规范、检查清单——落到实物就是 <strong>Skill、系统提示、AGENTS.md 这类文件</strong>。它不按条取回，而是整份作为规则常驻：每次干活前先加载，管的是「做法」不是「事实」。</p></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>写入纪律：只写验证过的结论</h4><ul><li>模型自己猜的、还没确认的，<strong>不许写进长期记忆</strong>——错记忆比没记忆更贵，它会在以后每次被捞出来误导</li><li>用户改口、结论被推翻时，要<strong>作废旧条目</strong>（标记失效或删除），不能只追加新的一条让新旧并存打架</li><li>每条记忆带上来源和时间，日后冲突时才分得清谁新谁旧、谁更可信</li></ul></div>
+<div class="box"><h4>取回纪律：按三性排序，只取 3–5 条</h4><ul><li><strong>相关性</strong>：和当前任务语义最贴的优先（可以走向量检索，但捞的是记忆条目不是文档）</li><li><strong>时效性</strong>：同类事实取最新的，过期条目降权</li><li><strong>重要性</strong>：拍板过的口径、用户明确强调的偏好，权重压过随口提的一句</li><li>只塞 3–5 条：塞多了稀释注意力、抬成本，还容易让旧记忆盖过当前指令</li></ul></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>多 Agent 时：各自只拿自己那份上下文</h4><p>多个 Agent 协作不是把全部历史广播给所有人：每个 Agent 只拿<strong>它这一步需要的切片</strong>——自己的任务说明、上游的结构化产出、和它相关的那几条记忆。这样做有三个好处：上下文不爆、互不污染（别的 Agent 的试错不会带偏它）、出了问题能定位是哪一份上下文给错了。共享的东西走结构化状态和长期记忆，不靠共享聊天记录。</p></div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">续跑 · 用 AIDOD 的例子分清两个 ID（细节在 <a href="#aidod">AIDOD</a> 与 <a href="#sse">SSE</a> 两节，这里只做交叉引用）</p>
+<table>
+<tr><th style="width:18%">ID</th><th style="width:41%">它是谁的</th><th>管什么</th></tr>
+<tr><td><code>thread_id</code></td><td>Codex 那边的<strong>会话 ID</strong></td><td>管<strong>续跑</strong>：分析中断后，拿它回到同一个会话接着跑，模型还记得前面分析到哪——这是「任务级记忆」</td></tr>
+<tr><td><code>stream_id</code></td><td>我们给前端那条 <strong>SSE 连接的 ID</strong></td><td>管<strong>重连</strong>：连接断了重连时定位是哪条流，先补快照再接增量——这是「连接级定位」，和记不记得内容无关</td></tr>
+</table>
+<div class="box" style="margin-top:12px"><h4>顺带记死：流式中间内容不进库</h4><p>分析边跑边产出的中间内容只放内存 / Redis 缓冲，跑完拼成文件存对象存储，DB 只存 <code>thread_id</code>、<code>storage_key</code> 和状态等元数据。所以「断了从库里重放内容」这个说法是错的：内容靠快照 + <code>thread_id</code> 续跑找回，不靠数据库。这正是短期记忆「不落库、用完即弃」在真实系统里的样子。</p></div>
+
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">长期记忆 vs RAG · 最容易混的一对，面试必分清</p>
+<table>
+<tr><th style="width:18%"></th><th style="width:41%">RAG</th><th>长期记忆</th></tr>
+<tr><td><strong>查什么</strong></td><td>查<strong>知识</strong>：文档、手册、工单——关于世界的内容</td><td>查<strong>用户和任务状态</strong>：偏好、已拍板的口径、任务进行到哪</td></tr>
+<tr><td><strong>谁写的</strong></td><td>离线建库时批量灌入，内容相对稳定</td><td>运行中一条条沉淀，必须是验证过的结论</td></tr>
+<tr><td><strong>错了的代价</strong></td><td>答错一道题，下次更新文档就好</td><td>会<strong>持续误导</strong>之后每一次调用，所以写入和作废纪律比 RAG 严得多</td></tr>
+<tr><td><strong>一句话</strong></td><td colspan="2">技术底座可以一样（都可能用向量检索取回），但<strong>查的对象不同、写入纪律不同</strong>，别因为都用了向量就混成一个东西——就像 AIDOD 的指纹库也不是 RAG 一样。</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法（直接背）：</b><p>「先说破：模型本身没有记忆，每次调用都是白纸，记忆是工程外挂。短期记忆就是上下文窗口，长任务靠三招——老历史截断、走完的段落摘要压缩、关键进度维护成结构化状态表。长期记忆存在库里分三类：事实、情节、做法，做法落到实物就是 Skill 和 AGENTS.md；写入只写验证过的结论，用户改口就作废旧的；用时按相关性、时效性、重要性只捞 3–5 条拼回去。多 Agent 各自只拿自己那份上下文。它和 RAG 的区别是：RAG 查知识，记忆查用户和任务状态。」</p></div>
+<div class="trap"><strong>三个追问预警：</strong>①「Agent 有记忆吗？」→ 先答<strong>模型没有、系统有</strong>：记忆是上下文拼装 + 外部存储做出来的效果，把这句说在前面，后面讲什么都顺。②「为什么不把全部历史都塞进去？」→ 窗口有上限、成本按 token 涨、而且塞太多会<strong>稀释注意力</strong>，模型反而抓不住当前任务；所以才要截断、压缩和状态表，不是舍不得，是塞满了效果更差。③「记忆和 RAG 有什么区别？」→ 照上面那张表答：一个查知识、一个查用户与任务状态；再补一句 AIDOD 的例子——<code>thread_id</code> 管续跑是任务级记忆，<code>stream_id</code> 管重连只是连接定位，两个 ID 别混。</div>
 </section>
 
 <!-- MORE -->
@@ -516,9 +764,102 @@ details p,details li{font-size:14px;color:var(--muted)}
 <li><strong>策略模式：</strong>用映射表消灭 if-else 森林（如多币种格式化、多状态渲染）</li>
 <li><strong>单例：</strong>全局 Store、请求缓存、弹窗管理器</li>
 <li><strong>工厂 / 适配器：</strong>DSL 节点按 type 造组件 = 工厂；老接口包一层 = 适配器</li></ul>
-<p>每个模式都要能落回你自己的项目例子，背定义没用。</p></div>
+<p>每个模式都要能落回你自己的项目例子，背定义没用。逐个模式的完整例子、代码片段和误用警告看下一节 <a href="#patterns">设计模式实例图鉴</a>。</p></div>
 </div>
 <div class="box" style="margin-top:12px"><h4>rem / 移动端适配一句话</h4><p><code>rem</code> 相对根字号：按设计稿宽度动态设 <code>html font-size = 视口宽 / 10</code>，元素尺寸写 rem 即可等比缩放；如今更常用 vw / 响应式断点，rem 的坑是字体不该跟着缩放、以及 DPR 与 1px 边框问题。被问到先讲原理，再讲「现在我会优先 vw + clamp」。</p></div>
+</section>
+
+<!-- PATTERNS -->
+<section class="card" id="patterns">
+<div class="kicker">基础补漏 · 15B · 从背定义改成举例子 ★</div><h2>设计模式实例图鉴：每个模式都落到你自己的代码上</h2>
+<p class="sub">选例原则：只收能对回你手里真实代码的模式，不凑 GoF 名录。每个模式按同一格式讲：<strong>解决什么问题 → 你的代码里在哪 → 最小片段 → 追问与误用</strong>。面试官问设计模式，考的从来不是定义默写，是你能不能先说清「当时有什么痛」，再说模式名。</p>
+
+<div class="grid2">
+<div class="box"><h4>1 · 适配器 Adapter —— 同一份 DSL，不同端各包一层 handler</h4>
+<p><strong>解决什么：</strong>同一份数据结构，要喂给接口不一致的多个消费方，不想为每个消费方改数据源。</p>
+<p><strong>在哪：</strong>表达式引擎的 <code>createParser(handler)</code> 就是这个形状：DSL 和求值逻辑只写一份，<code>handler(element, data, children)</code> 由接入方实现——Web 侧 handler 把节点转成 Web 组件，RN 侧 handler 转成 RN 组件，解析器对端无感知。另一个日常例子是货币 / 日期格式化：业务只调统一的 <code>formatCurrency(amount, country)</code>，内部按国家配置表适配到底层格式化实现，业务不关心每个国家符号位置和精度怎么来的。</p>
+<pre class="codeblock"><code>// 解析器不变，换 handler 就换一端
+const parseWeb = createParser((el, data, kids) =&gt; renderWebNode(el, data, kids));
+const parseRN  = createParser((el, data, kids) =&gt; renderRNNode(el, data, kids));</code></pre>
+<p><strong>误用警告：</strong>适配层只做接口转换，不该在里面藏业务逻辑；适配的接口每变一次所有适配器都要跟着改，接口不稳定时先稳接口再谈适配。</p></div>
+
+<div class="box"><h4>2 · 策略 Strategy —— 用配置表 / 映射表消灭 if-else 森林</h4>
+<p><strong>解决什么：</strong>同一件事有多种算法或规则，按条件选一种，且规则还会持续增加，if-else 每加一条就要改老代码。</p>
+<p><strong>在哪：</strong>三处现成的。一是 <code>compileExpr</code> 按 <code>node.type</code> 分发到各节点的编译策略，新增节点类型是加一个 case，不是改求值主流程；二是货币格式化按「国家 + 币种」查硬编码配置表（符号、精度、分隔符、compact 分表），加新国家是加一行配置，不是加一段分支；三是 AIDOD 置信度打分按规则明细逐项加分（代码命中多少分、日志命中多少分），规则可增减、明细可审计。</p>
+<pre class="codeblock"><code>// 不是 if (country === 'ID') {...} else if ...
+const rule = CURRENCY_RULES[country]; // { symbol, digits, position, separator }
+return formatByRule(amount, rule);</code></pre>
+<p><strong>追问预警：</strong>「策略和状态模式区别？」→ 策略是调用方主动选算法，状态是对象内部状态变了行为自动变，上下文感知不同。规则只有两三种且不会再长时，直接 if-else 更清楚，硬套映射表反而难读。</p></div>
+
+<div class="box"><h4>3 · 观察者 vs 发布订阅 —— 必考对照，别答混</h4>
+<p><strong>解决什么：</strong>状态变了要通知一串依赖方，依赖方还要能动态增减。</p>
+<p><strong>在哪：</strong>Vue 的 Dep / Watcher 是<strong>观察者</strong>：每个属性的 Dep 直接持有它的 Watcher 列表，set 时直接 notify，没有中间人。EventBus、以及 SSE 那节的事件分发是<strong>发布订阅</strong>：发布者只把事件丢给事件中心，订阅者向中心登记，双方互不知道对方是谁。</p>
+<table><tr><th></th><th>观察者</th><th>发布订阅</th></tr>
+<tr><td>中间人</td><td>无，主题直连观察者</td><td>有，事件中心做中介</td></tr>
+<tr><td>耦合</td><td>主题知道观察者列表</td><td>发布与订阅互不知情</td></tr>
+<tr><td>你的例子</td><td>Vue Dep → Watcher、Vue3 的 effect 依赖收集</td><td>EventBus、SSE 事件按类型分发、组件间跨层通信</td></tr>
+<tr><td>代价</td><td>主题膨胀时通知链难追踪</td><td>多一层调试成本，事件满天飞时难定位来源</td></tr></table>
+<p><strong>讲法：</strong>一句话区分——「有没有中间人」。被问项目里用哪个，先说场景再报模式，不要两个都报显得都懂其实都没用过。</p></div>
+
+<div class="box"><h4>4 · 工厂 Factory —— 按 type 造对象，调用方不写 new 的细节</h4>
+<p><strong>解决什么：</strong>对象种类多、创建逻辑分散时，把「按类型决定造哪个」收口到一处，新增类型只改工厂。</p>
+<p><strong>在哪：</strong>DSL 渲染时按节点 <code>type</code> 找对应组件来创建，就是工厂形状：模板只写 type 字符串，渲染器查映射表拿到组件并实例化，模板作者不需要知道组件怎么构造。另一处是 <code>compileExpr</code> 的编译分发：按 AST 节点类型「生产」出对应的求值闭包，调用方只拿到一个可调用的 <code>EvalFn</code>，不知道它内部是哪类节点的逻辑。jsep 插件的注册（<code>jsep.plugins.register(objectPlugin, templatePlugin)</code>）是配套的注册表思想：能力靠注册扩展，不改解析器本体。</p>
+<pre class="codeblock"><code>const COMP = { banner: Banner, goodsList: GoodsList, coupon: Coupon };
+function renderNode(node, data) {
+  const C = COMP[node.type];
+  return C ? C({ ...node.props, data }) : renderFallback(node); // 未知 type 要兜底
+}</code></pre>
+<p><strong>误用警告：</strong>工厂最容易漏的是未知类型的兜底——DSL 里出现没注册的 type 必须降级渲染或跳过并上报，不能直接抛错让整页白屏。</p></div>
+
+<div class="box"><h4>5 · 单例 Singleton —— 全局只该有一份的东西</h4>
+<p><strong>解决什么：</strong>某些资源全局共享且只能有一份实例，重复创建会状态打架或纯浪费。</p>
+<p><strong>在哪：</strong>可以这样举例：解析器侧的表达式缓存随 parser 实例走，一个页面只建一个 parser、缓存全局复用；全局 Store（登录态、主题）、请求缓存层也是同理。前端多数单例不是用类写的，就是模块级变量——ES Module 本身只执行一次，导出的对象天然单例。</p>
+<pre class="codeblock"><code>// 模块即单例：import 到哪都是同一份
+let parser;
+export function getParser(handler) {
+  if (!parser) parser = createParser(handler);
+  return parser;
+}</code></pre>
+<p><strong>追问与红线：</strong>单例最大的坑是<strong>把请求级状态放进全局单例</strong>——SSR 场景下多请求共用一个 Node 进程，全局变量存 locale 或用户信息就会串话，这正是国际化那节「语言进请求级上下文、绝不放全局变量」的教训。单例只适合放无状态或全局一致的东西。</p></div>
+
+<div class="box"><h4>6 · 模板方法 / 管线 Pipeline —— 骨架固定，步骤可换</h4>
+<p><strong>解决什么：</strong>一类流程步骤顺序固定、但每步实现会变，需要保证顺序和兜底不被各实现方改乱。</p>
+<p><strong>在哪：</strong>两条现成的链。一是 Figma 转 DSL 的生产链：读节点 → 清洗 → 布局转换 → 组件映射 → 补字段 → 存库 → 校验回归，顺序是骨架，每步的规则可以持续增补，失败 case 归类成新规则补回对应步骤。二是 AIDOD 定位链：建任务 → 收上下文 → 定代码范围 → 查日志 → 指纹查知识库 → 分析 → 打分 → 人批，每步可单独重跑或替换，整条链的顺序和审计点位不变。<code>compileNode</code> 处理 <code>each / show</code> 再落到普通节点的固定顺序，也是一条小管线。</p>
+<pre class="codeblock"><code>const PIPELINE = [readNodes, cleanNodes, convertLayout, mapComponents, fillFields, validate];
+let dsl = raw;
+for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实现、可单独测</code></pre>
+<p><strong>误用警告：</strong>步骤之间只传数据、不互相直调，否则就退化成一团面条；每步要有明确的输入输出，某步挂了能定位到步、能从该步重跑。</p></div>
+
+<div class="box"><h4>7 · 解释器 Interpreter —— 表达式引擎本身就是它</h4>
+<p><strong>解决什么：</strong>有一类可配置的小语言（不是图灵完备的业务代码），需要能存进配置、能校验、能安全执行。</p>
+<p><strong>在哪：</strong>就是上一节的表达式引擎：DSL 里的条件、绑定、样式表达式构成一个受限小语言，jsep 给出文法解析、AST 是它的句法结构、<code>compileExpr</code> 编译出的闭包是它的解释执行。为什么不用宿主语言直接写：配置要存库、要跨端、要过安全审计，宿主语言的 <code>eval</code> 三条都不满足，受限小语言牺牲表达能力换可控性，这正是 DSL 边界那节讲的取舍。</p>
+<p><strong>追问预警：</strong>「解释器模式和编译器有什么区别？」→ 面试语境下抓住一点：这里的目标是安全可控地求值，不是生成目标代码；这份实现进一步把解释做成「编译成闭包」，是解释器的一种优化实现。细节回 <a href="#expr-engine">表达式引擎全流程</a> 那节展开讲。</p></div>
+
+<div class="box"><h4>8 · 代理 / 装饰器（加分项）—— 不改原函数，给它加一层</h4>
+<p><strong>解决什么：</strong>想给已有能力加缓存、重试、鉴权刷新、响应式追踪，又不想改它本体。</p>
+<p><strong>在哪：</strong>Vue3 的响应式就是语言级 Proxy：代理对象拦截 get / set 做依赖收集与触发，原对象一行不改。请求层是装饰器形状：把原始请求函数包一层，统一加 401 刷新后重试、错误码归一、请求去重，原函数只管发请求。两者共同点：<strong>增强发生在被包的那一层外面，被包者无感知</strong>。</p>
+<pre class="codeblock"><code>async function withRefresh(requestFn) {
+  try { return await requestFn(); }
+  catch (e) { if (is401(e)) { await refreshTokenOnce(); return requestFn(); } throw e; }
+}</code></pre>
+<p><strong>误用警告：</strong>包装层数多了调用栈难追、出错难定位；Proxy 有性能成本且拦不住所有操作（如 <code>in</code>、自有属性枚举要单独处理），别把它讲成无代价的魔法。</p></div>
+</div>
+
+<p style="font-weight:700;font-size:14px;margin:18px 0 8px">收尾对照表 · 听到什么信号，报什么模式</p>
+<table>
+<tr><th style="width:22%">面试题里的信号</th><th style="width:18%">模式</th><th>你的一句例子</th></tr>
+<tr><td>同一份数据要给多个端 / 多个消费方用</td><td>适配器</td><td>DSL 只写一份，换 handler 就换一端渲染</td></tr>
+<tr><td>if-else 越加越长、规则按类型 / 国家 / 状态分</td><td>策略</td><td>货币格式按国家查配置表，加国家只加一行配置</td></tr>
+<tr><td>状态一变要通知很多地方</td><td>观察者 / 发布订阅</td><td>Dep 直连 Watcher 是观察者，EventBus 多个中间人是发布订阅</td></tr>
+<tr><td>按 type 创建不同的东西</td><td>工厂</td><td>DSL 按节点 type 查组件映射表实例化，未知 type 走兜底</td></tr>
+<tr><td>全局只能有一份、重复创建出问题</td><td>单例</td><td>parser 与缓存只建一份；但请求级状态绝不进单例</td></tr>
+<tr><td>流程步骤固定、每步实现常变</td><td>模板方法 / 管线</td><td>Figma 转 DSL 八步链，顺序固定、单步可换可重跑</td></tr>
+<tr><td>要执行配置里的小语言 / 表达式</td><td>解释器</td><td>DSL 表达式经 AST 编译成闭包安全求值，不用 eval</td></tr>
+<tr><td>不改原代码给它加缓存 / 重试 / 追踪</td><td>代理 / 装饰器</td><td>Vue3 Proxy 做响应式，请求函数外包一层做 401 刷新重试</td></tr>
+</table>
+
+<div class="say"><b>答设计模式题的固定结构（照这个顺序，永远别先背定义）：</b><p>「① 先说问题：当时是什么在变、痛在哪；② 再报模式名，一句带过它的做法；③ 落到例子：我在哪段代码里这么写的、关键接口长什么样；④ 最后说取舍：它换来了什么、代价是什么、什么情况下我不会用它。四步走完，面试官要追问也只会顺着你的例子追，而例子是你真写过的代码，就不怕深挖。」</p></div>
+<div class="trap"><strong>两个诚实提醒：</strong>一是简历里「基于 AST 分析表达式逻辑、使用适配器模式支持不同框架渲染」这句是你决定保留的措辞，但你还没确认能讲清它的接口与翻车点——这一节就是为它备的弹药：被追问时按第 1 个卡片讲 handler 接口（输入 element / data / children、输出端侧节点）、按表达式引擎那节讲 AST，翻车点讲未知 type 兜底与适配接口变更的连带成本，讲到这层就收住，不要再往外扩没确认过的落地细节。二是<strong>模式是手段不是目的</strong>：两三种分支就用 if-else、只有一个消费方就别套适配器，为了报模式名而抽象，资深面试官一眼能看出来，反而扣分。</div>
 </section>
 
 <!-- REACT -->
@@ -866,32 +1207,174 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="trap"><strong>翻车点（面试官就等这三个）：</strong>语言放服务端全局变量、并发一上来就串话；复数写 <code>num &gt; 1</code>；缺翻译直接露裸 key。还有一个口径坑：别把 Intl 跨端差异说成 Company 真踩过的事故，那是原理层风险，不是已证实的 incident。</div>
 </section>
 
-<!-- RN -->
+<!-- RN CROSS-END -->
 <section class="card" id="rn">
-<div class="kicker">移动端 · 29 · 理解层，老实讲</div><h2>React Native：JS 写逻辑，原生画界面，瓶颈在「过桥」</h2>
-<p class="sub">先划边界：你没做过 RN 原生层落地、没读过它源码，这一节是<strong>理解层弹药</strong>——目标是能画出线程与桥接、能说清首屏慢在哪一段、能讲清为什么选 RN 或不选。被追到原生实现细节，用本节末尾的收法，别硬编。</p>
+<div class="kicker">移动端 · 29 · 跨端总论 + RN 专题 · 理解层，老实讲 ★</div><h2>跨端总论 + RN 专题：先记一个模型，再看 RN 怎么取舍</h2>
+<p class="sub">资深讲法先立总论：别背每个框架的 API，只记一个问题——<strong>一份代码，怎么写、怎么跑、怎么画出来</strong>。所有跨端框架都在这三层上做取舍。再划三条边界：① 你没做过 RN 原生层落地、没读过原生源码，这一节全是<strong>理解层</strong>，讲模型、瓶颈定位和取舍，不冒充做过；② <strong>RN 没有传统 SSR</strong>——Web SSR 是服务端返回 HTML，RN 首屏是本地包冷启动后第一次渲染，别混；③ H5 的 SSR 你只是<strong>参与</strong>、render.tsx 不是你写的。本节顺序：总论三层模型 → 四种渲染路线 → Node 到底算不算跨端 → RN 架构 / 线程 → 冷启动 → 长列表 → 性能坑 → 选型 → 发版。</p>
 <div class="diagram">
-<p style="margin:0 0 8px;font-weight:700;font-size:14px">旧架构：一句话画清三条线</p>
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">总论图 · 一份代码的三层：怎么写、怎么跑、怎么画</p>
 <div class="flow">
-<div class="node teal"><b>JS 线程</b><small>跑 React 和业务逻辑<br>算出「界面应该长什么样」</small></div><div class="arrow">→</div>
+<div class="node teal"><b>1 写一份 · 抽象层</b><small>统一组件模型 + DSL<br>React 用 JSX · Flutter 用 Widget 树<br>小程序用 WXML/WXSS · Taro 编译转换</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 怎么跑 · 运行时</b><small>逻辑层跑在一个引擎里<br>RN：JSC / Hermes · 小程序：双线程 JS<br>Flutter：Dart AOT 成机器码，不用 JS</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 怎么画 · 渲染层</b><small>把描述变成像素<br>转原生组件 / 自己画 / WebView<br>这是区分框架的关键层</small></div><div class="arrow">→</div>
+<div class="node green"><b>各端界面</b><small>iOS / Android / Web / 桌面<br>一致性、原生感、性能三者取舍</small></div>
+</div>
+<div class="loop-note">你自己的活例子就是这张图：Shop Deco 卖家 Vue 编辑器产出 JSON DSL，买家 React H5 与 RN 按同一份 DSL 渲染——DSL 稳定、渲染器可插拔，就是跨端的核心。框架换来换去，换的只是 DSL 的写法。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">四种渲染路线 · 面试官真正想听的分类</p>
+<table>
+<tr><th style="width:16%">路线</th><th style="width:18%">代表</th><th style="width:33%">原理</th><th>代价 / 什么时候选</th></tr>
+<tr><td><strong>转原生组件</strong></td><td>React Native</td><td>JS 描述界面，经 JSI / Fabric 调原生 View，Yoga 统一算 Flex 布局，画的是真原生组件</td><td>最接近原生手感；代价是 JS 与原生两个世界，旧桥要序列化、JS 长任务会卡 UI。适合 React 栈、内容型 App</td></tr>
+<tr><td><strong>自己画</strong></td><td>Flutter</td><td>Dart Widget 树转 RenderObject，用 Skia / Impeller 自己画像素，几乎不用原生组件</td><td>双端一致性最好、动画可控；代价是包大、系统组件体验要自己模拟、团队要转 Dart</td></tr>
+<tr><td><strong>编译时转换</strong></td><td>Taro / uni-app</td><td>编译期把一份代码转成各端模板 / 代码，运行时还是各端自己那套</td><td>写时统一、迁移成本低；平台差异会从缝里漏出来，复杂能力要做条件编译</td></tr>
+<tr><td><strong>WebView 套壳</strong></td><td>小程序 / Electron / Capacitor</td><td>逻辑层 JS + 渲染层 WebView，中间靠 setData / JSBridge 通信</td><td>开发最快、发版最灵活；性能与手感天花板最低，桥通信是瓶颈</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>Node 算跨端吗？先把两个词分开（高频陷阱题）</h4><p><strong>Node 是跨平台运行时，不是跨端 UI 框架。</strong>跨平台 = 同一份 JS 能在 Windows / macOS / Linux 上跑；跨端 = 同一份 UI 代码能在 iOS / Android / Web 上画出来。Node 不画 UI，所以严格说不算跨端，它是跨端体系的<strong>底座</strong>。</p><ul><li><strong>V8 屏蔽 CPU 架构：</strong>JS 不用管底层是 x86 还是 ARM</li><li><strong>libuv 屏蔽操作系统：</strong>文件、网络、定时器统一成事件循环——Linux 用 epoll、macOS 用 kqueue、Windows 用 IOCP，阻塞 IO 丢线程池</li><li><strong>它在跨端的真实位置：</strong>Electron = Chromium + Node 做桌面跨端；RN 的打包器 Metro、DSL 编译、SSR / BFF 服务，全是 Node 在跑</li><li><strong>别说错：</strong>想在手机上直接跑 Node 画 UI 不现实，移动端还是要走 RN / Flutter 的渲染路线</li></ul></div>
+<div class="box"><h4>总论的一分钟收口（先于 RN 细节说）</h4><p>「跨端本质是<strong>抽象 + 适配</strong>：上面用统一组件 / DSL 描述界面，中间用 JS 或 Dart 运行时跑逻辑，下面按各端选择渲染路线。取舍永远是<strong>一致性、原生体验、性能三选二</strong>，没有全赢的方案。我做店铺装修就是这个模型——DSL 作桥，卖家 Vue、买家 React / RN 同构渲染，所以这套我不是背的，是按它搭过系统。」说完这段再进 RN，面试官会觉得你有框架观，而不是只会一个框架。</p></div>
+</div>
+<p style="margin:18px 0 8px;font-weight:700;font-size:14px">以下进入 RN 专题 · 在总论里，RN 选的是「转原生组件」这条路</p>
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 旧架构渲染管线：为什么说瓶颈在「过桥」</p>
+<div class="flow">
+<div class="node teal"><b>JS 线程</b><small>跑 React + 业务逻辑<br>算出「界面应该长什么样」</small></div><div class="arrow">→</div>
 <div class="node rose"><b>Bridge 桥</b><small>异步 · JSON 序列化 · 批量过桥<br>★ 瓶颈就在这里</small></div><div class="arrow">→</div>
 <div class="node amber"><b>Shadow 线程</b><small>Yoga 算 Flexbox 布局<br>得出每个视图的位置尺寸</small></div><div class="arrow">→</div>
-<div class="node green"><b>UI 主线程</b><small>真正的原生组件绘制<br>Button 就是 iOS/Android 原生按钮</small></div>
+<div class="node green"><b>UI 主线程</b><small>真正的原生组件绘制<br>Button 就是系统原生按钮</small></div>
 </div>
-<div class="loop-note">关键认知：RN 不是 WebView 套壳——没有 DOM，JSX 映射到的是原生视图；但 JS 和原生不在一个世界，每次通信都要过桥、要序列化。</div>
+<div class="loop-note">关键认知：RN 不是 WebView 套壳——没有 DOM，JSX 映射到的是原生视图；但 JS 和原生不在一个世界，旧架构里每次通信都要过桥、要序列化。</div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 新架构：动的不是写法，是通信方式</p>
+<div class="flow">
+<div class="node teal"><b>JS 侧（React）</b><small>写法基本不变<br>还是组件 + 状态</small></div><div class="arrow">→</div>
+<div class="node blue"><b>JSI</b><small>JS 同步直调原生方法<br>持有原生对象引用，不再 JSON 过桥</small></div><div class="arrow">→</div>
+<div class="node green"><b>Fabric 渲染器</b><small>新渲染管线<br>布局与渲染更贴近原生、可同步测量</small></div><div class="arrow">→</div>
+<div class="node amber"><b>TurboModules + Codegen</b><small>原生模块按需懒加载不拖启动<br>Codegen 按类型生成桥接代码、类型安全</small></div>
+</div>
 <div class="grid2" style="margin-top:12px">
-<div class="box"><h4>为什么动画/手势容易掉帧？</h4><p>滚动、拖拽每秒几十次事件，若每帧都「JS 算新位置 → 过桥 → 原生画」，桥的异步和序列化延迟直接变卡顿。解法是<strong>让高频交互别过桥</strong>：动画走原生驱动（Animated 的 native driver / Reanimated 把动画逻辑下发原生侧），JS 线程忙不忙都不影响帧率。这题的答法结构：先定位瓶颈在桥，再讲「减少过桥次数」这个总原则。</p></div>
-<div class="box"><h4>新架构（JSI / Fabric / TurboModules）解决什么</h4><p>JSI 让 JS <strong>同步直调</strong>原生方法、持有原生对象引用，不再靠 JSON 过桥；Fabric 是新渲染器，布局渲染更贴近原生；TurboModules 让原生模块按需加载，不拖慢启动。答的时候点题即可：新架构动的不是写法，是<strong>通信方式</strong>——从「异步传消息」变「同步调接口」。细节实现没读过源码，就说到这一层。</p></div>
-<div class="box"><h4>首屏 / 秒开：先拆启动链路再优化</h4><p>启动 = 原生容器起来 → JS 引擎初始化 + 加载 bundle → 首屏取数 → 首帧渲染。和 LCP 一个道理，<strong>先分段打点看慢在哪段</strong>，再对症：bundle 大 → Hermes 预编译字节码、分包按需加载；等数据 → 原生侧先出骨架/占位、首屏数据预取或直出；首帧重 → 首屏少渲染、图片按尺寸裁剪。验证靠分段耗时和帧率数据，不靠体感。</p></div>
-<div class="box"><h4>和 Web 的差异（选型题素材）</h4><ul><li><strong>渲染：</strong>真原生组件，没有 DOM/CSS 级联，样式是 Flexbox 子集（默认竖排，和 Web 相反）</li><li><strong>列表：</strong>长列表用 FlatList 做回收复用——和 Web 虚拟列表同一个思想：DOM/视图数量与数据量解耦</li><li><strong>发版：</strong>原生包要过应用商店审核；热更新（如 CodePush）只能改 JS、不能动原生，且要灰度 + 可回滚，这是 RN 相对原生开发的核心收益也是合规边界</li></ul></div>
+<div class="box"><h4>旧 vs 新，一句话对照</h4><ul><li><strong>旧 Bridge：</strong>异步消息、JSON 序列化、批量过桥——高频/大数据量就堵</li><li><strong>新 JSI：</strong>同步调用、共享引用——手势、动画、大数据传递不再先排队序列化</li><li><strong>答题分寸：</strong>点到「通信方式变了」这一层即可，Fabric 内部实现没读过源码就别往下编</li></ul></div>
+<div class="box"><h4>三条线程各自管什么 · 16ms 帧预算</h4><ul><li><strong>JS 线程：</strong>React 渲染、事件处理、业务逻辑、接口回调——最容易被长任务堵死</li><li><strong>UI 主线程：</strong>原生视图创建、布局落地、绘制、手势响应——堵了就是肉眼掉帧</li><li><strong>Shadow 线程：</strong>Yoga 计算布局（旧架构）——树太大、嵌套太深时它也会成为一段耗时</li><li><strong>帧预算：</strong>60fps 下一帧约 16ms，三条线哪条超时都掉帧；定位先问「是 JS 算太久，还是过桥太频，还是原生绘制太重」</li></ul></div>
 </div>
-<div class="box" style="margin-top:12px"><h4>为什么选 RN，为什么不选（取舍要双面）</h4><p><strong>选：</strong>一套 JS 代码覆盖双端、团队是前端栈、业务以内容和表单为主、需要热更新绕开审核周期。<strong>不选：</strong>重动画/重手势的沉浸式体验、深度依赖原生能力（蓝牙、后台任务、复杂多媒体）——桥接和原生补丁的成本会吃掉跨端收益，这类场景原生或 Flutter 更合适。跨端框架选型先看<strong>交互密度和原生依赖</strong>，不看「哪个火」。</p></div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 冷启动链路：先分段，再优化（和拆 LCP 同一套方法）</p>
+<div class="flow">
+<div class="node plain"><b>1 原生容器 / 启动屏</b><small>进程拉起、原生壳初始化<br>系统先给一张静态启动图</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 JS 引擎初始化</b><small>Hermes / JSC 启动<br>建运行时环境</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 Bundle 加载执行</b><small>加载 JS 包并执行<br>包越大、顶层代码越多越慢</small></div><div class="arrow">→</div>
+<div class="node teal"><b>4 首屏取数</b><small>首屏接口请求<br>等数据才渲染 = 白屏变长</small></div>
 </div>
-<div class="say"><b>一分钟讲法（诚实版）：</b><p>「RN 我没做过原生层落地，这块我按理解层讲：它本质是 JS 线程算逻辑、原生线程画真组件，中间靠桥通信，所以<strong>它的大多数性能问题都能归到‘过桥太频繁’或‘JS 线程被长任务堵住’</strong>。首屏我会先把启动链路分段——容器、bundle、取数、首帧——再决定优化哪段，和我做 Web 首屏拆 LCP 是同一套方法。真要我上手 RN，业务层是 React 迁移成本不高，要补的是原生发版、热更新边界和新架构这几块。」</p></div>
-<div class="trap"><strong>收尾提醒：</strong>被追问「桥的源码怎么实现的 / 秒开的具体原生方案做过吗」——直接认：「没读过源码、没做过原生侧落地，我能确定的是线程模型和瓶颈位置，具体实现要看版本和源码。」你之前在面试里就是这么答 MCP 的，效果比硬编好。这一节的价值是<strong>框架和定位方法</strong>，不是经历。</div>
+<div class="flow" style="margin-top:10px">
+<div class="node green"><b>5 首帧渲染</b><small>React 首屏渲染 → 布局 → 原生绘制<br>首屏组件越多这一段越重</small></div><div class="arrow">→</div>
+<div class="node plain"><b>可交互</b><small>首帧出来且能点<br>之后才轮到非首屏逻辑</small></div>
+</div>
+<table>
+<tr><th style="width:20%">哪一段慢</th><th style="width:36%">怎么确认</th><th>打法（按理解讲，不说成已落地）</th></tr>
+<tr><td><strong>容器 / 启动屏段</strong></td><td>点击图标到启动屏消失的分段打点</td><td>原生启动屏先占位，别让用户对着白屏等 JS；启动屏图保持轻量、与首屏视觉衔接，JS 接管时不跳变</td></tr>
+<tr><td><strong>引擎初始化段</strong></td><td>对比引擎冷启耗时</td><td>Hermes 预编译成字节码、启动时不用现场解析 JS，低端机收益更明显；JSC 则随系统/版本走、可控性弱——选 Hermes 的理由就讲「预编译换启动速度」</td></tr>
+<tr><td><strong>Bundle 加载段</strong></td><td>包体积 + 顶层执行耗时</td><td>分包 / 按需加载：首屏只带首屏代码，非首屏路由和重模块懒加载；删无用依赖、控制包体积；顶层别做重计算和全量注册</td></tr>
+<tr><td><strong>首屏取数段</strong></td><td>首帧时间是否被接口返回卡住</td><td>首屏数据与图片<strong>提前预取</strong>：原生侧 / 启动阶段就并行发首屏请求、预下载首图，等 JS 接管时数据已在路上甚至已到；非关键数据延后，别全挤在首帧前串行等</td></tr>
+<tr><td><strong>首帧渲染段</strong></td><td>首屏组件数、首帧长任务</td><td>缩减首屏渲染量：首屏只渲染第一屏看得见的，长列表只挂窗口内行、图片按展示尺寸裁剪、非首屏模块延迟挂载</td></tr>
+</table>
+<div class="loop-note">纠正一句高频误说：RN 首屏优化讲的是「冷启动分段 + 预取 + 减渲染量」，不是「SSR 直出 HTML」——RN 没有服务端吐 HTML 给它画，包在本地、数据靠预取，讲混了面试官一听就知道没真懂。</div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">长列表：FlatList 和 Web 虚拟列表是同一个思想</p>
+<div class="grid2">
+<div class="box"><h4>FlatList 窗口化怎么做</h4><ul><li>只渲染窗口内 + 缓冲区的行，滚出窗口的行回收——和 Web 虚拟列表「DOM 数量与数据量解耦」完全同构，面试可以互相对照着讲</li><li><code>keyExtractor</code> 给<strong>稳定业务 id</strong>，别用数组下标：数据增删时下标会错位、行会被错误复用</li><li>行高固定时给 <code>getItemLayout</code>，跳过逐行测量、滚动定位可直接算</li><li><code>renderItem</code> 别写内联闭包、行组件用 memo 包好——每次父组件重渲染都新建函数引用，行就跟着全量重渲染</li><li>图片按行内展示尺寸给大小，别原图直塞小图位，既费流量又费解码和绘制</li></ul></div>
+<div class="box"><h4>和 Web 虚拟列表对照</h4><table><tr><th></th><th>Web</th><th>RN</th></tr><tr><td>只画窗口</td><td>手动算 start/end + 占位层</td><td>FlatList 内置窗口化</td></tr><tr><td>行高不定</td><td>高度缓存 + 二分定位</td><td>先估高、量后修正，同理</td></tr><tr><td>复用代价</td><td>DOM 复用错位出脏行</td><td>key 不稳同样出脏行</td></tr></table><p>能把两边对照讲，说明你懂的是原理不是 API——这正是这道题想听的。</p></div>
+</div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">重渲染与性能坑：大多能归到两句话——过桥太频、JS 线程太忙</p>
+<div class="grid3">
+<div class="box"><h4>过桥的序列化成本</h4><p>旧架构下大对象、大数组整包过桥，光序列化就吃时间。原则：<strong>过桥只传必要字段</strong>，大数据分页/分片传，高频事件（滚动、拖拽）别每帧过桥，动画走原生驱动（native driver / 把动画逻辑下发原生侧）。</p></div>
+<div class="box"><h4>JS 线程长任务</h4><p>大计算、深拷贝、全量数据变换堵在 JS 线程上，渲染和事件全排队。打法：计算分片、重活延后到交互后（<code>InteractionManager</code> 等交互跑完再做）、能下沉原生的下沉，列表数据先在接口层减量再进 JS。</p></div>
+<div class="box"><h4>setState 风暴与无谓重渲染</h4><p>高频 setState、父组件一变全树重渲染、内联对象/内联样式每次都是新引用——子组件 memo 全失效。对法：状态就近下沉、稳定引用（<code>useCallback / useMemo</code> 用在真有收益处，不是全加）、行与卡片组件 memo 化。Web React 的那套心法在 RN 原样成立。</p></div>
+</div>
+</div>
+
+<div class="box" style="margin-top:12px"><h4>跨端选型对照（JD 加分项：RN / Flutter / Electron / 小程序都点到了）</h4>
+<table>
+<tr><th style="width:16%">方案</th><th style="width:28%">怎么渲染</th><th style="width:28%">适合</th><th>不适合 / 代价</th></tr>
+<tr><td><strong>React Native</strong></td><td>JS 逻辑 + 真原生组件，新架构 JSI 直调</td><td>前端团队、React 栈、内容/表单类 App、要热更新</td><td>重手势重动画、深原生能力要写原生补丁，桥与版本兼容要养</td></tr>
+<tr><td><strong>Flutter</strong></td><td>Dart + 自绘引擎（Skia/Impeller），不依赖原生控件</td><td>双端视觉强一致、动画密集、团队愿意转 Dart 栈</td><td>与现有 Web/React 资产复用弱、包体积与平台特性跟进有成本</td></tr>
+<tr><td><strong>WebView / Hybrid</strong></td><td>原生壳 + 网页（就是你做过的 H5/店铺页那套）</td><td>内容变化快、已有 Web 页面、发版要绕开应用商店</td><td>性能与手感上限低、原生能力靠 JSBridge 逐个对接</td></tr>
+<tr><td><strong>纯原生</strong></td><td>Kotlin / Swift 直接写</td><td>极致性能、系统新特性首发、深硬件能力</td><td>双端两套人两套代码，成本最高</td></tr>
+</table>
+<p>另外两个 JD 点名项一句话带过：<strong>Electron</strong> 是桌面端跨端（Chromium + Node 打包成桌面应用，强在复用 Web 技术、弱在体积与内存）；<strong>小程序</strong>是平台内跨端（双线程模型、包体积与能力受平台规则约束，强在获客入口、弱在自由度）。选型先问三句：<strong>交互密度多高？原生依赖多深？团队现有栈和发版节奏是什么？</strong>答完再报框架名。</p></div>
+
+<div class="box" style="margin-top:12px"><h4>打包与发版：JS 包和原生壳是两个版本，别当一个</h4><ul><li><strong>分包：</strong>公共基础包 + 业务包按需下发，首屏只加载首屏业务包，大业务别全塞进启动包</li><li><strong>热更新（OTA / CodePush 类）：</strong>只能更新 <strong>JS bundle 和资源</strong>，改不了原生代码——一旦这次改动动了原生模块或新架构开关，就必须走应用商店整包发版</li><li><strong>灰度与回滚：</strong>OTA 按比例灰度放量、盯崩溃率，坏包能一键回滚到上一版 JS；商店发版回滚慢，所以更要靠灰度拦住</li><li><strong>版本兼容：</strong>JS 包必须声明它兼容的原生壳版本范围，壳升级后旧 JS 包跑不跑得动要验；面试被问「热更新为什么不能全量替代发版」就答这一条：<strong>原生不在热更新的射程内</strong></li></ul></div>
+
+<div class="say"><b>一分钟讲法（诚实版，照这个顺序）：</b><p>「RN 我没做过原生层落地，按理解层讲。架构上旧版是 JS 线程算逻辑、经 Bridge 异步 JSON 过桥、Shadow 线程算布局、UI 线程画原生组件，所以瓶颈归结为过桥太频和 JS 线程太忙；新架构用 JSI 同步直调、Fabric 新渲染器、TurboModules 按需加载，动的是通信方式。首屏没有 SSR 一说，是冷启动：我会按容器启动屏、引擎初始化、bundle 加载、首屏取数、首帧渲染五段拆，打法是启动屏占位、首屏数据和图片提前预取、减首屏渲染量、分包懒加载——和我做 Web 时拆 LCP 是同一套分段定位方法，H5 SSR 我是参与、不是作者。选型上 RN 适合 React 栈的内容型 App，重动画深原生就该考虑 Flutter 或原生。」</p></div>
+<div class="trap"><strong>收尾提醒（三个雷）：</strong>① 别说「RN 也有 SSR」——RN 首屏是本地包冷启动，没有服务端返回 HTML 这一步；② 别把预取、Hermes、分包说成「我做过并优化了多少」——没落地过就说「按理解，这样做、这样验证」；③ 被追问桥的源码实现、原生秒开的具体做法，直接认：「没读过源码、没做过原生侧落地，我能确定的是线程模型、五段链路和瓶颈位置，具体实现要看版本。」你答 MCP 时就是这么收的，效果比硬编好。</div>
 </section>
 
-<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、DSL 联动、Figma 转 DSL、AIDOD、SSE、React、后端全链路、Next、Nuxt、国际化、RN）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ Figma 转 DSL（10）连着练；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Next（26）与 Nuxt（27）对照讲自研与框架的取舍 → 国际化（28）补 SSR 语言隔离与缓存键。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN（29）没做过原生层、只讲线程桥接与首屏分段。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
+
+<!-- ENGINES / CPU GPU -->
+<section class="card" id="engines">
+<div class="kicker">底层 · 30 · 引擎与硬件 ★</div><h2>渲染引擎、JS 引擎与 CPU / GPU：代码最后怎么变成像素</h2>
+<p class="sub">一句话先立住：<strong>JS 引擎负责把代码算出结果，渲染引擎负责把结果画成像素，CPU 负责串行逻辑，GPU 负责并行画像素。</strong>面试问卡顿、动画为什么便宜、JS 为什么单线程，本质都在问这四者的分工。这一节按理解层讲原理，不冒充读过引擎源码。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">全景图 · 从一行 JS 到屏幕上的一个像素</p>
+<div class="flow">
+<div class="node teal"><b>JS 引擎执行</b><small>在 CPU 上跑逻辑<br>算出要改什么 DOM / 数据</small></div><div class="arrow">→</div>
+<div class="node blue"><b>渲染引擎算样式与布局</b><small>Style → Layout<br>算出每个元素在哪、多大</small></div><div class="arrow">→</div>
+<div class="node amber"><b>绘制 Paint</b><small>把文字、颜色、图片<br>画成图层上的像素块</small></div><div class="arrow">→</div>
+<div class="node green"><b>合成 Composite</b><small>GPU 把多个图层拼起来<br>缩放 / 移动 / 透明度在这一步</small></div><div class="arrow">→</div>
+<div class="node plain"><b>屏幕显示</b><small>60Hz 一秒刷 60 帧<br>每帧预算约 16.6ms</small></div>
+</div>
+<div class="loop-note">记住分工：前面几步大多在 CPU / 主线程，后面的合成主要在 GPU / 合成线程——动画卡不卡，就看它逼不逼前面几步重跑。</div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">一、JS 引擎：源码怎么变成能跑的机器码</p>
+<div class="flow">
+<div class="node plain"><b>1 源码</b><small>你写的 JS 文本</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 解析 Parser</b><small>词法 + 语法 → AST<br>和 DSL 表达式引擎同一件事，只是规模大得多</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 解释器先跑</b><small>AST → 字节码，边跑边收集类型反馈<br>启动快，先跑起来再说</small></div><div class="arrow">→</div>
+<div class="node rose"><b>4 JIT 热点编译</b><small>跑得多的热点函数<br>被编译成高度优化的机器码</small></div><div class="arrow">→</div>
+<div class="node amber"><b>5 去优化 Deopt</b><small>类型假设被推翻（如数字变对象）<br>扔掉优化代码、退回解释执行</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>为什么要「先解释、后 JIT」，不一上来就编译？</h4><p>全量 AOT 编译启动慢，很多代码只跑一次、编译纯浪费。现代引擎的策略是<strong>分层</strong>：先用解释器快速启动，同时统计哪些函数是热点、参数实际是什么类型，只对热点做激进优化。代价是预热期性能不稳、类型多变的代码会反复去优化——这就是「别写类型乱变的对象、保持对象形状稳定（隐藏类 Hidden Class）」这条性能建议的根源。</p></div>
+<div class="box"><h4>三个必会的概念</h4><ul><li><strong>隐藏类：</strong>引擎按对象属性的添加顺序给对象分「形状」，同形状才能共享优化；到处动态加属性 = 形状爆炸</li><li><strong>内联缓存：</strong>把上次属性访问的结果缓存在调用点，类型不变就直接命中，变了就失效</li><li><strong>GC：</strong>分代回收——新生代对象朝生夕死用复制算法，老年代用标记清除/整理；GC 暂停也是长任务和掉帧的一个来源，别在热路径疯狂造临时对象</li></ul></div>
+</div>
+<table>
+<tr><th style="width:16%">JS 引擎</th><th style="width:24%">在哪</th><th style="width:28%">特点</th><th>面试怎么提</th></tr>
+<tr><td><strong>V8</strong></td><td>Chrome / Node / Electron</td><td>解释器 Ignition + JIT 编译器 TurboFan，分层编译的代表</td><td>讲 JS 引擎原理默认以它为例；Node 能跑服务端靠的就是它</td></tr>
+<tr><td><strong>JavaScriptCore (JSC)</strong></td><td>Safari / iOS / RN 旧架构</td><td>苹果自家引擎，同样有分层 JIT；iOS 上其他引擎受系统约束</td><td>解释 RN 旧架构、iOS WebView 差异时提它</td></tr>
+<tr><td><strong>Hermes</strong></td><td>RN 新架构默认</td><td>构建期就把 JS 预编译成字节码，运行时不做重型 JIT——拿峰值性能换启动速度和内存</td><td>接第 29 节冷启动：低端机启动快，理由就是「预编译、少现场解析」</td></tr>
+<tr><td><strong>SpiderMonkey</strong></td><td>Firefox</td><td>Mozilla 的引擎，同样是解释 + JIT 分层路线</td><td>知道名字和归属即可，说明你分得清引擎和浏览器不是一回事</td></tr>
+</table>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">二、渲染引擎：Blink / WebKit / Gecko，加上跨端那几个「画图的人」</p>
+<table>
+<tr><th style="width:16%">引擎</th><th style="width:22%">在哪</th><th>管什么</th></tr>
+<tr><td><strong>Blink</strong></td><td>Chrome / Edge / Electron</td><td>Chromium 的渲染引擎：解析 HTML/CSS、布局、绘制、合成的主力实现</td></tr>
+<tr><td><strong>WebKit</strong></td><td>Safari / iOS 所有浏览器</td><td>Blink 的同源祖先；iOS 上连 Chrome 也只能用 WebKit 内核，这是移动端兼容差异的根源之一</td></tr>
+<tr><td><strong>Gecko</strong></td><td>Firefox</td><td>Mozilla 的渲染引擎，独立实现一套标准</td></tr>
+<tr><td><strong>Skia / Impeller</strong></td><td>Flutter / Chrome 底层绘图</td><td>严格说是 2D 图形库 / 渲染后端：渲染引擎算完「画什么」，由它真正落像素；Flutter 靠它自绘、绕开原生控件</td></tr>
+<tr><td><strong>Yoga</strong></td><td>RN</td><td>不是渲染引擎，是跨平台 Flexbox <strong>布局引擎</strong>（C++ 写）：只算位置尺寸，画还是原生组件画——别把布局和渲染说成一件事</td></tr>
+</table>
+<div class="box" style="margin-top:12px"><h4>渲染引擎一帧内干的活（和第 17 节输入 URL 那条链对上）</h4><p><code>解析 → 样式计算 Style → 布局 Layout → 绘制 Paint → 分层 → 光栅化 Raster（把图层画成像素块，可在 GPU 上做）→ 合成 Composite</code>。改不同的 CSS，触发的起点不同：改 <code>width / top</code> 从 Layout 开始全跑，改 <code>color / background</code> 只重 Paint，改 <code>transform / opacity</code> 只重 Composite——<strong>越靠后越便宜</strong>，这是所有动画性能题的统一答案。</p></div>
+
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">三、CPU 与 GPU：为什么分工是这样分的</p>
+<div class="grid2">
+<div class="box"><h4>CPU · 少量强核，擅长串行与分支</h4><ul><li>核心少（手机 4–8 核）、单核强、缓存大、擅长复杂逻辑和分支判断</li><li>在前端链路里它干：<strong>JS 执行、样式计算、布局、绘制指令生成、图片解码的一部分</strong></li><li>JS 主线程就在 CPU 的一个核上跑，所以一段长 JS 会同时堵住逻辑、布局和绘制——单线程的代价在这</li><li>多核帮不上主线程：重计算要靠 Web Worker / 原生线程搬到别的核，但 Worker 不能直接碰 DOM</li></ul></div>
+<div class="box"><h4>GPU · 海量弱核，擅长同一种计算重复百万次</h4><ul><li>核心成千上万、单核弱、为并行而生：每个像素做同样的运算，正是它的主场</li><li>在前端链路里它干：<strong>图层合成、光栅化、缩放旋转、透明度混合、图片缩放、视频解码、CSS 滤镜与 3D 变换</strong></li><li>它不跑你的 JS 业务逻辑：把逻辑丢给 GPU 不是选项，能丢的只有「画」这件事</li><li>不是免费的：图层太多会爆显存、频繁把像素在 CPU 与 GPU 之间搬运（上传纹理）本身就贵，所以 <code>will-change</code> 滥用反而更慢</li></ul></div>
+</div>
+<p style="margin:14px 0 8px;font-weight:700;font-size:14px">一帧 16.6ms 的预算花在哪（60fps）</p>
+<table>
+<tr><th style="width:20%">阶段</th><th style="width:20%">主要在谁身上</th><th style="width:30%">干什么</th><th>超支的表现</th></tr>
+<tr><td>JS / 输入处理</td><td>CPU · 主线程</td><td>事件回调、状态更新、React / Vue 重渲染算出新树</td><td>点击没反应、输入跟不上手</td></tr>
+<tr><td>Style + Layout</td><td>CPU · 主线程</td><td>重算样式、算几何位置；读 <code>offsetHeight</code> 又改样式会强制同步布局（回流抖动）</td><td>滚动卡顿、动画一顿一顿</td></tr>
+<tr><td>Paint + Raster</td><td>CPU 生成指令，GPU 可参与光栅化</td><td>把图层画成像素块，按瓦片（tile）分块画，屏幕外的先不画</td><td>复杂阴影、渐变、大图重绘时掉帧</td></tr>
+<tr><td>Composite</td><td>GPU · 合成线程</td><td>把已画好的图层按位置、缩放、透明度拼成最终一帧</td><td>这一步独立于主线程——主线程忙时，纯合成动画还能顺滑，这正是 transform 动画不卡的原因</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>为什么 transform / opacity 是最便宜的动画？（必考）</h4><p>因为它们<strong>只改合成阶段的参数</strong>：图层像素早就画好了，GPU 每帧只是把这张「贴纸」挪个位置、改个透明度，不需要重算布局、不需要重画。反过来动画里改 <code>width / height / top / left</code>，每一帧都要从 Layout 开始全链路重跑。RN 里动画要开 native driver、把动画下发原生侧，Web 里长列表要用 transform 定位，都是同一个道理的不同版本。</p></div>
+<div class="box"><h4>硬件加速的边界（别神化 GPU）</h4><ul><li>合成线程独立是好事，但<strong>主线程堵死时，布局和绘制照样停</strong>，新内容画不出来，GPU 只能拼旧图层</li><li>图层不是越多越好：每个图层占显存、合成时都要参与计算，移动端低端机先爆的是内存</li><li>文字、复杂路径的绘制仍主要靠 CPU 生成，GPU 加速帮的是搬运和拼图，不是万能药</li><li>答题落点：先定位卡在哪一阶段，再谈要不要上 GPU / Worker，别上来就说「开硬件加速」</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我按一条链讲：JS 引擎在 CPU 上执行代码，它是解释加 JIT 分层编译——先解释快速启动、热点再编译成机器码，类型变了就去优化，所以对象形状要稳定；V8、JSC、Hermes 的区别主要在编译时机，Hermes 靠预编译字节码换 RN 的启动速度。渲染引擎接着干样式、布局、绘制、合成四步，Blink、WebKit、Gecko 是三家实现，Flutter 的 Skia 是自绘路线。CPU 和 GPU 的分工是：CPU 核少但强、管串行逻辑，所以 JS 和布局都在它身上；GPU 核多、管并行画像素，合成、缩放、透明度归它。所以动画只改 transform 和 opacity 最便宜，因为只动 GPU 合成、不惊动主线程的布局和绘制；卡顿定位也是先分清是 JS 长任务、回流、重绘还是合成出了问题，再对症下药。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「JS 是单线程，那 Worker 算多线程吗？」→ Worker 是另开一个 JS 线程在别的 CPU 核上跑，能算不能碰 DOM，结果靠消息传递回来，所以它治的是计算卡，不是渲染卡。「GPU 既然这么强，为什么不让它跑 JS？」→ GPU 为同指令大批量并行设计，JS 满是分支和依赖、数据量又小，搬过去光传输成本就亏了。「JIT 和 AOT 谁好？」→ 没有谁好：JIT 峰值高但要预热、占内存，AOT（Hermes / Dart）启动快、行为可预测但放弃了运行时激进优化——按场景选，这和第 29 节选渲染路线是同一种取舍思维。被追到引擎源码实现就收住：「我到原理层，隐藏类、内联缓存、去优化这些机制我能讲清，源码没读过。」</div>
+</section>
+
+<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Next（26）与 Nuxt（27）对照讲自研与框架的取舍 → 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
 </div>
 <script>
 (function(){
