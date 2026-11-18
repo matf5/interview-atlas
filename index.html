@@ -92,16 +92,17 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="wrap">
 <header class="hero">
 <h1>看图记原理，<br>开口不卡壳。</h1>
-<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
+<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。本次再补齐四组：Vue2/3 全对比（生命周期对照、原理三层、API 破坏性变更、2.6→2.7 分批迁移）、React 高频追问（Fiber、Diff、Hooks 原理与并发）、状态管理六库（Redux / Zustand / MobX / Atom / Vuex / Pinia 按三派对照）、Node 事件循环（六阶段逐个讲、libuv 的角色与线程池分工，和浏览器那节对照背）；工程化深挖 Webpack/Vite、npm 包 exports 导出与双格式雷、pnpm 的 store 模型与 Nx / Turborepo 编排缓存。本次再补两节服务端渲染深挖：Node + Express 手写 SSR（以设计文档原件为准拆 render.tsx 那条链——Express 起服务、AsyncLocalStorage 逐请求隔离三 key、renderToPipeableStream 在 onAllReady 时 pipe 到 PassThrough 拼串、脱水只放行 shopInfo、失败回 500 空资源保协议形状，并对照一个本地跑通过的最小骨架讲 onShellReady 直出与 CSR 壳降级）；Next / Nuxt / 手写 Node 三方对照（框架定位、渲染模式、数据获取、缓存、部署、适用场景一张表收尾，Next 标理解/演示层、Nuxt 标没在生产用过）。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
 <div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
 </header>
 
 <nav class="toc" aria-label="目录">
-<div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#react">React ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a></div></div>
-<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a></div></div>
+<div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#vue-compare">Vue2/3 全对比 ★</a><a href="#react">React ★</a><a href="#react-faq">React 高频追问 ★</a><a href="#state">状态管理六库 ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#ssr-frameworks">SSR 三方对照 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#node-ssr">Node 手写 SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a></div></div>
 <div class="toc-group"><span class="toc-label">DSL 与架构</span><div class="toc-links"><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#expr-engine">表达式引擎 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a></div></div>
 <div class="toc-group"><span class="toc-label">AI 应用</span><div class="toc-links"><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">AI 专题 · RAG ★</a><a href="#agent-memory">Agent 记忆 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a><a href="#build">构建·TS</a></div></div>
+<div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#node-loop">Node 事件循环 ★</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a></div></div>
+<div class="toc-group"><span class="toc-label">构建与 Monorepo</span><div class="toc-links"><a href="#build">构建·TS</a><a href="#tooling">Webpack/Vite·npm 导出 ★</a><a href="#monorepo">pnpm·Nx/Turborepo ★</a></div></div>
 <div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a></div></div>
 <div class="toc-group"><span class="toc-label">后端全链路</span><div class="toc-links"><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a></div></div>
 <div class="toc-group"><span class="toc-label">跨端与国际化</span><div class="toc-links"><a href="#i18n">国际化/本地化 ★</a><a href="#rn">跨端总论 · RN ★</a><a href="#engines">渲染/JS引擎 · CPU/GPU ★</a></div></div>
@@ -158,6 +159,55 @@ details p,details li{font-size:14px;color:var(--muted)}
 <tr><td>依赖结构</td><td>每个属性一个 Dep</td><td>targetMap 三层 WeakMap</td></tr>
 <tr><td>IE 兼容</td><td>支持 IE9+</td><td>放弃 IE（Proxy 无法 polyfill）</td></tr></table>
 </details>
+</section>
+
+<!-- VUE COMPARE -->
+<section class="card" id="vue-compare">
+<div class="kicker">框架 · 02B · 对比题专用，一次讲全 ★</div><h2>Vue2 vs Vue3 全对比：生命周期、原理、API、迁移</h2>
+<p class="sub">面试官问「Vue2 和 Vue3 有什么区别」，最忌只答一句 Proxy。满分结构是五层：<strong>响应式原理 → 编译与渲染 → API 写法 → 生命周期 → 迁移代价</strong>，每层一句结论 + 一个证据，最后落回你真做过的 2.6 → 2.7 分批迁移。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 生命周期对照（Options 写法不变，Composition 只是换了名字和入口）</p>
+<table>
+<tr><th style="width:22%">阶段</th><th style="width:26%">Vue2（Options）</th><th style="width:26%">Vue3（Composition）</th><th>变化点 · 面试怎么说</th></tr>
+<tr><td>创建前</td><td><code>beforeCreate</code> / <code>created</code></td><td><code>setup()</code> 本身</td><td><strong>没有单独的 onBeforeCreate / onCreated</strong>：setup 执行时机就在这两者之间，初始化逻辑直接写在 setup 顶部，别硬找对应钩子</td></tr>
+<tr><td>挂载</td><td><code>beforeMount</code> / <code>mounted</code></td><td><code>onBeforeMount</code> / <code>onMounted</code></td><td>一一对应；onMounted 里才能碰真实 DOM，这条两代都一样</td></tr>
+<tr><td>更新</td><td><code>beforeUpdate</code> / <code>updated</code></td><td><code>onBeforeUpdate</code> / <code>onUpdated</code></td><td>一一对应；两代都不该在 updated 里再改状态，容易无限更新</td></tr>
+<tr><td>销毁</td><td><code>beforeDestroy</code> / <code>destroyed</code></td><td><code>onBeforeUnmount</code> / <code>onUnmounted</code></td><td><strong>改名必考</strong>：Destroy → Unmount，语义更准（组件是卸载不一定是销毁）；清定时器、解绑事件、取消订阅放 onBeforeUnmount / onUnmounted</td></tr>
+<tr><td>缓存 / 异常 / 调试</td><td><code>activated</code> / <code>deactivated</code> / <code>errorCaptured</code></td><td><code>onActivated</code> / <code>onDeactivated</code> / <code>onErrorCaptured</code></td><td>keep-alive 两个钩子名字不变；Vue3 另加 <code>onRenderTracked / onRenderTriggered</code> 两个<strong>仅调试</strong>钩子，能说出来是加分项：用来定位到底哪个依赖触发了重渲染</td></tr>
+</table>
+<div class="loop-note">记法：除创建期合并进 setup、销毁改名 Unmount 外，其余就是在前面加 on 并改驼峰。Options API 在 Vue3 里照样能用，生命周期名字不变——Composition 不是替换，是多了一种组织方式。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 原理层：不止响应式换了，编译器和运行时都动了</p>
+<div class="grid2">
+<div class="box"><h4>Vue2 的三件套</h4><ul><li><strong>响应式：</strong>defineProperty 逐属性拦截（见 01 节）</li><li><strong>渲染：</strong>全量 diff 虚拟 DOM，静态节点每次也跟着比</li><li><strong>打包：</strong>运行时是一个整体，功能不用也摇不掉</li><li><strong>组件：</strong>单根节点、mixin 复用逻辑、过滤器 filters</li></ul></div>
+<div class="box"><h4>Vue3 的三件套</h4><ul><li><strong>响应式：</strong>Proxy + track/trigger + 懒代理（见 02 节）</li><li><strong>编译优化：</strong>静态提升（静态节点只建一次）、Patch Flags（只比标了动态标记的属性）、Block Tree（跳过静态子树）——模板编译器把「哪里会变」提前写进渲染函数</li><li><strong>按需引入：</strong>全 API 模块化 + Tree Shaking，包体可裁</li><li><strong>新能力：</strong>Fragment 多根节点、<code>Teleport</code> 传送门、<code>Suspense</code> 异步边界、自定义渲染器（同一套响应式可渲染到 Canvas / 小程序）</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · API 使用层：写代码时真会撞上的差异</p>
+<table>
+<tr><th style="width:20%">场景</th><th style="width:32%">Vue2</th><th>Vue3 · 变了什么、为什么</th></tr>
+<tr><td>应用入口</td><td><code>new Vue({ render }).$mount()</code>，全局 <code>Vue.use / Vue.component</code></td><td><code>createApp(App).use(...).mount()</code>，全局 API 挂到 app 实例上——多应用互不污染，这是做微前端 / 多实例时的真收益</td></tr>
+<tr><td>逻辑复用</td><td>Options 按类型分栏（data / methods / computed 各一块）；复用靠 <strong>mixin</strong>：来源不清、命名冲突、隐式依赖</td><td>Composition 按<strong>功能</strong>组织：一个功能的状态 + 方法写在一起，抽成 <code>useXxx()</code> composable，入参出参显式——这是从 Shop Deco 编辑器那种大组件里拆逻辑时最实在的改进</td></tr>
+<tr><td>v-model</td><td>默认 <code>value + input</code>，一个组件只能一个；双向同步另一路靠 <code>.sync</code></td><td>默认 <code>modelValue + update:modelValue</code>，<strong>可多个</strong> <code>v-model:title</code>；<code>.sync</code> 删除。迁移时逐个组件核对 prop 名和事件名</td></tr>
+<tr><td>attrs / 监听</td><td><code>$attrs</code> 与 <code>$listeners</code> 分开，透传要写两遍</td><td><code>$listeners</code> 合并进 <code>$attrs</code>，透传一次写完；<code>emits</code> 选项显式声明事件，未声明的会落到 attrs 上——封装组件时必查</td></tr>
+<tr><td>被删 / 被改的</td><td>filters 过滤器、<code>Vue.set / Vue.delete</code>、事件总线 <code>$on/$off/$once</code>、<code>.native</code> 修饰符</td><td>filters 删除（用 computed / 方法代替）；Proxy 后不再需要 set/delete；实例事件 API 删除（总线改用 mitt 等库）；<code>.native</code> 删除。迁移清单里这四项是高频报错点</td></tr>
+<tr><td>ref / reactive 选型</td><td>—（只有 data）</td><td>基本类型用 <code>ref</code>（模板自动解包、JS 里要 <code>.value</code>）；对象用 <code>reactive</code>（解构会丢响应，要配 <code>toRefs</code>）；只读用 <code>readonly</code>，浅层用 <code>shallowRef / shallowReactive</code>。被追问就答：ref 内部对对象也是转 reactive，区别只在包装层</td></tr>
+</table>
+</div>
+<p style="font-weight:700;font-size:14px;margin:18px 0 8px">图 D · 迁移路径：别一口吃成胖子——你真用过的分批法</p>
+<div class="diagram" style="margin-top:0">
+<div class="flow">
+<div class="node plain"><b>1 先盘点</b><small>统计 filters / .sync / $listeners<br>事件总线、第三方库兼容性</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 过渡版本探路</b><small>Vue2 项目先升 2.7<br>2.7 已回移植 Composition API 可先练手</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 兼容构建定位</b><small>上 @vue/compat 迁移构建<br>按告警逐条改破坏性变更</small></div><div class="arrow">→</div>
+<div class="node teal"><b>4 分批切换</b><small>按模块 / 白名单灰度开放<br>新代码 Composition、老代码先不动</small></div><div class="arrow">→</div>
+<div class="node green"><b>5 门禁兜底</b><small>单元测试门禁 + UI 自动化覆盖 P0<br>过了才放量，别靠人肉回归</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>你的真实口径（Shop Deco，只说已确认的）</h4><p>你做过的是<strong>编辑器从 Vue 2.6 升到 2.7 的逻辑重构</strong>：采取分批迁移、白名单开放、单元测试门禁、UI 自动化覆盖 P0 用例来保上线质量，结果口径说「<strong>未出现关键功能回归</strong>」，不要说成「没产生任何 Bug」这种绝对话。2.7 的价值正在于它是桥：不用一步跳 Vue3，就能先验证 Composition 的写法和团队接受度。</p></div>
+<div class="box"><h4>什么时候不该升？（取舍题）</h4><ul><li>项目已进维护期、无新功能、升完没人用新特性——成本纯亏</li><li>核心第三方库（组件库、图表）还没有 Vue3 版本——先等生态或先换库</li><li>IE 还在支持范围内——Vue3 直接出局，这一条一票否决</li></ul><p>先讲「升的收益落在哪几个模块」，再讲分批，别一开口就是全量重写。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我按五层答：原理上响应式从 defineProperty 换成 Proxy、编译多了静态提升和 Patch Flags；写法上从 Options 按类型分栏变成 Composition 按功能组织、逻辑复用从 mixin 换成 composable；生命周期大体对应、销毁改名 Unmount、创建合并进 setup；破坏性变更集中在 v-model、filters 删除、$listeners 合并、全局 API 改实例；迁移我不会全量重写——我做 2.6 到 2.7 时就是分批迁移加白名单加测试门禁，Vue3 同理先上 compat 构建按告警清，再逐模块切。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「Vue3 性能就一定比 Vue2 好？」→ 分场景：初始化和内存因懒代理更好、大列表更新因 Patch Flags 更好，但小而简单的页面差距感知不到，别把基准测试数字当承诺。「Composition 和 React Hooks 一样吗？」→ 形似神不同：setup 只执行一次，依赖靠 Proxy 自动收集，不需要依赖数组，也没有 Hooks 的闭包过期和调用顺序对齐问题——这一句是两边都懂的标志。</div>
 </section>
 
 <!-- SSR -->
@@ -232,6 +282,56 @@ details p,details li{font-size:14px;color:var(--muted)}
 </div>
 <div class="say"><b>一分钟讲法（照这个顺序）：</b><p>「店铺页是 Hybrid：请求进来经 SSR 入口 render.tsx，先并行拿 shopInfo 和装修 DSL，在服务端把 header 和首屏渲染成 HTML，初始数据内嵌一起返回，浏览器不等 JS 就能先画、LCP 提前；JS 到位后读内嵌数据注水。价格、库存、推荐这些变得快的坚决不进 SSR，客户端接口补占位。这套的关键约束有三个：<strong>首图 URL 必须真在 HTML 里、注水三件套版本必须一致、动态数据绝不进整页缓存</strong>。我是参与这条链路，render 入口不是我写的，我负责的是买家端渲染与首屏这侧。」</p></div>
 <div class="trap"><strong>追问预警：</strong>「你抓到的 HTML 是空 #main，怎么证明有 SSR？」→ 那是 Static CSR Host 壳、另一入口；SSR/Hybrid 入口经 render.tsx 带 header，两条线并存，别被一个壳样本带偏。「为什么不全站 SSG？」→ 只有 header 这类发布才变的部分适合，商品与价格不行；且 SSG 接管目前是设计方案、线上仍是请求时 SSR，这样分清已落地与设计，反而显专业。</div>
+</section>
+
+<!-- NODE EXPRESS SSR -->
+<section class="card" id="node-ssr">
+<div class="kicker">渲染 · 03C · 手写实现，以设计文档原件为准 ★</div><h2>Node + Express 手写 SSR：没有框架替你做决定，整条链自己接</h2>
+<p class="sub">定调：这节只按两份真材料讲，不凭印象。<strong>一是 Company 店铺页的设计文档原件</strong>（render.tsx 那条链逐段拆过：平台包是平台团队的、店铺侧是使用方，你的口径仍是<strong>参与</strong>）；<strong>二是一个同形状的最小骨架</strong>（Express + React 18，本地跑通过：<code>GET /</code> 返回的 HTML 里已带列表数据、两次请求的时间戳不同，证明是逐请求取数）。手写 SSR 的面试价值就一句：框架帮你藏起来的每一步——上下文隔离、流式策略、脱水白名单、失败降级——这里都得自己写、自己担。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 一次请求在手写 Node SSR 里怎么走（骨架与 Company 对照着看）</p>
+<div class="flow">
+<div class="node plain"><b>1 Express 接请求</b><small>Render Server 由 server-utils 的 initExpress 起 Express<br>骨架就是 express() + 静态托管，路由自己挂</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 定语言 + 建上下文</b><small>导出顺序即执行顺序：withRequestLanguage 先定语言<br>→ 建平台上下文：ALS 开新 Map，灰度 / 用户 / Host 查询并行初始化</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 逐请求取数</b><small>handler 内新建 store / queryClient<br>Promise.all 并行拉翻译（字典按语言全局缓存、并发去重）；骨架取数带 AbortController 3 秒超时</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 renderToPipeableStream</b><small>同一份组件树在 Node 里渲染<br>策略二选一：onShellReady 先出壳 / onAllReady 等全好（图 B）</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node amber"><b>5 收尾拼装</b><small>收 helmet 的 head；从 ALS 取 ssrStyle 拼成内联 &lt;style&gt; 追加进 head<br>脱水数据按白名单过滤（只放行 shopInfo）</small></div><div class="arrow">→</div>
+<div class="node plain"><b>6 返回给调用方</b><small>骨架：直出整页 HTML + window.__INITIAL_DATA__<br>Company：回 Slot JSON { js, css, data, body, head, dataKey: 'shop' } 给 Host 拼页</small></div><div class="arrow">→</div>
+<div class="node green"><b>7 浏览器先画</b><small>HTML 已带内容，先看见<br>JS 没到也不白屏</small></div><div class="arrow">→</div>
+<div class="node rose"><b>8 hydrateRoot 注水</b><small>客户端读回同一份数据（骨架读 __INITIAL_DATA__；Company 走 getInitialData('shop') 先灌翻译再 initI18n）<br>复用 DOM、只绑事件，之后走 CSR</small></div>
+</div>
+<div class="loop-note">整条链没有一步是框架送的：隔离、流式、脱水、降级——手写 SSR 被深挖，考的就是这四件事你有没有想过。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 流式两种策略：onShellReady 直出 vs onAllReady 拼串（文档原理三）</p>
+<table>
+<tr><th style="width:18%">策略</th><th style="width:30%">做法</th><th style="width:24%">谁在用</th><th>收益 / 代价</th></tr>
+<tr><td><strong>onShellReady</strong></td><td>壳一就绪就 <code>pipe(res)</code> 边渲边发，Suspense 慢内容好了再补</td><td>最小骨架（整页直出）</td><td>TTFB 不被最慢分支拖住；代价是调用方必须能吃流</td></tr>
+<tr><td><strong>onAllReady + PassThrough</strong></td><td>等全部 Suspense 就绪，才把流 pipe 到 PassThrough，把所有 chunk 拼成完整字符串再返回</td><td>Company render.tsx（现状）</td><td>Host 要完整 body 才能按 Slot 协议拼页，字符串也方便拼 head / 样式 / 清单；代价是 TTFB 吃满最慢分支——<strong>机制支持流式 ≠ 本实现透出了流式收益</strong>，这句要主动分清</td></tr>
+</table>
+<div class="codeblock"><code>// 骨架 server 核心（Express + renderToPipeableStream，整页直出版）
+const { pipe, abort } = renderToPipeableStream(&lt;App data={data} /&gt;, {
+  onShellReady() {            // 壳好了就先发，TTFB 不等慢内容
+    res.setHeader("Content-Type", "text/html");
+    res.write(headHtml);      // 文档头 + &lt;div id="root"&gt;
+    pipe(res);                // 边渲边发
+  },
+  onShellError() {            // 壳都渲不出来：降级 CSR 空壳，绝不白屏
+    if (!res.headersSent) res.status(500).send(csrShell());
+  },
+});
+setTimeout(() =&gt; abort(), 5000);   // 流挂起的兜底中止
+// Company 版差异：不在 onShellReady 发，而是 onAllReady 时
+// pipe 到 PassThrough 拼成完整字符串，再组装 Slot JSON 回 Host。</code></div>
+<div class="grid2">
+<div class="box"><h4>逐请求隔离：AsyncLocalStorage（文档原理一）</h4><p>Node 单进程同时处理很多请求，请求状态放模块级变量<strong>必然串号</strong>——骨架的反例实验就是把取数结果挪到模块变量，第二个请求直接看到第一个人的数据。ALS 是「随异步调用链自动传递的请求级变量」：<code>run(new Map(), cb)</code> 之后，链内任意深度 <code>getStore()</code> 拿到的都是本请求的 Map，链外拿不到。Company 一个请求一个 Map、只存三个 key——<strong>ssrStyle / localStore / queryClient</strong>，请求结束即弃；单例挂 <code>global</code> 是防包被装两份、出现两个 ALS 实例把上下文弄断。<strong>i18n 另有自己的 ALS 存语言，和这个不是同一个</strong>，别混说。失效场景要能答：回调脱离异步链（裸定时器、没透传的事件）就丢上下文，get 返回 undefined 且只留一条 trace——排查先查链断没断，别先查数据。</p></div>
+<div class="box"><h4>脱水与注水：数据怎么过界（文档原理五）</h4><p>服务端取到的数据序列化进返回物，客户端注水时读回同一份：骨架是 <code>window.__INITIAL_DATA__</code>，Company 是 queryState、按 <code>dataKey: 'shop'</code> 索引。两条安全线：<strong>一是转义</strong>——脱水 JSON 里的 <code>&lt;/script&gt;</code> 必须转成 <code>\u003c</code>，否则数据能冲出 script 标签变成 XSS；<strong>二是白名单</strong>——Company 脱水只放行 <code>queryKey[0] === 'shopInfo'</code> 的查询、mutation 一律不脱水，注释写明是安全原因：与 item 相关的数据不允许随 SSR 返回，这不是性能偷懒。注水一致性靠<strong>三同</strong>：同数据（客户端首帧用的就是服务端那份）、同版本（HTML 片段、initial data、JS chunk 必须同一发布版本）、同结构（渲染树、语言、路由 location 一致）；对不上，React 会丢弃服务端 DOM 整页重渲。</p></div>
+<div class="box"><h4>同一份组件，两边跑的纪律</h4><p>骨架的 App 组件服务端、客户端共用同一份代码，约束就两条：渲染期<strong>不能碰 window / document</strong>（碰了服务端直接报错）；<strong>不能放两边会算出不同值的内容</strong>（随机数、当前时间直接写进 render，注水必然不匹配）。骨架里页面上的时间戳来自取数结果、随数据一起脱水——<strong>时间只能来自数据，不能来自渲染</strong>，这是注水题最爱挖的细节。</p></div>
+<div class="box"><h4>失败路径：不白屏、不破协议</h4><p>骨架：取数失败或壳渲染失败 → 回 <strong>CSR 空壳</strong>让客户端自己渲染重试；客户端中途断开 → req close 触发 abort，停掉无用功。Company：try/catch 包住全流程，出错上报后回 <strong>500 + 空 js/css/head，生产环境 body 为空字符串</strong>（非生产才回带错误信息的 div）——保住的是协议形状不破，页面内容靠 Host 的 fallback，这既是现状也是可改进点。被问「你会改什么」先答文档审查的 <strong>P0：现链路缺 onError / 超时 / 中止处理</strong>，Promise 只在 PassThrough end 时 resolve，渲染中途抛错或上游挂起时请求可能长时间不返回；再补 location 缺字段兜底（search 缺失会拼出字符串 "undefined" 引注水不匹配）和翻译的非核心集合降级（现在 Promise.all 全有全无、一个集合失败整单 500）。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「手写 Node SSR 就是 Express 接请求后自己走完这条链：先定语言、用 AsyncLocalStorage 给每个请求开一个隔离的 Map，存样式收集数组、store 和 queryClient；再逐请求取数——数据只活在 handler 里，绝不放模块级变量，不然下一个请求就串上一个人的数据；然后 renderToPipeableStream 渲染，策略二选一：整页直出就 onShellReady 边渲边发压 TTFB，Company 那种 Slot 协议就等 onAllReady、把流 pipe 到 PassThrough 拼成完整字符串，连同只脱水放行的 shopInfo 和资源清单组装成 JSON 回给 Host；最后浏览器读回脱水数据注水。失败路径也得自己兜：骨架是降级 CSR 壳绝不白屏，Company 是回 500 加空资源保协议形状、由 Host 兜底。口径分清：Company 这套我参与的是店铺侧接入与渲染行为，平台包不是我写的；同形状的最小骨架是我本地跑通过的练手，能对照代码讲。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「renderToString 不行吗？」→ 能跑通，但全量同步渲染阻塞事件循环、且必须等最慢分支才吐第一个字节；换 renderToPipeableStream 才能选 onShellReady 先出壳。「ALS 和把状态挂 req 上有什么区别？」→ 挂 req 要层层透传参数，深层函数拿不到；ALS 随异步链自动传递、任意深度可取，代价是脱链就丢。「流式这么好，Company 为什么不直出？」→ Slot 协议要完整 body 才能拼页，机制支持流式和本实现有没有透出流式收益是两件事——能主动分清这一层，就是资深和背书的区别。</div>
 </section>
 
 <!-- VIRTUAL LIST -->
@@ -317,6 +417,71 @@ details p,details li{font-size:14px;color:var(--muted)}
 </div>
 </div>
 <div class="say"><b>答输出顺序题的固定动作：</b><p>别凭感觉，按三步走：① 先标出所有同步输出；② 再按入队顺序排微任务（注意 then 链每一环都要等上一环）；③ 最后排宏任务，setTimeout 相同延时按注册顺序。边说边画队列，面试官就知道你是真懂。</p></div>
+</section>
+
+<!-- NODE LOOP -->
+<section class="card" id="node-loop">
+<div class="kicker">JS 基础 · 07B · 和浏览器那节对照着背 ★</div><h2>Node 事件循环：六个阶段 + libuv 线程池</h2>
+<p class="sub">一句话：浏览器事件循环是「宏任务 → 清微任务 → 渲染」转圈；Node 多了服务端要管的事——定时器、系统回调、网络 IO、文件 IO 全排进 <strong>libuv 的六个阶段</strong>里轮着跑，且<strong>每个阶段之间都要清一次微任务</strong>。没有渲染这一步，是两者最大的结构差异。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 六个阶段转一圈（记住顺序：timers → poll → check 是主干）</p>
+<div class="flow">
+<div class="node teal"><b>1 timers</b><small>setTimeout / setInterval<br>到期的回调在这里执行</small></div><div class="arrow">→</div>
+<div class="node plain"><b>2 pending callbacks</b><small>上一轮推迟的系统回调<br>如 TCP 错误、部分 IO 错误</small></div><div class="arrow">→</div>
+<div class="node plain"><b>3 idle / prepare</b><small>内部使用<br>面试点到为止，别展开编</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 poll ★核心</b><small>等新 IO 事件：网络/文件就绪<br>没事干时会在这里阻塞等待</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node blue"><b>5 check</b><small>setImmediate 专用阶段<br>紧跟在 poll 之后</small></div><div class="arrow">→</div>
+<div class="node rose"><b>6 close callbacks</b><small>socket / handle 关闭回调<br>如 socket.on('close')</small></div><div class="arrow">→</div>
+<div class="node teal"><b>回到 timers</b><small>进入下一圈<br>进程没事可做才退出</small></div>
+</div>
+<div class="loop-note">每过一个阶段（准确说是每个阶段的回调队列清空前后），都要先把 process.nextTick 队列、再把 Promise 微任务队列清空——Node 清微任务的频率比浏览器更高，这是输出顺序题两边答案不同的根源。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">六个阶段逐个说清 · 一句话 + 一个例子（面试官逐个点名就照这张表答）</p>
+<table>
+<tr><th style="width:16%">阶段</th><th style="width:42%">是什么意思 · 跑什么回调</th><th>例子</th></tr>
+<tr><td><strong>1 timers</strong></td><td>检查定时器有没有到期，到期的 <code>setTimeout / setInterval</code> 回调在这里执行；注意是「到期后尽早」，不是到点精确执行，前面阶段堵住就会延后</td><td><code>setTimeout(() =&gt; console.log('1秒到了'), 1000)</code> 的回调在这里跑</td></tr>
+<tr><td><strong>2 pending callbacks</strong></td><td>执行被推迟到这一轮的<strong>系统级</strong>回调，主要是上一轮没来得及处理的操作系统/网络错误回调，不是给业务代码用的队列</td><td>某些 TCP 连接错误（如连接被拒的底层通知）会推迟到这里回调</td></tr>
+<tr><td><strong>3 idle / prepare</strong></td><td>纯内部阶段：idle 给 Node 内部模块用，prepare 在 poll 阻塞之前做内部准备，<strong>不跑任何用户回调</strong>，答到这句就够</td><td>无业务例子——被追问就说「内部使用、用户代码感知不到」</td></tr>
+<tr><td><strong>4 poll ★</strong></td><td>整个循环的枢纽：计算还要等多久、然后<strong>阻塞等待新的 IO 事件</strong>（网络数据到达、文件读完），事件到了就执行对应 IO 回调；队列空了且没有定时器在等，进程就在这里睡住</td><td>HTTP 请求进来、<code>fs.readFile</code> 读完的回调在这里执行</td></tr>
+<tr><td><strong>5 check</strong></td><td>专为 <code>setImmediate</code> 设的阶段，紧跟 poll 之后：poll 一结束就来这里，所以在 IO 回调里调 setImmediate 能保证「IO 之后立刻」执行</td><td><code>fs.readFile(f, () =&gt; setImmediate(fn))</code> 里的 fn 在这里跑，且必在同文件回调里的 setTimeout(0) 之前</td></tr>
+<tr><td><strong>6 close callbacks</strong></td><td>执行各类句柄的关闭回调，资源被关闭时统一在这里通知，然后循环回到 timers 开始下一圈</td><td><code>socket.on('close', fn)</code>、服务器 <code>server.on('close')</code> 的回调在这里跑</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">libuv 是什么 · Node 的「操作系统翻译官 + 调度员」</p>
+<div class="grid2">
+<div class="box"><h4>它是什么、为什么需要它</h4><p><strong>libuv 是一个用 C 写的跨平台异步 IO 库</strong>，最初就是为 Node 写的。它解决一个具体问题：Windows、Linux、macOS 的异步 IO 机制完全不同（IOCP / epoll / kqueue），JS 代码不可能每个系统写一遍。libuv 把三套机制<strong>抹平成一个统一的事件循环接口</strong>，Node 在上面只写一套逻辑就能跨平台跑——这和第 29 节讲的「Node 是跨平台运行时」是同一件事：跨平台的能力主要来自 libuv，V8 只负责跑 JS。</p></div>
+<div class="box"><h4>它在 Node 里扮演三个角色</h4><ul><li><strong>事件循环的引擎：</strong>六个阶段的推进、poll 的阻塞等待，都由 libuv 实现，V8 不管调度</li><li><strong>异步 IO 的执行者：</strong>网络 IO 直接用操作系统异步机制（事件通知制，不占线程）；文件、DNS、加解密这类系统没给异步接口的，它用线程池模拟异步</li><li><strong>基础能力的提供者：</strong>定时器、文件系统、进程、信号、IPC 管道等底层能力都经它暴露给 Node 的 C++ 层再到 JS</li></ul></div>
+</div>
+<div class="flow" style="margin-top:12px">
+<div class="node teal"><b>JS 主线程</b><small>跑你的代码 + 推进事件循环<br>只做调度与轻计算，不等 IO</small></div><div class="arrow">→</div>
+<div class="node amber"><b>libuv 分诊</b><small>来一个异步任务先分类<br>能异步的走系统机制，不能的进线程池</small></div><div class="arrow">→</div>
+<div class="node blue"><b>系统异步 IO</b><small>网络读写走 epoll / kqueue / IOCP<br>事件驱动、不占线程，扛高并发靠它</small></div><div class="arrow">→</div>
+<div class="node rose"><b>线程池（默认 4）</b><small>文件 IO · DNS 解析<br>crypto · zlib，完成后把回调塞回 poll</small></div>
+</div>
+<div class="loop-note">分工一句话：主线程负责「想」，libuv 负责「等」——等网络走系统事件、等文件走线程池，等到了再把回调送回主线程执行。所以 Node 的并发上限卡在两处：主线程的计算量，和线程池的排队长度。</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>libuv 与线程池：JS 单线程 ≠ Node 单线程</h4><p>主线程只跑 JS 和事件循环；<strong>libuv 线程池默认 4 个线程</strong>（可用 <code>UV_THREADPOOL_SIZE</code> 调，最大 1024）承接无法异步的活：文件 IO、DNS 解析（getaddrinfo）、crypto 加解密、zlib 压缩。网络 IO 走操作系统异步机制（Linux epoll / macOS kqueue / Windows IOCP），<strong>不占线程池</strong>。坑：线程池满时文件与加解密会互相排队，高并发下这是隐藏瓶颈；CPU 密集计算照样堵主线程，要靠 Worker Threads / 子进程，别指望线程池。</p></div>
+<div class="box"><h4>process.nextTick vs Promise vs setImmediate</h4><ul><li><strong>process.nextTick：</strong>不属于任何阶段，当前操作一结束<strong>立刻</strong>执行，优先级高于 Promise 微任务；递归写 nextTick 会饿死 IO，官方都不推荐滥用</li><li><strong>Promise.then：</strong>微任务，排在 nextTick 之后、阶段推进之前</li><li><strong>setImmediate：</strong>排在 check 阶段，是「这一圈 poll 之后」执行</li><li><strong>setTimeout(fn, 0)：</strong>排在 timers 阶段，最小延时实际被钳到约 1ms</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 必考对照：setTimeout(0) 和 setImmediate 谁先？分场景答</p>
+<table>
+<tr><th style="width:24%">场景</th><th style="width:30%">结论</th><th>为什么</th></tr>
+<tr><td>顶层主模块里直接写</td><td><strong>不确定</strong></td><td>取决于进程启动耗时与 1ms 计时器是否已到期，背「谁先」必错，正确答法就是说不确定 + 讲原因</td></tr>
+<tr><td>IO 回调里（如 fs.readFile 回调中）</td><td><strong>setImmediate 必先</strong></td><td>IO 回调在 poll 阶段执行，下一站就是 check（setImmediate），而 timers 要等下一圈——这个场景答案是确定的，放心答</td></tr>
+<tr><td>和浏览器对比</td><td>浏览器没有 setImmediate / nextTick</td><td>浏览器只有宏/微两级；Node 的 nextTick 和每阶段清微任务是服务端特有的，答题时先声明环境再排顺序</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 浏览器 vs Node 一张表收尾</p>
+<table>
+<tr><th style="width:20%"></th><th style="width:40%">浏览器</th><th>Node</th></tr>
+<tr><td>驱动者</td><td>浏览器渲染进程的主线程循环</td><td>libuv 的事件循环（C 层实现）</td></tr>
+<tr><td>宏任务粒度</td><td>一轮取<strong>一个</strong>宏任务就清微任务、可能渲染</td><td>按<strong>阶段</strong>推进，一个阶段内把该阶段队列跑完，阶段之间清微任务</td></tr>
+<tr><td>渲染</td><td>有：rAF → 布局 → 绘制夹在循环里</td><td>无渲染；poll 阶段没事件时会阻塞等 IO，这是服务器能「挂住等请求」的原因</td></tr>
+<tr><td>独有 API</td><td>requestAnimationFrame、MutationObserver、requestIdleCallback</td><td>process.nextTick（优先级最高）、setImmediate、线程池与 Worker Threads</td></tr>
+<tr><td>同源问题</td><td colspan="2">同一段含 setTimeout + Promise 的代码，两边顺序大体一致；一旦掺入 nextTick / setImmediate 或 IO 回调，必须按 Node 的阶段模型重排——面试官出 Node 题就是在考你会不会切换模型</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「Node 的循环由 libuv 驱动，分六个阶段：timers 管定时器、pending 管推迟的系统回调、poll 是核心等 IO、check 跑 setImmediate、close 管关闭回调，idle/prepare 是内部的。和浏览器比，三点不同：没有渲染这一步；微任务不是一轮清一次，而是每个阶段之间都清，且 nextTick 优先于 Promise；文件、DNS、加解密这类活不在主线程，走默认 4 个的 libuv 线程池，网络 IO 走系统异步不占池。setTimeout 和 setImmediate 谁先要分场景：主模块里不确定，IO 回调里 setImmediate 必先。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「Node 是单线程为什么能扛高并发？」→ 扛的是 IO 并发：等待都交给了系统和线程池，主线程只做调度与轻计算；CPU 密集一上来就堵，所以要分清 IO 密集（Node 主场）和 CPU 密集（要多进程/Worker）。「nextTick 递归为什么危险？」→ 它永远插队在阶段推进之前，递归会让 IO 回调永远轮不到，进程假死。</div>
 </section>
 
 <!-- DSL -->
@@ -888,6 +1053,75 @@ for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实�
 <div class="trap"><strong>追问预警：</strong>「Context 和 Redux 区别？」→ Context 是传递机制不是状态管理，高频更新会让所有消费者重渲染；Redux 有单一 store、中间件和调试链路。「闭包过期？」→ useCallback 只稳函数身份不保新鲜度，要读最新值用 ref 镜像。</div>
 </section>
 
+<!-- REACT FAQ -->
+<section class="card" id="react-faq">
+<div class="kicker">框架 · 16B · React 追问专练 ★</div><h2>React 高频追问：Fiber、Diff、Hooks 原理与并发</h2>
+<p class="sub">上一节讲「状态放哪、更新怎么走」，这一节专治追问：为什么要 Fiber、Diff 凭什么 O(n)、Hooks 为什么不能写在条件里、闭包为什么会过期。每题都按「先结论、再机制、最后坑」答。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · Fiber：把一棵不能中断的递归，改成可中断的链表遍历</p>
+<div class="flow">
+<div class="node rose"><b>旧 Stack 协调</b><small>递归比对组件树<br>一旦开始不能停，长树直接堵主线程掉帧</small></div><div class="arrow">→</div>
+<div class="node teal"><b>Fiber 节点</b><small>每个组件一个 Fiber<br>child / sibling / return 三指针串成链表</small></div><div class="arrow">→</div>
+<div class="node blue"><b>时间切片</b><small>遍历可暂停让路给输入和动画<br>双缓存：current 与 workInProgress 两棵树轮换</small></div><div class="arrow">→</div>
+<div class="node amber"><b>Lane 优先级</b><small>输入/点击高优先、过渡更新低优先<br>低优先被打断可丢弃重来</small></div><div class="arrow">→</div>
+<div class="node green"><b>Commit 不可中断</b><small>算完才一次性提交 DOM<br>所以 render 可废弃、commit 必须原子</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>Diff 为什么是 O(n)？三条启发式假设</h4><ul><li><strong>只比同层：</strong>不跨层移动节点，树形比对从 O(n³) 降到 O(n)</li><li><strong>type 不同直接重建：</strong>div 变 span，整棵子树删了重建，不深挖</li><li><strong>key 标身份：</strong>同层列表靠 key 认人；key 用 index 时，头部插入会让所有行被误判为「内容变了」而逐行更新，带状态的行还会串位——所以 key 必须用稳定业务 id</li></ul></div>
+<div class="box"><h4>虚拟 DOM 到底优化了什么？（别神化）</h4><p>它优化的不是「比原生 DOM 快」，而是<strong>让声明式写法可落地</strong>：先在 JS 里算出最小变更，再批量写 DOM。手写命令式在已知场景下可以更快，但不可维护。答这题的姿势：虚拟 DOM 是可维护性与性能的折中，不是性能上限。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · Hooks 原理：状态存在 Fiber 的链表里，靠顺序对号入座</p>
+<table>
+<tr><th style="width:18%">问题</th><th style="width:38%">机制</th><th>坑 / 答法</th></tr>
+<tr><td>useState 存在哪</td><td>每个 Fiber 上挂一条 Hook 链表，首次渲染按调用顺序建链，后续渲染按<strong>同一顺序</strong>逐个取</td><td>这就是「不能写在条件/循环里」的根因：顺序一变，后面的状态全对错位，不是规范洁癖</td></tr>
+<tr><td>setState 是同步还是异步</td><td>调用后把 update 入队、标记调度，在当前任务结束后批量处理；读到的永远是本次渲染的快照</td><td>连写两次 <code>setCount(count+1)</code> 只 +1，要连续累加用函数式 <code>setCount(c =&gt; c+1)</code>；React 18 起自动批处理覆盖事件、定时器、Promise 回调</td></tr>
+<tr><td>useEffect 时机</td><td>在 commit 之后、浏览器绘制后<strong>异步</strong>执行；<code>useLayoutEffect</code> 在绘制前同步执行</td><td>测 DOM 尺寸防闪烁用 layout 版，其余默认 useEffect；别拿 useEffect 同步派生状态（上一节的坑），能算的就在渲染里算</td></tr>
+<tr><td>闭包过期 stale closure</td><td>每次渲染的 props/state 都是那一帧的快照，Effect 和回调捕获的是<strong>创建那一帧</strong>的值</td><td>依赖数组写全是正解；要读最新值又不触发重跑，用 ref 镜像一份。useCallback 只稳引用、不保新鲜，这句要分清</td></tr>
+<tr><td>Effect 无限循环</td><td>Effect 里 setState 又恰好是自己的依赖，触发重渲染 → Effect 再跑</td><td>查三件事：依赖里有没有每次新建的对象、更新有没有收敛条件、这份状态本该不该是派生值</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 其余高频题速答表</p>
+<table>
+<tr><th style="width:22%">题</th><th>一句话答法（展开靠例子）</th></tr>
+<tr><td>合成事件</td><td>React 把事件统一委托到根容器（17 起是 root，16 是 document），再按组件树分发，好处是统一管理和批处理；排查「点了没反应」先看有没有在原生层 stopPropagation 把委托链断了</td></tr>
+<tr><td>受控 vs 非受控</td><td>值由 state 管是受控、由 DOM 自己管（ref 读取）是非受控；表单默认受控便于校验联动，文件输入只能非受控，大表单全受控有重渲染成本时按字段拆组件</td></tr>
+<tr><td>React 18 并发</td><td>核心是渲染可中断可恢复：<code>startTransition</code> 把非紧急更新标低优先（如搜索输入联想列表），输入不卡、列表晚一点出；<code>Suspense</code> 把等待边界组件化。并发不是多线程，JS 还是单线程，只是调度更细</td></tr>
+<tr><td>性能排查顺序</td><td>先 Profiler 看谁在重渲染 → 查 props 引用是否每次新建 → 再 memo / 拆组件 / 状态下沉；先定位再优化，不要全站无脑 memo（比较本身也有成本）</td></tr>
+<tr><td>Vue vs React 对照</td><td>Vue 靠响应式<strong>精确知道</strong>谁变了、更新粒度到组件内属性；React 是自顶向下重跑函数、靠 diff 和 memo 剪枝。Vue 上手快、约定多，React 自由度高、心智在「渲染即快照」。被问选型就答团队栈 + 生态 + 招聘面，别站队</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「React 追问我抓三条主线：协调层，Fiber 把递归改成可中断的链表遍历、加 Lane 优先级和双缓存，所以高优先输入能打断低优先渲染；Diff 靠同层比较、type 定重建、key 定身份三条假设做到 O(n)；Hooks 的状态按调用顺序存在 Fiber 链表上，所以顺序不能变、每次渲染都是快照，闭包过期和批处理都从这一条推出来。并发只是把这套调度用满，不是多线程。」</p></div>
+<div class="trap"><strong>诚实边界：</strong>Fiber 细节答到「链表 + 双缓存 + Lane」这一层就够资深了，Lane 的位运算编码、调度器的时间片实现没读过源码就别往下编，收一句「我到机制层，源码级细节没深挖」比硬编安全。</div>
+</section>
+
+<!-- STATE -->
+<section class="card" id="state">
+<div class="kicker">框架 · 16C · 状态管理六库对照 ★</div><h2>状态管理原理：Redux / Zustand / MobX / Atom / Vuex / Pinia</h2>
+<p class="sub">一句话先分三派：<strong>单向数据流派</strong>（Redux、Vuex、Pinia、Zustand——状态怎么变必须可追溯）、<strong>响应式派</strong>（MobX——直接改，框架自动追踪谁在用）、<strong>原子派</strong>（Jotai / Recoil——没有大 store，状态拆成一颗颗 atom 按需组合）。面试考的不是 API，是「更新怎么被触发、谁被通知、为什么不会多渲染」。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 三派更新机制，一眼分清</p>
+<div class="flow">
+<div class="node blue"><b>单向流：发命令改状态</b><small>dispatch(action) → reducer 算出新状态<br>→ 订阅者对比后更新。改法唯一、可回放</small></div><div class="arrow">→</div>
+<div class="node teal"><b>响应式：直接改自动追</b><small>observable 属性被读时收集依赖<br>被写时只通知真正读过它的组件</small></div><div class="arrow">→</div>
+<div class="node amber"><b>原子：按颗订阅</b><small>组件 use 哪颗 atom 就只订哪颗<br>派生 atom 靠依赖图自动重算</small></div>
+</div>
+<table>
+<tr><th style="width:13%">库</th><th style="width:30%">原理 / 更新机制</th><th style="width:27%">适用场景</th><th>代价 / 坑</th></tr>
+<tr><td><strong>Redux</strong>（+ Toolkit）</td><td>单一 store + 纯函数 reducer：<code>dispatch → reducer(state, action) → 新 state → subscribe 通知</code>。状态不可变、每次返回新引用，React-Redux 靠引用对比 + selector 决定谁重渲染；时间旅行、日志回放都靠「action 可序列化 + reducer 纯」这两条</td><td>大型应用、多人协作、状态变更要审计/可回放；电商交易、金融类</td><td>原版样板代码多（Toolkit 已大幅简化）；selector 写不好会全量重渲染；异步要靠 thunk/saga 中间件，本身不管请求缓存</td></tr>
+<tr><td><strong>Zustand</strong></td><td>Redux 思想的极简版：一个 <code>create()</code> 出带 get/set 的 store，<strong>不依赖 Context</strong>（store 在 React 外），组件用 selector 订阅切片，浅比较后才更新。没有 action 类型、没有 Provider 包裹</td><td>中小应用、想逃离 Redux 样板、状态要被 React 外代码读写（如游戏循环、编辑器引擎）</td><td>约束弱全靠自觉，大团队容易写乱；没有 Redux 那套中间件与调试生态的厚度</td></tr>
+<tr><td><strong>MobX</strong></td><td>响应式派代表：<code>observable</code> 把状态变可观察（原理近 Vue：读时收集 observer、写时触发 reaction），<code>computed</code> 惰性派生、<code>action</code> 里直接赋值改状态，<code>observer</code> 组件只重渲染真正读过的字段变了的那部分——<strong>更新粒度最细</strong></td><td>状态关系复杂、派生多、表单/编辑器类高频局部更新；团队偏 OOP 心智</td><td>太「魔法」：状态在哪被改的难追踪，调试不如单向流直观；和 Redux 团队的心智模型冲突，混用必乱</td></tr>
+<tr><td><strong>Atom：Jotai / Recoil</strong></td><td>状态拆成最小单位 <code>atom</code>（一颗就是一个值或一个派生计算），组件 <code>useAtom</code> 订阅单颗，改一颗只通知用到它的组件与依赖它的派生 atom；派生靠 atom 之间读依赖自动建图。<strong>自底向上</strong>，没有顶层大 store。Recoil 出自 Meta 已停更，Jotai 是现在的主流选择，讲的时候点这一句显跟得上</td><td>状态碎片多、组件各自独立（如画布节点、编辑器面板）、不想为加个小状态就扩全局 store</td><td>atom 数量膨胀后管理成本上来；跨 atom 的事务性更新、全局调试视图不如单一 store 清晰</td></tr>
+<tr><td><strong>Vuex</strong>（Vue2 时代）</td><td>Vue 版单向流：单一 state 树，只能通过 <code>mutation</code>（同步）改、<code>action</code>（异步）提交 mutation、<code>getter</code> 做派生。底层就是一个响应式对象 + 约束改法，靠 Vue 的响应式通知组件</td><td>Vue2 项目的标准答案；你 Shop Deco 编辑器 Vue2 时期就是这一代的生态</td><td>mutation/action 双轨样板重、TS 支持弱、模块嵌套深了命名空间难用——这些正是 Pinia 诞生的原因</td></tr>
+<tr><td><strong>Pinia</strong>（Vue3 官方）</td><td>Vuex 的继任者：<strong>去掉 mutation</strong>，action 里直接改 state；多个独立 store 按域拆分不用嵌套模块；完全基于 Composition API + Vue3 响应式，TS 推断完整；同样支持插件与 SSR 水合</td><td>一切 Vue3 新项目；Vue2 项目升 Vue3 时的状态层迁移目标</td><td>自由度高同样靠约定；从 Vuex 迁过来要改的是心智：别再找 mutation 层，异步与同步统一进 action</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>Vuex → Pinia 迁移关系（和 Vue2/3 迁移连着讲）</h4><ul><li><strong>对应关系：</strong>state → state、getter → getter（同名保留）、mutation + action → 只剩 action、module → 独立 defineStore</li><li><strong>迁移顺序：</strong>可以<strong>共存渐进迁</strong>——Pinia 能装进 Vue2（配 composition-api）也能装进 Vue3，先迁低耦合模块，最后迁根状态，别一刀切</li><li><strong>和版本绑定：</strong>Vue2 项目继续 Vuex 完全正当；决定升 Vue3 时把 Pinia 列进同一批迁移清单，它和 2.6→2.7 分批法是同一个节奏</li></ul></div>
+<div class="box"><h4>选型一分钟决策树</h4><ul><li>Vue 栈：Vue2 用 Vuex、Vue3 用 Pinia，没有悬念</li><li>React 大型 + 强协作审计：Redux Toolkit；中小 / 引擎侧状态：Zustand</li><li>状态派生复杂、要细粒度更新：MobX 或 Atom 二选一——面向对象心智选 MobX，函数式碎片状态选 Jotai</li><li>服务端数据（列表、详情、缓存失效）<strong>哪个都别选</strong>：那是 TanStack Query 这类请求缓存的活，塞进全局 store 是最常见的误用（呼应 React 那节的状态三分法）</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我按三派讲：Redux、Vuex、Pinia、Zustand 是单向流，区别在重量——Redux 最重最规范、Zustand 最轻、Vuex 是 Vue2 的单向流、Pinia 是它去掉 mutation 后的继任者；MobX 是响应式，直接改、自动追踪，更新最细但最难溯源；Jotai 这类 Atom 是自底向上拆碎订阅。选型先看框架（Vue 还是 React）、再看状态形状（整树还是碎片）、最后看团队要约束还是要自由。还有一条红线：服务端数据不进这些库，走请求缓存。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「Redux 和 Zustand 原理差在哪？」→ 都是单向流 + selector 订阅，差在 Zustand 不依赖 Context、store 可独立于 React 存在，且放弃了 action 规范换简洁。「Pinia 没有 mutation 怎么保证可追溯？」→ 靠 devtools 的时间线记录每次 action 修改，追溯能力没丢、只是实现从「强制走 mutation」变成「工具记录」。</div>
+</section>
+
 <!-- BROWSER -->
 <section class="card" id="browser">
 <div class="kicker">浏览器 · 17</div><h2>输入 URL 到页面展示 + 浏览器存储</h2>
@@ -990,6 +1224,83 @@ for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实�
 </div>
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「Vite 开发快是因为它把打包推迟了：利用原生 ESM 按需编译单个文件；Webpack 是先打包成图再启动，项目越大越慢。但生产环境两者都要打包优化，这点要主动说清，不然显得只会背‘Vite 快’。」</p></div>
+</section>
+
+<!-- TOOLING -->
+<section class="card" id="tooling">
+<div class="kicker">工程化 · 21B · 构建深挖 ★</div><h2>Webpack / Vite 深挖 + npm 包的导出（exports）</h2>
+<p class="sub">上一节是速记，这一节答深水区：Webpack 的三个核心概念别说混、Vite 快的代价是什么、发一个 npm 包时 <code>main / module / exports</code> 到底谁说了算。</p>
+<div class="diagram">
+<div class="grid2">
+<div class="box"><h4>Webpack 五个词先分清</h4><ul><li><strong>Module：</strong>一个文件就是一个模块（经 Loader 转换后）</li><li><strong>Chunk：</strong>打包过程中的代码块，一个入口或一次动态 import 产出一组 chunk</li><li><strong>Bundle：</strong>最终吐出的文件，一个 bundle 可含多个 chunk</li><li><strong>Loader：</strong>文件级转换器（链式、从右往左执行），如 ts-loader、css-loader</li><li><strong>Plugin：</strong>钩子级扩展，介入整个构建生命周期，如 HtmlWebpackPlugin、DefinePlugin</li></ul><p>高频追问 HMR：改文件 → 重新编译受影响模块 → 经 WebSocket 推给浏览器 → 运行时用新模块替换旧模块并保留状态，替换失败才整页刷新。</p></div>
+<div class="box"><h4>哈希三种别用错（缓存题）</h4><ul><li><code>hash</code>：整次构建一个值，改任何文件全变——已淘汰的用法</li><li><code>chunkhash</code>：按 chunk 算，同 chunk 文件一起变</li><li><code>contenthash</code>：按文件内容算，<strong>只变改过的文件</strong>——长缓存就靠它，线上默认用这个</li></ul><p>代码分割落点：<code>splitChunks</code> 抽公共与第三方、路由级 <code>import()</code> 懒加载、<code>runtimeChunk</code> 把运行时单独抽出防连带失效。</p></div>
+</div>
+<table>
+<tr><th style="width:16%">维度</th><th style="width:40%">Webpack</th><th>Vite</th></tr>
+<tr><td>开发启动</td><td>先建完整依赖图再启动，项目越大越慢</td><td>不起打包：esbuild 预构建第三方依赖（转 ESM + 合并小文件），源码走浏览器原生 ESM 按需编译</td></tr>
+<tr><td>HMR</td><td>整链路重编译受影响图，快慢看项目规模</td><td>只失效改动的那个模块、经 ESM 重新请求，规模无关地快</td></tr>
+<tr><td>生产构建</td><td>自身打包（也可换 esbuild/swc 加速 Loader）</td><td>Rollup 打包：插件体系与 Rollup 兼容，Tree Shaking 与分包成熟</td></tr>
+<tr><td>代价 / 边界</td><td>配置复杂、慢，但生态与可控性最强，老项目与复杂定制（如 Module Federation）仍是它</td><td>开发与生产是两套引擎，偶有「开发行、生产挂」的双引擎差异；依赖若只有 CJS 需预构建兜底；超大项目生产 Rollup 构建仍可能慢（可关注 Rolldown 演进）</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">npm 包导出：package.json 里到底谁说了算</p>
+<div class="grid2">
+<div class="box"><h4>老三样（exports 出现之前）</h4><ul><li><code>main</code>：入口，默认指向 CJS 产物——Node 和老打包器看它</li><li><code>module</code>：指向 ESM 产物——Webpack/Rollup 等打包器优先看它做 Tree Shaking（非官方标准但已成事实约定）</li><li><code>types</code> / <code>typings</code>：TS 类型入口，一般指向 <code>.d.ts</code></li><li>毛病：子路径（如 <code>pkg/dist/xxx</code>）拦不住，用户能深引内部文件，包作者改结构就碎一地</li></ul></div>
+<div class="box"><h4>exports 字段（现代标准）</h4><ul><li><strong>封装：</strong>只有 exports 声明过的路径能被 import，其余深引直接报错——包的公开面第一次可控</li><li><strong>条件导出：</strong>按环境分发不同文件：<code>import</code>（ESM）/ <code>require</code>（CJS）/ <code>types</code> / <code>default</code>，<strong>顺序有意义</strong>，types 要放前面</li><li><strong>子路径导出：</strong><code>"./button": {...}</code> 给每个子入口单独配，配合多入口发包</li><li>一旦写了 exports，<code>main</code> 只剩兜底作用；老项目不写 exports 也能跑，但新发包必须写</li></ul></div>
+</div>
+<pre class="codeblock"><code>{
+  "name": "@your/ui",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.mjs",
+      "require": "./dist/button.cjs"
+    }
+  },
+  "sideEffects": false,
+  "files": ["dist"]
+}</code></pre>
+<div class="grid2">
+<div class="box"><h4>双格式的雷：dual package hazard</h4><p>同一个包同时发 ESM 和 CJS，两份产物会被当成<strong>两个不同模块实例</strong>加载：单例变双份、<code>instanceof</code> 失效、React 出现两份。要么只发一种格式，要么保证无状态、或把状态抽到共享的 CJS 底座。发包被追问就答这一条，含金量最高。</p></div>
+<div class="box"><h4>配套三件套</h4><ul><li><code>sideEffects: false</code>：向打包器保证无副作用，Tree Shaking 才敢删（CSS 引入要单独标出来）</li><li><code>files</code>：白名单控制发布内容，别把源码、测试、配置一起发上 npm</li><li><code>peerDependencies</code>：框架类依赖（react/vue 本体）让宿主提供，写进 dependencies 会装出两份框架</li></ul><p>接你的经历：你把 Shop Deco 编辑器抽象成公司内部 NPM 包、多团队接入——被追问发包就按「入口怎么配、多框架版本怎么用 peer 锁、改结构怎么靠 exports 控公开面」来讲，别只说打了个包。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「Webpack 是先建图再打包、强在可控和生态，Vite 是开发期借原生 ESM 把打包推迟、生产再回 Rollup，快在开发回路而不是生产产物。发包这边，现代标准是 exports：它同时管封装和条件导出，一个包按 import/require/types 分发不同产物；老字段 main/module 只做兜底。最容易埋的雷是双格式双实例，所以发库要么单格式、要么状态共享。」</p></div>
+</section>
+
+<!-- MONOREPO -->
+<section class="card" id="monorepo">
+<div class="kicker">工程化 · 21C · 包管理与 Monorepo ★</div><h2>npm / pnpm 之争 + Nx vs Turborepo</h2>
+<p class="sub">一句话：包管理器之争争的是 <code>node_modules</code> 怎么摆；Monorepo 工具之争争的是<strong>任务怎么编排、缓存怎么复用</strong>。你有 Monorepo + npm 自动发布的真实经历（Shop Deco 那套），这一节按你的口径讲：讲清机制和取舍，不虚报工具细节。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · node_modules 怎么摆：幽灵依赖是分水岭</p>
+<table>
+<tr><th style="width:14%">管理器</th><th style="width:38%">安装模型</th><th style="width:24%">幽灵依赖</th><th>代价</th></tr>
+<tr><td><strong>npm</strong></td><td>扁平提升（hoist）：依赖被提到顶层 node_modules 共享，版本冲突时才嵌套；靠 package-lock 锁版本</td><td><strong>有</strong>：没声明的包因为被提升到顶层也能 import 到，本机能跑、换环境就炸</td><td>安装慢、磁盘占用大（每项目一份实体拷贝）；但生态默认、零学习成本</td></tr>
+<tr><td><strong>yarn</strong></td><td>经典版近 npm 的扁平模型；Berry 版走 PnP（无 node_modules、映射表定位）是另一条激进路线</td><td>经典版有、PnP 版没有</td><td>PnP 与部分工具兼容性要逐个验，迁移成本真实存在</td></tr>
+<tr><td><strong>pnpm</strong></td><td><strong>内容寻址全局 store + 硬链接</strong>：同一版本全机只存一份实体；node_modules 里是严格的符号链接结构，<strong>只有 package.json 声明过的依赖才链接到可达位置</strong></td><td><strong>无</strong>：没声明就 import 不到，问题在开发期就暴露</td><td>个别依赖假设了扁平结构会出兼容问题（多数可通过 hoist 配置兜底）；团队要改习惯</td></tr>
+</table>
+<div class="loop-note">pnpm 快和省不是玄学：省在全局 store 硬链接不复制实体，快在链接比拷贝便宜、且依赖图严格后解析更确定。Monorepo 场景它还有原生 workspace 支持（workspace: 协议引用内部包），这是大仓普遍选它的直接原因。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · Monorepo 任务编排：Nx vs Turborepo</p>
+<table>
+<tr><th style="width:16%">维度</th><th style="width:40%">Turborepo</th><th>Nx</th></tr>
+<tr><td>定位</td><td>只做<strong>任务编排 + 缓存</strong>的轻量层：用 pipeline 声明任务依赖（如 build 先于 test），其余不管</td><td>全功能平台：编排缓存之外还有代码生成器、依赖图可视化、模块边界规则、插件生态</td></tr>
+<tr><td>缓存</td><td>按任务输入（文件哈希 + 环境变量 + 配置）算指纹，命中直接还原产物与日志；支持远程缓存共享给全队与 CI</td><td>同样有本地 + 远程计算缓存，另有「只跑受影响的 affected」按 git 变更算影响面</td></tr>
+<tr><td>上手成本</td><td>低：一个 turbo.json 就能跑，存量仓库侵入小</td><td>高：概念与配置多，收益在大型多应用、多团队、强规范场景才回本</td></tr>
+<tr><td>怎么选</td><td>团队只缺「跑得快、缓存复用」→ Turborepo 够了</td><td>还要生成器统一脚手架、依赖边界治理、多框架混编 → Nx</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>缓存为什么是 Monorepo 的命门</h4><p>大仓全量跑构建测试是分钟到小时级，没人等得起。解法是<strong>增量</strong>：任务指纹没变就复用上次产物（本地或远程缓存），变了也只重跑受影响的包及其下游。CI 上远程缓存命中时，多数任务是「下载产物」而不是「执行」——这才是 Monorepo 能规模化的前提，光有 workspace 分包没有缓存，大仓只会更慢。</p></div>
+<div class="box"><h4>版本与发布两种模式</h4><ul><li><strong>统一版本：</strong>全仓一个版本号一起发（适合强耦合的应用集），简单但一损俱损</li><li><strong>独立版本：</strong>每个包单独发版，靠 Changesets 这类工具收集变更说明、算版本递增、生成 changelog 再自动发布——你做过的 npm 自动发布就是这条线的工程化：合并 PR 触发、按变更集发版、失败可回滚到上一版</li></ul><p>被追问就讲流程与门禁（测试过了才发、发版留痕），别编造具体的发布成功率数字。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「包管理我先分 node_modules 模型：npm 是扁平提升、有幽灵依赖；pnpm 用全局 store 加硬链接加严格链接结构，同版本全机一份、没声明的包根本引不到，所以快、省、还更正确，Monorepo 里再配 workspace 协议引内部包。编排层 Turborepo 和 Nx 的共性是任务依赖图加指纹缓存，区别在重量：Turborepo 只管编排缓存、接入轻；Nx 还管生成器和边界治理、大仓强规范才回本。发布走独立版本加 Changesets 式的自动发布，这是我真做过的那部分。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「Monorepo 的缺点？」→ 仓库权限没法按包细分、git 历史与体积膨胀、一个坏提交影响全仓、CI 必须靠缓存和 affected 才能活——先讲缺点再讲解法，比只夸复用更可信。「为什么不用多仓？」→ 跨包改动要多仓联动提 PR、版本对齐靠人肉，这正是你当初把编辑器与相关包收进一个仓的理由，按这个讲。</div>
 </section>
 
 <!-- BACKEND -->
@@ -1163,6 +1474,30 @@ for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实�
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「Nuxt 我没在生产里用过，但拆开看它就是三件事：<strong>Nitro 当服务端、Vue 做 renderToString、payload 做注水数据传递</strong>，和我做过的 SSR 是同一套原理，差异只在生态和约定。真正体现它价值的是 routeRules 的混合渲染——按路由分别选预渲染、SWR、SSR 或纯 SPA，这和我在 Company 按数据变化频率分 SSR 与客户端补，是同一个判断框架。让我上手，Vue 这侧迁移成本低，要补的是 Nitro 部署和它的缓存/路由规则细节。」</p></div>
 <div class="trap"><strong>三套 SSR 终局对照（系统设计题收尾用）：</strong>自研（Company）胜在贴合业务、可控，代价是基建全自己养；Next 胜在 React 生态与 RSC，代价是四层缓存和约定复杂度；Nuxt 胜在 Vue 生态与 routeRules 的灵活分路由，代价同样是养服务端与注水治理。选型先问三句：<strong>团队是 React 还是 Vue 栈？页面里静态/动态/后台各占多少？SEO 与首屏值多少钱？</strong>答完这三句再报框架名，顺序别反。</div>
+</section>
+
+<!-- SSR FRAMEWORKS COMPARE -->
+<section class="card" id="ssr-frameworks">
+<div class="kicker">框架 · 27B · 三方对照收尾 ★</div><h2>Next vs Nuxt vs 手写 Node：一张表选完 SSR 框架</h2>
+<p class="sub">先定调：三者渲染原理只有一套——服务端出 HTML、数据脱水下发、客户端注水——差的是<strong>「谁替你做决定」</strong>。诚实口径写在前面：手写 Node 对应你<strong>参与过的 Company 线上那套</strong>加一个跑通过的练手骨架；<strong>Next 是理解 / 演示层</strong>（有 App Router 最小骨架对照过代码，没在生产落地）；<strong>Nuxt 没在生产用过</strong>，按 Vue + SSR 原理讲。第 26、27 节各自的原理，这节只做横向对照和选型收尾。</p>
+<div class="diagram">
+<table>
+<tr><th style="width:13%">维度</th><th style="width:29%">手写 Node + Express</th><th style="width:29%">Next.js（React）</th><th>Nuxt（Vue）</th></tr>
+<tr><td><strong>框架定位</strong></td><td>没有框架：Express + <code>renderToPipeableStream</code> 自己拼整条链；Company 变体是 Node 只渲一个 Slot、回 JSON 给 Host 拼页，连「返回整页 HTML」都不是默认</td><td>React 全栈框架：把路由、取数、注水、缓存、失效做成约定，App Router + RSC（Server / Client 组件分工）是核心</td><td>Vue 全栈框架：同一套 SSR 思想换 Vue 实现，服务端引擎 Nitro 是招牌</td></tr>
+<tr><td><strong>渲染模式</strong></td><td>只有请求时 SSR，流式直出还是 onAllReady 拼串自己选；SSG / ISR 没有内建，要自己接构建期预渲染 + CDN + 发布失效</td><td>SSG / ISR / SSR / CSR 按路由选，构建输出用 ○ / ƒ 标明每个路由的策略</td><td>Universal（首屏 SSR + 之后 SPA）/ SPA 模式 / 构建预渲染；<code>routeRules</code> 按路由混搭 prerender / swr / ssr:false</td></tr>
+<tr><td><strong>数据获取</strong></td><td>handler 内逐请求取数，自己脱水（<code>__INITIAL_DATA__</code> / queryState），隔离靠 ALS + 每请求新建 store / queryClient，全靠纪律</td><td>Server Component 里就地 <code>await fetch</code>，数据经 RSC Payload 下发；跨 <code>'use client'</code> 边界的 props 必须可序列化</td><td>必须走 <code>useFetch / useAsyncData</code>：服务端结果自动序列化进 payload、按 key 去重；裸发请求会双倍请求 + 注水数据对不上</td></tr>
+<tr><td><strong>缓存</strong></td><td>框架不管：自己定 CDN 分键（语言 + PC/移动）、短 TTL、发布时失效；价格 / 库存等动态数据绝不进整页缓存</td><td>四层缓存叠加（请求记忆化 / Data Cache / 整路由缓存 / 客户端 Router Cache），默认 fetch 缓存是头号坑，靠 revalidate 与 tag 失效；各版本默认值变过，以目标版本文档为准</td><td>服务端缓存主要靠 routeRules 的 swr / prerender 窗口 + Nitro 存储；客户端靠 payload 复用。强实时数据同样不能放进 SWR 再生窗口</td></tr>
+<tr><td><strong>部署</strong></td><td>自己的 Node 常驻进程 / 容器：进程管理、扩容、灰度全自理；好处是跑在哪、返回什么形状完全自己说了算</td><td>Node 自托管或 Serverless / 边缘，Vercel 生态最顺；自托管要自己对齐缓存与流式行为</td><td>Nitro 一份构建产物多目标：Node / 边缘 / Serverless 可移植，部署目标切换成本低，是明确卖点</td></tr>
+<tr><td><strong>适用场景</strong></td><td>已有微前端 / Slot 体系、返回物不是整页 HTML、要对协议与版本完全控制的存量系统</td><td>React 栈新建内容站 / 电商站，一个站里静态页、动态页、登录后后台并存、策略混合</td><td>Vue 栈同类需求；尤其页面之间渲染策略差异大、想按路由细粒度混搭时</td></tr>
+<tr><td><strong>代价</strong></td><td>基建全自养：路由、缓存失效、降级、分段打点都得自己补——设计文档审查的 P0（流缺错误 / 超时处理）就是这种债的实例</td><td>约定与四层缓存的学习和排障成本；「改了数据页面没变」必须先分清是哪一层没失效</td><td>要养 Nitro 服务端与注水治理；生态和现成轮子比 Next 少</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>选型先答三问，再报框架名</h4><ul><li><strong>团队栈：</strong>React 还是 Vue？这一问先砍掉一半选项</li><li><strong>页面构成：</strong>静态 / 动态 / 登录后后台各占多少？全静态就别上 SSR 服务端，全动态个性化就别指望预渲染</li><li><strong>返回物形状：</strong>整页 HTML，还是片段 / 协议给别人拼？后者（如 Slot JSON）框架塞不进来，只能手写</li></ul><p>三问答完框架名自然落位；已有体系在跑且跑得稳时，迁移成本是真金白银，收益算不过账就不迁。</p></div>
+<div class="box"><h4>三方的共同地基（被追问原理时落回这里）</h4><p>不管哪一方，注水一致性都是同一道坎：服务端与客户端首帧的<strong>数据、版本、结构</strong>对不上就丢弃重渲；动态数据（价格、库存、余额）都不该进缓存或预渲染——Next 骨架里余额 fetch 必须写 <code>cache: 'no-store'</code>、Nuxt 的 SWR 窗口、Company 的「动态数据只客户端补」，是同一条红线在三套体系里的三种写法。能把三方答案收束到同一条原理上，比逐个背 API 更显资深。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「三方选型我一句话收尾：原理只有一套，选的是谁替你做决定。已有微前端 Slot 体系、返回物不是整页的，继续手写 Node，框架塞不进来；React 栈从零建内容站选 Next，拿约定换掉自建的取数、缓存、失效四套基建，代价是四层缓存要吃透；Vue 栈选 Nuxt，尤其看中 routeRules 按路由混搭和 Nitro 的部署可移植。我的实际站位也摆明：手写这套我参与过线上系统、能拆到 ALS 和脱水白名单这一层；Next 停在理解和演示骨架；Nuxt 没在生产用过。所以让我做选型我敢选，让我说落地经验，我只认手写那套。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「框架都做了，为什么还有人手写？」→ 返回物与协议不合（Slot JSON 给 Host 拼页）、存量体系迁移成本、要对缓存与版本粒度完全控制时，约定反而碍事。「Next 和 Nuxt 二选一？」→ 先看团队栈，再看页面构成与部署目标，别拿框架热度当理由。「你没用过 Next / Nuxt，凭什么选型？」→ 选型靠的是渲染原理和约束判断，这部分我有线上系统打底；缺的是框架约定细节，上手成本我认——这个回答顺序别反。</div>
 </section>
 
 <!-- I18N -->
@@ -1374,7 +1709,7 @@ for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实�
 <div class="trap"><strong>追问预警：</strong>「JS 是单线程，那 Worker 算多线程吗？」→ Worker 是另开一个 JS 线程在别的 CPU 核上跑，能算不能碰 DOM，结果靠消息传递回来，所以它治的是计算卡，不是渲染卡。「GPU 既然这么强，为什么不让它跑 JS？」→ GPU 为同指令大批量并行设计，JS 满是分支和依赖、数据量又小，搬过去光传输成本就亏了。「JIT 和 AOT 谁好？」→ 没有谁好：JIT 峰值高但要预热、占内存，AOT（Hermes / Dart）启动快、行为可预测但放弃了运行时激进优化——按场景选，这和第 29 节选渲染路线是同一种取舍思维。被追到引擎源码实现就收住：「我到原理层，隐藏类、内联缓存、去优化这些机制我能讲清，源码没读过。」</div>
 </section>
 
-<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Next（26）与 Nuxt（27）对照讲自研与框架的取舍 → 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
+<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
 </div>
 <script>
 (function(){
