@@ -92,20 +92,23 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="wrap">
 <header class="hero">
 <h1>看图记原理，<br>开口不卡壳。</h1>
-<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。本次再补齐四组：Vue2/3 全对比（生命周期对照、原理三层、API 破坏性变更、2.6→2.7 分批迁移）、React 高频追问（Fiber、Diff、Hooks 原理与并发）、状态管理六库（Redux / Zustand / MobX / Atom / Vuex / Pinia 按三派对照）、Node 事件循环（六阶段逐个讲、libuv 的角色与线程池分工，和浏览器那节对照背）；工程化深挖 Webpack/Vite、npm 包 exports 导出与双格式雷、pnpm 的 store 模型与 Nx / Turborepo 编排缓存。本次再补两节服务端渲染深挖：Node + Express 手写 SSR（以设计文档原件为准拆 render.tsx 那条链——Express 起服务、AsyncLocalStorage 逐请求隔离三 key、renderToPipeableStream 在 onAllReady 时 pipe 到 PassThrough 拼串、脱水只放行 shopInfo、失败回 500 空资源保协议形状，并对照一个本地跑通过的最小骨架讲 onShellReady 直出与 CSR 壳降级）；Next / Nuxt / 手写 Node 三方对照（框架定位、渲染模式、数据获取、缓存、部署、适用场景一张表收尾，Next 标理解/演示层、Nuxt 标没在生产用过）。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
+<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。本次再补齐四组：Vue2/3 全对比（生命周期对照、原理三层、API 破坏性变更、2.6→2.7 分批迁移）、React 高频追问（Fiber、Diff、Hooks 原理与并发）、状态管理六库（Redux / Zustand / MobX / Atom / Vuex / Pinia 按三派对照）、Node 事件循环（六阶段逐个讲、libuv 的角色与线程池分工，和浏览器那节对照背）；工程化深挖 Webpack/Vite、npm 包 exports 导出与双格式雷、pnpm 的 store 模型与 Nx / Turborepo 编排缓存。本次再补两节服务端渲染深挖：Node + Express 手写 SSR（以设计文档原件为准拆 render.tsx 那条链——Express 起服务、AsyncLocalStorage 逐请求隔离三 key、renderToPipeableStream 在 onAllReady 时 pipe 到 PassThrough 拼串、脱水只放行 shopInfo、失败回 500 空资源保协议形状，并对照一个本地跑通过的最小骨架讲 onShellReady 直出与 CSR 壳降级）；Next / Nuxt / 手写 Node 三方对照（框架定位、渲染模式、数据获取、缓存、部署、适用场景一张表收尾，Next 标理解/演示层、Nuxt 标没在生产用过）。本次再加一节低代码全景（紧跟 Figma 转 DSL，同在 DSL 与架构组）：五层分层（协议/物料/编辑器/渲染/平台）、业界实现对照（LowCodeEngine、amis、宜搭/微搭、Mendix/OutSystems、Retool）、出码原理三步（解析→转换→生成）、运行时与出码取舍表，并落回 Shop Deco 的运行时路线定位（模板高频变、免发版、三端同构，所以不出码）。本次再补微前端这一簇：Company SSR 那节按设计文档原件把 render.tsx 那条链拆到函数级（Host 向 Slot 要内容、getSlotSsrResult 汇总、buildChunkManifest 拼资源清单、只脱水 shopInfo、onAllReady + PassThrough 拼串、Host 拼一个原子 JSON、逐请求新建 store / StaticRouter / HelmetProvider 做隔离、注水三同）；紧跟着新增微前端原理一节——为什么要微前端（独立部署、团队自治、技术异构）、五种实现路线对照（路由分发、iframe、Web Components、Module Federation、single-spa/qiankun）、JS 沙箱与 CSS 隔离、应用间通信、共享依赖与版本管理、Manifest 注册表做部署与灰度、四个常见坑，并讲清自家 Host 壳 + Slot + Render Server + Manifest 注册表 + Module Federation 共享依赖为什么不是 iframe、不是多页，以及 Hybrid 与纯 SSR 在这套架构下的区别。本次再加一节表格性能优化（紧跟虚拟列表，Element UI 专题）：经典 el-table 用原生 table + header/body 两分区实现固定表头、固定列要渲染 6 个 table、一份数据三份 DOM 是卡顿根源，附 Gutter 错位、三区滚动同步、行高错位三个坑；优化走 sticky 单份 DOM 或 Element Plus 的 el-table-v2 虚拟化网格，并落到 500 行分页、2000 行虚拟滚动的经验分层（社区经验值、明标口径）。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
+<p style="color:var(--muted);margin:12px 0 0;font-size:14px">本次新增 46–51 节（224–227 四份材料）：46 节 H5 采集与 P75 聚合、47 节 RN 测量、48 节 SSR 决策与鉴权限流、49 节简历 LCP 数字防守、50 节某互联网公司 52 分钟复盘、51 节某工业软件公司工艺编辑器与 Coding 实操；另在性能、Figma 转 DSL、DSL、Agent 四节补了对应细节。</p>
 <div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
 </header>
 
 <nav class="toc" aria-label="目录">
 <div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#vue-compare">Vue2/3 全对比 ★</a><a href="#react">React ★</a><a href="#react-faq">React 高频追问 ★</a><a href="#state">状态管理六库 ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#ssr-frameworks">SSR 三方对照 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#node-ssr">Node 手写 SSR ★</a><a href="#vlist">虚拟列表</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a></div></div>
-<div class="toc-group"><span class="toc-label">DSL 与架构</span><div class="toc-links"><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#expr-engine">表达式引擎 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a></div></div>
+<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#node-ssr">Node 手写 SSR ★</a><a href="#micro-fe">微前端原理 ★</a><a href="#vlist">虚拟列表</a><a href="#eltable">Element UI 表格性能 ★</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a></div></div>
+<div class="toc-group"><span class="toc-label">DSL 与架构</span><div class="toc-links"><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#expr-engine">表达式引擎 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a><a href="#lowcode">低代码全景 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">AI 应用</span><div class="toc-links"><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">AI 专题 · RAG ★</a><a href="#agent-memory">Agent 记忆 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#node-loop">Node 事件循环 ★</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a></div></div>
 <div class="toc-group"><span class="toc-label">构建与 Monorepo</span><div class="toc-links"><a href="#build">构建·TS</a><a href="#tooling">Webpack/Vite·npm 导出 ★</a><a href="#monorepo">pnpm·Nx/Turborepo ★</a></div></div>
 <div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a></div></div>
 <div class="toc-group"><span class="toc-label">后端全链路</span><div class="toc-links"><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a></div></div>
 <div class="toc-group"><span class="toc-label">跨端与国际化</span><div class="toc-links"><a href="#i18n">国际化/本地化 ★</a><a href="#rn">跨端总论 · RN ★</a><a href="#engines">渲染/JS引擎 · CPU/GPU ★</a></div></div>
+<div class="toc-group"><span class="toc-label">性能深挖</span><div class="toc-links"><a href="#perf-measure">H5 采集与 P75 ★</a><a href="#rn-perf">RN 测量 ★</a><a href="#resume-defense">简历防守 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">决策与面经</span><div class="toc-links"><a href="#ssr-decide">SSR 决策 ★</a><a href="#company-mall">某互联网公司复盘 ★</a><a href="#quantisan">某工业软件公司 ★</a></div></div>
 </nav>
 
 <!-- VUE2 -->
@@ -249,7 +252,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="node amber"><b>4 并行取首屏数据</b><small>shopInfo + 装修 DSL<br>+ header / 首图数据，并行不串行</small></div>
 </div>
 <div class="flow" style="margin-top:10px">
-<div class="node teal"><b>5 服务端渲染 header</b><small>React renderToString<br>先出 header + 首屏骨架/首图</small></div><div class="arrow">→</div>
+<div class="node teal"><b>5 服务端渲染 header</b><small>renderToPipeableStream<br>onAllReady 拼成完整字符串（图 D 拆细）</small></div><div class="arrow">→</div>
 <div class="node amber"><b>6 拼完整 HTML 返回</b><small>HTML + 内嵌 shopInfo 初始 JSON<br>+ 首图 preload + JS/CSS 地址</small></div><div class="arrow">→</div>
 <div class="node green"><b>7 浏览器先画</b><small>无需等 JS 就能画 header/首图<br>★ LCP 卡在这一步是否直出</small></div><div class="arrow">→</div>
 <div class="node rose"><b>8 下载 JS 并注水</b><small>读内嵌 JSON hydration<br>复用 DOM、只绑事件</small></div>
@@ -278,6 +281,30 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="box"><h4>缓存只能这样用</h4><p>仅<strong>匿名、共享</strong>的页面内容可整页/片段进 CDN，按<strong>语言 + PC/移动</strong>分键、短 TTL、发布时主动失效。带登录态、价格库存的部分绝不进整页缓存。</p></div>
 <div class="box"><h4>注水一致性三件套</h4><p>静态 HTML、内嵌初始数据、客户端 JS 必须<strong>同一发布版本</strong>。版本错位时 React 会丢弃服务端 DOM 整页重渲，SSR 收益清零。缓解：岛屿式挂载，只让真正交互的小块注水，大块静态区不参与。</p></div>
 <div class="box"><h4>SSR 挂了怎么办</h4><p>超时/报错要<strong>降级到 CSR 壳</strong>由客户端渲染兜底，最差是慢、不能是白页；同时监控 TTFB 与 SSR 错误率，TTFB 劣化时 SSR 反而拖累 LCP，要敢于降级。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 拆到函数级：render.tsx 那条链到底怎么跑（以设计文档原件为准）</p>
+<div class="flow">
+<div class="node plain"><b>1 请求进 Host</b><small>Host 的服务端 Slot 组件调 renderMicroFESlot 向店铺 Slot 要内容<br>Render Server 由 server-utils 的 initExpress 起 Express</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 定语言（最外层）</b><small>导出 = withRequestLanguage 包 withPlatformSsrContextMicroApp 包 handleRequest<br>导出顺序就是执行顺序，先定语言再谈其他</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 建请求上下文</b><small>runWithSsrRequestContext 开 ALS 新 Map<br>再初始化灰度 / 用户信息 / Host 查询三个子上下文（带 req 读 cookie 与请求头）</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 放样式容器 + 拉翻译</b><small>setSsrRequestContext('ssrStyle', []) 先放空数组<br>Promise.all 并行拉翻译集合：字典按语言全局缓存、同集合并发去重</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node teal"><b>5 建 store 并渲染</b><small>每请求新建 Redux store（占位 reducer + thunk，业务 reducer 靠 InjectReducer 注入）<br>Provider → StaticRouter → HelmetProvider → InjectReducer → Component，调 renderToPipeableStream</small></div><div class="arrow">→</div>
+<div class="node amber"><b>6 onAllReady 拼串</b><small>只在 onAllReady 时才 pipe 到 PassThrough，把所有 chunk 拼成完整字符串<br>流在这里只是 React 的渲染机制，不是端到端流式下发</small></div><div class="arrow">→</div>
+<div class="node blue"><b>7 收 head 与样式</b><small>getReactHelmetProps 取 helmet 的 head<br>从 ALS 取 ssrStyle 拼成一段内联 &lt;style&gt; 追加进 head；chunk CSS 走清单不走内联</small></div><div class="arrow">→</div>
+<div class="node rose"><b>8 脱水只放行 shopInfo</b><small>dehydrate 时 shouldDehydrateQuery 只放行 queryKey[0] === 'shopInfo'<br>mutation 一律不脱水——安全白名单：item 相关数据不允许随 SSR 返回</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node plain"><b>9 拼清单回 JSON</b><small>buildChunkManifest 按 slot 名 mobilemall-shop 取 modern 分支的 css/js 清单<br>连同 body、head、queryState、渲染时间、翻译字典一起 res.json 返回 { js, css, data, body, head, dataKey: 'shop' }，recordMetrics 打点</small></div><div class="arrow">→</div>
+<div class="node teal"><b>10 Host 汇总拼页</b><small>Host 用 getSlotSsrCode / getSlotSsrResult 汇总各 Slot 的 css、js、data 与嵌套 Slot，插进模板的 main / headStart / headEnd<br>data 写成一个 initial-data script、slot 名写进待 hydration 列表；CSS 在 Hybrid 下内联、非 Hybrid 走 link</small></div><div class="arrow">→</div>
+<div class="node green"><b>11 浏览器注水</b><small>app.tsx 非服务端分支用 MicroFePlatform.getInitialData('shop') 取回数据，先灌初始翻译再 initI18n（顺序反了首帧缺翻译）<br>纯 SSR 路径直接渲染组件；Hybrid 路径还要包 withI18nCollections 补服务端没拉全的集合</small></div><div class="arrow">→</div>
+<div class="node rose"><b>12 失败保协议形状</b><small>try/catch 包住全流程，出错上报后回 500 + 空 js/css/head，生产环境 body 为空字符串<br>保住的是协议形状不破，页面内容靠 Host 的 fallback——店铺侧本身不渲染降级 UI</small></div>
+</div>
+<div class="grid3" style="margin-top:12px">
+<div class="box"><h4>逐请求隔离：为什么每请求都要「新」一套</h4><p>Node 单进程并发跑很多请求，请求级状态放模块变量必然串号。所以每个请求都<strong>新建 Redux store、新 StaticRouter（传本请求的 location）、新 HelmetProvider、新 QueryClient</strong>，连同 ssrStyle 数组一起放进 ALS 的请求级 Map，请求结束即弃。跨请求共享的只有翻译字典这类<strong>只读</strong>数据（按语言全局缓存）。i18n 另有自己的 ALS 存语言，和请求上下文的 ALS 不是同一个，别混说。</p></div>
+<div class="box"><h4>Host 为什么拼「一个原子 JSON」</h4><p>各 Slot 的 data 由 Host 汇总成<strong>一份</strong> initial-data 一次下发，客户端按 <code>dataKey</code> 各取各的；slot 名统一进待 hydration 列表，资源清单统一汇总。这样版本、顺序只有一个事实来源——这是注水「三同」（同数据、同版本、同结构）在组装层的落点。各 Slot 各发各的脚本，版本一错位 React 就丢弃服务端 DOM 整页重渲。</p></div>
+<div class="box"><h4>两套 Slot 不要混</h4><p><strong>服务端 Slot</strong> 负责向 Slot 服务要 JSON、嵌 body、汇总资源；<strong>客户端 Slot</strong> 负责动态加载、ErrorBoundary 隔离与占位延迟。被问「Slot 怎么渲染」，先声明说的是服务端还是客户端。另注意：httpStatus / httpHeaders 只有页面路由 Slot 能带回，多个 Slot 都标页面路由会冲突；嵌套 Slot 的资源要逐层汇总，漏一层就丢样式或脚本。</p></div>
 </div>
 </div>
 <div class="say"><b>一分钟讲法（照这个顺序）：</b><p>「店铺页是 Hybrid：请求进来经 SSR 入口 render.tsx，先并行拿 shopInfo 和装修 DSL，在服务端把 header 和首屏渲染成 HTML，初始数据内嵌一起返回，浏览器不等 JS 就能先画、LCP 提前；JS 到位后读内嵌数据注水。价格、库存、推荐这些变得快的坚决不进 SSR，客户端接口补占位。这套的关键约束有三个：<strong>首图 URL 必须真在 HTML 里、注水三件套版本必须一致、动态数据绝不进整页缓存</strong>。我是参与这条链路，render 入口不是我写的，我负责的是买家端渲染与首屏这侧。」</p></div>
@@ -334,6 +361,68 @@ setTimeout(() =&gt; abort(), 5000);   // 流挂起的兜底中止
 <div class="trap"><strong>追问预警：</strong>「renderToString 不行吗？」→ 能跑通，但全量同步渲染阻塞事件循环、且必须等最慢分支才吐第一个字节；换 renderToPipeableStream 才能选 onShellReady 先出壳。「ALS 和把状态挂 req 上有什么区别？」→ 挂 req 要层层透传参数，深层函数拿不到；ALS 随异步链自动传递、任意深度可取，代价是脱链就丢。「流式这么好，Company 为什么不直出？」→ Slot 协议要完整 body 才能拼页，机制支持流式和本实现有没有透出流式收益是两件事——能主动分清这一层，就是资深和背书的区别。</div>
 </section>
 
+<!-- MICRO FRONTEND -->
+<section class="card" id="micro-fe">
+<div class="kicker">渲染 · 03D · 微前端原理，通用讲法 + 自家选型 ★</div><h2>微前端原理：先讲组织问题，再讲五种路线、隔离、通信与选型</h2>
+<p class="sub">一句话定调：微前端解决的是<strong>组织扩展</strong>问题——多个团队要能独立开发、独立部署、还能把不同技术栈拼进同一页；它不是性能优化手段，运行时只会更重。通用原理按业界讲法讲；落到自家那套（Host 壳 + Slot + Render Server + Manifest + Module Federation）时口径不变：平台包是平台团队的，你是店铺侧使用方、<strong>参与</strong>接入。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 为什么要微前端：三个收益，都来自「拆组织」而不是「拆代码」</p>
+<div class="grid3">
+<div class="box"><h4>① 独立部署</h4><p>每个微应用独立构建、独立发布、独立回滚，一个团队上线不绑全站发版列车；出问题只回滚自己那块，不拖整页。代价是版本一致性要靠注册表和契约治理（图 E）。</p></div>
+<div class="box"><h4>② 团队自治</h4><p>按业务域拆团队：各自仓库、各自技术节奏、各自上线节奏，只在<strong>契约</strong>上对齐（输入输出、资源清单、通信协议）。组织怎么拆，应用就怎么拆——这是微前端和单纯组件拆分的分界。</p></div>
+<div class="box"><h4>③ 技术异构</h4><p>新老框架、不同团队的存量可以共存一页：Vue 的、React 的、RN Web 的各渲染各的，靠宿主拼装。渐进迁移老系统时最值钱——不用停下来大重写，逐块替换。</p></div>
+</div>
+<div class="loop-note">先把代价说在前面：运行时复杂度、依赖重复、设计与交互一致性、版本治理——这四笔账都要额外付。只讲收益不讲代价，面试官会判定你只背了概念。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 五种实现路线对照：隔离强度与体验代价正好成反比</p>
+<table>
+<tr><th style="width:16%">路线</th><th style="width:30%">原理一句话</th><th style="width:16%">隔离</th><th>代价 / 适用</th></tr>
+<tr><td><strong>路由分发</strong></td><td>不同路径由网关 / 宿主分发到不同应用，应用之间靠整页跳转衔接</td><td>最彻底（根本不在同一页）</td><td>跳转白屏、状态不共享、体验割裂；适合独立性极强的子系统拼盘，如多个后台系统挂在一个域名下</td></tr>
+<tr><td><strong>iframe</strong></td><td>子应用整页嵌进 iframe，借浏览器原生边界隔离 JS / CSS / DOM</td><td>最强（浏览器级）</td><td>通信只能 postMessage；弹窗、路由、高度自适应都难；登录态同步麻烦，SEO 与性能差；适合第三方嵌入、安全要求压倒体验的场景</td></tr>
+<tr><td><strong>Web Components</strong></td><td>子应用封装成自定义元素，Shadow DOM 做样式隔离，属性与事件做接口</td><td>样式真隔离，JS 靠自觉</td><td>标准原生、框架无关；但 JS 沙箱要自己补，生态与调试工具弱；适合要分发给多方嵌入的组件级应用</td></tr>
+<tr><td><strong>Module Federation</strong></td><td>构建时约定 host / remote，运行时按 manifest 动态加载远程模块，shared 依赖协商只加载一份</td><td>弱（同 window 运行）</td><td>拼页无缝、依赖可共享单例；代价是版本协商与运行时加载失败都要治理；适合同组织多团队、同栈为主、要共享框架依赖的场景</td></tr>
+<tr><td><strong>single-spa / qiankun</strong></td><td>基座按路由匹配子应用的生命周期（加载 / 挂载 / 卸载）；qiankun 在 single-spa 之上补了 HTML 入口加载、JS 沙箱、样式隔离与预加载</td><td>中（工程沙箱）</td><td>子应用要改造导出生命周期；适合中后台多系统整合，是国内最常见的落地形态</td></tr>
+</table>
+<div class="loop-note">两条线别说成竞品：Module Federation 管「模块怎么加载、依赖怎么共享」，qiankun 管「应用怎么进出场、怎么隔离」——解决的不是同一层，可以叠加，也可以只用其一。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 沙箱隔离：JS 与 CSS 是两条独立的线</p>
+<div class="grid2">
+<div class="box"><h4>JS 沙箱：防的是全局污染</h4><ul><li>污染源：往 <code>window</code> 上赋值、全局事件监听、定时器、单例状态——子应用卸载后残留更麻烦</li><li><strong>快照沙箱：</strong>激活时给 window 拍快照，卸载时按快照还原——实现简单，只支持同时只有一个子应用活跃</li><li><strong>Proxy 沙箱：</strong>每个子应用给一个 fakeWindow，读写经 Proxy 落到自己的上下文里——多例可并存，qiankun 默认这条</li><li><strong>iframe 沙箱：</strong>浏览器原生隔离，最强，但通信与体验代价也最大（图 B）</li><li>服务端对应物：SSR 没有 window 沙箱问题，靠的是 ALS 逐请求隔离状态（03B 图 D）——同一个「隔离」问题在两端的两种形态，能对照着讲是加分项</li></ul></div>
+<div class="box"><h4>CSS 隔离：防的是样式互相覆盖</h4><ul><li>冲突来源：全局选择器同名、样式加载顺序不确定、子应用卸载后样式残留</li><li><strong>Shadow DOM：</strong>真隔离，样式进不出；代价是弹窗、全局主题样式穿透要额外处理</li><li><strong>运行时前缀：</strong>给子应用样式选择器统一加应用名前缀（qiankun 的实验性样式隔离就是这条），近似隔离、成本低</li><li><strong>规范路线：</strong>CSS Modules / BEM 命名约定 + 按应用命名空间，靠工程纪律，适合自家可控的团队</li><li><strong>动态样式管理：</strong>子应用挂载时插入自己的 style、卸载时移除，和 JS 沙箱的进出场配套</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 应用间通信与共享依赖：通信面越小越好治理</p>
+<div class="grid2">
+<div class="box"><h4>通信四条路，按耦合从紧到松</h4><ul><li><strong>props 下发：</strong>基座把数据与回调当 props 传给子应用——最可控、可追踪，契约写在接口上，首选</li><li><strong>全局状态：</strong>登录态这类全站信息放共享 store / sharedMemory，各应用订阅——要立规矩：谁能写、写什么，别变成公共草稿纸</li><li><strong>事件总线：</strong>发布订阅解耦跨应用通知——灵活但难追踪，必须加命名空间和事件清单，否则线上没人说得清谁在发谁在听</li><li><strong>URL 传参：</strong>跳转带参，最松耦合，适合跨应用导航，不适合高频同步</li></ul><p>原则一句话：<strong>能 props 就别上全局，能显式就别用事件</strong>——通信面越小，版本升级时牵连越少。</p></div>
+<div class="box"><h4>共享依赖与版本管理：框架依赖必须单例</h4><ul><li>React / Vue 这类框架依赖<strong>不能有两份</strong>：两份 React 会让 Hooks、Context 直接失效，两份 Vue 响应式系统互不认账</li><li>Module Federation 的 <code>shared</code> 声明 <code>singleton</code> + 版本范围，宿主在运行时协商：范围内取一份共用，范围外（大版本不一致）各用各的并给出告警</li><li>治理动作：平台维护<strong>共享依赖清单与版本基线</strong>，子应用只能用清单内的共享包；自有业务依赖各自打包，不进共享</li><li>版本管理的另一半在部署侧：Manifest 注册表记录每个应用的线上版本与资源地址，基座按注册表取，升级就是改指针（图 E）</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 E · 部署灰度 + 自家选型：为什么是 Host 壳 + Slot + Render Server + Manifest + MF</p>
+<div class="flow">
+<div class="node blue"><b>独立构建</b><small>每个微应用独立 CI/CD<br>产出带版本的静态资源</small></div><div class="arrow">→</div>
+<div class="node amber"><b>注册进 Manifest</b><small>注册表登记版本与资源地址<br>基座运行时按注册表加载</small></div><div class="arrow">→</div>
+<div class="node teal"><b>灰度 = 改指针</b><small>按用户 / 流量比例把指针指向新旧两个版本<br>不用重新发基座</small></div><div class="arrow">→</div>
+<div class="node green"><b>回滚 = 切回旧指针</b><small>秒级生效<br>问题应用单独回滚，不动其他团队</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>自家这套的组成与分工</h4><ul><li><strong>Host 壳：</strong>整页模板与拼装方，按 Slot 协议把各应用的片段、资源、数据组装成页（03B 图 D 第 10 步）</li><li><strong>Slot 微应用：</strong>渲染单元，按契约返回「片段 + 资源清单 + 数据」三件套，独立发布、Slot 级失败隔离</li><li><strong>Render Server：</strong>Node 逐请求渲染 Slot，让微应用也能 SSR，而不是只能客户端拼装</li><li><strong>Manifest 注册表：</strong>版本与资源清单的事实来源，发布、灰度、回滚都收口在这一层</li><li><strong>Module Federation 共享依赖：</strong>框架依赖单例共享，避免每个 Slot 各带一份 React</li></ul></div>
+<div class="box"><h4>为什么不是 iframe、不是多页？（选型必答）</h4><ul><li><strong>不是 iframe：</strong>店铺页要 SEO 与 SSR 直出、要和宿主共享登录态与交互（购物车角标、弹窗、跳转），iframe 的 postMessage 通信、白屏、高度与路由适配每条都过不去</li><li><strong>不是多页 / 路由分发：</strong>店铺一页之内要拼多个团队的 Slot（店头、商品、推荐），多页跳转整页刷新、状态全丢，也做不到 Slot 级拼装与单个 Slot 失败不拖垮整页</li><li><strong>为什么要 Render Server：</strong>纯客户端微前端拼装首屏要等 JS 全链路，C 端首屏等不起——把渲染前移到 Node，Host 拿到的已经是 HTML 片段</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 F · Hybrid 与纯 SSR 在这套架构下的区别：服务端到底出多少</p>
+<table>
+<tr><th style="width:16%">模式</th><th style="width:26%">首帧从哪来</th><th style="width:26%">客户端还要补什么</th><th>适用 / 代价</th></tr>
+<tr><td><strong>纯 SSR</strong></td><td>Render Server 把 Slot 内容渲染全，Host 拼页直出完整片段</td><td>翻译服务端已拉全，app.tsx 不再包 withI18nCollections，只注水</td><td>首帧最完整，适合内容型、首屏价值最高的 Slot；代价是服务端成本最高，慢的 Suspense 分支拖满 TTFB（onAllReady 拼串）</td></tr>
+<tr><td><strong>Hybrid</strong></td><td>服务端只出骨架与核心内容，其余留占位</td><td>客户端仍要包 withI18nCollections 补集合，动态数据接口补齐</td><td>平衡首帧与服务端成本，适合重交互、数据变得快的 Slot；代价是两端一致性最难治理，注水三同的压力最大</td></tr>
+<tr><td><strong>Static CSR 壳</strong></td><td>只有空壳 HTML（如空 #main），内容全在客户端渲染</td><td>全部：数据、翻译、渲染都在客户端</td><td>最简单、首帧最慢；它是另一条入口，不能拿它否定 SSR / Hybrid 入口的存在</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 G · 常见坑：四个，每个都要能说解法</p>
+<div class="grid2">
+<div class="box"><h4>坑 1 · 依赖重复</h4><p>框架依赖被打进每个子应用：体积翻倍不说，双份 React 直接让 Hooks / Context 失效。<strong>解法：</strong>shared 单例 + 平台共享清单治理（图 D），构建时就拦截清单外的框架依赖。</p></div>
+<div class="box"><h4>坑 2 · 样式冲突</h4><p>全局选择器互相覆盖、加载顺序变了页面就变样、卸载后样式残留。<strong>解法：</strong>隔离策略三选一先定死（Shadow DOM / 前缀 / 命名规范），动态样式随挂载插入、随卸载移除。</p></div>
+<div class="box"><h4>坑 3 · 路由冲突</h4><p>多个应用抢 history、base 路径不一致、子应用跳转把基座带跑。<strong>解法：</strong>路由由基座统一分发，子应用只管自己前缀内的路由，或用 memory 路由不碰浏览器 history。</p></div>
+<div class="box"><h4>坑 4 · 首屏性能</h4><p>基座 + 多个子应用串行加载形成瀑布，重复请求、重复解析，拼页比单体还慢。<strong>解法：</strong>关键应用预加载、资源清单合并下发、非首屏应用按需懒加载；C 端再加 SSR 直出核心 Slot（自家这套的做法）。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「微前端先讲为什么：它买的是组织扩展性——独立部署、团队自治、技术异构，代价是运行时复杂度和一致性治理，它不提升性能。实现路线五种：路由分发最松、iframe 隔离最强但通信和体验代价最大、Web Components 走标准自定义元素加 Shadow DOM、Module Federation 管运行时加载和共享依赖单例、single-spa 和 qiankun 管应用生命周期和沙箱，这两条不是一层的事。隔离分 JS 和 CSS：JS 靠快照或 Proxy 沙箱，CSS 靠 Shadow DOM、前缀或命名规范；通信能 props 就别上全局事件；框架依赖必须共享单例，靠 shared 协商加平台清单治理。落到我们这套：Host 壳拼页、Slot 按协议回片段加资源加数据、Render Server 在 Node 里逐请求渲染、Manifest 注册表管版本灰度和回滚、Module Federation 共享框架依赖。不用 iframe 是因为 SEO、首屏和宿主交互过不去，不用多页是因为一页要拼多个团队的 Slot 还要失败隔离。Hybrid 和纯 SSR 的区别就一句：纯 SSR 服务端出全，Hybrid 只出骨架、重交互部分客户端补，一致性治理也最难。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「微前端能提升性能吗？」→ 不能，它通常让运行时更重，它买的是组织扩展性；性能要靠预加载、共享依赖、SSR 另外治，这样答反而显判断力。「沙箱能做到绝对隔离吗？」→ 不能，Proxy 沙箱防的是常规全局污染，子应用真想搞破坏（直接操作 DOM、劫持请求）防不住——微前端的隔离是<strong>防误伤，不是防攻击</strong>，安全边界还得靠 iframe 或独立部署。「子应用版本和宿主对不上会怎样？」→ 轻则 shared 协商失败各加载一份、体积涨，重则协议字段对不齐拼页出错；所以注册表要带版本、契约要留兼容窗口、灰度先行——这正是 Manifest 注册表存在的理由。</div>
+</section>
+
 <!-- VIRTUAL LIST -->
 <section class="card" id="vlist">
 <div class="kicker">渲染 · 04</div><h2>虚拟列表：只渲染看得见的那十几行</h2>
@@ -352,6 +441,41 @@ setTimeout(() =&gt; abort(), 5000);   // 流挂起的兜底中止
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「核心就一句：<strong>DOM 数量和数据量解耦</strong>。监听 scroll 算出 start/end，只渲染这个切片，上下各留一屏缓冲防白屏；占位层保证滚动条真实，transform 定位保证位置对得上。代价是 Ctrl+F 搜不到屏外内容、行高不定要做高度缓存，这些取舍要主动说。」</p></div>
 <div class="trap"><strong>追问预警：</strong>「滚动太快白屏怎么办？」→ 缓冲区 + 滚动时先渲染占位骨架 + 用 rAF 节流 scroll 处理。「为什么不用分页？」→ 无限滚动体验连续，但 DOM 不回收就会越滚越卡，虚拟列表是无限滚动的性能解法。</div>
+</section>
+
+<!-- EL TABLE PERF -->
+<section class="card" id="eltable">
+<div class="kicker">渲染 · 04B · 表格性能优化，Element UI 专题 ★</div><h2>Element UI 表格为什么卡：一份数据渲染三份 DOM，和 el-table-v2 的解法</h2>
+<p class="sub">一句话：经典 <code>el-table</code> 卡的根子不在 Vue，在它的 DOM 结构——为了实现固定表头和固定列，它把<strong>一份数据渲染成三份 DOM</strong>；数据量一大，节点数先爆。优化顺序也因此定死：先减数据（分页/筛选），再减 DOM（虚拟化），最后才是微调样式与滚动。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 经典 el-table 的结构：原生 table + 两个分区，固定列再翻三倍</p>
+<div class="flow">
+<div class="node blue"><b>原生 &lt;table&gt; 标签</b><small>el-table 本体就是 table 语义<br>行列对齐靠浏览器表格布局</small></div><div class="arrow">→</div>
+<div class="node amber"><b>固定表头靠两分区</b><small>header-wrapper 与 body-wrapper 两个 div<br>表头不动、表身单独滚动</small></div><div class="arrow">→</div>
+<div class="node rose"><b>固定列 = 6 个 table</b><small>主体（表头+表身）、左固定（表头+表身）、右固定（表头+表身）<br>2 个固定方向 × 2 个分区 + 主体 2 个</small></div><div class="arrow">→</div>
+<div class="node plain"><b>一份数据三份 DOM</b><small>固定列那两套 table 里，非固定列用 visibility:hidden 藏起来占位<br>行数 × 列数 × 3 份节点——大数据量卡顿的根本原因</small></div>
+</div>
+<div class="grid3" style="margin-top:12px">
+<div class="box"><h4>坑 1 · Gutter 占位</h4><p>表身有纵向滚动条、表头没有，两边宽度差一个滚动条宽。el-table 用一个 <strong>Gutter 元素</strong>（表头末尾补的占位列）补齐这个差，宽度要等于虚拟滚动条宽度；算错或系统滚动条样式变了，表头表身立刻错位一列。</p></div>
+<div class="box"><h4>坑 2 · 三个区域滚动同步</h4><p>主体、左固定、右固定是三个独立的滚动/呈现区域，纵向滚动要靠 JS 把三边的 scrollTop 实时同步。滚动一快就容易抖动、慢一拍——同步本身就是每帧的额外开销。</p></div>
+<div class="box"><h4>坑 3 · 固定列与主体行高错位</h4><p>三份 DOM 是三套独立渲染，某一行的内容在主体里撑高了（换行、图片、自定义组件），固定列那份没同步变高，横线就对不齐。行高不可控时这是经典 el-table 最常见的视觉 bug。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 优化思路：从「少渲一份」到「只渲看得见的」</p>
+<div class="grid2">
+<div class="box"><h4>路线一 · 还用经典 el-table：sticky 重写固定列</h4><p>现代浏览器有 <code>position: sticky</code> 后，固定列不必再靠复制整表实现：同一份 table 里给固定列的单元格加 sticky 定位 + 背景 + z-index，<strong>只渲染真正需要的列、一份 DOM</strong>。自己封装表格或允许魔改样式时这是性价比最高的改法；用官方组件不能改内部结构时，这条只能落在自研表格上，要如实说清。</p></div>
+<div class="box"><h4>路线二 · 换虚拟化：Element Plus 的 el-table-v2</h4><ul><li><strong>不用 table 标签：</strong>改用 div 绝对定位排成网格，行列位置算出来直接定位，不受表格布局约束</li><li><strong>底层是虚拟化网格：</strong>FixedSizeGrid（定高）/ DynamicSizeGrid（动态高），和虚拟列表同理，只渲染可视区的行</li><li><strong>固定列仍是三表叠加：</strong>主表 + 左固定 + 右固定三个重叠的表，纵向滚动同步——比经典版少了隐藏列占位，但同步这件事还在</li><li><strong>仍在测试阶段：</strong>官方文档明确标实验性，且提醒数据量太大时<strong>网络和内存仍是瓶颈</strong>，要配合分页和筛选使用——别把它讲成银弹</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 经验分层：先问数据量，再谈方案（社区经验值，不是官方标准）</p>
+<table>
+<tr><th style="width:22%">数据量</th><th style="width:30%">优先方案</th><th>为什么</th></tr>
+<tr><td><strong>500 行以内</strong></td><td>经典 el-table 直接用</td><td>三份 DOM 也就几千节点，现代浏览器扛得住，别为优化而优化</td></tr>
+<tr><td><strong>500 行以上</strong></td><td>优先服务端分页（+ 筛选）</td><td>用户本来也看不完几千行；分页同时解掉网络、内存、DOM 三个瓶颈，是收益最大的一招</td></tr>
+<tr><td><strong>2000 行以上且必须一页看</strong></td><td>必须虚拟滚动（el-table-v2 或自研），或改聚合报表</td><td>确实要连续滚动浏览才上虚拟化；如果只是查数汇总，聚合成报表比渲染两千行更对路</td></tr>
+</table>
+<div class="loop-note">分层数字是社区经验值、不是 Element 官方标准，面试时主动标明出处口径——被追问「谁定的 500」时答「经验分层、按节点数估算」，比装成官方结论稳。</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「el-table 卡先别怪 Vue，先看它的 DOM 结构：本体是原生 table，固定表头靠 header-wrapper 和 body-wrapper 两个分区滚动实现；一旦要固定列，它要渲染六个 table——主体、左固定、右固定各一份表头加表身，固定列那两份里非固定列用 visibility:hidden 藏着占位，所以一份数据实际是三份 DOM，行列一多节点数就爆，这是根本原因。连带还有三个坑：Gutter 补滚动条宽度差容易错位、三个区域靠 JS 同步滚动、固定列和主体行高对不齐。优化分三层：数据层先分页筛选，500 行以上优先服务端分页；DOM 层要么用 position: sticky 重写固定列、只渲一份，要么换 Element Plus 的 el-table-v2——它不用 table 标签、用 div 绝对定位的虚拟化网格只渲可视区行，但仍在测试阶段，官方也提醒大数据量下网络和内存仍是瓶颈；2000 行以上必须虚拟滚动或改聚合报表，这两个数字是社区经验值。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「visibility:hidden 和 display:none 有什么区别，为什么用前者？」→ hidden 保留占位、布局尺寸不变，固定列表靠它和主体保持行列对齐；display:none 会塌掉占位，对齐直接崩——这正是「藏起来还要占位」的设计原因。「el-table-v2 既然虚拟化了，为什么还说内存是瓶颈？」→ 虚拟化只减 DOM，不减数据本身：几万行数据全量拉到前端，请求体积、JSON 解析、响应式代理的内存都在，DOM 不是唯一成本。「固定列行高错位怎么救？」→ 先约束行高（单行省略、图片定高），治本是换 sticky 单份 DOM 或虚拟化方案，三份 DOM 同步行高本质上是在和结构对抗。</div>
 </section>
 
 <!-- CHART -->
@@ -397,6 +521,8 @@ setTimeout(() =&gt; abort(), 5000);   // 流挂起的兜底中止
 </div>
 <div class="say"><b>一分钟讲法（店铺首页版，不带未核实数字）：</b><p>「我先拆 LCP 四段定位瓶颈再动手：当时主要卡在发现延迟和渲染延迟，所以做了 SSR 先出 header 和首图、首图 preload、缩减首屏渲染量、非首屏图片懒加载。具体数字我记不清了，但方法可复现：改完用同一批 RUM 数据看四段哪段降了、哪段变成新瓶颈——<strong>瓶颈会在 TTFB 和发现延迟之间换地方</strong>，优化是个循环，不是一次清单。」</p></div>
 <div class="trap"><strong>红线：</strong>LCP 4 秒→3 秒那组数字你自己说过记不清，面试别当硬数字报。就按上面这版讲做法与取舍，被追问数字就坦诚说记不清、但分段方法讲得清——这比编数字安全得多。</div>
+
+<div class="trap" style="margin-top:12px"><strong>详细版在第 46–49 节：</strong>46 节讲 H5 采集与 P75 聚合（含 LCP 4.6 秒样本、INP / CLS 算例、web-vitals 上报代码），47 节讲 RN 测量口径，48 节讲 SSR 决策与鉴权限流，49 节讲简历那句 LCP 数字的证据链。面试先讲这节的四段定位法，被追问口径再展开到那几节。</div>
 </section>
 
 <!-- EVENT LOOP -->
@@ -502,6 +628,8 @@ setTimeout(() =&gt; abort(), 5000);   // 流挂起的兜底中止
 </div>
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「DSL 解决的核心问题是<strong>解耦变更</strong>：编辑器怎么改、渲染端怎么升级，互不绑架，中间靠版本化的 JSON 合同。代价是表达能力受限、要长期维护迁移链——所以适用判断是：内容结构多变、但交互模式收敛的场景才值得上 DSL，普通页面直接写代码更划算。」先讲价值、再讲取舍、最后讲边界，这是你这道题的满分结构。</p></div>
+
+<div class="box" style="margin-top:12px"><h4>补：DSL vs JSON Schema，一句话分清</h4><p>JSON 是存储形式，Schema 是静态结构和校验，DSL 多了<strong>表达式、绑定、条件和计算</strong>。组件 ID 加一组属性可以描述固定商品卡；模板还要表达列表循环、条件展示和数据绑定，Schema 负责检查这些字段是否合法，渲染器负责执行语义。价格逻辑、跳转等需要业务保证正确性的行为放在组件里，不进 DSL。另：仓库分析的 parser 版本仍然生成代码并调用 <code>new Function</code>，模板树、表达式 AST 和最终执行方式是三件事——面试按可定位版本回答“当时依赖内部受控模板；扩大输入范围时，我会增加受限表达式和白名单执行”。窄口径表达式引擎见第 16 节（jsep 小树，只做值、运算、比较、三元）。</p></div>
 </section>
 
 <!-- DSL LINKAGE -->
@@ -690,6 +818,60 @@ function getProp(obj, key) {
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「这条链分八步：命名规范先行，读节点后先清洗隐藏和重复节点，再把 Auto Layout 转成 Flex，然后做组件识别——视觉节点映射成业务组件，映射不到的标 UNMAPPED 不猜；业务字段补齐后存库成带版本的 DSL JSON，运行时再解析渲染。发布前还有 Schema 校验和截图回归两道门。核心判断就一句：<strong>设计稿是视觉结构，不能直接当业务结构用</strong>。」</p></div>
 <div class="trap"><strong>追问预警：</strong>「还原度能到 100% 吗？」→ 不能，瓶颈在尺寸间距、字体、图片裁剪这些设计稿本身说不清的地方，所以才要用 DSL + 校验把还原度从「看运气」变成「可验收」。模板数量、转换提速这类数字口径没统一过，别当硬数字报，就讲链路和规则怎么滚起来的。</div>
+
+<div class="box" style="margin-top:12px"><h4>补：语义错误怎么发现？（某互联网公司追问）</h4><p>最容易漏的是语义错误：设计师把商品名画成普通文本，即使画面长得一样，换一组商品它也可能一直显示示例文案。当时的做法是在编辑器里换 mock 数据做预览，另有基于 Schema 的结构和样式校验，能拦一部分非法属性。重做方案：给商品卡定义必需的<strong>语义槽位</strong>，导入时对照组件契约检查，把缺哪个槽位定位到设计节点；回归时用两组名称、价格、数量都不同的数据渲染同一张卡，检查文本和商品数是否随数据变化。结构校验通过 ≠ 语义正确，人工 preview 只负责机器处理不了的最后一类。</p></div>
+</section>
+
+<!-- LOWCODE -->
+<section class="card" id="lowcode">
+<div class="kicker">架构 · 10B · 低代码平台全景，面试高频追问 ★</div><h2>低代码业界实现：五层分层、出码原理，与 Shop Deco 的路线定位</h2>
+<p class="sub">一句话：低代码平台不是「一个拖拽编辑器」，而是<strong>协议、物料、编辑器、渲染、平台五层</strong>各管一段；业界实现的分歧只在一处——渲染层走<strong>运行时</strong>还是<strong>出码</strong>。先把分层背熟，再用对照表定位每个产品，最后落回 Shop Deco 为什么选运行时。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 五层分层：一句话一层，从协议往上长</p>
+<div class="flow">
+<div class="node amber"><b>1 协议层</b><small>DSL / Schema<br>跨端唯一事实来源</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 物料层</b><small>组件库 + 物料描述<br>+ Schema 校验</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 编辑器层</b><small>设计器：拖拽、选中<br>撤销重做、画布渲染</small></div><div class="arrow">→</div>
+<div class="node green"><b>4 渲染层</b><small>运行时按 DSL 映射成组件<br>+ 数据绑定</small></div><div class="arrow">→</div>
+<div class="node plain"><b>5 平台层</b><small>发布、版本、灰度<br>权限、观测</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>每层只干一件事（被逐层追问时这样答）</h4><ul><li><strong>协议层：</strong>组件树、属性、表达式、数据源都按协议描述——先有协议，才谈得上跨端一致和版本升级</li><li><strong>物料层：</strong>每个组件声明自己能吃什么 props、默认值是什么、怎么校验，编辑器和渲染器都只认这份描述</li><li><strong>编辑器层：</strong>只产出和修改 DSL，绝不直接生成最终页面代码——这是它和「代码生成器」的分界</li><li><strong>渲染层：</strong>同一份 DSL 在 Web / RN / SSR 各端落地，运行时路线和出码路线的分岔就在这一层</li><li><strong>平台层：</strong>管模板全生命周期（发布、灰度、回滚、权限、观测），不参与单次渲染</li></ul></div>
+<div class="box"><h4>为什么分层是这道题的骨架？</h4><p>面试官问「低代码平台怎么设计」，散答功能点必被打断；按五层答，每层一句职责 + 一句边界，追问落到哪层就在哪层展开：问拖拽撤销是编辑器层，问跨端是协议层 + 渲染层，问灰度回滚是平台层。<strong>Shop Deco 五层都有对应物</strong>：协议层就是 JSON DSL，物料层是原子组件 + 注册制，编辑器层是卖家端可视化编辑器，渲染层是买家端运行时渲染，平台层是模板管理与发布链。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 业界实现对照：记住路线和关键点，别背功能清单</p>
+<table>
+<tr><th style="width:22%">实现</th><th style="width:22%">路线</th><th>关键点</th></tr>
+<tr><td><strong>阿里 LowCodeEngine</strong></td><td>运行时 + 可出码</td><td>开源；设计器 + 模拟器（iframe 隔离）+ 插件机制；Schema 协议；出码是插件做的（schema → TSX），不是引擎本体写死的</td></tr>
+<tr><td><strong>百度 amis</strong></td><td>运行时渲染为主</td><td>JSON 直接驱动 React 组件，不出码；适合中后台表单 / 列表场景，配置即页面</td></tr>
+<tr><td><strong>宜搭 / 腾讯微搭</strong></td><td>运行时为主</td><td>表单流程 + 审批强；面向业务人员，组件偏业务域，上手门槛低、自由度也低</td></tr>
+<tr><td><strong>Mendix / OutSystems</strong></td><td>运行时 + 模型驱动</td><td>企业级；模型即应用，强在流程、数据建模、部署运维，卖的是整套交付而不只是编辑器</td></tr>
+<tr><td><strong>Retool</strong></td><td>运行时</td><td>内部工具向；拖组件 + 接 API + 写少量 JS，重在快，面向开发者搭内部系统</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 出码原理三步：DSL 怎么变成能进仓库的源码</p>
+<div class="flow">
+<div class="node blue"><b>1 解析</b><small>DSL / Schema → AST<br>表达式走小解析器</small></div><div class="arrow">→</div>
+<div class="node amber"><b>2 转换</b><small>组件查映射表 → 代码片段<br>样式归一、依赖收集</small></div><div class="arrow">→</div>
+<div class="node green"><b>3 生成</b><small>拼成源码、格式化、落盘<br>再走正常构建流程</small></div>
+</div>
+<div class="grid3" style="margin-top:12px">
+<div class="box"><h4>① 解析</h4><p>DSL / Schema 先转成 AST；里面的表达式走 <code>jsep</code> 这类小解析器（就是表达式引擎那节那套），<strong>不是整段 JS 解析</strong>——只需要认 DSL 用到的那点语法。</p></div>
+<div class="box"><h4>② 转换</h4><p>组件类型查映射表变成代码片段；样式 tokens 归一（如绝对定位转 flex）；表达式转成 JS 表达式；用到的组件和工具在这一路<strong>收集成 import</strong>。</p></div>
+<div class="box"><h4>③ 生成</h4><p>拼成源码：模板拼接，或 Babel AST → <code>@babel/generator</code> 输出；再格式化、补注释、落盘，之后和手写代码一样走正常构建发布流程。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 运行时 vs 出码：取舍表（这道题的正面对决）</p>
+<table>
+<tr><th style="width:16%">维度</th><th style="width:42%">运行时渲染</th><th>出码</th></tr>
+<tr><td>更新方式</td><td>改数据即生效，免发版</td><td>改完要重新构建发布</td></tr>
+<tr><td>性能</td><td>多一层解析映射</td><td>产物就是原生代码，可优化空间大</td></tr>
+<tr><td>可维护</td><td>逻辑在平台里，好管</td><td>产物可读、可进版本管理、可二次开发</td></tr>
+<tr><td>跨端</td><td>同一份 DSL 多端适配</td><td>每端要一套生成模板</td></tr>
+<tr><td>回写</td><td>天然支持（改 DSL 就行）</td><td>代码改回去很难，基本是单向</td></tr>
+</table>
+<div class="loop-note">取舍一句话：运行时买的是「变更速度和跨端」，出码买的是「性能和代码所有权」——选哪边取决于页面变得有多勤、要跑几个端。</div>
+</div>
+<div class="say"><b>一分钟讲法（落到 Shop Deco 的定位）：</b><p>「Shop Deco 是<strong>运行时路线，不出码</strong>，原因三点：第一，模板高频变、要免发版——内容发布和代码发布解耦，运营改完模板直接生效，不等客户端和站点发版；第二，三端同构——Web / RN / SSR 共用一份 DSL，出码就得维护三套生成模板；第三，组件是能力统一的原子组件、靠业务标识引用，复杂逻辑本来就留在代码里，DSL 只表达结构与配置，出码也生不出这些逻辑。如果追问为什么不出码，就答：出码的收益在可读性和性能，代价是发布链路和跨端成本，我们的场景是高频模板变更，运行时更划算；真要补出码，映射表和表达式 AST 这两块现成的都有，缺的只是生成模板和回写策略。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「运行时不就是慢一层吗？」→ 承认多一层解析映射，但把账算全：解析结果可缓存（表达式引擎那节的两级缓存）、渲染瓶颈通常在数据和图片不在映射层，而换来的是免发版和一份 DSL 三端跑。「出码生成的代码能再导回编辑器吗？」→ 基本不能，手改过的代码无法可靠反解析回 DSL，出码是<strong>单向</strong>的，这正是它和运行时最本质的区别，别答成「可以双向同步」。「amis 和 LowCodeEngine 最大区别？」→ amis 是渲染器思路（JSON 驱动现成组件、不出码），LowCodeEngine 是引擎思路（协议 + 设计器 + 插件，出码只是其中一个插件）。</div>
 </section>
 
 <!-- AGENT -->
@@ -711,6 +893,8 @@ function getProp(obj, key) {
 </div>
 </div>
 <div class="say"><b>诚实口径（重要）：</b><p>你没有落地写过 MCP Server，面试原话就这么说：「MCP Server 我没落地写过，只用过 Figma / Confluence MCP；让我设计的话……」然后按上图讲：哪些能力 Skill 就够、哪条通道必须 MCP。把设计讲透，比假装落地安全——这道题考的是判断力，不是经历堆砌。</p></div>
+
+<div class="box" style="margin-top:12px"><h4>补：告警自动修复工作流（某互联网公司 27:39 追问，设计方案）</h4><p>先挑一种团队已有标准处置流程、能重放的告警做试点。告警进来先去重，按服务、版本和时间收集证据；Agent 把怀疑原因和证据一起交出来，证据足够时在隔离分支修复，先让回归用例重现故障，再验证补丁；CI 通过后自动生成提测单，把复现条件、改动、测试结果和风险交给审核人。证据不足、测试不能复现或修改超出范围就转人工。每一步保存输入、产物和状态，同一告警重试能从已完成的步骤继续。推广到需求开发时，把告警换成带验收条件的需求，明确每一步的进入条件和交付物。证明提效时比较同类问题从接单到可审核补丁的中位时间，同时看审核驳回、回归和人工接手比例。</p></div>
 </section>
 
 <!-- AIDOD -->
@@ -1709,7 +1893,288 @@ for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实�
 <div class="trap"><strong>追问预警：</strong>「JS 是单线程，那 Worker 算多线程吗？」→ Worker 是另开一个 JS 线程在别的 CPU 核上跑，能算不能碰 DOM，结果靠消息传递回来，所以它治的是计算卡，不是渲染卡。「GPU 既然这么强，为什么不让它跑 JS？」→ GPU 为同指令大批量并行设计，JS 满是分支和依赖、数据量又小，搬过去光传输成本就亏了。「JIT 和 AOT 谁好？」→ 没有谁好：JIT 峰值高但要预热、占内存，AOT（Hermes / Dart）启动快、行为可预测但放弃了运行时激进优化——按场景选，这和第 29 节选渲染路线是同一种取舍思维。被追到引擎源码实现就收住：「我到原理层，隐藏类、内联缓存、去优化这些机制我能讲清，源码没读过。」</div>
 </section>
 
-<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
+<!-- PERF MEASURE -->
+<section class="card" id="perf-measure">
+<div class="kicker">性能 · 46 · 225 指南第 1 节，采集口径一次讲透 ★</div><h2>H5 性能采集与聚合：从一次访问算到线上 P75</h2>
+<p class="sub">面试官最爱从这里挖：你报的 P75 到底是怎么算出来的？一句话：<strong>浏览器只给原始事件，前端 SDK 按访问归约成一个值，后台按访问算分位</strong>。跳过中间任何一步，数字都站不住。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 五个指标，先分清“用户感受到什么”</p>
+<table>
+<tr><th>指标</th><th>用户感受到什么</th><th style="width:16%">良好</th><th style="width:16%">需改进</th><th style="width:14%">较差</th></tr>
+<tr><td><strong>LCP</strong> 最大内容绘制</td><td>视口内最大的图片 / 文本块何时出现</td><td>≤ 2.5 秒</td><td>&gt; 2.5 至 4 秒</td><td>&gt; 4 秒</td></tr>
+<tr><td><strong>INP</strong> 交互到下一次绘制</td><td>点击 / 轻触 / 键盘后，多久画出下一帧反馈</td><td>≤ 200 毫秒</td><td>&gt; 200 至 500 毫秒</td><td>&gt; 500 毫秒</td></tr>
+<tr><td><strong>CLS</strong> 累计布局偏移</td><td>页面有没有意外跳动</td><td>≤ 0.1</td><td>&gt; 0.1 至 0.25</td><td>&gt; 0.25</td></tr>
+<tr><td><strong>FCP</strong> 首次内容绘制</td><td>第一次看到文字 / 图片等内容</td><td>≤ 1.8 秒</td><td>&gt; 1.8 至 3 秒</td><td>&gt; 3 秒</td></tr>
+<tr><td><strong>TTFB</strong> 首字节时间</td><td>导航开始到收到首字节（含连接、重定向、服务端等待）</td><td>≤ 0.8 秒</td><td>&gt; 0.8 至 1.8 秒</td><td>&gt; 1.8 秒</td></tr>
+</table>
+<div class="loop-note">三个核心指标是 LCP / INP / CLS，按真实访问的 P75 评价，移动端与桌面端分开。FCP / TTFB 是定位用的辅助指标。P75 = 2.5 秒，意思是约四分之三的样本在 2.5 秒以内；P95 再看慢用户。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · LCP 4.6 秒的样本：先拆四段，再决定先改哪段（演算样本，不是线上实测）</p>
+<table>
+<tr><th style="width:18%">阶段</th><th style="width:12%">样本耗时</th><th>优先找的证据</th><th>证据成立时的改动</th></tr>
+<tr><td>导航 → HTML 首字节（TTFB）</td><td>0.6 秒</td><td>重定向、CDN 命中、源站及上游耗时</td><td>就近分发、去重定向、并行独立取数</td></tr>
+<tr><td><strong>HTML 首字节 → 主图开始请求（发现延迟）</strong></td><td><strong>2.3 秒 ★</strong></td><td>主图 URL 在 HTML 里，还是 JS 下载执行 + 取数后才出现？首图加了懒加载吗？</td><td>初始 HTML 暴露正确的 img 与响应式尺寸，移除首图懒加载，必要时提这一张图的优先级</td></tr>
+<tr><td>主图下载（加载时长）</td><td>0.8 秒</td><td>设备实际显示宽度、下载字节、图片缓存</td><td>按显示尺寸出图，压缩 / 协商格式，检查 CDN</td></tr>
+<tr><td>下载完成 → 绘制（渲染延迟）</td><td>0.9 秒</td><td>图片是否被藏到水合完成？同步脚本 / 样式 / 长任务挡住绘制？</td><td>提前展示已有内容，拆开重任务，缩小首屏脚本与阻塞样式</td></tr>
+</table>
+<p style="font-size:14px;color:var(--muted)">这个样本最先值得处理的是 <strong>2.3 秒的发现延迟</strong>：即使把下载时间减半，也只省约 0.4 秒。如果 LCP 元素是文本，四段分析要相应调整——优先查内容到达、关键 CSS 与字体显示。文本 LCP 没有主图请求，别硬套图片四段。</p>
+<div class="grid2">
+<div class="box"><h4>INP 怎么算：一次访问取最慢的交互</h4><p>浏览器用 Event Timing 记录事件，同一次点击的多个事件用 <code>interactionId</code> 关联，取组内最长的一个。例：排队 80ms + 处理 40ms + 等待绘制 24ms = 144ms。一次访问有三次合格交互 80 / 144 / 320ms，本次 INP = <strong>320ms</strong>。交互很多时，每满 50 次忽略一个最高值。没有有效交互的访问<strong>没有 INP 样本、不能填 0</strong>，按覆盖率单列；滚动本身不参与 INP。切规格要分开计时：按钮立即高亮是一段，库存查询完成是另一段。</p></div>
+<div class="box"><h4>CLS 怎么算：先算单次，再取最差窗口</h4><p>单次得分 = 影响面积占视口比例 × 位移比例（最大移动距离 ÷ 视口较长边）。例：面积 50%，位移占较长边 10%，得分 0.05。排除带近期输入标记的偏移（合格离散输入后 500ms），再把相邻间隔 &lt; 1 秒的偏移归到同一窗口，每个窗口最长 5 秒。若窗口一有 0.05 和 0.08，窗口二有 0.09，本次 CLS = max(0.13, 0.09) = <strong>0.13</strong>。支持采集且确实没有偏移的访问记 0。首屏没跳不代表 CLS 好：后续推荐区、字体替换同样可能引发偏移。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 采集链路：浏览器记录时间线，SDK 算指标，后台去重聚合</p>
+<div class="flow">
+<div class="node plain"><b>浏览器时间线</b><small>Navigation / Paint / LCP / Event / Layout Instability</small></div><div class="arrow">→</div>
+<div class="node blue"><b>web-vitals SDK</b><small>onLCP / onINP / onCLS / onFCP / onTTFB<br>按访问归约，处理终值与窗口</small></div><div class="arrow">→</div>
+<div class="node teal"><b>上报</b><small>sendBeacon / fetch keepalive<br>带 id、revision、route、release</small></div><div class="arrow">→</div>
+<div class="node amber"><b>后台去重聚合</b><small>按指标名 + id 留 revision 最大一条<br>按访问算 P75，分页面 / 市场 / 设备 / 版本</small></div>
+</div>
+<div class="codeblock"><code>import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
+// 每个 HTML 文档的应用入口尽早初始化一次；先按文档抽样，再在入样访问中采完各项指标
+// ——否则只采到特别慢的事件会扭曲分布。
+export function initPerformanceReporting({ route, release }) {
+  const revisions = new Map();
+  function report({ id, name, value }) {
+    const revision = (revisions.get(id) ?? 0) + 1;
+    revisions.set(id, revision);
+    const body = JSON.stringify({ id, name, value, revision, route, release });
+    if (!navigator.sendBeacon('/rum/web-vitals', body)) {
+      void fetch('/rum/web-vitals', { method: 'POST', body, keepalive: true }).catch(() => {});
+    }
+  }
+  for (const subscribe of [onTTFB, onFCP, onLCP, onINP, onCLS]) subscribe(report);
+}
+// 验收：真机打开测试版、点一次规格、切后台再恢复；在 Network 面板检查上报请求，
+// 在接收端用同一 id 查最新 revision。sendBeacon 返回成功只表示浏览器接受排队，
+// 到达率以服务端入库为准。另发一次入样访问标记并记录 API 支持情况，报表同时展示采集覆盖率。</code></div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我先确认 4.6 秒是线上移动端 P75 还是某一次测试，再按站点、设备、网络、页面版本切分，看慢样本的 LCP 元素是主图还是文本。选一个能复现的样本，用 Performance 和 Network 对齐导航、HTML 首字节、主图请求和最终绘制。假如 HTML 很快回来，但主图等商品接口和 JS 执行完才被发现，我优先让首屏 HTML 提前暴露正确图片地址，核对请求优先级，避免首图懒加载。若请求已足够早，才去看图片字节、CDN 或主线程。上线后比较同一分组的真实用户 P75，再看弱网尾部和错误率。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「各分段 P75 相加等于 LCP P75 吗？」→ <strong>不能</strong>：各段 P75 可能来自不同用户，不能相加还原一次导航；TTFB 必须取同一次访问的 attribution。「一条 trace 能推出线上 P75 吗？」→ 不能：一条 trace 只能说明这个优化有 1.6 秒的机会（例：发现延迟 2.1 秒压到 0.5 秒，其余不变，样本 4.6 秒推算到 3.0 秒），真实收益看同分组上线前后或随机灰度的分布。</div>
+</section>
+
+<!-- RN PERF -->
+<section class="card" id="rn-perf">
+<div class="kicker">跨端 · 47 · 225 指南第 2 节，RN 测量口径 ★</div><h2>RN 性能测量：冷启动、内容可见、交互反馈、慢帧</h2>
+<p class="sub">RN 没有浏览器那套现成指标，同一句话在 Web 和 RN 里意思不同：<strong>Web 的 LCP / INP / CLS 是浏览器定义的，RN 的“首屏 / 跟手 / 不跳动”必须先由业务定义终点，再选代理信号</strong>。先定终点，再谈数字。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 先分入口：桌面图标冷启动 ≠ App 内列表跳详情</p>
+<table>
+<tr><th>体验</th><th>建议的计时 / 统计口径</th><th>参考值与性质</th></tr>
+<tr><td>App 启动</td><td>Android TTID 看启动到应用首帧；TTFD 看启动到应用主动报告可充分使用；分别看冷 / 温 / 热启动</td><td>Google Play 将 TTID 冷启动 ≥ 5 秒、温启动 ≥ 2 秒、热启动 ≥ 1.5 秒列为过慢——这是<strong>告警线</strong>，不是目标。iOS 单独建立基线</td></tr>
+<tr><td>详情主要内容可见</td><td>从原生导航动作开始，到标题、价格及主图首次在视口内呈现；另记数据就绪，区分请求和绘制</td><td><strong>示例预算（练习条件）</strong>：App 已运行、中端机、指定网络、图片冷缓存，P75 ≤ 2 秒、P95 ≤ 3.5 秒——落地先采基线再定目标</td></tr>
+<tr><td>点击首次视觉反馈</td><td>从原生输入时间到选中态首次展示的帧；另记库存更新 / 加购成功</td><td><strong>示例预算</strong>：上述设备上本地选中态 P75 ≤ 100ms、P95 ≤ 200ms</td></tr>
+<tr><td>滚动与动效</td><td>固定场景和刷新率，观察未赶上显示截止时间的帧占比、帧耗时尾部、连续慢帧和列表空白</td><td>60Hz 帧间隔约 16.7ms，120Hz 约 8.3ms，按实际刷新率和系统 deadline 评价</td></tr>
+<tr><td>稳定性和资源</td><td>按版本统计崩溃、Android ANR、反复进出详情后的内存、图片解码峰值</td><td>按设备档位与稳定版对比，发布前约定回退线；同时记录加载失败和提前退出</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>112ms 的例子：为什么 Profiler 很快，用户还觉得卡</h4><p>原生输入记为 0ms，JS 在 64ms 收到回调，96ms 提交新状态，真机轨迹确认 112ms 出现选中态。用户感受到 <strong>112ms</strong>，单测 JS 回调到提交只能看到 <strong>32ms</strong>。差值就是输入排队 + 最后一帧绘制。只在 JS 层有时间戳时，测量范围要明确写成“JS 回调开始至提交”，否则报表会少掉输入排队和最后的绘制时间。JS 开始执行 onPress 时才计时，也会漏掉输入排队。</p></div>
+<div class="box"><h4>首屏慢，怎么选优化？</h4><p>在同一条 trace 标出导航、运行时就绪、请求起止、数据解析、首次提交和主图显示。若点进详情后要等模块初始化完才发请求，可提前加载必要模块或在入口预取高概率使用的数据，同时检查命中率和浪费流量；若数据早已到达，再看同步解析、首批挂载数量、图片解码尺寸。重复进入才快时要拆分运行时复用和图片缓存收益。Android 用 Perfetto 看跨线程时序，iOS 用 Instruments 在同等级真机复测。</p></div>
+<div class="box"><h4>滚动流畅但点卡片没反应，为什么？</h4><p>原生滚动可以继续，JS 线程却可能正被整表重算占住。用发布构建复现，检查输入到 JS 回调之间的等待，缩小列表更新范围，把耗时计算移出交互路径。如果 JS 很空、原生帧仍错过截止时间，则查 UI 布局、图片解码、绘制和 GPU。调虚拟列表窗口时同时看空白率与内存，缩小窗口和扩大窗口各有代价。</p></div>
+<div class="box"><h4>慢帧率只有 3%，用户为什么还觉得卡？</h4><p>先问统计了哪些帧、哪些设备和场景。例：600 帧中 18 帧超时，慢帧率 3%。连续慢帧、列表空白或少量低端机集中卡顿，都会被总比例掩盖。Android 线上可用 JankStats 给帧附上页面及交互状态；实验室用 Macrobenchmark 的 FrameTimingMetric 和 Perfetto；iOS 用 Instruments 的 Animation Hitches 分析固定滚动路径。用系统帧期限定义时，慢帧率 = 滚动期间超期帧数 ÷ 该场景观测帧数；若直接用 JankStats 的 isJank 标记，应单列其启发式判定口径。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · RN 埋点落地：一次导航一个访问 ID，一次操作一个交互 ID</p>
+<table>
+<tr><th>要统计什么</th><th>从哪里拿数据</th><th>后台怎样算</th></tr>
+<tr><td>启动首帧 / 启动可用</td><td>Android 系统记录 TTID；规定首页核心内容已加载且可操作后，由原生宿主调用 reportFullyDrawn 记录 TTFD。iOS 可用 MetricKit 获取启动耗时直方图，真机复现用 Instruments</td><td>按平台、版本和启动类型统计每次启动的耗时分布；Android 与 iOS 的平台指标分别展示</td></tr>
+<tr><td>页面内容可见</td><td>原生导航开始为起点；分别记录数据就绪、目标视图布局、主图加载等信号；线上可用关键条件全部满足且页面在前台作为代理终点，用录屏或系统帧轨迹校准</td><td>每次进入取首个符合条件的终点减起点，按市场、机型及冷热缓存算 P75 / P95；提前退出、加载失败和埋点缺失分别计数</td></tr>
+<tr><td>交互反馈</td><td>关联原生触摸、JS 回调、目标选中态提交与呈现帧；线下真机逐帧验证哪一帧确实展示新状态</td><td>每次规格切换的反馈延迟 = 首次反馈帧时间 − 对应输入时间；线上只能拿到提交时刻时另列代理指标；展示每次操作的 P95，分母是操作次数</td></tr>
+<tr><td>滚动慢帧</td><td>Android 在 Activity 的 Window 上用 JankStats.createAndTrack 注册逐帧回调，进入详情或开始滚动时更新 UI 状态标签；回调里只按路由、滚动状态累加观测帧与 isJank 帧计数，一个滚动区间结束后批量上报分子和分母，避免逐帧跨到 JS 影响测量</td><td>见上：慢帧率 + 连续超时帧 + 会话分布</td></tr>
+<tr><td>页面元素意外跳动</td><td>选择购买按钮等锚点，记录布局变化前后的视口坐标和触发原因，排除用户滚动、预期动效和屏幕旋转</td><td>自定义“发生意外位移的访问 ÷ 有效访问”，另看最大位移的 dp 分布；Web CLS 的 0.1 阈值只适用于 Web</td></tr>
+</table>
+<div class="loop-note">RN 的首图回调、onLayout 和 React 提交都可能早于屏幕真正显示；可在线上用可稳定采集的代理事件，在发布构建的真机上用帧轨迹和录屏校准误差。跨线程计算差值前统一单调时钟和时间原点。</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「RN 里我先分入口：冷启动看 TTID / TTFD，页内跳转看从原生导航到内容可见。内容可见我不只看数据就绪——数据回来、onLayout、首图 onLoad 都只是代理信号，最终要拿真机录屏校准用户真正看到的那一帧。交互我从原生输入时间算到选中态首次出现的帧，112ms 那个例子就是 JS 回调到提交只看到 32ms，剩下的是排队和绘制。滚动看慢帧率更要看连续慢帧和低端机分布，3% 的总数会掩盖集中卡顿。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「RN 里有没有 LCP / INP / CLS？」→ 没有现成的：那是 Web 指标。RN 要按用户体验目标自定义口径、写清终点定义版本，并说明线上代理终点与真机校准的差距——能说出这句，比硬套 Web 指标名安全。「RN 有没有 SSR？」→ <strong>没有传统 SSR</strong>：Web SSR 是服务端返回 HTML，RN 首屏是本地包冷启动后第一次渲染，只能讲原生启动屏占位 + 首屏数据图片提前预取、再等 JS 接管，这是理解层、不是落地经历。</div>
+</section>
+
+<!-- SSR DECIDE -->
+<section class="card" id="ssr-decide">
+<div class="kicker">渲染 · 48 · 225 指南第 3 节 + 226 第 3-4 节 ★</div><h2>SSR 决策、鉴权、限流与 CDN：先画依赖，再谈收益</h2>
+<p class="sub">SSR 把一部分客户端工作移到请求关键路径。它可以让浏览器更早发现主图、让首个 HTML 带有商品正文，也可能延长首字节、增加服务器成本，或让用户看得到却点不动。选择方案前，先画出从请求 HTML 到第一次有效交互的依赖关系。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 哪些内容在什么时候渲染？</p>
+<table>
+<tr><th>设计问题</th><th>商品详情页的具体决策</th><th>检验方法</th></tr>
+<tr><td>哪些内容在什么时候渲染？</td><td>稳定的商品描述可预生成并失效更新；按市场变化的公开价格可按新鲜度要求缓存或请求时生成；会员价、购物车按用户隔离；屏下推荐可延后</td><td>明确每块内容允许陈旧多久、是否影响收录、是否阻塞购买；下单前由服务端校验实时价格与库存</td></tr>
+<tr><td>服务端要等哪些接口？</td><td>并行发起独立的核心请求，给依赖设超时；主内容先输出，推荐 / 评论用流式边界后续填充，预留布局空间</td><td>用 Server-Timing 拆 CDN、服务端取数和渲染；检查代理 / CDN 缓冲，观察浏览器实际收到有意义内容的时刻</td></tr>
+<tr><td>缓存能否安全复用？</td><td>静态资源用内容指纹，公共 HTML 按市场、语言、币种等必要维度缓存；私有内容隔离；商品下架或价格变更触发失效</td><td>分别测缓存命中和回源；用不同市场和账号交叉请求，检查串价、数据泄漏与缓存键膨胀</td></tr>
+<tr><td>同构和水合如何保证正确？</td><td>服务端与客户端使用相同初始快照、时区和语言规则；浏览器 API 延后到客户端；序列化只传必要字段并安全转义，复用首屏数据</td><td>查水合告警、重复请求、HTML 与 JS 字节、主线程长任务；慢机上在按钮刚出现时点击，验证事件反馈</td></tr>
+<tr><td>SEO、失败和运营成本怎么办？</td><td>首个 HTML 给出商品正文、可抓取链接、适当的 canonical 与多语言标记；真实下架返回恰当状态码；慢依赖保留基础商品与浏览能力</td><td>对照原始 HTML、渲染结果及 Search Console URL 检查；压测回源峰值、超时率、服务端 CPU 和每千请求成本</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 流式 SSR 的坑：TTFB 变好了，主图却还没来</p>
+<p style="font-size:14px;color:var(--muted)">若先发一个空壳，TTFB 可能明显变好，主图地址却仍要等最后一个数据块。要检查的是<strong>主内容所在块何时到达、主图何时开始下载、首个按钮何时可用</strong>。同时，首块发送后 HTTP 状态码通常已确定；决定商品是否存在、是否重定向等信息应在发送前处理。搜索引擎可以执行 JavaScript，SSR 有利于尽早提供可抓取内容；收录和自然流量还需另外验证。React 的例子见第 03 / 03C 节：主体准备好时 <code>renderToPipeableStream</code> 触发 <code>onShellReady</code>，推荐区放在 Suspense 边界内；若路由入口已经提前等待了所有推荐数据，后面再包 Suspense 也拿不回这段等待；若代理缓冲了响应，源站分块也可能无法让用户提前看到内容。</p>
+<div class="codeblock"><code>// SSR 服务端耗时怎么采：请求入口启动同一条 trace，分别包住商品查询、模板渲染和首块写出。
+// 发送响应头前，把已结束阶段写入 Server-Timing，例如：
+Server-Timing: product;dur=86, shell;dur=24
+// 浏览器从 performance.getEntriesByType('navigation')[0]?.serverTiming 读取名称与 duration，
+// 和本次导航的 TTFB、LCP 一起上报。首块写出后才结束的流式阶段通过服务端 trace 记录。
+// 用请求标识关联源站日志、CDN 命中状态和浏览器样本；命中共享缓存时注意响应头可能来自生成缓存的旧请求。
+// 服务端阶段可能并行，阶段耗时和不等于 TTFB。</code></div>
+<div class="grid2">
+<div class="box"><h4>鉴权放在哪里？三类访问，三套规则</h4><ul><li><strong>游客访问公开店铺：</strong>公共 HTML 可走 CDN，按市场、语言等隔离缓存；会员权益独立获取</li><li><strong>登录用户看会员价：</strong>宿主或网关验证会话，业务服务根据可信身份计算可见价格；若写进 HTML 或初始状态，整个响应按私有内容处理</li><li><strong>卖家查看草稿：</strong>在读取草稿、构造 HTML 和发送流式首块前，验证用户对该店铺和草稿的权限；草稿接口也执行资源级授权——无权限请求应在返回任何草稿内容前结束</li></ul><p>验收：先以会员访问，再用游客访问同一地址，检查 HTML、初始 JSON 和缓存命中结果；同一卖家切换有权与无权的店铺。</p></div>
+<div class="box"><h4>限速与并发保护是两件事</h4><p>举例：稳定回源 100 请求/秒时，平均耗时由 0.2 秒升到 2 秒，在途请求约从 20 增至 200。即便入口速率没变，连接池与内存也可能耗尽。调用方超过配额可返回 429；源站整体过载可返回 503。公共页面可在业务允许的时效内回退到已有缓存，私有数据或草稿仍须执行原有权限规则。Company 依赖核查：render-server 5.15.4 提供微应用渲染 POST 接口，包内 Hybrid 路由中间件支持在可选 SSR 路由超出配置并发时降级 CSR；platform-ssr-context 1.4.118 会逐请求初始化账号、功能开关等上下文。需要线上部署版本、挂载位置及生效规则，才能判断某条店铺路由实际走过哪一分支。</p></div>
+<div class="box"><h4>/:shopId 的 HTML 会经过 CDN 吗？</h4><p>先分清“经过边缘”和“边缘复用 HTML”。动态 URL 可以成为 CDN 缓存键的一部分。RW 配置中有静态资产 cdnUrl 和 serverConfig.disableFetchCache，二者均<strong>不足以判定</strong>线上整页 HTML 的共享缓存策略。核对线上公开文档响应、宿主缓存规则与边缘日志；记录是否经过边缘、是否命中 HTML 缓存以及用户变体是否隔离。一次 MISS 只能说明当次未命中。</p></div>
+<div class="box"><h4>SSR 怎么采到服务端耗时？</h4><p>见上方 Server-Timing 示例。分开观察 CDN 命中与回源，记录排队时间、在途数、上游耗时、拒绝率和源站 P95；确认可选推荐超时后核心详情仍可展示。SSR 上线时同时测首字节、主内容出现和首次操作：如果页面更早可见但点不动，下一步应减少水合工作；如果是主图请求晚，就先消除资源发现延迟。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我会从一次直接打开商品详情的请求讲。构建时框架准备好服务端入口、浏览器资源和它们的映射。请求到达后匹配商品路由，在独立的请求上下文里取数，服务端渲染器生成包含商品正文和主图地址的 HTML。浏览器可以先解析和绘制；购买控件再用同一份初始数据水合，接上事件。若推荐慢，我会把它放进能独立完成的流式边界。验收时看三个时刻：浏览器收到商品内容、发现主图、购买控件第一次能响应。这样才能判断服务端多做的工作值不值得。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「改成流式 SSR 后 TTFB 变好，点击规格却更慢，是否扩大灰度？」→ 检查主内容块到达、主图发现及水合长任务；比较同类真实访问的 LCP 和交互表现；用实际用户收益、错误率及服务端成本决定扩量，别只看 TTFB。「产品问这次优化带来多少转化提升，你手上只有一次性能 trace，怎么答？」→ 说明这条样本能验证哪个机制；若要归因到转化，需定义实验分组、曝光与转化分母、观察窗口，并检查错误和退出。</div>
+</section>
+
+<!-- RESUME DEFENSE -->
+<section class="card" id="resume-defense">
+<div class="kicker">简历 · 49 · 226 手册全文，红线先讲 ★</div><h2>简历防守：LCP P75 4 秒 → 2.5 秒，这句话怎么讲才不穿</h2>
+<p class="sub">简历原句：“买家端性能优化：针对 LCP 时间耗时较长的问题，使用 SSR 服务端渲染及头图压缩、Prefetch 的方案优化首屏 LCP 性能，将 H5 首屏 LCP 的 P75 指标由 4s 降低至 2.5s。”这句话里最有技术深度的决定是<strong>缩短服务端需要等待的依赖，同时控制 SSR 的范围</strong>。最需要补证的是 <strong>LCP P75 从 4 秒到 2.5 秒</strong>。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 证据分级：confirmed / needs_verify / hypothesis，别混着说</p>
+<table>
+<tr><th style="width:14%">分级</th><th>含义</th><th>这句话里的例子</th></tr>
+<tr><td><strong>confirmed</strong></td><td>材料直接支持</td><td>历史报告证明当期团队改动；源码快照证明该版本的实现；依赖包证明平台具备某项能力</td></tr>
+<tr><td><strong>needs_verify</strong></td><td>需要对应版本、配置或看板</td><td>LCP 看板（路由、市场、观察窗口、样本量、数据来源）；本人提交、上线批次与灰度范围；店铺路由的 SSR 阈值与生效状态</td></tr>
+<tr><td><strong>hypothesis</strong></td><td>面试设计方案</td><td>SSG 发布时预渲染是设计方案、未落地；“替换到约 100KB、预计节省 238ms”属于估算</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 能防守的数字 vs 不能硬讲的数字</p>
+<table>
+<tr><th>数字</th><th>口径 / 终点</th><th>能不能讲</th></tr>
+<tr><td>印尼站 4G 页面准备完成 P80 <strong>8.21 秒 → 5.03 秒</strong>，减少 3.177 秒，约 39%</td><td>历史报告，终点是业务事件 shopPageLoaded，不是 LCP</td><td><strong>能讲，但必须说清终点不同</strong>：前者以浏览器最大内容绘制为终点，后者以业务事件为终点</td></tr>
+<tr><td>印尼站 RN 页面数据就绪 P80：Android <strong>6,347ms → 3,503ms → 2,921ms</strong>；iOS <strong>2,464ms → 1,383ms → 1,241ms</strong>；当地人工首屏 <strong>4,800ms → 3,600ms</strong>（改善约 25%，没达到 3.5 秒目标）</td><td>RN 专项报告，Firebase Trace + 人工计时；数据就绪 ≠ 用户实际看到页面</td><td><strong>能讲，讲团队专项结果</strong>，并补一句本人能举证的职责（改过的请求依赖 / 参与分析的 trace / 验证过的机型）</td></tr>
+<tr><td>H5 首屏 LCP P75 <strong>4 秒 → 2.5 秒</strong></td><td>简历原句，无 LCP 看板直接支持</td><td><strong>不能硬讲</strong>：要保留，先找回三样证据——LCP 看板、代表性慢访问（LCP 元素及四段耗时如何变化）、本人提交 / 上线批次 / 灰度范围</td></tr>
+<tr><td>LCP 约 4 秒 → 约 3 秒、首屏满屏约 5 秒 → 约 4 秒</td><td>2026-11-14 语音回忆，用户同场明确说记不清、感觉数字有点扯</td><td><strong>不能当硬数字引用</strong>，只能按方向讲做法与取舍</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>开场怎么讲（740ms 与 30ms）</h4><p>“我会从用户打开店铺首页说起。这次专项里，我们看了一条服务端请求链路，大约 740 毫秒，而 Node 侧组件渲染只有约 30 毫秒。结合接口时序，我们优先调整哪些请求能提前发、哪些结果可以直接带给浏览器。店铺信息和模板请求前移后，服务端只渲染首屏必要部分，客户端复用已有数据。资源侧另做默认封面和装修图缩略图。历史报告里，印尼站 4G 的页面准备完成 P80 从 8.21 秒降到 5.03 秒。这是团队专项的整体结果。如果要看用户什么时候看到最大内容，还要单独看浏览器 LCP。”<strong>注意：740ms 来自 responseStart − connectEnd，包含请求与响应链路；用 740 减 30 无法直接得到某个接口的纯后端耗时。</strong>面试时再接一条本人能举证的改动。</p></div>
+<div class="box"><h4>为什么先改取数时序？为什么不做整页 SSR？</h4><p><strong>先改取数：</strong>店铺信息可以利用入口参数提前请求；模板支持 shopId 或 username；功能开关也前移。历史报告将接口时序优化列为已上线。能并发的前提是确认真实数据依赖；无效入口、超时以及提前发出却未使用的请求也有成本。<strong>不做整页 SSR：</strong>当期报告记载，混合渲染内容多时主 JS 约 3MB；最终保留基础接口与 header 渲染，直播、券、秒杀扩展到服务端的方案标为放弃。拉长服务端关键路径、增加 HTML 或水合成本，都可能抵消首屏收益。</p></div>
+<div class="box"><h4>首图与 Prefetch 到底做了什么？</h4><p><strong>首图：</strong>默认封面原约 740KB；报告记录了默认背景优化和装修图缩略图上线。“替换到约 100KB、预计节省 238ms”属于估算。当前快照会在活动背景、店铺封面和默认图间选择；图片库支持尺寸后缀和可选 WebP，但普通封面调用只传了图片标识，具体格式、传输字节和最终 LCP 元素看实际响应。<strong>Prefetch：</strong>历史报告支持“提前发起首屏接口、复用 SSR 数据”；当前 Shop 页还有业务 prefetch 注册和本地 store 复用。按 Tab 预取的部分优化有非 Web 条件；若声称 H5 首图用了 preload，需要 HTML 或瀑布图；若说浏览器 prefetch，要能指出为哪次后续导航服务。</p></div>
+<div class="box"><h4>踩过什么坑？</h4><p>微前端迁移出现翻译更新问题，宿主曾等待翻译加载后才进入业务页面，新增了关键路径依赖。验收要把宿主、微应用、浏览器放在同一时间线上。报告中的单项预估不能相加当作实测收益。另：三项改动一起发布，可以报告整体差值 1.5 秒（37.5%）；分别贡献多少，需要分阶段或对照数据。</p></div>
+</div>
+</div>
+<div class="say"><b>当前材料能支持的表述（参与范围由本人确认后使用）：</b><p>“参与买家端店铺首页 H5 加载优化，前移店铺和模板请求，复用服务端首屏数据，优化默认封面与装修图片。团队专项中，印尼站 4G 用户页面准备完成耗时 P80 从 8.21 秒降至 5.03 秒。”</p></div>
+<div class="trap"><strong>模拟面试 Agent 的用法：</strong>先只给候选人看原简历句子，一次问一题：① 为什么选择改服务端依赖？② Node 实际返回什么、何时返回？③ 怎么确认封面就是 LCP？④ Prefetch 取了什么、在哪个平台执行？⑤ 个性化与并发压力如何处置？⑥ 这 1.5 秒如何采集、验证和归因？每题追问一个具体文件、时间戳或实验，再要求候选人区分自己的决定、团队结果和仍待验证的假设。</div>
+<details><summary>源码复查入口（仓库内路径，向代码所有者交叉核验）</summary>
+<table><tr><th>范围</th><th>文件或符号</th><th>要核验的内容</th></tr>
+<tr><td>普通 SSR</td><td>projects/rw/server/ssr/render.tsx：renderSSR、handleRequest</td><td>onAllReady、内部缓冲、res.json、服务端耗时</td></tr>
+<tr><td>初始状态</td><td>projects/rw/app.tsx；projects/rw/server/hybrid/render.tsx</td><td>getInitialData、initI18n、shouldDehydrateQuery</td></tr>
+<tr><td>数据预取</td><td>src/pages/shop/ShopPageContainer.tsx；src/pages/shop/utils/prefetch.ts；src/redux/Provider.tsx</td><td>注册点、平台条件、prefetchWithStore、挂载复用</td></tr>
+<tr><td>头图</td><td>src/modules/shop-header/hooks/useHeaderBackground.ts；components/HeaderBackground/AnimatedImage.web.tsx</td><td>封面选择、可见背景与透明 img 使用的 URL</td></tr>
+<tr><td>图片规格</td><td>shop-host/shared/isomorphic/common-ui/rw/src/MMSImage/utils.ts</td><td>getImageUrl 如何处理后缀、完整 URL 和可选 WebP</td></tr>
+<tr><td>采集与交付</td><td>projects/rw/performance.tsx；projects/rw/config.js；projects/rw/deploy/ssr/pm2.config.json</td><td>reportMetric、静态资源地址、SSR 服务入口</td></tr>
+<tr><td>平台</td><td>platform-ssr-context 的 withPlatformSsrContextMicroApp；account-info-server-utils 的 initForMicroApp；render-server 的 dist/app.js</td><td>请求级账号上下文、微应用 POST 路由、可选 SSR 并发降级</td></tr></table>
+</details>
+</section>
+
+<!-- XIAOMI -->
+<section class="card" id="company-mall">
+<div class="kicker">面经 · 50 · 224 某互联网公司 52 分钟复盘，8 道薄弱题重讲 ★</div><h2>某互联网公司海外商城面经复盘：52 分钟，8 道薄弱题怎么重讲</h2>
+<p class="sub">这场约 52 分钟，团队约 10 人，面试官结尾明确提到两个岗位目标：从技术角度推动商城业务，持续改进前端技术体系。对方自述 AI Agent 参与工作比例约 80%，那是对方团队的数字，不能作为我方效率收益。轮次与结果未确认，不得编造。开头选项目时，建议从一个商品卡模板讲起，沿着设计、生产、发布、买家体验走一遍。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 自我介绍：给后面的追问留下入口</p>
+<div class="say" style="margin-top:0"><b>口述示例：</b><p>「我叫Ma，有九年前端开发经验。早期做移动授信审批，也承担过跨团队协调。在 Company，我主要做卖家店铺装修。这项工作一头是设计和卖家如何生产页面，一头是买家在 H5 和 RN 上实际看到什么。今天我想讲一个具体决策：为了支持不同模板，我们怎样决定哪些变化交给配置，哪些逻辑保留在商品组件里，以及如何发现生成结果有问题。如果您更关心商城用户体验，我也可以从店铺首页的首屏测量讲起。」主讲项目只承诺一个自己能展开到代码或实例的决定，随后停下来，让面试官选择方向。</p></div>
+<table style="margin-top:12px">
+<tr><th style="width:20%">追问</th><th>重讲要点</th></tr>
+<tr><td>Figma 命名规范落地？漏写名字怎么发现？</td><td>和设计把有业务含义的图层命名固定下来（商品卡、商品图片），解析器用这些名字识别数据绑定，用 Auto Layout 推导布局。语义错误最难：商品名画成普通文本，画面一样，换一组商品可能一直显示示例文案。当时在编辑器里换 mock 数据做预览，另有 Schema 结构和样式校验。重做：定义必需语义槽位，导入时对照组件契约检查，缺哪个槽位定位到设计节点；回归用两组名称、价格、数量都不同的数据渲染同一张卡。</td></tr>
+<tr><td>PC 预览、H5、RN 三端一致性？</td><td>先讲一致性范围：同一份模板、商品数据和规则，应得到一致的商品顺序、字段和交互含义；布局走各端渲染，字体换行和图片裁切还受屏宽、字号及原生组件影响。已有防线：从 RN 样式类型生成 Schema、按节点校验样式、约束 Web 属性、预览时替换数据。验证：拿固定模板和数据跑窄屏长标题、缺图、多商品三个用例，检查 Web 和 RN 真机的关键区域、点击目标和溢出；视觉验收要明确允许哪些平台差异。三端截图回归覆盖率、是否已接入发布门禁为 needs_verify。</td></tr>
+<tr><td>为什么选 DSL？300+ 模板怎么组织？</td><td>见第 08 / 14 节 + 本节图 B。模板可以复用基础元素和注册好的业务组件，再配置数量约束、默认数据和校验规则；价格逻辑、跳转等需要业务保证正确性的行为放在组件里。设计器导出后，业务系统另行导入上线——内部编辑、卖家发布和买家运行是三个环节。轮播商品区举例：图片、文本和容器是基础节点，商品卡封装价格、点击等业务行为，一份模板组合这些节点，再声明可填字段、默认数据和数量限制。模板越多，越要关心一次组件升级会影响哪些已发布模板，协议和物料版本要留兼容策略，并用老模板和固定商品数据回归。</td></tr>
+<tr><td>多语言和无障碍？</td><td>项目里模板通过表达式拿业务传入的数据。面向海外商城：翻译键、价格和币种格式放到业务本地化层，在模板验收里覆盖长文案、复数和需要支持的 RTL 市场。无障碍从购买路径验收：商品图和价格怎么被读屏读出，规格切换是否播报选中态，加购能否用键盘或读屏完成。H5 检查语义元素和焦点顺序，RN 检查可访问名称、角色和状态，最后分别用 VoiceOver / TalkBack 走一遍。原文只确认候选人回答了数据注入，后续验收属于现场方案，个人做过哪些市场和读屏测试为 needs_verify。详见第 43 节。</td></tr>
+<tr><td>模板收益怎么量化？</td><td>分开说生产效率、质量和买家结果。生产效率比较同类复杂度模板从设计交付到可发布的工时，明确含不含设计返工；质量看每百次发布引发的缺陷或回滚；买家侧看实验组与对照组的下单转化，说明随机分组单位、分母和观察期。“300 多个模板”“2 天到半天”“下单转化有提升”均来自面试自述，模板是累计生产、上线还是活跃，工时是谁的，实验是否显著，都属 needs_verify。若前后确实是同一工时口径，2 天到半天等于耗时减少 75%；能否外推到全部模板还取决于样本。忘了转化数字直接答：“具体提升幅度和显著性我记不准。我能具体说明的是模板生产环节的变化，以及实验能够支持哪一层归因。”</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · DSL vs JSON Schema + 模板分层 + 解析器口径</p>
+<div class="grid2">
+<div class="box"><h4>DSL vs JSON Schema</h4><p>JSON 是存储形式；Schema 是静态结构和校验；DSL 多了表达式、绑定、条件和计算。同一张商品卡改成 Schema 描述后，买家手机多付的成本要做等价页面对照才能报——仓库分析的 parser 版本在 parse 路径中深拷贝、生成代码并构造渲染函数，原始材料未给出同页面硬编码与 Schema 的前后对照耗时。先用调用栈确认解析发生在请求、首次挂载还是重复更新，再讨论缓存收益。一个商品模板含 18 个协议节点、6 个条件和 3 个列表；按所分析版本，一次根 parse 构造一个顶层渲染函数。</p></div>
+<div class="box"><h4>解析器口径（必纠）</h4><p>面试原文提到改用了 AST，而仓库分析的 parser 版本仍然生成代码并调用 <code>new Function</code>（confirmed）。模板树、表达式 AST 和最终执行方式是三件事。另一个版本是否上线过受限解释器属于 needs_verify。安全口径按可定位版本回答：“当时依赖内部受控模板；扩大输入范围时，我会增加受限表达式和白名单执行”。可防守的窄口径见第 16 节：jsep 小树，只做值、运算、比较、三元，无任意代码与全局访问。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · AI 工作流：Skill、AIDOD、报警自动修复</p>
+<div class="flow">
+<div class="node teal"><b>值班排障</b><small>工单有用户、店铺、URL、时间<br>原来跨日志、服务目录、代码拼证据</small></div><div class="arrow">→</div>
+<div class="node blue"><b>固定步骤写工具</b><small>按时间窗口查日志<br>列候选仓库</small></div><div class="arrow">→</div>
+<div class="node amber"><b>模型做会变化的下一步</b><small>读第一批证据，提几个原因<br>选接下来查哪个服务 / 哪段代码<br>再用新证据排除猜测</small></div><div class="arrow">→</div>
+<div class="node green"><b>线索不足就交人</b><small>输出已查范围和缺什么<br>由值班人接手</small></div>
+</div>
+<p style="font-size:14px;color:var(--muted)">团队可以用已结案工单盲测，分别看第一条有效线索所需时间、根因命中率和错误归因率；只有取得真实样本和评测结果后再报命中率。比较脚本与模型时，两组应获得同样的工具和输入。自动修复到提测的完整链路见第 11 节补块（试点一种可重放告警 → 去重 → 证据 → 隔离分支修复 → 回归复现 → CI → 提测单 → 人审核）。个人工作方式举例：模板图片合规替换，先让 AI 梳理规则、生成批处理和校验，再由确定性脚本执行重复动作，验收看旧资源还有多少引用、变更是否只触及目标字段、再预览代表性模板。</p>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · React 与手写题</p>
+<div class="grid2">
+<div class="box"><h4>Vue3 vs React Fiber / React 18</h4><p>Vue3 在响应式数据读取时追踪依赖，写入时调度依赖它的组件更新，再利用编译信息缩小补丁范围。React 通过状态更新安排渲染，协调子树并生成变更，提交阶段把变更应用到宿主环境。Fiber 把渲染工作拆成单元，在并发渲染中可让出或重做，提交阶段同步完成。搜索框输入要立刻更新，下面几百个商品的筛选结果可以稍后刷新：输入值同步更新，结果列表更新安排为 transition——<strong>startTransition / useTransition</strong>，这场面试只记得 Suspense 方向、忘了这两个名字，下次先报名字再讲场景。单个组件里一段很长的同步计算仍然会阻塞线程。</p></div>
+<div class="box"><h4>ESM vs CommonJS</h4><p>静态 import/export 让构建器在执行前建立模块依赖关系，具名导入能观察导出绑定的变化，有利于 tree shaking。CommonJS 在执行到 require 时加载并通常缓存模块，可以按运行时条件选择路径，拿到的是当时的 module.exports 值；对象后续变更仍可见，解构得到的普通局部变量不会持续跟踪属性。落到打包，能否真正删代码还取决于副作用和构建方式。</p></div>
+</div>
+<div class="codeblock"><code>// 手写题：合并两个升序数组（LeetCode 88 形状）
+// 先问：“第一个数组末尾是否预留了 n 个位置，前 m 个才是有效元素？”若成立再写。
+// 不变量：写指针右边已经是最终顺序，每次取两边剩余元素里最大的写入末尾。
+function mergeSorted(first, m, second, n) {
+  let left = m - 1, right = n - 1, write = m + n - 1;
+  while (right >= 0) {
+    if (left >= 0 && first[left] > second[right]) first[write--] = first[left--];
+    else first[write--] = second[right--];
+  }
+}
+// 证明：只要第二组还有元素，写指针就位于第一组未读区右边；从两组尾部挑最大值写入，右侧区间始终有序。
+// 第一组先耗尽，余下的第二组逐个写入；第二组先耗尽，第一组余下部分已经在正确位置。
+// 例：[3,5,空,空] + [1,4] → 依次写入 5、4、3、1。时间 O(m+n)，额外空间 O(1)。
+// 口头自测：第一组有效部分为空时复制第二组；第二组为空时直接结束；
+// 第二组元素全部较小时，先把第一组往后腾，再把第二组填进前面。题面没有尾部空间时先重新确认输出约束。</code></div>
+</div>
+<div class="say"><b>一分钟讲法（LCP 场景题）：</b><p>「我先确认 4–5 秒是线上移动端 P75，还是某一次测试。线上按站点、设备、网络、页面版本切分，并看慢样本的 LCP 元素到底是主图还是文本。选一个能复现的样本，用 Performance 和 Network 对齐导航、HTML 首字节、主图请求和最终绘制。假如 HTML 很快回来，但主图等商品接口和 JS 执行完才被发现，我会优先让首屏 HTML 提前暴露正确图片地址，核对请求优先级，避免首图懒加载。若请求已足够早，才去看图片字节、CDN 或主线程。上线后比较同一分组的真实用户 P75，再看弱网尾部和错误率。」</p></div>
+<div class="trap"><strong>反问（顺着岗位目标问）：</strong>「如果我入职后先负责商品详情体验，团队现在最想改善的是哪个市场、哪段用户路径？有什么线上指标作为验收依据？」顺着 AI 工作流问：「你们提到 Agent 参与比例较高，目前从生成改动到通过审核，哪一步仍最依赖人工判断？」</div>
+</section>
+
+<!-- QUANTISAN -->
+<section class="card" id="quantisan">
+<div class="kicker">工业 · 51 · 227 某工业软件公司，周四 11:00，模拟题 ★</div><h2>某工业软件公司高级前端：工艺编辑器 + 生产管理 + Coding 实操</h2>
+<p class="sub">面试时间为北京时间 2026 年 11 月 26 日（周四）11:00，HR 已确认有 coding。公开检索未找到能核实本岗位考题、时长、环境或 AI 工具规则的一手面经，下面的题目是<strong>根据 JD 设计的模拟题，不是真题记录</strong>。官网介绍的能力包括 AI 辅助工艺设计、智能排期和加工过程追踪；JD 的两个模块分别是工艺设计自动化和生产管理系统。业务可以理解成两类工作：工程师查看和修改一道工序的方案，生产人员查看工单走到哪一步、为什么受阻。产品使用 AI 和候选人能否在 coding 时使用 AI 是两个独立问题。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 准备顺序：Coding 第一，编辑器第二，全栈第三，3D / SSR 只是加分项</p>
+<table>
+<tr><th style="width:18%">准备顺序</th><th>最小准备成果</th></tr>
+<tr><td>第一，独立编码与调试</td><td>不开 AI，20 分钟写完一道带边界的数据处理题，再用 React + TypeScript 做出一个可操作页面；覆盖数据结构、算法、JavaScript 和框架基本功</td></tr>
+<tr><td>第二，复杂编辑器设计</td><td>用两分钟讲清 Shop Deco 的数据模型、编辑和预览如何共享数据、哪些约束能自动验证；再讨论如果换成工艺编辑器，哪些设计能复用，哪些规则要找工艺工程师确认</td></tr>
+<tr><td>第三，生产管理与全栈边界</td><td>能解释列表筛选、异步竞态、大数据量渲染、Node 端校验、版本冲突和错误恢复；准备一个真正参与过的构建或发布问题，说明怎么复现、定位和验证</td></tr>
+<tr><td>第四，3D 与 SSR 加分项</td><td>能画出场景、相机、渲染器、拾取和业务状态的关系；SSR 用已有案例回答；短期内优先把 React / TS 实操练熟</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · Coding 练习 1：可执行工序（无 AI，20 分钟）</p>
+<p style="font-size:14px;color:var(--muted)">输入：工序列表，每条记录包括 id、名称、前置工序 ID 数组和状态。示例：A 备料已完成，B 粗加工依赖 A、待开始，C 检验依赖 B、待开始，D 包装依赖 C、待开始。返回所有“待开始且全部前置工序已完成”的 ID，示例结果为 B。</p>
+<div class="codeblock"><code>// 先确认：空依赖可执行、未知依赖如何报错、是否保留输入顺序。
+// 用 Map 按 ID 索引再扫描依赖，时间 O(V+E)。
+// 自测：空列表、多个前置只完成一个、未知 ID、已完成项；再把 B 改成已完成，结果应为 C。
+// 追问“某些步骤永远不能执行，如何区分环与尚未完成”：再用入度和队列检测依赖环。
+// 若只要求当前可执行列表，无须先写拓扑排序——这个区别能展示需求理解。</code></div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · Coding 练习 2：React 列表 + 详情（45 分钟）</p>
+<div class="flow">
+<div class="node plain"><b>单份状态</b><small>只存 selectedId<br>行 key 用稳定 id，绝不用数组索引</small></div><div class="arrow">→</div>
+<div class="node blue"><b>派生筛选</b><small>filteredRows 是派生值<br>不重复保存，不存整份 selectedRow</small></div><div class="arrow">→</div>
+<div class="node teal"><b>详情一致</b><small>列表与详情读同一份状态<br>切换筛选再清除，选中态应保留</small></div><div class="arrow">→</div>
+<div class="node amber"><b>开始按钮</b><small>只有满足条件的行能执行“开始”<br>其余行显示阻塞原因</small></div><div class="arrow">→</div>
+<div class="node green"><b>反例验收</b><small>选中 B 后切换筛选、连续点击两次<br>前置 ID 缺失、异步保存失败、旧响应晚到</small></div>
+</div>
+<table style="margin-top:12px">
+<tr><th style="width:16%">时间</th><th>如果允许使用 AI，现场具体做什么</th></tr>
+<tr><td>0–5 分钟</td><td>复述交付、约定非法数据和状态转换；先在纸上或注释里写出样例和验收结果</td></tr>
+<tr><td>5–15 分钟</td><td>自己定类型、数据源和纯函数边界，让 AI 生成列表与表单骨架；立即启动页面</td></tr>
+<tr><td>15–30 分钟</td><td>打通选择、开始、筛选流程；核对 AI 有没有用数组索引当 key、原地修改对象、重复保存 filteredRows 或整份 selectedRow</td></tr>
+<tr><td>30–40 分钟</td><td>亲自制造反例：选中 B 后切换筛选、连续点击两次、前置 ID 缺失；若有异步保存，再模拟失败和旧响应晚到</td></tr>
+<tr><td>40–45 分钟</td><td>演示一个成功操作、一个失败操作和自己的修正；能逐行解释状态更新、复杂度和剩余限制</td></tr>
+</table>
+<div class="codeblock"><code>// 给 AI 的第一条指令（先不要实现业务规则）：
+// “沿用现有项目，不加依赖。给定 Step 类型和测试数据，只生成 React 列表、状态筛选和详情面板。
+// 选中态只存 selectedId，行 key 用 id，状态变更走 onStart(id)。
+// 先不要实现业务规则，我会写纯函数和验收用例。”
+// 换题备用：15 分钟用 JS 合并两个有序数组（见第 50 节图 D，先讲指针不变量并手测空输入）；
+// 20 分钟做“工单搜索，旧响应晚到也只能显示最近一次结果”，用 AbortController 或请求序号，并覆盖错误和卸载。</code></div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 项目深挖与迁移答法</p>
+<div class="grid2">
+<div class="box"><h4>你做电商，为什么能做工业软件？</h4><p>“过去我做的是把设计规范和业务规则固化到可视化编辑器。我最熟悉的是把复杂对象表达成可编辑的数据，限制错误输入，让预览能暴露问题。比如设计系统里，结构合法的商品名也可能错绑成固定文案，得换数据验证。到工艺设计，我会先和工程师建立工序、依赖、设备约束和版本的词汇，把哪些操作允许、哪些必须拦截定义清楚。”模板编辑器是已有素材；制造业领域经验和生产级 3D 能力按本人实际情况回答。</p></div>
+<div class="box"><h4>工艺工程师改了工序，保存时另一人先发布了怎么办？</h4><p>让前端持有草稿和起始版本，提交时带版本号，服务端原子检查并持久化。冲突时保留本地修改并展示差异；若提交可重试，避免重复产生状态变更。前端禁用按钮改善体验，服务端还要复核状态迁移与权限。这是现场设计题的答案。</p></div>
+<div class="box"><h4>一万条工序卡在哪里？</h4><p>先区分计算、网络与渲染。纯函数索引减少反复扫描；虚拟列表控制挂载行数；按稳定 ID 保存选中项，避免滚动复用后错选；用 React Profiler 和浏览器 Performance 验证一次操作更新了多少行。若服务端分页，看筛选和总数是否也在同一侧计算。虚拟列表见第 04 节，Element 表格性能见第 05 节。</p></div>
+<div class="box"><h4>如果点工序要在 3D 图中高亮对应零件？</h4><p>用业务 ID 与三维对象建立映射，列表与视图共享 selectedId。点击模型时通过拾取定位对象，再映射回工序。如果重新加载模型，释放已不用的资源并清理事件监听。面试时先问模型格式、模型规模、选择粒度是零件还是面；这些条件会改变加载和拾取方案。此为假设设计。</p></div>
+<div class="box"><h4>工程化和 Node 怎么答？</h4><p>准备一次真实发布故障或多包联动发版的取舍，沿改动检测、依赖顺序、构建产物、失败恢复讲。Node 场景可讲工单状态接口如何处理输入校验、并发修改和幂等。同构、AI 值班等项目适合对方追问时再展开。</p></div>
+<div class="box"><h4>可以直接发给 HR 的一句话</h4><p>“您好，我在准备周四上午的技术面，想提前确认一下 coding 环节的大致时长和形式，是在线算法题、前端页面实操，还是在已有工程里完成需求？可以使用自己的 IDE 或 AI 编程工具吗？谢谢。”</p></div>
+</div>
+</div>
+<div class="say"><b>倒排与验收（227 原计划）：</b><p>11 月 24 日约 90 分钟：确认 coding 规则；无 AI 做纯函数 20 分钟；完成列表主流程 45 分钟；记录三个错误——关掉提示也能重写函数，界面可以完整演示。11 月 25 日约 3 小时：限时完整模拟 45 分钟；独立手写 2 题各 20 分钟；编辑器、Node 和工程化口述 45 分钟；3D 联动设计 20 分钟；余时只修薄弱点——能边写边讲，演示失败用例，项目回答有本人做过的具体决策。11 月 26 日 09:30–10:20：从空白重做最薄弱的一题，录一遍两分钟项目介绍，检查 IDE 与面试环境；10:20 后留作休息或按实际地点预留通勤时间，11:00 面试。</p></div>
+<div class="trap"><strong>反问：</strong>「入职后首先负责的是工艺方案编辑，还是生产执行管理？典型用户每天最频繁、最容易出错的操作是什么？前端与工艺算法、三维引擎的接口边界由谁负责？」这会帮助判断真正需要投入的是编辑体验、工程平台还是三维可视化。</div>
+</section>
+
+
+
+
+
+<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、微前端原理、Element UI 表格性能、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ 微前端原理（03D，五路线对照 / 沙箱 / 通信 / 共享依赖 / Manifest 灰度 / 自家选型与 Hybrid 对比）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
 </div>
 <script>
 (function(){
