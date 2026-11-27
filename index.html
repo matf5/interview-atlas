@@ -104,7 +104,7 @@ details p,details li{font-size:14px;color:var(--muted)}
 <div class="toc-group"><span class="toc-label">AI 应用</span><div class="toc-links"><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">AI 专题 · RAG ★</a><a href="#agent-memory">Agent 记忆 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#node-loop">Node 事件循环 ★</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a></div></div>
 <div class="toc-group"><span class="toc-label">构建与 Monorepo</span><div class="toc-links"><a href="#build">构建·TS</a><a href="#tooling">Webpack/Vite·npm 导出 ★</a><a href="#monorepo">pnpm·Nx/Turborepo ★</a></div></div>
-<div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">浏览器·输入URL</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a></div></div>
+<div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">输入URL全链路 ★</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a></div></div>
 <div class="toc-group"><span class="toc-label">后端全链路</span><div class="toc-links"><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a></div></div>
 <div class="toc-group"><span class="toc-label">跨端与国际化</span><div class="toc-links"><a href="#i18n">国际化/本地化 ★</a><a href="#rn">跨端总论 · RN ★</a><a href="#engines">渲染/JS引擎 · CPU/GPU ★</a></div></div>
 <div class="toc-group"><span class="toc-label">性能深挖</span><div class="toc-links"><a href="#perf-measure">H5 采集与 P75 ★</a><a href="#rn-perf">RN 测量 ★</a><a href="#resume-defense">简历防守 ★</a></div></div>
@@ -1308,29 +1308,146 @@ for (const step of PIPELINE) dsl = step(dsl); // 顺序固定，单步可换实�
 
 <!-- BROWSER -->
 <section class="card" id="browser">
-<div class="kicker">浏览器 · 17</div><h2>输入 URL 到页面展示 + 浏览器存储</h2>
-<p class="sub">这道题考的是链路完整度：别只背渲染，要从 DNS 一路讲到合成层，每一步说一句「这里会慢在哪」。</p>
+<div class="kicker">浏览器 · 17 · 深挖 ★ 资深必考</div><h2>从输入 URL 到可交互：一次请求的完整一生</h2>
+<p class="sub">资深答法不是背「DNS → TCP → HTTP → 渲染」八个词，而是能说清五件事：<strong>每一步在跟谁打交道、缓存到底在哪几层查、握手花了几个 RTT、响应是边下边解析的、碰到 CSS / JS 时谁阻塞谁</strong>。下面按真实时序拆成七张图，面试时挑主干讲、追问时往对应图里钻。</p>
+
 <div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 全景主干：先建立地图，后面每张图放大一段</p>
 <div class="flow">
-<div class="node plain"><b>1 DNS 解析</b><small>域名 → IP<br>浏览器/系统缓存</small></div><div class="arrow">→</div>
-<div class="node blue"><b>2 建连</b><small>TCP 三次握手<br>HTTPS 再加 TLS 握手</small></div><div class="arrow">→</div>
-<div class="node teal"><b>3 发 HTTP 请求</b><small>先查强缓存<br>没命中才真发</small></div><div class="arrow">→</div>
-<div class="node amber"><b>4 解析构建</b><small>HTML→DOM，CSS→CSSOM<br>JS 默认阻塞解析</small></div>
+<div class="node plain"><b>0 导航启动</b><small>回车 / 点链接 / location 跳转<br>先查 BFCache、卸载旧页面<br>beforeunload、HSTS 升级 https</small></div><div class="arrow">→</div>
+<div class="node blue"><b>1 找地址</b><small>URL 解析 → 查 SW / 缓存<br>→ DNS 解析拿到 IP<br>图 B、C 展开</small></div><div class="arrow">→</div>
+<div class="node teal"><b>2 建连</b><small>选一条可用连接<br>没有就 TCP + TLS 握手<br>有连接池就直接复用</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 发请求 · 过 CDN</b><small>请求先到 CDN 边缘<br>命中直接回、未命中回源<br>图 D 展开</small></div>
 </div>
 <div class="flow" style="margin-top:10px">
-<div class="node green"><b>5 渲染树</b><small>DOM + CSSOM 合并<br>display:none 不进树</small></div><div class="arrow">→</div>
-<div class="node rose"><b>6 Layout 布局</b><small>算几何位置<br>改尺寸易触发回流</small></div><div class="arrow">→</div>
-<div class="node blue"><b>7 Paint 绘制</b><small>填充像素到图层</small></div><div class="arrow">→</div>
-<div class="node teal"><b>8 Composite 合成</b><small>图层合并上屏<br>transform/opacity 走这层最便宜</small></div>
+<div class="node rose"><b>4 源站处理</b><small>网关 / LB → 应用 → DB / 缓存<br>生成 HTML（SSR）或回静态文件<br>先回响应头，再流式回 body</small></div><div class="arrow">→</div>
+<div class="node green"><b>5 边下边解析</b><small>HTML 字节流 → DOM<br>预加载扫描器抢跑子资源<br>图 E、F 展开</small></div><div class="arrow">→</div>
+<div class="node blue"><b>6 渲染上屏</b><small>样式 → 布局 → 绘制 → 合成<br>FCP / LCP 在这一段产生<br>图 G 展开</small></div><div class="arrow">→</div>
+<div class="node teal"><b>7 执行与可交互</b><small>JS 执行、注水、绑事件<br>DOMContentLoaded → load → TTI<br>之后切到事件循环驱动</small></div>
 </div>
-<div class="loop-note">回流（Layout）比回绘（Paint）贵；能只改 transform / opacity 就别改宽高和位置。</div>
-<table><tr><th>存储</th><th>容量 / 生命周期</th><th>用在哪 · 坑</th></tr>
-<tr><td>Cookie</td><td>约 4KB，随请求发送</td><td>登录态；设 HttpOnly 防 XSS 偷取、SameSite 防 CSRF</td></tr>
-<tr><td>localStorage</td><td>约 5MB，长期</td><td>低敏偏好设置；同步 API 会阻塞，别存 token 首选</td></tr>
+<div class="loop-note">关键认知：这不是一条直线。主文档在第 5 步解析时，会为每个子资源（CSS / JS / 图片 / 字体 / 接口）再递归走一遍「查缓存 → 复用连接 → 发请求 → 接收」——首屏慢，往往慢在子资源那几十次小循环里，不在主文档本身。</div>
+</div>
+
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 B · 建连到底花了什么：DNS + TCP + TLS，按 RTT 算账</p>
+<div class="flow">
+<div class="node plain"><b>DNS 查询链</b><small>浏览器 DNS 缓存 → 操作系统缓存 / hosts<br>→ 本地 DNS（运营商/路由器）→ 递归到根 / 顶级 / 权威<br>拿到 A / AAAA / CNAME（CDN 就藏在 CNAME 里）</small></div><div class="arrow">→</div>
+<div class="node blue"><b>TCP 三次握手 · 1 RTT</b><small>SYN → SYN+ACK → ACK<br>确认双方收发能力、同步序号<br>四次挥手是关闭，别混说</small></div><div class="arrow">→</div>
+<div class="node teal"><b>TLS 握手（HTTPS）</b><small>ClientHello（版本/套件/SNI/ALPN）<br>→ 服务器证书 + 协商密钥<br>→ 双方算出对称会话密钥</small></div><div class="arrow">→</div>
+<div class="node amber"><b>才能发第一个请求</b><small>HTTP 请求行 + 头<br>+ Cookie（自动带）<br>+ 缓存校验头（见图 C）</small></div>
+</div>
+<table>
+<tr><th style="width:20%">组合</th><th style="width:30%">首字节前要几个 RTT</th><th>资深补充 · 怎么省</th></tr>
+<tr><td>HTTP 明文</td><td>DNS（未命中时）+ TCP 1 RTT</td><td>现在基本只剩内网 / 跳转场景；HSTS 会把 http 直接在浏览器内升级成 https，不走网络 301</td></tr>
+<tr><td>HTTPS · TLS 1.2</td><td>TCP 1 + TLS 2 = <strong>3 RTT</strong> 才发请求</td><td>证书链校验、OCSP 查询还可能再加往返；会话复用（Session Ticket）可省到 TLS 1 RTT</td></tr>
+<tr><td>HTTPS · TLS 1.3</td><td>TCP 1 + TLS 1 = <strong>2 RTT</strong></td><td>合并了密钥协商步骤、默认前向保密；恢复会话可 0-RTT 提前发数据，但有重放风险，只适合幂等 GET</td></tr>
+<tr><td>HTTP/3 · QUIC</td><td>建连 <strong>1 RTT</strong>，恢复会话 0-RTT</td><td>基于 UDP，把传输 + 加密握手合成一步；且一条连接里某个流丢包不拖住其他流，解决 TCP 层队头阻塞</td></tr>
+<tr><td>复用已有连接</td><td><strong>0 RTT</strong></td><td>同源连接池里有空闲连接就直接用——这就是 <code>preconnect / dns-prefetch</code>、HTTP/2 多路复用、keep-alive 真正省钱的地方：省的不是带宽，是往返</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>ALPN：握手时顺便谈好「说哪种 HTTP」</h4><p>TLS 的 ClientHello 里带 ALPN，客户端列出 <code>h2 / http/1.1</code>，服务器挑一个回。谈成 HTTP/2 就一条 TCP 连接多路复用；谈不成降级 HTTP/1.1，同源默认最多约 6 条连接并行，子资源要排队——老页面「开多域名分片」就是在绕这个 6 条上限，HTTP/2 时代再分片反而多付 DNS + 握手钱。</p></div>
+<div class="box"><h4>慢在哪 · 怎么优化（建连段）</h4><ul><li>DNS 慢：<code>dns-prefetch</code> 提前解析、关键域 <code>preconnect</code> 把 DNS+TCP+TLS 提前做完</li><li>跨域资源多：每个新源都要重付一遍握手钱，合并域名 / 同源托管</li><li>弱网 RTT 大：握手往返比带宽更致命，优先上 TLS 1.3 / HTTP/3 与 CDN 就近接入</li></ul></div>
+</div>
+</div>
+
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 C · 缓存全景：到底有几层缓存、各在哪、按什么顺序查 ★ 本题核心</p>
+<div class="flow">
+<div class="node green"><b>① BFCache</b><small>内存 · 整页快照<br>前进/后退时查它<br>命中：连 JS 状态一起秒恢复，不发任何请求</small></div><div class="arrow">→</div>
+<div class="node teal"><b>② Service Worker</b><small>脚本拦截 fetch<br>Cache Storage（磁盘）由代码自己管<br>命中：根本不走网络层</small></div><div class="arrow">→</div>
+<div class="node blue"><b>③ Memory Cache</b><small>内存 · 当前会话<br>刚用过的图片/脚本/预加载资源<br>关页即清、速度最快</small></div><div class="arrow">→</div>
+<div class="node amber"><b>④ Disk / HTTP Cache</b><small>磁盘 · 跨会话<br>强缓存 → 协商缓存（图下）<br>浏览器按响应头自动管</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node plain"><b>⑤ DNS / 连接 / 会话缓存</b><small>DNS 结果、Socket 连接池<br>TLS Session Ticket、HSTS 列表<br>命中省的是「往返」，不是流量</small></div><div class="arrow">→</div>
+<div class="node rose"><b>⑥ CDN 边缘缓存</b><small>不在你电脑上，在边缘节点<br>按缓存键命中直接回<br>见图 D</small></div><div class="arrow">→</div>
+<div class="node plain"><b>⑦ 网关 / 源站缓存</b><small>反向代理缓存、应用层缓存<br>Redis / 本地缓存、DB 查询缓存<br>全未命中才真查库生成</small></div><div class="arrow">→</div>
+<div class="node green"><b>回程逐层回填</b><small>响应往回走时<br>按 Cache-Control 决定<br>每一层要不要存、存多久</small></div>
+</div>
+<p style="margin:14px 0 8px;font-weight:700;font-size:14px">HTTP 缓存内部：强缓存与协商缓存的决策（第 ④ 层展开，与第 18 节对照）</p>
+<div class="flow">
+<div class="node teal"><b>先看强缓存</b><small>Cache-Control: max-age 没过期<br>→ 直接用本地副本<br>状态显示 200 (from disk/memory cache)，不发请求</small></div><div class="arrow">→</div>
+<div class="node amber"><b>过期了看协商缓存</b><small>带 If-None-Match: ETag<br>/ If-Modified-Since 去问服务器<br>没变回 304，只回头不回 body</small></div><div class="arrow">→</div>
+<div class="node rose"><b>变了才真下载</b><small>回 200 + 完整 body<br>并用新响应头更新本地缓存<br>启发式缓存：没写头时按 Last-Modified 猜一个时长</small></div>
+</div>
+<table>
+<tr><th style="width:18%">缓存</th><th style="width:18%">位置</th><th style="width:30%">命中省掉什么</th><th>谁控制失效 · 坑</th></tr>
+<tr><td>BFCache</td><td>浏览器内存</td><td>整页重建：解析、布局、JS 执行全省</td><td>浏览器自动；页面用了 <code>unload</code> 监听、未关的连接等会被判不合格而不进缓存</td></tr>
+<tr><td>Service Worker Cache</td><td>磁盘（Cache Storage）</td><td>网络往返，可离线可用</td><td>前端代码全权控制；版本更新与清理要自己写，写错就长期喂旧资源</td></tr>
+<tr><td>Memory Cache</td><td>浏览器内存</td><td>读盘 + 解码的一部分开销</td><td>浏览器自动、生命周期跟标签页走；不要和 Disk Cache 混为一谈</td></tr>
+<tr><td>Disk / HTTP Cache</td><td>浏览器磁盘</td><td>强缓存省整个请求；协商省 body 传输</td><td>响应头控制；HTML 误设长强缓存是发版事故头号原因——HTML 用协商、带 hash 的静态资源才用长强缓存</td></tr>
+<tr><td>Preload / Prefetch</td><td>内存 / HTTP 缓存</td><td>资源的「发现延迟」</td><td><code>preload</code> 本页高优先级抢下，<code>prefetch</code> 空闲时为下一页囤；preload 了不用会双下载且浪费带宽</td></tr>
+<tr><td>DNS + 连接池 + TLS 会话</td><td>浏览器网络进程</td><td>DNS 查询与握手 RTT</td><td>TTL / keep-alive 超时控制；连接复用只对同源（同协议+域+端口）有效</td></tr>
+<tr><td>CDN / 代理缓存</td><td>边缘 / 网关机器</td><td>回源往返与源站压力</td><td>CDN 缓存键与刷新规则控制；带 Cookie / 登录态的响应误缓存会串用户数据，见图 D</td></tr>
+</table>
+<div class="loop-note">区分两个易混概念：HTTP 缓存存的是「响应副本」，Cookie / localStorage / IndexedDB 存的是「业务数据」——后者不会让请求自动不发，别在缓存题里把存储题混进来讲（存储对照表保留在文末）。</div>
+</div>
+
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 D · CDN 在链路里的位置：请求先撞边缘，不是直达源站</p>
+<div class="flow">
+<div class="node plain"><b>浏览器</b><small>DNS 解析 www 域名<br>CNAME 指向 CDN 调度</small></div><div class="arrow">→</div>
+<div class="node blue"><b>CDN 调度（GSLB）</b><small>按就近 + 健康 + 负载<br>把你导到最近的边缘节点 IP</small></div><div class="arrow">→</div>
+<div class="node teal"><b>边缘节点查缓存</b><small>缓存键 = URL + 协商维度<br>（编码/设备/语言等 Vary）<br>命中 → 就近直接回，源站无感</small></div><div class="arrow">→</div>
+<div class="node amber"><b>未命中才回源</b><small>先问上级/中心节点（回源收敛）<br>再回源站；回源走长连接与就近接入<br>响应回程逐级回填边缘缓存</small></div>
+</div>
+<div class="grid3" style="margin-top:12px">
+<div class="box"><h4>CDN 缓存的规则与刷新</h4><p>按路径/后缀配 TTL，源站 <code>Cache-Control</code> 也可主导。发版靠<strong>改 URL（内容 hash 文件名）</strong>天然换新，而不是等过期；必须原地更新时用 CDN 刷新/预热接口主动失效。边缘还可 <code>stale-while-revalidate</code>：先回旧的、后台异步换新。</p></div>
+<div class="box"><h4>动态请求怎么办</h4><p>API / 个性化 HTML 一般设 <code>private / no-store</code> 绕过共享缓存，只享受 CDN 的就近接入与回源加速。红线：<strong>带登录态的响应绝不能被共享缓存按同一键存住</strong>，否则 A 用户的页面会发给 B——缓存键必须隔离或干脆不缓存。</p></div>
+<div class="box"><h4>CDN 还顺手干的活</h4><ul><li>TLS 在边缘终止，握手就近完成、回源再单独建连</li><li>图片/视频转码、压缩（Brotli/gzip）在边缘做</li><li>WAF / 抗 DDoS / 限流在这一层挡掉恶意流量</li></ul></div>
+</div>
+</div>
+
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 E · 响应回来后：HTML 是流式解析的，不是下完才开始</p>
+<div class="flow">
+<div class="node plain"><b>字节流到达</b><small>按 charset 解码成字符<br>（没声明编码会猜测、可能乱码重解析）<br>边收边喂给解析器，不等收完</small></div><div class="arrow">→</div>
+<div class="node blue"><b>词法 → DOM 树</b><small>Token 化（标签/文本）→ 建节点<br>容错纠正未闭合标签<br>形成 DOM，脚本可同步查询修改</small></div><div class="arrow">→</div>
+<div class="node amber"><b>预加载扫描器抢跑</b><small>另一条轻量扫描线先扫全文<br>提前发现 link/script/img 的 URL<br>不等正式解析到那行就发起下载 ★</small></div><div class="arrow">→</div>
+<div class="node teal"><b>CSS 并行构建 CSSOM</b><small>CSS 字节 → CSSOM 树<br>规则、层叠、继承在这里定型<br>DOM + CSSOM 齐了才能往下渲染</small></div>
+</div>
+<div class="loop-note">为什么头图 / 首屏 CSS 要内联或 preload：预加载扫描器只能提前「下载」它扫到的 URL；靠 JS 执行后才拼出来的资源 URL，它扫不到——这正是 LCP 头图「发现延迟」爆掉的根因（呼应性能节）。SSR 把首图 URL 直接写进 HTML，就是让扫描器第一时间看见它。</div>
+<p style="margin:14px 0 8px;font-weight:700;font-size:14px">图 F · 解析时碰到每种资源，到底谁阻塞谁 ★ 高频追问</p>
+<table>
+<tr><th style="width:18%">碰到什么</th><th style="width:26%">阻塞 DOM 解析？</th><th style="width:26%">阻塞渲染（上屏）？</th><th>资深说法</th></tr>
+<tr><td><code>&lt;link&gt;</code> 样式表</td><td>不阻塞解析，DOM 继续建</td><td><strong>阻塞渲染</strong>；且阻塞它后面的 JS 执行</td><td>没有 CSSOM 就渲染会先闪无样式再重排，所以浏览器宁可白屏等它；JS 要读最终样式，须等前面 CSS 下完执行完——CSS 放 <code>head</code>、关键 CSS 内联就是这个道理</td></tr>
+<tr><td>普通 <code>&lt;script&gt;</code>（外链/内联）</td><td><strong>阻塞解析</strong>：停下建 DOM，先下载+执行</td><td>阻塞（解析都停了）</td><td>因为脚本可能 <code>document.write</code> 改掉后面的 HTML，浏览器不敢预读执行后面的内容；这是默认语义，不是浏览器笨</td></tr>
+<tr><td><code>async</code> 脚本</td><td>下载不阻塞；<strong>下完立刻执行，执行时阻塞解析</strong></td><td>执行期间阻塞</td><td>谁先下完谁先跑，<strong>顺序无保证</strong>、且可能在 DOM 没建完时执行——只适合无依赖的独立脚本（统计、广告）</td></tr>
+<tr><td><code>defer</code> 脚本</td><td>下载不阻塞，解析一路走完</td><td>不阻塞首次渲染的解析阶段</td><td>全部 DOM 解析完后、<code>DOMContentLoaded</code> 之前，<strong>按文档顺序</strong>依次执行——业务入口脚本的默认选择；<code>type="module"</code> 默认就是 defer，且自带依赖图预加载与严格模式</td></tr>
+<tr><td>动态 <code>import()</code></td><td>不阻塞</td><td>不阻塞</td><td>运行时按需拉 chunk，路由懒加载的原理；代价是点击时才付下载+解析钱，要配预取（空闲 preload 下一页 chunk）</td></tr>
+<tr><td>图片 / 视频</td><td>不阻塞解析</td><td>不阻塞渲染，但占位与解码影响 LCP / CLS</td><td>没写宽高时图片到了会撑开布局造成偏移（CLS）；解码在单独线程做，大图主线程解码仍会卡；非首屏用 <code>loading="lazy"</code>，首屏图反之要高优先级</td></tr>
+<tr><td>字体 @font-face</td><td>不阻塞解析</td><td>用到该字体的文字要等字体，或先用兜底字体画</td><td><code>font-display: swap</code> 先闪兜底字再换（FOUT），<code>block</code> 则短暂隐形（FOIT）；字体子集化 + preload 关键字体是常规优化</td></tr>
+<tr><td><code>&lt;iframe&gt;</code></td><td>不阻塞父页面解析</td><td>基本不阻塞父页面渲染</td><td>里面是一整套独立的「导航→解析→渲染」子流程，同源时父可访其 DOM、跨域被同源策略隔离——微前端用 iframe 隔离也是借这个边界</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>三个事件别说混（执行时序收尾）</h4><ul><li><strong>DOMContentLoaded：</strong>HTML 解析完 + defer 脚本执行完（不等图片/样式表外的子资源）——框架一般在这里启动/注水</li><li><strong>load：</strong>所有子资源（图、字体、iframe）都下完——转圈到此才停</li><li><strong>首次渲染在两者之前就可能发生：</strong>DOM+CSSOM 凑够首屏那部分，浏览器就会先画，不必等整页解析完</li></ul></div>
+<div class="box"><h4>JS 执行还要注意的两件事</h4><ul><li><strong>脚本解析/编译也花钱：</strong>下载完还要在主线程 parse + 编译，大 bundle 的解析耗时在低端机上能吃掉几百毫秒——代码分割省的不只是流量</li><li><strong>长任务阻塞一切：</strong>JS 在主线程跑，解析、渲染、交互共用它；单次执行超过约 50ms 就是长任务，期间点了也没反应（TTI / INP 差的根源）</li></ul></div>
+</div>
+</div>
+
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 G · 渲染流水线：从 DOM + CSSOM 到屏幕上的像素</p>
+<div class="flow">
+<div class="node teal"><b>Style 样式计算</b><small>DOM + CSSOM → Render Tree<br>算每个节点的最终样式<br>display:none 不进树，visibility 占位进树</small></div><div class="arrow">→</div>
+<div class="node rose"><b>Layout 布局（回流）</b><small>算每个盒子的大小与位置<br>几何变了就要重算，影响范围可大可小</small></div><div class="arrow">→</div>
+<div class="node blue"><b>Paint 绘制（重绘）</b><small>把文字/颜色/阴影画成绘制指令<br>按层叠顺序分图层记录，不直接上屏</small></div><div class="arrow">→</div>
+<div class="node amber"><b>Raster 光栅化</b><small>绘制指令 → 位图（像素）<br>多在 GPU / 光栅线程分块完成</small></div><div class="arrow">→</div>
+<div class="node green"><b>Composite 合成</b><small>合成线程把图层按位置/变换拼好上屏<br>不经主线程——滚动、transform 动画流畅的原因</small></div>
+</div>
+<div class="grid3" style="margin-top:12px">
+<div class="box"><h4>指标落在哪一步</h4><p><strong>FCP</strong> 首次画出内容、<strong>LCP</strong> 最大内容（常是头图/大标题）画完、<strong>CLS</strong> 是布局阶段的意外偏移累积、<strong>INP</strong> 是交互后主线程忙到迟迟不能画下一帧。被问指标别背定义，落到流水线这一步答。</p></div>
+<div class="box"><h4>改什么最贵 / 最便宜</h4><ul><li>改几何（宽高/位置）→ Layout 起全程重跑，最贵</li><li>改外观（颜色/背景）→ 跳过 Layout，从 Paint 起</li><li>改 <code>transform / opacity</code> → 只 Composite，最便宜；且能命中 GPU 合成层</li></ul></div>
+<div class="box"><h4>强制同步布局（经典坑）</h4><p>写完样式立刻读 <code>offsetHeight</code> 等几何值，浏览器被迫当场跑一遍 Layout 给你答案；循环里反复读写交替就是布局抖动。解法：读写分离、先批量读再批量写，或用 <code>requestAnimationFrame</code> 对齐帧节奏。</p></div>
+</div>
+<table><tr><th>存储（与缓存区分）</th><th>容量 / 生命周期</th><th>用在哪 · 坑</th></tr>
+<tr><td>Cookie</td><td>约 4KB，随每次请求自动发送</td><td>登录态；设 HttpOnly 防 XSS 偷取、SameSite 防 CSRF；它小且每次都带，大了拖慢每个请求</td></tr>
+<tr><td>localStorage</td><td>约 5MB，长期</td><td>低敏偏好设置；同步 API 会阻塞主线程，别存 token 首选、别存大对象</td></tr>
 <tr><td>sessionStorage</td><td>约 5MB，标签页关闭即清</td><td>一次性表单草稿、单次流程状态</td></tr>
-<tr><td>IndexedDB</td><td>大容量，异步，结构化</td><td>离线数据、大量缓存；API 繁琐，一般用库封装</td></tr></table>
+<tr><td>IndexedDB</td><td>大容量，异步，结构化</td><td>离线数据、大量结构化缓存；API 繁琐，一般用库封装；Service Worker 管资源、它管数据，常配合使用</td></tr></table>
 </div>
-<div class="say"><b>一分钟讲法：</b><p>「顺序是 DNS、建连、请求、解析、渲染五段。优化对应着看：DNS/建连慢看 CDN 和预连接，请求慢看缓存和资源体积，解析慢看 JS 阻塞，渲染慢看回流。我一般会主动补一句：<strong>这条链路和 LCP 四段是同一件事的两面</strong>，前者讲浏览器，后者讲指标。」</p></div>
+
+<div class="say"><b>两分钟讲法（资深版骨架，照这个顺序开口）：</b><p>「我分四段讲。<strong>第一段找地址与建连：</strong>先看 BFCache 和 Service Worker 有没有直接接管，没有就 DNS 分层查缓存、拿到 IP，再从连接池找可复用连接，找不到才付 TCP 1 个 RTT 加 TLS 1.3 的 1 个 RTT，ALPN 顺便谈好 HTTP/2 还是 /3。<strong>第二段缓存与 CDN：</strong>请求先查浏览器 Memory/Disk 的 HTTP 缓存，强缓存命中就不出门；出门先撞 CDN 边缘，命中就近回、未命中才收敛回源，源站前面还有网关和应用缓存，全空才真生成。<strong>第三段解析：</strong>HTML 是边下边解析成 DOM，预加载扫描器会抢跑子资源；CSS 不阻塞解析但阻塞渲染和后续 JS，普通脚本阻塞解析、async 乱序、defer 解析后按序执行，这是放脚本位置的依据。<strong>第四段渲染：</strong>DOM 加 CSSOM 算样式、布局、绘制、光栅化、合成上屏，FCP/LCP 出在这一段；最后 JS 执行完、注水绑事件才算可交互。优化就是对着这四段逐段砍：砍往返、砍阻塞、砍主线程。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「缓存这么多层，面试官最爱挖三个坑——<strong>① 强缓存和协商缓存谁先谁后</strong>：先强后协商，304 不是错误码是省流量；<strong>② 为什么发版后用户还是旧页面</strong>：多半是 HTML 被强缓存或 SW 没更新，所以 HTML 只用协商缓存、静态资源靠 hash 换名；<strong>③ CSS 为什么放头部、JS 为什么放尾部</strong>：别背口诀，按图 F 答——CSS 阻塞渲染要尽早下，普通 JS 阻塞解析要往后放，现代写法是 head 里 defer / module，尾部放脚本已是旧习惯。还有一句别说错：三次握手是<strong>建立</strong>连接，四次挥手才是断开。」</div>
 </section>
 
 <!-- HTTP -->
