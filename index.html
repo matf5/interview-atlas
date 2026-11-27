@@ -21,7 +21,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6}
 a{color:var(--teal)}
-.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px}
+.wrap{max-width:1320px;margin:0 auto;padding:20px 16px 64px}
 .hero{padding:28px 0 8px}
 .hero h1{font-size:32px;line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
 .hero p{color:var(--muted);margin:0;max-width:640px;font-size:16px}
@@ -86,30 +86,368 @@ details p,details li{font-size:14px;color:var(--muted)}
 .stepout{margin-top:10px;font-size:14px;min-height:44px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
 .codeblock{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;overflow-x:auto;font-size:13px;line-height:1.55}
 .codeblock code{background:none;border:none;padding:0;font-size:13px;white-space:pre}
+[hidden]{display:none!important}
+.appnav{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:8px}
+.appnav a{display:block;text-align:left;text-decoration:none;color:var(--muted);font-weight:700;font-size:14.5px;padding:10px 12px;border-radius:10px;border:1px solid transparent}
+.appnav a small{display:block;font-weight:400;font-size:11px;line-height:1.25;margin-top:2px}
+.appnav a:hover{background:var(--teal-bg)}
+.appnav a.active{background:var(--teal);color:#fff}
+.appnav a.active small{color:rgba(255,255,255,.85)}
+.page-hero{padding:22px 0 4px}
+.page-hero h1{font-size:30px;line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
+.page-hero p{color:var(--muted);margin:0;max-width:700px;font-size:15.5px}
+.page-switch{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 4px}
+@media(max-width:640px){.page-switch{grid-template-columns:1fr}.page-hero h1{font-size:26px}.appnav a{font-size:13px;padding:9px 8px}}
+.page-switch a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.page-switch a b{font-size:16px}
+.page-switch a p{margin:6px 0 0;color:var(--muted);font-size:13.5px}
+.page-switch a span{color:var(--teal);font-weight:700;font-size:13px}
+.layout{display:grid;grid-template-columns:264px minmax(0,1fr);gap:22px;align-items:start}
+.sidebar{position:sticky;top:16px;display:flex;flex-direction:column;gap:12px;max-height:calc(100vh - 32px);overflow-y:auto;padding-bottom:4px;scrollbar-width:thin}
+.main{min-width:0}
+.main .hero{padding-top:10px}
+.main .page-hero{padding-top:10px}
+section.card{scroll-margin-top:16px}
+.sidebar nav.toc{margin:0;padding:12px 14px}
+.sidebar .toc-group{flex-direction:column;gap:4px;padding:8px 0}
+.sidebar .toc-label{flex:none;padding-top:0}
+@media(max-width:960px){
+.layout{grid-template-columns:1fr;gap:0}
+.sidebar{position:static;max-height:none;overflow:visible}
+.appnav{flex-direction:row;flex-wrap:wrap;border-radius:999px;padding:6px}
+.appnav a{flex:1 1 auto;text-align:center;border-radius:999px;white-space:nowrap}
+.sidebar nav.toc{margin:0 0 4px}
+.sidebar .toc-group{flex-direction:row;gap:10px;padding:6px 0}
+.sidebar .toc-label{flex:0 0 92px;padding-top:7px}
+}
+@media(max-width:640px){
+.sidebar .toc-group{flex-direction:column;gap:4px;padding:8px 0}
+.sidebar .toc-label{flex:none;padding-top:0}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="hero">
-<h1>看图记原理，<br>开口不卡壳。</h1>
-<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。本次再补齐四组：Vue2/3 全对比（生命周期对照、原理三层、API 破坏性变更、2.6→2.7 分批迁移）、React 高频追问（Fiber、Diff、Hooks 原理与并发）、状态管理六库（Redux / Zustand / MobX / Atom / Vuex / Pinia 按三派对照）、Node 事件循环（六阶段逐个讲、libuv 的角色与线程池分工，和浏览器那节对照背）；工程化深挖 Webpack/Vite、npm 包 exports 导出与双格式雷、pnpm 的 store 模型与 Nx / Turborepo 编排缓存。本次再补两节服务端渲染深挖：Node + Express 手写 SSR（以设计文档原件为准拆 render.tsx 那条链——Express 起服务、AsyncLocalStorage 逐请求隔离三 key、renderToPipeableStream 在 onAllReady 时 pipe 到 PassThrough 拼串、脱水只放行 shopInfo、失败回 500 空资源保协议形状，并对照一个本地跑通过的最小骨架讲 onShellReady 直出与 CSR 壳降级）；Next / Nuxt / 手写 Node 三方对照（框架定位、渲染模式、数据获取、缓存、部署、适用场景一张表收尾，Next 标理解/演示层、Nuxt 标没在生产用过）。本次再加一节低代码全景（紧跟 Figma 转 DSL，同在 DSL 与架构组）：五层分层（协议/物料/编辑器/渲染/平台）、业界实现对照（LowCodeEngine、amis、宜搭/微搭、Mendix/OutSystems、Retool）、出码原理三步（解析→转换→生成）、运行时与出码取舍表，并落回 Shop Deco 的运行时路线定位（模板高频变、免发版、三端同构，所以不出码）。本次再补微前端这一簇：Company SSR 那节按设计文档原件把 render.tsx 那条链拆到函数级（Host 向 Slot 要内容、getSlotSsrResult 汇总、buildChunkManifest 拼资源清单、只脱水 shopInfo、onAllReady + PassThrough 拼串、Host 拼一个原子 JSON、逐请求新建 store / StaticRouter / HelmetProvider 做隔离、注水三同）；紧跟着新增微前端原理一节——为什么要微前端（独立部署、团队自治、技术异构）、五种实现路线对照（路由分发、iframe、Web Components、Module Federation、single-spa/qiankun）、JS 沙箱与 CSS 隔离、应用间通信、共享依赖与版本管理、Manifest 注册表做部署与灰度、四个常见坑，并讲清自家 Host 壳 + Slot + Render Server + Manifest 注册表 + Module Federation 共享依赖为什么不是 iframe、不是多页，以及 Hybrid 与纯 SSR 在这套架构下的区别。本次再加一节表格性能优化（紧跟虚拟列表，Element UI 专题）：经典 el-table 用原生 table + header/body 两分区实现固定表头、固定列要渲染 6 个 table、一份数据三份 DOM 是卡顿根源，附 Gutter 错位、三区滚动同步、行高错位三个坑；优化走 sticky 单份 DOM 或 Element Plus 的 el-table-v2 虚拟化网格，并落到 500 行分页、2000 行虚拟滚动的经验分层（社区经验值、明标口径）。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
-<p style="color:var(--muted);margin:12px 0 0;font-size:14px">本次新增 46–51 节（224–227 四份材料）：46 节 H5 采集与 P75 聚合、47 节 RN 测量、48 节 SSR 决策与鉴权限流、49 节简历 LCP 数字防守、50 节某互联网公司 52 分钟复盘、51 节某工业软件公司工艺编辑器与 Coding 实操；另在性能、Figma 转 DSL、DSL、Agent 四节补了对应细节。</p>
-<div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
-</header>
-
-<nav class="toc" aria-label="目录">
-<div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#vue-compare">Vue2/3 全对比 ★</a><a href="#react">React ★</a><a href="#react-faq">React 高频追问 ★</a><a href="#state">状态管理六库 ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#ssr-frameworks">SSR 三方对照 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#node-ssr">Node 手写 SSR ★</a><a href="#micro-fe">微前端原理 ★</a><a href="#vlist">虚拟列表</a><a href="#eltable">Element UI 表格性能 ★</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a></div></div>
+<div class="layout">
+<aside class="sidebar" aria-label="侧边导航">
+<nav class="appnav" aria-label="页面切换">
+<a href="#/frontend" data-nav="frontend" class="active">前端图册<small>框架 · 性能 · DSL · 浏览器</small></a>
+<a href="#/fullstack" data-nav="fullstack">全栈面试<small>Node · 接口 · 数据库 · 部署</small></a>
+<a href="#/agent" data-nav="agent">Agent 面试<small>RAG · 工具 · 记忆 · 评测</small></a>
+</nav>
+<nav class="toc" data-toc="fullstack" aria-label="全栈目录" hidden>
+<div class="toc-group"><span class="toc-label">全栈主线</span><div class="toc-links"><a href="#fs-map">能力地图 ★</a><a href="#backend">后端全链路 ★</a><a href="#fs-node">Node 服务实战 ★</a><a href="#node-loop">Node 事件循环 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">Node 深挖</span><div class="toc-links"><a href="#node-core">模块·Buffer·Stream ★</a><a href="#node-scale">洋葱·进程·Redis ★</a><a href="#node-prod">限流·优雅关闭·观测 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">契约与数据</span><div class="toc-links"><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a><a href="#security">安全·登录鉴权</a></div></div>
+<div class="toc-group"><span class="toc-label">渲染与框架</span><div class="toc-links"><a href="#node-ssr">Node 手写 SSR ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#ssr-frameworks">SSR 三方对照 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">设计与上线</span><div class="toc-links"><a href="#fs-design">全栈系统设计 ★</a><a href="#fs-deploy">部署与可观测 ★</a><a href="#ssr-decide">SSR 决策 ★</a></div></div>
+</nav>
+<nav class="toc" data-toc="agent" aria-label="Agent 目录" hidden>
+<div class="toc-group"><span class="toc-label">Agent 主线</span><div class="toc-links"><a href="#ag-map">面试地图 ★</a><a href="#agent">AI Agent 循环</a><a href="#ag-design">Agent 系统设计 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">知识与工具</span><div class="toc-links"><a href="#rag">AI 专题 · RAG ★</a><a href="#ag-tools">工具调用 · MCP ★</a><a href="#agent-memory">Agent 记忆 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">你的项目线</span><div class="toc-links"><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">生产化</span><div class="toc-links"><a href="#ag-prod">评测 · 成本 · 安全 ★</a></div></div>
+</nav>
+<nav class="toc" data-toc="frontend" aria-label="目录">
+<div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#vue-compare">Vue2/3 全对比 ★</a><a href="#vue-faq">Vue 高频题 ★</a><a href="#vue-upgrade">Vue2 升 Vue3 清单 ★</a><a href="#react">React ★</a><a href="#react-faq">React 高频追问 ★</a><a href="#state">状态管理六库 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#micro-fe">微前端原理 ★</a><a href="#vlist">虚拟列表</a><a href="#eltable">Element UI 表格性能 ★</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a><a href="#perf-scenarios">性能场景题 ★</a><a href="#perf-debug">性能排查与优化 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">DSL 与架构</span><div class="toc-links"><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#expr-engine">表达式引擎 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a><a href="#lowcode">低代码全景 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">AI 应用</span><div class="toc-links"><a href="#agent">AI Agent</a><a href="#aidod">AIDOD 定位链路 ★</a><a href="#sse">SSE 流式 ★</a><a href="#rag">AI 专题 · RAG ★</a><a href="#agent-memory">Agent 记忆 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#node-loop">Node 事件循环 ★</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a></div></div>
+<div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a></div></div>
 <div class="toc-group"><span class="toc-label">构建与 Monorepo</span><div class="toc-links"><a href="#build">构建·TS</a><a href="#tooling">Webpack/Vite·npm 导出 ★</a><a href="#monorepo">pnpm·Nx/Turborepo ★</a></div></div>
-<div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">输入URL全链路 ★</a><a href="#http">HTTP·缓存·跨域</a><a href="#security">安全·登录鉴权</a></div></div>
-<div class="toc-group"><span class="toc-label">后端全链路</span><div class="toc-links"><a href="#backend">后端全链路 ★</a><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a></div></div>
+<div class="toc-group"><span class="toc-label">浏览器与网络</span><div class="toc-links"><a href="#browser">输入URL全链路 ★</a><a href="#http">HTTP·缓存·跨域</a></div></div>
 <div class="toc-group"><span class="toc-label">跨端与国际化</span><div class="toc-links"><a href="#i18n">国际化/本地化 ★</a><a href="#rn">跨端总论 · RN ★</a><a href="#engines">渲染/JS引擎 · CPU/GPU ★</a></div></div>
 <div class="toc-group"><span class="toc-label">性能深挖</span><div class="toc-links"><a href="#perf-measure">H5 采集与 P75 ★</a><a href="#rn-perf">RN 测量 ★</a><a href="#resume-defense">简历防守 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">决策与面经</span><div class="toc-links"><a href="#ssr-decide">SSR 决策 ★</a><a href="#company-mall">某互联网公司复盘 ★</a><a href="#quantisan">某工业软件公司 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">决策与面经</span><div class="toc-links"><a href="#company-mall">某互联网公司复盘 ★</a><a href="#quantisan">某工业软件公司 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">另两页</span><div class="toc-links"><a href="#/fullstack">全栈专页 → 后端 / 接口 / 数据库 / Node SSR</a><a href="#/agent">Agent 专页 → RAG / 工具 / 记忆 / AIDOD</a></div></div>
 </nav>
+</aside>
+<main class="main">
+
+
+<header class="hero" data-hero="frontend">
+<h1>看图记原理，<br>开口不卡壳。</h1>
+<p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。本次再补齐四组：Vue2/3 全对比（生命周期对照、原理三层、API 破坏性变更、2.6→2.7 分批迁移）、React 高频追问（Fiber、Diff、Hooks 原理与并发）、状态管理六库（Redux / Zustand / MobX / Atom / Vuex / Pinia 按三派对照）、Node 事件循环（六阶段逐个讲、libuv 的角色与线程池分工，和浏览器那节对照背）；工程化深挖 Webpack/Vite、npm 包 exports 导出与双格式雷、pnpm 的 store 模型与 Nx / Turborepo 编排缓存。本次再补两节服务端渲染深挖：Node + Express 手写 SSR（以设计文档原件为准拆 render.tsx 那条链——Express 起服务、AsyncLocalStorage 逐请求隔离三 key、renderToPipeableStream 在 onAllReady 时 pipe 到 PassThrough 拼串、脱水只放行 shopInfo、失败回 500 空资源保协议形状，并对照一个本地跑通过的最小骨架讲 onShellReady 直出与 CSR 壳降级）；Next / Nuxt / 手写 Node 三方对照（框架定位、渲染模式、数据获取、缓存、部署、适用场景一张表收尾，Next 标理解/演示层、Nuxt 标没在生产用过）。本次再加一节低代码全景（紧跟 Figma 转 DSL，同在 DSL 与架构组）：五层分层（协议/物料/编辑器/渲染/平台）、业界实现对照（LowCodeEngine、amis、宜搭/微搭、Mendix/OutSystems、Retool）、出码原理三步（解析→转换→生成）、运行时与出码取舍表，并落回 Shop Deco 的运行时路线定位（模板高频变、免发版、三端同构，所以不出码）。本次再补微前端这一簇：Company SSR 那节按设计文档原件把 render.tsx 那条链拆到函数级（Host 向 Slot 要内容、getSlotSsrResult 汇总、buildChunkManifest 拼资源清单、只脱水 shopInfo、onAllReady + PassThrough 拼串、Host 拼一个原子 JSON、逐请求新建 store / StaticRouter / HelmetProvider 做隔离、注水三同）；紧跟着新增微前端原理一节——为什么要微前端（独立部署、团队自治、技术异构）、五种实现路线对照（路由分发、iframe、Web Components、Module Federation、single-spa/qiankun）、JS 沙箱与 CSS 隔离、应用间通信、共享依赖与版本管理、Manifest 注册表做部署与灰度、四个常见坑，并讲清自家 Host 壳 + Slot + Render Server + Manifest 注册表 + Module Federation 共享依赖为什么不是 iframe、不是多页，以及 Hybrid 与纯 SSR 在这套架构下的区别。本次再加一节表格性能优化（紧跟虚拟列表，Element UI 专题）：经典 el-table 用原生 table + header/body 两分区实现固定表头、固定列要渲染 6 个 table、一份数据三份 DOM 是卡顿根源，附 Gutter 错位、三区滚动同步、行高错位三个坑；优化走 sticky 单份 DOM 或 Element Plus 的 el-table-v2 虚拟化网格，并落到 500 行分页、2000 行虚拟滚动的经验分层（社区经验值、明标口径）。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
+<p style="color:var(--muted);margin:12px 0 0;font-size:14px">本次新增 46–51 节（224–227 四份材料）：46 节 H5 采集与 P75 聚合、47 节 RN 测量、48 节 SSR 决策与鉴权限流、49 节简历 LCP 数字防守、50 节某互联网公司 52 分钟复盘、51 节某工业软件公司工艺编辑器与 Coding 实操；另在性能、Figma 转 DSL、DSL、Agent 四节补了对应细节。本轮再补四节：Vue 高频题十二道（02C）、Vue2 升 Vue3 盘点清单与渐进路线（02D）、性能场景题十景（06B，先定位再优化）、性能排查与优化（06C，排查流程、工具箱、LCP/INP/CLS 三大指标的归因打法）。</p>
+<div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
+<div class="page-switch">
+<a href="#/fullstack"><b>→ 全栈面试专页</b><p>后端全链路、接口与幂等、数据库、缓存与队列、Node 手写 SSR、Next / Nuxt、鉴权与部署可观测——单独成页，按「链路 → 契约 → 数据 → 部署」复习。</p><span>进入全栈页 →</span></a>
+<a href="#/agent"><b>→ Agent 面试专页</b><p>Agent 循环、AIDOD、SSE 续跑、RAG、上下文与记忆、工具与 MCP、评测与生产化——单独成页，按「模型边界 → 检索 → 工具 → 记忆 → 评测」复习。</p><span>进入 Agent 页 →</span></a>
+</div>
+</header>
+
+<header class="page-hero" data-hero="fullstack" hidden>
+<h1>全栈面试：<br>不止会调接口，要能讲清一整条链。</h1>
+<p>这一页单独练全栈。面试官不会因为你会写页面就默认你懂服务端——他会顺着一个请求往下挖：网关怎么鉴权、服务怎么校验、数据怎么存、缓存怎么失效、慢了怎么定位、上线怎么灰度回滚。你的定位要诚实而清楚：<strong>前端是主业，后端到能设计契约、能参与表设计与联调排障、能用 Node 独立跑通一条链的程度</strong>；Java / Spring 的深水区只到理解层，不冒充落地。复习顺序就一条线：能力地图 → 请求全链路 → Node 服务 → 接口 → 数据库 → 缓存队列 → SSR 框架 → 鉴权部署 → 系统设计。本次再加 Node 深挖三节：模块 · Buffer · Stream 与错误处理、洋葱模型 · 多进程 · Redis 三灾、生产化（校验 / 限流熔断 / 优雅关闭 / 日志监控）加 SSR 实证收口——全部按理解 / 演示层讲，Company SSR 只说参与。</p>
+<div class="howto"><span>🧭 先链路，后细节</span><span>📐 契约先行：接口 / 错误码 / 幂等</span><span>🗄️ 数据：表设计 + 索引 + 事务</span><span>🚀 部署：灰度 · 回滚 · 可观测</span></div>
+</header>
+
+<header class="page-hero" data-hero="agent" hidden>
+<h1>Agent 面试：<br>模型只负责想，工程负责让它别胡来。</h1>
+<p>这一页单独练 Agent / AI 应用。面试官真正考的不是你会不会调大模型 API，而是判断力：什么该让模型做、什么必须查真实系统、什么必须人确认、答错了怎么排查、成本和延迟怎么控。守住两条已确认口径：<strong>MCP Server 你没落地写过，只讲设计；AIDOD 的知识库是指纹精确匹配，不是向量 RAG，也不报无证据的提效数字。</strong>复习顺序：面试地图 → Agent 循环 → 系统设计框架 → RAG → 工具与 MCP → 记忆 → SSE → AIDOD → 评测生产化。</p>
+<div class="howto"><span>🤖 先说模型边界，再谈方案</span><span>🔍 RAG：先检索，再生成</span><span>🛠️ 工具：模型决策，系统干活</span><span>✅ 写操作：人确认 · 可回滚 · 可审计</span></div>
+</header>
+
+
+
+
+
+
+
+<!-- FULLSTACK NEW -->
+<section class="card" id="fs-map" data-page="fullstack" hidden>
+<div class="kicker">全栈 · 00 · 先看地图再背细节 ★</div><h2>全栈能力地图：面试官到底在分哪几层考你</h2>
+<p class="sub">前端转全栈，最怕每层都懂一点、每层都讲不深。正确打法是先亮地图：你强在哪层、理解到哪层、哪层是协作层——分层说清，比假装全会更得分。</p>
+<div class="diagram">
+<div class="flow">
+<div class="node teal"><b>L1 浏览器 / 前端</b><small>你的主业<br>渲染、状态、性能、契约消费方</small></div><div class="arrow">→</div>
+<div class="node blue"><b>L2 接口契约</b><small>必须能主导<br>REST、错误码、分页、幂等、版本</small></div><div class="arrow">→</div>
+<div class="node amber"><b>L3 服务层 Node</b><small>能独立跑通<br>路由、校验、鉴权、日志、异常</small></div><div class="arrow">→</div>
+<div class="node green"><b>L4 数据层</b><small>能参与设计<br>表设计、索引、事务、缓存、队列</small></div><div class="arrow">→</div>
+<div class="node plain"><b>L5 部署与观测</b><small>理解 + 协作<br>CI/CD、灰度、监控、链路追踪</small></div>
+</div>
+<table>
+<tr><th style="width:18%">被问法</th><th style="width:38%">表面在问</th><th>实际在考 · 你该落到哪</th></tr>
+<tr><td>「接口慢怎么办？」</td><td>优化手段</td><td>分段定位能力：先拆 TTFB / 网关 / 服务 / SQL，不要一上来就说加缓存。落到 <a href="#backend">后端全链路</a> 的分段法</td></tr>
+<tr><td>「让你设计这个系统」</td><td>画架构图</td><td>澄清规模、读写比、一致性要求，再谈接口、表、缓存、异步。落到 <a href="#fs-design">系统设计框架</a></td></tr>
+<tr><td>「你写过后端吗？」</td><td>经历真伪</td><td>诚实分层：Node 练手 / SSR 参与是真的，Java 生产服务没独立落地过——然后立刻用一条完整链路证明理解深度</td></tr>
+<tr><td>「上线出问题怎么办？」</td><td>故障处理</td><td>止血优先：回滚 / 降级 / 限流，再定位、再复盘。落到 <a href="#fs-deploy">部署与可观测</a></td></tr>
+</table>
+</div>
+<div class="say"><b>开场定位（背这一段）：</b><p>「我的全栈定位是前端主导型：L1、L2 我能主导，L3 我能用 Node 独立跑通一条带鉴权、校验、落库、缓存的链，L4 我能参与表设计和慢查询联调，L5 我懂灰度回滚和观测、和运维后端协作。下面任何一层你往下挖，我会标明这是我做过的、参与过的，还是理解层的。」</p></div>
+<div class="trap"><strong>红线：</strong>不要说「前后端我都精通」。面试官最爱顺着「精通」往 Spring、JVM、分布式事务深挖。先自己把边界划好，他反而会沿着你划的线问，节奏在你手里。</div>
+</section>
+
+<section class="card" id="fs-node" data-page="fullstack" hidden>
+<div class="kicker">全栈 · Node 服务实战 ★</div><h2>Node 服务一条链：一个请求在你的服务里怎么被处理干净</h2>
+<p class="sub">手写 SSR 那节讲的是渲染链，这一节讲通用 API 服务链。能把中间件顺序、校验、异常、日志四件事讲顺，Node 服务题就及格了；能再讲清逐请求隔离和超时，就到资深线。</p>
+<div class="diagram">
+<div class="flow">
+<div class="node plain"><b>1 路由 + 中间件链</b><small>请求 id → 日志 → 鉴权 → 限流<br>顺序错了，日志和鉴权都会漏</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 参数校验</b><small>类型 / 必填 / 范围在入口拦<br>不要让脏数据进业务层再炸</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 业务层</b><small>只管业务规则<br>不直接碰 req / res，可单测</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 数据层</b><small>缓存 → DB → 队列<br>超时、重试、幂等都在这一层收口</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node rose"><b>5 统一异常处理</b><small>业务错误回业务码<br>未知错误回 500 + requestId，不漏堆栈</small></div><div class="arrow">→</div>
+<div class="node green"><b>6 响应 + 日志落点</b><small>统一结构 { code, data, requestId }<br>慢请求、错误请求单独打标</small></div><div class="arrow">→</div>
+<div class="node plain"><b>逐请求隔离</b><small>用户 / 语言 / 灰度放 ALS 或请求对象<br>绝不放模块全局变量（见 Node SSR 那节）</small></div><div class="arrow">→</div>
+<div class="node blue"><b>超时与取消</b><small>下游慢要有超时<br>客户端断开要能取消无用查询</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>Node 为什么容易翻车？</h4><ul><li>单线程：一个同步重计算堵住所有请求——CPU 活拆出去或丢队列</li><li>异步错误没 catch 会变未处理拒绝，进程可能直接退出</li><li>连接池不设上限，流量一冲先把数据库打满</li></ul></div>
+<div class="box"><h4>和前端的同构收益（你的真经验）</h4><p>同一套 TypeScript 类型可以贯穿接口契约、DSL 校验和 SSR 取数——Shop Deco 的 DSL 校验、店铺页 SSR 取数都是这个思路。讲 Node 时落回这里，比背 Express API 更像你的经历。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我写 Node 服务按一条链组织：中间件先做请求 id、日志、鉴权、限流，入口做参数校验，业务层不碰 req/res 保持可测，数据层收口缓存、落库、超时和幂等，最后统一异常和响应结构。两个资深点单独强调：请求级状态用 ALS 隔离不用全局变量，下游调用必须有超时——这两点我在 SSR 那条链里都真见过对应的坑。」</p></div>
+</section>
+
+<section class="card" id="fs-design" data-page="fullstack" hidden>
+<div class="kicker">全栈 · 系统设计 ★</div><h2>全栈系统设计答题框架：任何题都按这六步走，不慌</h2>
+<p class="sub">题目可能是店铺发布、工单系统、短链、秒杀、Feed 流——题面不同，骨架相同。面试官看的是你有没有先澄清、再分层、再谈取舍，而不是一上来就画一堆框。</p>
+<div class="diagram">
+<div class="flow">
+<div class="node plain"><b>1 先澄清</b><small>谁用？多大流量？读写比？<br>要强一致还是最终一致？</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 定接口</b><small>核心资源、接口列表<br>分页、错误码、幂等键先定</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 定数据</b><small>瘦主表 + 分表<br>索引跟着查询走，不先堆字段</small></div><div class="arrow">→</div>
+<div class="node amber"><b>4 加缓存与异步</b><small>热点才缓存、耗时才入队<br>每个加速手段都要说代价</small></div>
+</div>
+<div class="flow" style="margin-top:10px">
+<div class="node green"><b>5 谈扩展</b><small>哪层先扛不住？<br>分片 / 读写分离 / 限流降级按序上</small></div><div class="arrow">→</div>
+<div class="node rose"><b>6 谈失败</b><small>缓存挂、DB 慢、队列积压怎么办<br>先止血方案，再根因方案</small></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>用你最熟的例子练：店铺装修发布系统</h4><p><strong>澄清：</strong>卖家低频写、买家高频读，发布要立刻生效但可容忍秒级传播。<strong>接口：</strong>保存草稿 / 发布 / 按版本拉取 DSL，发布带版本号做乐观锁。<strong>数据：</strong>模板主表只放流转字段，DSL 大文本存文件 / 大字段、DB 只存版本与 key。<strong>缓存：</strong>买家侧按店铺 + 语言 + 设备 + 版本分键缓存渲染结果，发布时主动失效。<strong>异步：</strong>发布后预渲染、通知走队列。<strong>失败：</strong>新版本渲染失败回退上一版本，绝不出白页——这套你本来就能讲，换个题面也能迁移。</p></div>
+</div>
+<div class="say"><b>收尾句：</b><p>「我做系统设计会先把一致性和流量假设说在前面，因为后面的缓存、分片、异步全是被这两个假设推出来的；假设变了，方案就该变——我不会给一个放之四海的架构。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「流量涨 100 倍先改哪？」→ 先看瓶颈在哪层再动手，通常顺序是缓存命中 → 读扩展 → 写拆分，不要一开口就上微服务拆分。</div>
+</section>
+
+<section class="card" id="fs-deploy" data-page="fullstack" hidden>
+<div class="kicker">全栈 · 部署与可观测 ★</div><h2>部署与可观测：上线不是结束，是另一条链的开始</h2>
+<div class="diagram">
+<div class="grid3">
+<div class="box"><h4>发布链</h4><ul><li>CI：装依赖 → 类型检查 → 单测 → 构建，门禁不过不发</li><li>环境分层：配置走环境变量，不写死在代码里，更不进仓库</li><li>灰度：按比例 / 白名单放量，盯错误率和核心指标再全量</li><li>回滚：版本和产物可追溯，出事先回滚上一版再查因</li></ul></div>
+<div class="box"><h4>可观测三件套</h4><ul><li><strong>日志：</strong>带 requestId，能按一次请求串起全链路</li><li><strong>指标：</strong>QPS、错误率、P95/P99 延迟、缓存命中率</li><li><strong>链路追踪：</strong>一次请求在网关、服务、DB 各花多久——慢在哪一跳一眼可见</li></ul><p>前端对应物就是你熟的性能采集与 P75 聚合，同一套思想换了个端。</p></div>
+<div class="box"><h4>鉴权落点（和前端对齐）</h4><ul><li>网关验登录态，服务内再验权限——两层别混成一层</li><li>401 刷新、403 无权限、429 限流，前端按码分支（详见 <a href="#security">安全那节</a>）</li><li>敏感操作留审计：谁、什么时候、对什么、做了什么</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「上线这块我讲三件事：发布有门禁和灰度、回滚比定位优先、出问题靠 requestId 和链路追踪分段定位。我在前端做过分批迁移加白名单加测试门禁那套质量打法，全栈的灰度发布是同一个思想搬到服务端。」</p></div>
+</section>
+
+<!-- NODE CORE -->
+<section class="card" id="node-core" data-page="fullstack" hidden>
+<div class="kicker">全栈 · Node 核心 ★</div><h2>Node 核心三件套：模块怎么加载、二进制怎么流、错误怎么收</h2>
+<p class="sub">事件循环与 libuv 在 <a href="#node-loop">Node 事件循环</a>那节已细讲，这一节补面试官接着往下挖的三块：CommonJS 与 ESM、Buffer 与 Stream、错误处理。口径先定：<strong>Node 后端整体是理解 / 演示层</strong>——能独立跑通、能讲清机制，不冒充生产后端经验。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · CommonJS vs ESM：一张表分清五件事</p>
+<table>
+<tr><th style="width:16%"></th><th style="width:40%">CommonJS（require / module.exports）</th><th>ESM（import / export）</th></tr>
+<tr><td>加载时机</td><td><strong>运行时同步</strong>加载，执行到 require 才读文件、执行、缓存</td><td><strong>静态</strong>结构：解析期就建好依赖图，可异步加载</td></tr>
+<tr><td>导出的是什么</td><td>module.exports 的<strong>值拷贝式引用</strong>：解构拿到的是当时属性的快照，模块内再改 exports 属性解构方不跟随（对象属性变更可见）</td><td><strong>活绑定（live binding）</strong>：导入方看到的是同一绑定的实时值</td></tr>
+<tr><td>Tree Shaking</td><td>动态、运行时决定，构建器难静态分析，基本摇不掉</td><td>静态结构可分析，是 Tree Shaking 的前提（这也是构建题的落点，见工程化那节）</td></tr>
+<tr><td>顶层能力</td><td>有 __dirname / __filename；可条件 require</td><td>有顶层 await；路径要写全扩展名；__dirname 需用 import.meta.url 换算</td></tr>
+<tr><td>互操作坑</td><td colspan="2">ESM 可 import CJS（默认导出 = module.exports）；CJS 不能直接 require ESM（新版 Node 有限支持也别当常规方案）；包的双格式发布与 exports 字段坑见 <a href="#tooling">Webpack/Vite · npm 导出</a>那节</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · Buffer 与 Stream：大文件为什么不能一次读完</p>
+<div class="flow">
+<div class="node plain"><b>Buffer</b><small>一段固定大小的二进制内存<br>处理 TCP 包、图片、文件块的原料</small></div><div class="arrow">→</div>
+<div class="node blue"><b>四种流</b><small>Readable / Writable<br>Duplex 双工 / Transform 转换（gzip 是典型）</small></div><div class="arrow">→</div>
+<div class="node amber"><b>背压 backpressure ★</b><small>写得比读得快 → 缓冲区涨<br>write() 返回 false 就暂停，drain 再继续</small></div><div class="arrow">→</div>
+<div class="node teal"><b>pipe / pipeline</b><small>pipe 自动处理背压<br>pipeline 还统一收错误与收尾，优先用它</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>为什么必须有流？</h4><p>一个 500MB 文件 <code>readFile</code> 一次进内存，单请求就可能把进程撑爆；流是<strong>分块搬运</strong>：内存占用恒定在一块的大小。文件下载、代理转发、日志处理、SSR 的流式渲染全是这个模型——renderToPipeableStream 就是一条 Readable 流。</p></div>
+<div class="box"><h4>背压一句话答法</h4><p>生产者快、消费者慢时，无限制堆积 = 内存泄漏式增长。Node 用 highWaterMark + <code>write()</code> 返回值 + <code>drain</code> 事件做流量阀门；自己写流处理忘了背压，是压测才暴露的经典坑。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 错误处理：分层收，别让一个异常杀死进程</p>
+<table>
+<tr><th style="width:22%">错误类型</th><th>收法</th></tr>
+<tr><td>同步 / 业务错误</td><td>入口校验拦参数错（见 <a href="#node-prod">生产化那节</a>）；业务层抛带业务码的错误，统一错误中间件转成 { code, message, requestId }，不把堆栈漏给前端</td></tr>
+<tr><td>异步错误</td><td>async 函数的 reject 必须被 catch 或被框架的错误中间件接住；<strong>未处理的 rejection 在新版 Node 会直接终止进程</strong>——这是「偶发崩溃」的高频真凶</td></tr>
+<tr><td>流 / IO 错误</td><td>每条流都要监听 error 或走 pipeline 统一收；一条流报错不处理，会变 uncaughtException</td></tr>
+<tr><td>兜底与恢复</td><td>进程级 uncaughtException 只做「记日志 + 优雅退出」，不要试图继续跑（状态已不可信）；靠进程管理器/容器重启拉起，靠健康检查摘流量</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「Node 核心我抓三点：模块上 CJS 是运行时加载、ESM 是静态结构加活绑定，所以只有 ESM 能 Tree Shaking、互操作时方向不对会直接报错；数据上 Buffer 是二进制内存块、Stream 是分块搬运，关键机制是背压——写快读慢靠 write 返回值和 drain 阀门控速，大文件和 SSR 流式渲染都是这个模型；错误上分层收：业务错误统一转码、异步 reject 必须接住、进程级异常只记日志后优雅退出靠外部拉起。我这块是理解和演示层，能手写跑通，不冒充生产后端。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「require 一个模块两次会执行两次吗？」→ 不会，模块缓存按解析后路径缓存，第二次直接拿缓存 exports；想清缓存要删 require.cache，且这正是热更新类工具动的手脚。「Buffer 和字符串互转要注意什么？」→ 编码要一致，多字节字符被分块切断时直接 toString 会出乱码，要用 string_decoder 或攒齐再解。</div>
+</section>
+
+<!-- NODE SCALE -->
+<section class="card" id="node-scale" data-page="fullstack" hidden>
+<div class="kicker">全栈 · Node 框架与扩展 ★</div><h2>洋葱模型、多进程与 Redis：Node 怎么从一个进程长成一个服务</h2>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 洋葱模型：Express 线性 vs Koa 洋葱，一眼分清</p>
+<div class="flow">
+<div class="node teal"><b>请求进来 →</b><small>Koa：中间件1 前半段<br>日志 / requestId / 鉴权</small></div><div class="arrow">→</div>
+<div class="node blue"><b>中间件2 前半段</b><small>参数校验 / 限流<br>await next() 交棒</small></div><div class="arrow">→</div>
+<div class="node amber"><b>路由 / 业务</b><small>洋葱芯：真正干活<br>返回结果</small></div><div class="arrow">→</div>
+<div class="node blue"><b>中间件2 后半段</b><small>next() 之后的代码<br>统一包装响应 / 记耗时</small></div><div class="arrow">→</div>
+<div class="node teal"><b>← 响应出去</b><small>中间件1 后半段<br>错误兜底 / 日志落点</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>Express 与 Koa 的真区别</h4><p>Express 中间件是<strong>线性回调</strong>：next() 之后很难「等下游全部干完再收尾」，错误靠 next(err) 往后传到错误中间件。Koa 用 async/await 把中间件做成<strong>洋葱</strong>：await next() 前是入、后是出，try/catch 一包就罩住整条下游链——统一响应包装、耗时统计、异常兜底都因此好写。Egg/Nest 是在这之上加约定与依赖注入。</p></div>
+<div class="box"><h4>中间件顺序为什么是考点</h4><p>顺序错了全错：错误处理要在能罩住的位置、鉴权要在业务之前、日志/requestId 要在最外层——否则错误日志里没有 requestId、未鉴权请求先打到业务层。和 <a href="#fs-node">Node 服务实战</a>那节的中间件链是同一件事。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 单进程不够用时：cluster 与 worker_threads 别混</p>
+<table>
+<tr><th style="width:16%"></th><th style="width:40%">cluster（多进程）</th><th>worker_threads（多线程）</th></tr>
+<tr><td>解决什么</td><td>主线程只有一个：按 CPU 核数 fork 多个进程<strong>分摊请求</strong>，主进程监听端口分发</td><td>把<strong>CPU 密集计算</strong>（加解密、图像、压缩、重解析）挪出主线程，别堵事件循环</td></tr>
+<tr><td>隔离程度</td><td>进程级隔离，内存不共享，通信走 IPC；一个崩了不拖死其他</td><td>同进程内线程，内存默认不共享、可 SharedArrayBuffer；崩溃半径更近</td></tr>
+<tr><td>别用错</td><td>IO 密集不需要靠它「变快」，它加的是核利用率；会话状态不能放进程内存，多进程后必须外置到 Redis</td><td>拿它跑普通业务请求是杀鸡用牛刀；它和 libuv 线程池也不是一回事（线程池管 IO 模拟异步，见事件循环那节）</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 连接池与 Redis 三灾（数据层最爱问的一组）</p>
+<div class="grid2">
+<div class="box"><h4>连接池：为什么必须有上限</h4><p>建连接贵（握手、鉴权），且数据库连接数有硬上限。池子做三件事：<strong>复用</strong>连接、<strong>排队</strong>限流、<strong>超时</strong>回收。池开太大把 DB 打满、太小请求排队超时——要按 DB 上限和实例数算总账，多实例部署时尤其容易算错。慢查询长期占连接是池耗尽的头号原因。</p></div>
+<div class="box"><h4>缓存更新的基本规矩</h4><p>Cache Aside 为主：读先查缓存、未命中查 DB 回填；写先更 DB、再删缓存（删而非改，避免并发写脏）。TTL 兜底 + 主动失效双保险；店铺页那套「发布时失效」就是主动失效的例子（见缓存那节与 SSR 决策那节）。</p></div>
+</div>
+<table>
+<tr><th style="width:14%">灾</th><th style="width:34%">是什么</th><th>解法（每灾背两个）</th></tr>
+<tr><td><strong>穿透</strong></td><td>查<strong>根本不存在</strong>的 key，缓存永远未命中，每次都打 DB（可被恶意利用）</td><td>空值也缓存（短 TTL）；布隆过滤器先拦一层；入口参数校验</td></tr>
+<tr><td><strong>击穿</strong></td><td>单个<strong>热点 key 刚过期</strong>瞬间，大量并发一起打 DB 回填</td><td>互斥锁/单飞：只放一个请求回填，其余等；热点 key 逻辑过期（后台异步刷新，先返旧值）</td></tr>
+<tr><td><strong>雪崩</strong></td><td><strong>大批 key 同时过期</strong>或 Redis 整体挂掉，流量瞬间全压 DB</td><td>TTL 加随机抖动错开过期；Redis 高可用（主从/集群）；DB 前限流降级、缓存挂了宁可返降级数据也别全量穿透</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「框架层我讲洋葱：Koa 用 await next 把中间件做成入和出两段，统一异常、响应包装和耗时统计都挂在出段，Express 的线性模型做这件事要别扭得多。扩展层分清两个多：cluster 是多进程分摊请求、worker_threads 是把 CPU 活挪出主线程，两者解决的不是同一个瓶颈。数据层记连接池的总账意识，和 Redis 三灾的区别——穿透是不存在、击穿是单热点过期、雪崩是大批同时过期或缓存全挂，解法分别是空值缓存/布隆、互斥回填/逻辑过期、TTL 抖动/高可用/降级。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「Redis 挂了你的服务会怎样？」→ 必须有降级答案：限流保护 DB、热点数据本地兜底、非核心功能直接关停，只答「等 Redis 恢复」等于没设计。「cluster 后定时任务重复跑怎么办？」→ 多进程的经典坑：用分布式锁或把任务独立成单实例服务，能主动说出来是加分项。</div>
+</section>
+
+<!-- NODE PROD -->
+<section class="card" id="node-prod" data-page="fullstack" hidden>
+<div class="kicker">全栈 · Node 生产化 ★</div><h2>Node 上生产：校验、限流熔断、优雅关闭、日志监控——和你的 SSR 实证</h2>
+<div class="diagram">
+<div class="grid2">
+<div class="box"><h4>① 输入校验：脏数据死在入口</h4><ul><li>类型、必填、范围、长度在<strong>入口层</strong>用 Schema 校验（如 zod / joi 一类），不过直接 400，不让脏数据进业务层再炸成 500</li><li>白名单思维：只收声明过的字段，多余字段丢弃，防批量赋值类漏洞</li><li>校验规则前后端可共用同一份 Schema——这是你 TS 同构经验的落点</li></ul></div>
+<div class="box"><h4>② 限流与熔断：保护自己，也保护下游</h4><ul><li><strong>限流：</strong>令牌桶/滑动窗口按 IP、用户、接口维度限速，超限回 429；网关层和服务层各一道</li><li><strong>熔断：</strong>下游错误率/超时率过阈值就快速失败，不再排队等死；半开状态放探针试恢复</li><li><strong>配套：</strong>超时（每个下游调用必设）、有限重试（只对幂等操作、带退避）、降级（返缓存/默认值）——四件是一套，别只背限流一个词</li></ul></div>
+<div class="box"><h4>③ 优雅关闭：发版不能掐断在途请求</h4><ul><li>收到 SIGTERM 先<strong>停止接新请求</strong>（摘流量/关监听），等在途请求跑完再关连接池、退出进程</li><li>设硬超时兜底：等太久强制退出，靠负载均衡把流量切走</li><li>和 cluster/容器滚动发布配套讲：新进程健康检查通过才摘老进程</li></ul></div>
+<div class="box"><h4>④ 日志与监控：出事能定位才算上线</h4><ul><li><strong>日志：</strong>结构化（JSON）+ 每请求 requestId 贯穿全链，慢请求与错误单独打标；别用 console.log 裸奔</li><li><strong>指标：</strong>QPS、错误率、P95/P99 延迟、事件循环延迟、内存/堆、连接池占用——事件循环延迟是 Node 特色指标，它涨就是主线程被堵了</li><li><strong>告警与追踪：</strong>链路追踪串网关→服务→DB；告警分等级，别狼来了式全量告警。和 <a href="#fs-deploy">部署与可观测</a>那节互为表里</li></ul></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>SSR 实证收口：Node 题最终落回你参与过的那条链（详见 <a href="#company-ssr">Company SSR</a> 与 <a href="#node-ssr">Node 手写 SSR</a> 两节）</h4>
+<table>
+<tr><th style="width:26%">被问到的点</th><th>按实证这样答</th></tr>
+<tr><td>用什么起的服务</td><td>Node + Express 的 Render Server；店铺页走请求时 SSR / Hybrid，render 入口是 render.tsx——<strong>我是参与这条链路，render.tsx 不是我写的</strong>，先把这句说在前面</td></tr>
+<tr><td>流式渲染怎么做的</td><td>renderToPipeableStream 在 <strong>onAllReady</strong> 时 pipe 到 PassThrough 拼成完整字符串返回——流在这里是 React 的渲染机制，不是端到端流式下发，别说反</td></tr>
+<tr><td>并发请求怎么隔离</td><td>AsyncLocalStorage 逐请求存上下文（语言、样式、灰度等），每请求新建 store / Router / Helmet——请求级状态绝不放模块全局，这是 Node 服务端最容易串号的地方</td></tr>
+<tr><td>数据怎么下发</td><td>脱水有<strong>白名单</strong>：只放行 shopInfo，item 等数据不随 SSR 返回，客户端再接口补——安全边界，不是随手 JSON.stringify 全量 state</td></tr>
+<tr><td>SSR 失败怎么办</td><td>失败回 500 + 空资源<strong>保协议形状</strong>，Host 侧有 fallback，最终兜底降级 CSR 壳——最差是慢，不能是白页</td></tr>
+</table></div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「生产化我讲四件加一个实证：校验在入口用 Schema 把脏数据拦死、限流熔断超时降级是一套组合拳、优雅关闭保证发版不掐在途请求、日志监控靠 requestId 和事件循环延迟这类 Node 特色指标定位。实证落回店铺页 SSR：Express 起服务、ALS 做请求隔离、onAllReady 流式拼串、脱水白名单只放 shopInfo、失败保协议形状再降级 CSR——这条链我是参与方，入口不是我写的；另外 AI DOD 的 Node 重写是我个人练手项目，后端生产经验我不冒充。」</p></div>
+<div class="trap"><strong>口径红线（三条一起背）：</strong>① Node 后端 = 理解 / 演示层，能跑通能讲清，不说「主导过生产 Node 服务」；② Company SSR = 参与，render.tsx 不是本人写的，SSG 接管是设计方案未落地；③ AI DOD 的 Node 重写 = 个人项目，不说成 Company 生产后端。面试官顺着任何一条深挖，先亮口径再展开机制，节奏才在你手里。</div>
+</section>
+
+<!-- AGENT NEW -->
+<section class="card" id="ag-map" data-page="agent" hidden>
+<div class="kicker">Agent · 00 · 先看地图 ★</div><h2>Agent 面试地图：五层考点，别只停在「会调 API」</h2>
+<div class="diagram">
+<div class="flow">
+<div class="node plain"><b>L1 模型边界</b><small>LLM 能做什么、不能做什么<br>幻觉、窗口、知识截止</small></div><div class="arrow">→</div>
+<div class="node teal"><b>L2 RAG</b><small>给它可依据的知识<br>切块、混合检索、重排</small></div><div class="arrow">→</div>
+<div class="node blue"><b>L3 工具与循环</b><small>给它能干活的手<br>Function Calling、MCP、ReAct</small></div><div class="arrow">→</div>
+<div class="node amber"><b>L4 记忆与状态</b><small>让长任务不跑偏<br>短期压缩、长期沉淀、状态表</small></div><div class="arrow">→</div>
+<div class="node green"><b>L5 评测与生产化</b><small>证明它真的变好了<br>Eval、护栏、成本、观测</small></div>
+</div>
+<table>
+<tr><th style="width:20%">面试官问法</th><th>他在测哪层 · 你落到哪节</th></tr>
+<tr><td>「RAG 和微调怎么选？」</td><td>L1+L2 判断力 → <a href="#rag">RAG 那节</a>的对照表：知识会变选 RAG，改行为风格才微调</td></tr>
+<tr><td>「Agent 怎么防乱执行？」</td><td>L3+L5 护栏 → 工具白名单、Schema 校验、写操作人确认，见 <a href="#ag-prod">生产化那节</a></td></tr>
+<tr><td>「上下文太长怎么办？」</td><td>L4 → <a href="#agent-memory">记忆那节</a>：截断、摘要压缩、结构化状态表</td></tr>
+<tr><td>「你做过 MCP 吗？」</td><td>诚实度 → 没落地写过 Server，只用过现成的；按 <a href="#ag-tools">工具那节</a>的设计讲法答</td></tr>
+</table>
+</div>
+<div class="say"><b>开场定位：</b><p>「我对 Agent 的理解是五层：模型本身有边界，所以要 RAG 给知识、工具给手脚、记忆管状态、评测和护栏管生产化。我真正落地过的是 AIDOD 那条带工具、带人审、带流式续跑的链，其余框架层我按原理和设计讲，不冒充都做过。」</p></div>
+</section>
+
+<section class="card" id="ag-design" data-page="agent" hidden>
+<div class="kicker">Agent · 系统设计 ★</div><h2>Agent 系统设计框架：给任何 Agent 题都能套的六个格子</h2>
+<p class="sub">题目可能是客服 Agent、运营 Agent、代码 Agent——先别急着选框架，先把六个格子填满，框架只是格子的实现。</p>
+<div class="diagram">
+<div class="grid3">
+<div class="box"><h4>① 任务与边界</h4><p>它能做什么、明确不做什么？成功怎么定义？哪些动作算越界？先划边界再谈能力。</p></div>
+<div class="box"><h4>② 工具清单</h4><p>每个工具：输入 Schema、输出、权限、是否可逆。只读工具可自动，写工具默认要人确认。</p></div>
+<div class="box"><h4>③ 状态与记忆</h4><p>本轮状态表放哪、历史怎么压缩、长期只沉淀什么——见记忆那节的三招三类。</p></div>
+<div class="box"><h4>④ 循环控制</h4><p>最大步数、超时、失败重试上限、死循环检测。没有停止条件的 Agent 不是 Agent，是事故。</p></div>
+<div class="box"><h4>⑤ 人机协作</h4><p>哪一步必须人看？人驳回后怎么重跑？审批和操作全程留审计。</p></div>
+<div class="box"><h4>⑥ 评测与观测</h4><p>离线 Eval 集怎么建、线上看哪些指标、bad case 怎么回流——见生产化那节。</p></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>用 AIDOD 套一遍（你的现成答案）</h4><p>任务：工单根因定位，不自动改代码；工具：查 CMDB、查日志、查指纹库、调 Codex 分析；状态：任务状态机 + thread_id；循环控制：证据不足就转人工，不硬编结论；人机协作：人批 MR 才闭环；评测：置信度明细必须等于总分、结论可追溯到证据。换任何 Agent 题，先套格子再换工具清单即可。</p></div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我设计 Agent 先填六个格子：边界、工具、状态、循环控制、人机协作、评测。填完格子，选 LangGraph 还是自研状态机只是实现选择——AIDOD 生产后端就是 Go 状态机而不是框架，说明格子比框架重要。」</p></div>
+</section>
+
+<section class="card" id="ag-tools" data-page="agent" hidden>
+<div class="kicker">Agent · 工具调用与 MCP ★</div><h2>工具调用深挖：Schema、报错、重试，和 MCP 到底何时才需要</h2>
+<div class="diagram">
+<div class="flow">
+<div class="node teal"><b>模型选工具</b><small>按工具描述 + Schema 决定<br>调哪个、传什么参数</small></div><div class="arrow">→</div>
+<div class="node amber"><b>宿主校验</b><small>参数过 Schema 校验才执行<br>不合规打回让模型重填，不硬跑</small></div><div class="arrow">→</div>
+<div class="node blue"><b>真实执行</b><small>查库 / 调 API / 渲染<br>结果结构化回填，不回自由文本</small></div><div class="arrow">→</div>
+<div class="node rose"><b>失败处理</b><small>区分参数错、权限错、下游错<br>可重试的才重试，且有上限</small></div>
+</div>
+<table>
+<tr><th style="width:16%">通道</th><th style="width:36%">解决什么</th><th>何时用 · 你的口径</th></tr>
+<tr><td><strong>Skill</strong></td><td>教模型怎么做：流程、规范、模板</td><td>默认首选。不提供新通道，靠说明和脚本能解决的都归它</td></tr>
+<tr><td><strong>Function Calling</strong></td><td>自己系统内的工具调用</td><td>工具在自己进程 / 服务内时用它，轻量直接</td></tr>
+<tr><td><strong>MCP</strong></td><td>接模型够不着的真实系统</td><td>只有缺一条通往线上系统的路时才做——如线上模板库、预览渲染、线上观测。你没落地写过 Server，设计时先过「Skill 解决不了吗」这一关</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>工具设计三原则</h4><ul><li>粒度适中：太细模型要调十几次，太粗一次失败全废</li><li>描述写给模型看：何时用、何时不用、参数例子，比函数名重要</li><li>幂等优先：重试是常态，工具自己要扛得住重复调用</li></ul></div>
+<div class="box"><h4>被问「让你设计一个 MCP Server」</h4><p>按这个顺序答：先说它补的是哪个 Skill 够不着的缺口 → 再列 Tools（只读优先）/ Resources / Prompts → 再说鉴权、超时、审计 → 最后说为什么不把写操作放进去，或写操作为何必须人确认。设计讲透即可，不需要假装上线过。</p></div>
+</div>
+</div>
+<div class="say"><b>诚实口径（原话可用）：</b><p>「MCP Server 我没落地写过，我用过 Figma、Confluence 的 MCP。让我设计，我会先问 Skill 为什么不够——只有模型缺一条通往真实系统的路时，MCP 才成立。」</p></div>
+</section>
+
+<section class="card" id="ag-prod" data-page="agent" hidden>
+<div class="kicker">Agent · 评测与生产化 ★</div><h2>评测、成本与安全：Demo 到生产之间隔着这一节</h2>
+<div class="diagram">
+<div class="grid3">
+<div class="box"><h4>Eval 怎么建</h4><ul><li>真实问题 + 标准答案 + 应命中证据，攒成固定集</li><li>改 Prompt、换模型、调检索都全量重跑比对</li><li>检索分和生成分分开记，退化了知道是哪层</li></ul></div>
+<div class="box"><h4>成本与延迟</h4><ul><li>小模型做分类 / 改写，大模型只做关键生成</li><li>高频问题缓存结果，流式输出压首字延迟体感</li><li>步数就是钱：每多一轮工具调用，多一份 token 和延迟</li></ul></div>
+<div class="box"><h4>安全护栏</h4><ul><li>提示注入：用户输入和检索文档都是数据，不是系统指令</li><li>敏感数据先脱敏再进 Prompt，工具最小权限</li><li>全程可观测：每步的输入、工具、输出都留痕可回放</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「Agent 上生产我看三件事：有没有固定 Eval 集证明改动是变好而不是变味，成本和步数有没有上限，写操作有没有人确认和审计。三件缺一件，我都只会说它是 Demo，不会说它能上线。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「效果变好了怎么证明？」→ 永远落回 Eval 集和线上指标（任务完成率、人工接手率、驳回率），不要用「感觉更聪明了」回答。</div>
+</section>
 
 <!-- VUE2 -->
 <section class="card" id="vue2">
@@ -211,6 +549,73 @@ details p,details li{font-size:14px;color:var(--muted)}
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「我按五层答：原理上响应式从 defineProperty 换成 Proxy、编译多了静态提升和 Patch Flags；写法上从 Options 按类型分栏变成 Composition 按功能组织、逻辑复用从 mixin 换成 composable；生命周期大体对应、销毁改名 Unmount、创建合并进 setup；破坏性变更集中在 v-model、filters 删除、$listeners 合并、全局 API 改实例；迁移我不会全量重写——我做 2.6 到 2.7 时就是分批迁移加白名单加测试门禁，Vue3 同理先上 compat 构建按告警清，再逐模块切。」</p></div>
 <div class="trap"><strong>追问预警：</strong>「Vue3 性能就一定比 Vue2 好？」→ 分场景：初始化和内存因懒代理更好、大列表更新因 Patch Flags 更好，但小而简单的页面差距感知不到，别把基准测试数字当承诺。「Composition 和 React Hooks 一样吗？」→ 形似神不同：setup 只执行一次，依赖靠 Proxy 自动收集，不需要依赖数组，也没有 Hooks 的闭包过期和调用顺序对齐问题——这一句是两边都懂的标志。</div>
+</section>
+
+<!-- VUE FAQ -->
+<section class="card" id="vue-faq">
+<div class="kicker">框架 · 02C · 高频题速刷，考前一晚过一遍 ★</div><h2>Vue 高频面试题：十二道必答题，每道只背一个得分点</h2>
+<p class="sub">响应式原理在 01 / 02 节、版本对比在 02B 节，这一节不重复原理，只收「换个问法就容易卡住」的题：每道题给一句结论 + 一个最容易丢分的坑。答题节奏：先给结论，再给机制，最后主动报坑。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 响应式五题（出现频率最高的一组）</p>
+<table>
+<tr><th style="width:24%">题</th><th style="width:38%">得分点（一句话结论）</th><th>丢分坑</th></tr>
+<tr><td>Vue2 defineProperty vs Vue3 Proxy</td><td>2 是<strong>逐属性</strong>劫持：新增/删除属性、数组下标改动追踪不到，要 <code>$set</code>；3 是<strong>代理整个对象</strong>：新增删除、数组、Map/Set 都能追踪，且懒代理——深层访问时才代理</td><td>只说「Proxy 性能好」不算答完，要说清「拦截粒度从属性变成对象」</td></tr>
+<tr><td>依赖收集怎么工作</td><td>渲染/计算时<strong>读到谁就收集谁</strong>（track），改了再通知重跑（trigger）；computed 是<strong>脏标记缓存</strong>：依赖没变直接返旧值，不重算</td><td>把 watch 和 computed 混着答；computed 里写副作用是大忌</td></tr>
+<tr><td>reactive 解构为什么丢响应性</td><td>解构拿出来的是<strong>普通值快照</strong>，和原对象的代理连接断了；解法：<code>toRefs / toRef</code>，或不解构直接用对象属性</td><td>以为「加个 ref 包一下」就行——要包的是每个字段（toRefs 做的事）</td></tr>
+<tr><td>ref vs reactive 怎么选</td><td>ref 包一层 <code>.value</code>（模板里自动解包），基本类型和「整体可替换」的对象用它；reactive 只对对象有效，<strong>整个换引用会丢</strong>（不能重新赋值给 reactive 变量）</td><td>说「ref 能存基本类型、reactive 存对象」只对一半：ref 存对象内部也是转 reactive</td></tr>
+<tr><td>watch vs computed</td><td>computed 是<strong>派生值</strong>：带缓存、无副作用、声明式；watch 是<strong>监听做副作用</strong>：请求、防抖、手动操作 DOM；watch 的 deep / immediate 要小心性能与首帧重复触发</td><td>能用 computed 派生的值写 watch 同步赋值——多一次渲染还容易写出循环</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 渲染与 diff 三题</p>
+<div class="grid3">
+<div class="box"><h4>diff 怎么比？</h4><p>只比<strong>同级</strong>、不跨级；key 是节点身份。Vue2 双端比较（头头/尾尾/头尾交叉找复用），Vue3 在此之上用<strong>最长递增子序列</strong>找最少移动——先把不用动的节点挑出来，剩下的才移动。</p></div>
+<div class="box"><h4>Vue3 编译优化三件套</h4><ul><li><strong>静态提升：</strong>纯静态节点只创建一次，之后复用</li><li><strong>PatchFlag 补丁标志：</strong>编译时标好「这里只有文本/类名会变」，diff 只查标记处</li><li><strong>Block 收集动态节点：</strong>把动态节点拍平成数组，跳过整棵静态子树</li></ul></div>
+<div class="box"><h4>key 用 index 会怎样？</h4><p>就地复用按位置对齐，列表头插/删除/排序后，<strong>状态跟错行</strong>：输入框内容、勾选态、展开态串到下一行。带内部状态的行（表单、勾选）最容易穿；纯静态展示用 index 才无所谓。</p></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 组件与生命周期四题</p>
+<table>
+<tr><th style="width:24%">题</th><th>得分点</th></tr>
+<tr><td>组件通信怎么选</td><td>主线是 <strong>props + emit</strong>（数据向下、事件向上）；跨层级用 provide/inject（注意默认非响应、要传 ref/computed）；全局共享状态上 Pinia；事件总线只做临时方案——Vue3 已移除实例 <code>$on/$off</code>，真要用换 mitt 这类小库</td></tr>
+<tr><td>生命周期顺序</td><td>父 beforeCreate → created → beforeMount → <strong>子完整走一遍到 mounted</strong> → 父才 mounted（子先挂完父再挂）；keep-alive 缓存的组件多一对 activated / deactivated，切回来不重走 created/mounted</td></tr>
+<tr><td>nextTick 干什么</td><td>DOM 更新是<strong>异步批量</strong>的：同一轮改多次只渲染一次。nextTick 把回调推到这批更新之后（微任务），用来读更新后的 DOM 尺寸/焦点；连调多次会合并，别拿它当 setTimeout 用</td></tr>
+<tr><td>setup 的时机与 this</td><td>setup 在 <strong>beforeCreate 之前</strong>执行，此时实例未建完，<strong>没有 this</strong>；SSR 时 setup 在服务端跑，但 mounted / beforeMount 不执行——服务端拿不到 DOM，钩子里碰 window/document 必炸</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法（被要求「连答三道」时的串法）：</b><p>「Vue 的题我按三组答：响应式组核心是收集与缓存——读时收集、computed 脏标记；渲染组核心是少比——同级 diff、key 定身份、编译期把动态点标出来；组件组核心是规矩——props 向下 emit 向上、更新异步批量所以有 nextTick、setup 早于创建期所以没 this。每组我都能再往下展开一层原理，在 01、02 节里。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「provide/inject 注入的值改了，子组件更新吗？」→ 默认不响应，传 ref 或 computed 才响应，且修改权应在提供方——顺手说清这点比背 API 更得分。「watchEffect 和 watch 区别？」→ watchEffect 自动收集跑过的依赖、立即执行；watch 要显式声明源、可拿新旧值、可懒执行。</div>
+</section>
+
+<!-- VUE UPGRADE -->
+<section class="card" id="vue-upgrade">
+<div class="kicker">框架 · 02D · 升级题专用清单 ★</div><h2>Vue2 升 Vue3 要考虑什么：一张清单 + 一条渐进路线</h2>
+<p class="sub">02B 节讲「两代有什么不同」，这一节讲「真要升，你得盘什么」。面试官问升级，考的不是背破坏性变更，而是<strong>盘点、路线、生态、风控</strong>四件事有没有章法。先说策略再说清单：<strong>渐进迁移，绝不推倒重写。</strong></p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 渐进路线：先拿 2.7 当桥，再上 3</p>
+<div class="flow">
+<div class="node plain"><b>1 先盘点</b><small>全仓搜 filters / .sync / $listeners<br>事件总线、$children、第三方库兼容表</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 升 2.7 探路</b><small>2.6 → 2.7 先拿 Composition API<br>Mixin 逻辑按业务职责重组（你的实证）</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 compat 跑起来</b><small>@vue/compat 兼容构建先能跑<br>按告警逐条清破坏性变更</small></div><div class="arrow">→</div>
+<div class="node teal"><b>4 分批切换</b><small>按模块 / 白名单灰度开放<br>新代码 Composition，老代码先不动</small></div><div class="arrow">→</div>
+<div class="node green"><b>5 门禁兜底</b><small>单测门禁 + UI 自动化覆盖 P0<br>灰度可回滚，过了才放量</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 破坏性变更清单（迁移时逐项核对，★ 为最高频报错点）</p>
+<table>
+<tr><th style="width:22%">变更</th><th style="width:36%">Vue2 写法</th><th>Vue3 改法</th></tr>
+<tr><td>★ 全局 API</td><td><code>Vue.use / Vue.component / Vue.prototype</code></td><td>全挂到 <code>createApp()</code> 的 app 实例上；多应用各自独立，插件改 <code>app.use</code></td></tr>
+<tr><td>★ filters 删除</td><td>模板里 <code>{{ x | fmt }}</code></td><td>改 computed 或普通方法；全局格式化函数挂 app.config.globalProperties 也只是过渡</td></tr>
+<tr><td>★ 事件总线</td><td>实例 <code>$on / $off / $once</code> 当总线</td><td>API 已删除，换 mitt 等小库，或状态上 Pinia</td></tr>
+<tr><td>★ v-model</td><td><code>value + input</code>，多路同步靠 <code>.sync</code></td><td><code>modelValue + update:modelValue</code>，可写多个 <code>v-model:title</code>；<code>.sync</code> 并入 v-model，逐组件核对 prop/事件名</td></tr>
+<tr><td>emits 声明</td><td>不声明也能 emit</td><td>要显式声明 emits，未声明的事件会落进 $attrs 被透传到根元素</td></tr>
+<tr><td>$listeners / $children</td><td>监听与 attrs 分开；$children 摸子组件</td><td>$listeners 并入 $attrs；$children 删除，改 ref + defineExpose 的显式契约</td></tr>
+<tr><td>其余必查</td><td>data 可写对象；指令钩子 bind/inserted；异步组件直接 import 函数</td><td>data 必须是函数；指令钩子改 beforeMount/mounted 等新名；异步组件用 <code>defineAsyncComponent</code>；多根节点 Fragment 成默认能力，attrs 透传要指定目标</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 生态与风控：框架本体之外，真正拖进度的部分</p>
+<div class="grid2">
+<div class="box"><h4>生态必须同批升</h4><ul><li>Vue Router 3 → 4（创建方式、守卫返回值都变）</li><li>Vuex 3 → 4，或直接换 Pinia（顺势做，别两步并一步）</li><li>Element UI → Element Plus（组件 API 有差异，按页面盘）</li><li>测试库 @vue/test-utils v1 → v2；构建可顺势换 Vite，但<strong>换构建和升框架分开做</strong>，出问题才分得清是谁的</li></ul></div>
+<div class="box"><h4>风控打法（你在 2.6 → 2.7 用过的那套）</h4><ul><li>分批迁移：按模块切，不设「大爆炸日」</li><li>白名单开放：先内部/低流量模块，再核心链路</li><li>单元测试门禁 + UI 自动化覆盖 P0 用例，不过门禁不放量</li><li>灰度 + 可回滚：每批都能独立退回上一版</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我升 Vue3 会分四步讲：先盘点——把 filters、.sync、事件总线、第三方库兼容性全仓搜出来列成清单；再走桥——先升 2.7 拿 Composition API、把 Mixin 的逻辑按职责重组，这一步我在 Shop Deco 编辑器上真做过，分批迁移、白名单、单测门禁、UI 自动化覆盖 P0；然后上 @vue/compat 兼容构建按告警逐条清；生态的 Router、状态库、组件库同批盘但分开落。完整 2 到 3 的全量迁移我没做过，我能讲透的是方法论加 2.7 这段过渡实证。」</p></div>
+<div class="trap"><strong>红线：</strong>别把「2.6 → 2.7 逻辑重构」说成「主导了 Vue3 全量迁移」。被追问「Vue3 版本上线后踩过什么坑」时，答盘点与 compat 阶段能预见的坑（emits 透传、v-model 改名、指令钩子改名），并明说全量落地不是你的经历——诚实分层反而稳。</div>
 </section>
 
 <!-- SSR -->
@@ -523,6 +928,84 @@ setTimeout(() =&gt; abort(), 5000);   // 流挂起的兜底中止
 <div class="trap"><strong>红线：</strong>LCP 4 秒→3 秒那组数字你自己说过记不清，面试别当硬数字报。就按上面这版讲做法与取舍，被追问数字就坦诚说记不清、但分段方法讲得清——这比编数字安全得多。</div>
 
 <div class="trap" style="margin-top:12px"><strong>详细版在第 46–49 节：</strong>46 节讲 H5 采集与 P75 聚合（含 LCP 4.6 秒样本、INP / CLS 算例、web-vitals 上报代码），47 节讲 RN 测量口径，48 节讲 SSR 决策与鉴权限流，49 节讲简历那句 LCP 数字的证据链。面试先讲这节的四段定位法，被追问口径再展开到那几节。</div>
+</section>
+
+<!-- PERF SCENARIOS -->
+<section class="card" id="perf-scenarios">
+<div class="kicker">性能 · 06B · 场景题专用 ★</div><h2>性能场景题：十个场景，同一套打法——先定位，再优化</h2>
+<p class="sub">06 节讲 LCP 四段拆解，这一节练「给一个现象、让你现场处置」的场景题。所有场景共用一条纪律：<strong>先拿数据定位（哪段慢、慢在哪个资源/哪一帧），再选手段，最后说怎么验证</strong>。一上来就报方案清单的，面试官会直接判定没做过。</p>
+<div class="diagram">
+<div class="flow">
+<div class="node plain"><b>1 先复现与分段</b><small>线上 RUM 还是单次测试？<br>按设备/网络/页面切分看慢样本</small></div><div class="arrow">→</div>
+<div class="node amber"><b>2 定位到一段</b><small>网络 / 解析 / 渲染 / 交互<br>用瀑布图、长任务、火焰图对齐</small></div><div class="arrow">→</div>
+<div class="node teal"><b>3 只打那一段</b><small>一次改一类手段<br>别十个优化一起上</small></div><div class="arrow">→</div>
+<div class="node green"><b>4 同口径验证</b><small>同分组 P75 前后对比<br>同时看错误率与尾部，别只看均值</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">十个场景速查：现象 → 先查什么 → 打法</p>
+<table>
+<tr><th style="width:14%">场景</th><th style="width:30%">先查（定位动作）</th><th>打法</th></tr>
+<tr><td><strong>首屏慢</strong></td><td>LCP 四段归因（见 06 节）：TTFB、发现延迟、加载时长、渲染延迟各占多少</td><td>按最长那段打：发现延迟大就让 HTML 直出主图 + preload（如移动端头图发现延迟占大头的情形），别先去压图片；渲染延迟大就减首屏渲染量、拆长任务</td></tr>
+<tr><td><strong>长列表卡</strong></td><td>DOM 节点数与滚动帧率；是数据多还是每行太重</td><td>虚拟列表只挂可视行 + 缓冲（见 04 节）；key 用稳定 id；静态大对象 <code>Object.freeze</code> 跳过响应式；图片懒加载；能分页就分页，别硬扛全量</td></tr>
+<tr><td><strong>输入卡顿</strong></td><td>输入事件到渲染的长任务；每次按键触发了多少计算/请求</td><td>搜索防抖、滚动节流；大数据输入用 shallowRef 或非响应式缓存；重计算放 Worker 或时间切片；输入值同步更新、结果列表可延后（过渡更新）</td></tr>
+<tr><td><strong>内存泄漏</strong></td><td>进出页面多轮后堆快照对比，找只涨不落的对象</td><td>定时器、全局监听、订阅、图表/地图等第三方实例在 unmounted 里成对清理；keep-alive 缓存设上限（max）与淘汰；闭包别长期持有大对象</td></tr>
+<tr><td><strong>包体积大</strong></td><td>先 bundle 分析找大头，别猜</td><td>按需引入、路由级动态 import 拆 chunk、重库换轻（如日期库换小体积方案）、公共库 CDN 外链 + externals、Tree Shaking 失效先查副作用标记</td></tr>
+<tr><td><strong>接口慢 / 重复请求</strong></td><td>瀑布图看是排队、慢查询还是重复发；快速切换时的竞态</td><td>竞态用 AbortController 或请求序号只认最后一次；能合并的合并、能缓存的短缓存；骨架屏先顶住感知；慢在后端就推动分页/索引，别全靠前端兜</td></tr>
+<tr><td><strong>图片多</strong></td><td>图片总字节占页面比、是否有超尺寸原图直出</td><td>懒加载（非首屏）、srcset 按屏宽出图、WebP/AVIF、压缩、占位定宽高防 CLS；首屏图反而要 preload，别一刀切全懒</td></tr>
+<tr><td><strong>动画掉帧</strong></td><td>Performance 里看是 Layout/Paint 贵还是 JS 长任务堵帧</td><td>只动 transform / opacity（只走合成层）；别改 width/top 触发重排；读写分离批量处理；will-change 只给真要动的、动画完撤掉，滥用反而吃内存</td></tr>
+<tr><td><strong>白屏久</strong></td><td>HTML 到达、首字节、关键 JS 执行三段时间线</td><td>SSR/骨架先出内容（见 03 节）；关键 CSS 内联、非关键延后；字体 font-display: swap 防文字长时间不可见（FOIT）</td></tr>
+<tr><td><strong>弱网 / 低端机</strong></td><td>按设备与网络分档看 P75，别拿旗舰机数据答</td><td>按设备分级加载（低端降特效/降图质）、Service Worker 缓存静态与壳、减首屏 JS、功能分级降级；东南亚低端机场景这条最有说服力</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法（万能开场，套任何场景）：</b><p>「我先确认这个慢是线上 P75 还是单次样本，再按设备、网络、页面版本切分找慢样本，然后用分段数据定位到网络、解析、渲染或交互里的一段，只对那一段下手，改完用同一分组的真实用户数据验证，并同时看尾部和错误率。拿首屏举例：我做过的一次就是四段里发现延迟占大头，所以先让 HTML 暴露主图、加 preload，而不是先压图片——顺序反了，优化就白做。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「你这些优化上线后提升多少？」→ 只报自己守得住的口径（见 49 节简历防守）：团队专项的页面准备完成 P80 是 shopPageLoaded 终点、不是 LCP，没证据的数字宁可说「记不清具体值、但分段方法可复现」，不要现场编一个。</div>
+</section>
+
+<!-- PERF DEBUG -->
+<section class="card" id="perf-debug">
+<div class="kicker">性能 · 06C · 排查方法论 ★</div><h2>前端性能排查与优化：先归因，再动手，最后同口径验收</h2>
+<p class="sub">06 节讲 LCP 怎么拆、06B 讲场景怎么答、46 节讲指标怎么采集聚合，这一节把三者串成一条<strong>排查流水线</strong>：面试官给你一句「页面很慢」，你能从定指标一路讲到验收。和 46 节共用同一套口径，不另造数字。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 排查通用流程：五步，顺序不能乱</p>
+<div class="flow">
+<div class="node plain"><b>1 定指标</b><small>先说清慢的是哪个指标<br>LCP / INP / CLS，移动与桌面分开</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 看分位不用均值</b><small>按 P75 评价（46 节口径）<br>再按设备/网络/地区/版本切分找慢人群</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 拿可复现样本归因</b><small>从慢样本里挑一条 trace 深挖<br>一条 trace 只证明「优化机会」，不证明全局结论</small></div><div class="arrow">→</div>
+<div class="node teal"><b>4 只改最长那段</b><small>一次改一类手段<br>改完盯瓶颈是否转移到下一段</small></div><div class="arrow">→</div>
+<div class="node green"><b>5 同分组对比验收</b><small>同设备同网络分组的 P75 前后比<br>同时看 P95 尾部与错误率，别只看均值</small></div>
+</div>
+<div class="loop-note">为什么只看平均值没用：均值会被大量快样本稀释，慢用户的痛苦被平均掉；分位才对应「四分之三用户在多少秒内」这个真实承诺。一条 trace 是个案证据，用来定位机会；结论必须回线上分位数据验证。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 工具箱：每个工具回答一个问题，别混用</p>
+<table>
+<tr><th style="width:22%">工具</th><th style="width:34%">它回答什么</th><th>使用要点</th></tr>
+<tr><td>Lighthouse</td><td>实验室环境下这次跑分慢在哪、有哪些现成建议</td><td>是<strong>实验室数据</strong>：可复现、适合改前改后对比，但不等于真实用户；别拿单次跑分当线上结论</td></tr>
+<tr><td>WebPageTest</td><td>指定设备/网络/地点下，瀑布与逐帧到底发生了什么</td><td>适合复现「某地区弱网慢」；能看连接复用、优先级与 filmstrip，和 RUM 慢样本对齐着看</td></tr>
+<tr><td>web-vitals + PerformanceObserver</td><td>真实用户现场的 LCP/INP/CLS 与归因字段</td><td>这是 46 节采集链的源头：Observer 拿原始事件与 attribution，SDK 按访问归约、上报，后台算分位；排查时先从这里捞慢样本</td></tr>
+<tr><td>DevTools Performance</td><td>主线程在忙什么：火焰图、长任务（&gt;50ms）、强制重排</td><td>找长任务先看它挡住了输入响应还是绘制；火焰图要落到具体函数，别停在「JS 很慢」</td></tr>
+<tr><td>DevTools Network</td><td>资源时序：谁先谁后、优先级对不对、体积多大</td><td>看 LCP 图的发现时机与 fetchpriority、看关键 JS 是否堵在队头、看缓存头是否生效</td></tr>
+<tr><td>Coverage + bundle-analyzer</td><td>下载了多少<strong>没用上</strong>的代码、包里大头是谁</td><td>Coverage 看首屏 JS/CSS 实际执行覆盖率；analyzer 找大依赖——先定位大头再拆，别盲目分割</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · LCP 四段归因（与 06 节、46 节同一张图）：每段慢，打法完全不同</p>
+<table>
+<tr><th style="width:16%">段</th><th style="width:36%">怎么确认是它</th><th>分段优化</th></tr>
+<tr><td><strong>TTFB</strong></td><td>同次访问 attribution 里首字节占比；服务端与 CDN 日志对齐</td><td>去重定向、CDN 就近与缓存（仅匿名共享内容）、服务端取数并行、慢接口单独治</td></tr>
+<tr><td><strong>发现延迟 ★</strong></td><td>LCP 图 URL 是否在初始 HTML 里；是否被懒加载或等 JS 执行后才出现</td><td>HTML 直出主图、<code>preload / fetchpriority="high"</code>、首图禁懒加载。实证样本：一次移动端单样本归因里，头图发现延迟约占 LCP 的 <strong>96%</strong>——先治发现、压图片几乎无用（单样本只证明机会，见图 A 第 3 步）</td></tr>
+<tr><td><strong>加载时长</strong></td><td>资源字节数与瀑布时长；是否原图直出、是否抢带宽</td><td>按显示尺寸出图（srcset）、WebP/AVIF、压缩、非关键资源延后让出带宽</td></tr>
+<tr><td><strong>渲染延迟</strong></td><td>图已下完却迟迟不画：查长任务、阻塞脚本、水合时机</td><td>拆长任务、减首屏 JS、关键内容先画后水合、非首屏懒加载</td></tr>
+</table>
+<div class="loop-note">各分段的 P75 不能相加当 LCP 的 P75，TTFB 也不能拿总时长倒推——必须取同一次访问的 attribution（06 节、46 节同一条纪律）。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · INP 与 CLS：另外两个核心指标的归因打法</p>
+<div class="grid2">
+<div class="box"><h4>INP：交互慢，先找最慢那次交互</h4><ul><li><strong>归因：</strong>用 Event Timing / web-vitals 的 INP attribution 定位是哪次交互、慢在输入延迟、处理时长还是呈现延迟</li><li><strong>拆长任务：</strong>把 &gt;50ms 的处理切成小片、让出主线程先画反馈；重计算挪 Worker</li><li><strong>缩小更新范围：</strong>一次输入只更新受影响的子树，别整页重渲；输入值先同步更新、重列表用过渡更新延后</li><li><strong>验收：</strong>看 INP 的 P75 与最慢交互分布，不是看某次点击的体感</li></ul></div>
+<div class="box"><h4>CLS：页面跳动，按窗口算账</h4><ul><li><strong>口径：</strong>CLS 不是把所有偏移简单相加：按会话窗口计，取<strong>最差的 5 秒窗口</strong>得分（46 节阈值表：≤0.1 良好）</li><li><strong>图片/媒体：</strong>宽高或 aspect-ratio 先预留位，别等加载完才撑开</li><li><strong>字体：</strong>font-display: swap/optinal 加字体度量兜底，减少换字体时的重排跳动</li><li><strong>动态内容：</strong>广告、推荐、横幅等后插入内容必须预留固定槽位；用户交互后 500ms 内的偏移不计分，别拿它当借口乱插</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 E · FCP / TTFB 辅助定位 + 通用手段清单（手段永远排在归因之后）</p>
+<div class="grid2">
+<div class="box"><h4>FCP 与 TTFB 怎么用</h4><p>它俩不是核心评分项，是<strong>定位探针</strong>：TTFB 慢 → 问题在网络/服务端/缓存命中之前；TTFB 快但 FCP 慢 → 问题在关键 CSS/JS 阻塞渲染；FCP 快但 LCP 慢 → 回到图 C 查发现与加载。先用探针缩到一段，再动手段。</p></div>
+<div class="box"><h4>通用手段（按归因结果取用）</h4><ul><li><strong>代码分割：</strong>路由级与组件级动态 import，首屏只下必需的</li><li><strong>资源优先级：</strong>关键资源 preload、跨域 preconnect、LCP 图 fetchpriority="high"、非关键 defer/懒加载</li><li><strong>缓存策略：</strong>带 hash 的静态资源强缓存长 TTL、HTML 协商缓存、发布时失效（口径见 HTTP 那节）</li><li><strong>压缩与瘦身：</strong>gzip/brotli、图片按尺寸与格式、字体子集化与 swap</li></ul></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「我排查性能走五步：先定是哪个核心指标慢，看 P75 并按设备网络切分找慢人群——只看平均值会被快样本稀释；再从慢样本里拿一条可复现的 trace 做归因，但一条 trace 只证明优化机会，全局结论要回分位数据验证。归因按指标分：LCP 拆四段，我有过单样本里头图发现延迟占约 96% 的情形，所以先让 HTML 直出主图加 preload；INP 用 Event Timing 找最慢交互，拆长任务、缩小更新范围；CLS 按最差 5 秒窗口算，靠尺寸预留和字体策略治。工具上实验室用 Lighthouse 和 WebPageTest 复现，线上靠 web-vitals 采集、DevTools 看火焰图与瀑布。改完用同分组 P75 前后对比验收——我能守的实证是团队专项里印尼站 4G 页面准备完成 P80 从 8.21 秒到 5.03 秒，那是 shopPageLoaded 终点，不是 LCP，我不会把它说成 LCP 成绩。」</p></div>
+<div class="trap"><strong>红线与追问预警：</strong>① 「LCP P75 从 4 秒优化到 2.5 秒」<strong>没有直接证据、不要讲</strong>；能讲的只有印尼站 4G 页面准备完成 P80 8.21s → 5.03s，且必须注明是 shopPageLoaded 终点、不是 LCP（证据链见 49 节）。② 「Lighthouse 跑分提升了就是优化成功？」→ 实验室数据只证明可复现环境下的变化，上线结论必须看真实用户同分组 P75。③ 「发现延迟占 96% 是普遍结论吗？」→ 不是，那是单次访问样本的归因，只证明那个样本的优化机会——这样答反而显严谨。</div>
 </section>
 
 <!-- EVENT LOOP -->
@@ -2291,8 +2774,45 @@ function mergeSorted(first, m, second, n) {
 
 
 
-<footer>用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、微前端原理、Element UI 表格性能、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ 微前端原理（03D，五路线对照 / 沙箱 / 通信 / 共享依赖 / Manifest 灰度 / 自家选型与 Hybrid 对比）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
+<footer>本图册已拆成三页：左侧边栏切换「前端图册 / 全栈面试 / Agent 面试」，每页有自己的目录和讲法，链接用 #/fullstack 与 #/agent 直达，旧的 #章节 链接会自动跳到所属页面。用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、微前端原理、Element UI 表格性能、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ 微前端原理（03D，五路线对照 / 沙箱 / 通信 / 共享依赖 / Manifest 灰度 / 自家选型与 Hybrid 对比）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
+</main>
 </div>
+</div>
+<script>
+(function(){
+  var FS={ 'fs-map':1,'fs-node':1,'fs-design':1,'fs-deploy':1,'node-core':1,'node-scale':1,'node-prod':1,'backend':1,'api':1,'db':1,'cache':1,'security':1,'node-ssr':1,'node-loop':1,'next':1,'nuxt':1,'ssr-frameworks':1,'ssr-decide':1 };
+  var AG={ 'ag-map':1,'ag-design':1,'ag-tools':1,'ag-prod':1,'agent':1,'aidod':1,'sse':1,'rag':1,'agent-memory':1 };
+  function pageOf(id){ if(FS[id]) return 'fullstack'; if(AG[id]) return 'agent'; return 'frontend'; }
+  var cards=[].slice.call(document.querySelectorAll('section.card'));
+  cards.forEach(function(c){ if(!c.dataset.page) c.dataset.page=pageOf(c.id); });
+  function showPage(page,anchor){
+    document.querySelectorAll('[data-hero]').forEach(function(h){ h.hidden = h.dataset.hero!==page; });
+    document.querySelectorAll('[data-toc]').forEach(function(t){ t.hidden = t.dataset.toc!==page; });
+    document.querySelectorAll('.appnav a').forEach(function(a){ a.classList.toggle('active', a.dataset.nav===page); });
+    cards.forEach(function(c){ c.hidden = c.dataset.page!==page; });
+    document.title = page==='fullstack' ? '全栈面试专页 · 面试知识点图解' : page==='agent' ? 'Agent 面试专页 · 面试知识点图解' : '面试知识点图解';
+    if(anchor){
+      var el=document.getElementById(anchor);
+      if(el){ setTimeout(function(){ el.scrollIntoView({block:'start'}); },30); return; }
+    }
+    window.scrollTo(0,0);
+  }
+  function route(){
+    var h=location.hash||'';
+    if(h==='#/fullstack'){ showPage('fullstack'); return; }
+    if(h==='#/agent'){ showPage('agent'); return; }
+    if(h==='#/frontend'||h==='#/'||h==='' ){ showPage('frontend'); return; }
+    if(h.charAt(0)==='#' && h.charAt(1)!=='/'){
+      var id=h.slice(1); var el=document.getElementById(id);
+      if(el && el.tagName==='SECTION'){ showPage(pageOf(id),id); return; }
+      showPage('frontend'); return;
+    }
+    showPage('frontend');
+  }
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
 <script>
 (function(){
   var steps=[
