@@ -140,7 +140,7 @@ section.card{scroll-margin-top:16px}
 <div class="toc-group"><span class="toc-label">Node 深挖</span><div class="toc-links"><a href="#node-core">模块·Buffer·Stream ★</a><a href="#node-scale">洋葱·进程·Redis ★</a><a href="#node-prod">限流·优雅关闭·观测 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">契约与数据</span><div class="toc-links"><a href="#api">接口设计·幂等</a><a href="#db">数据库</a><a href="#cache">缓存·消息队列</a><a href="#security">安全·登录鉴权</a></div></div>
 <div class="toc-group"><span class="toc-label">渲染与框架</span><div class="toc-links"><a href="#node-ssr">Node 手写 SSR ★</a><a href="#next">Next.js ★</a><a href="#nuxt">Nuxt.js ★</a><a href="#ssr-frameworks">SSR 三方对照 ★</a></div></div>
-<div class="toc-group"><span class="toc-label">设计与上线</span><div class="toc-links"><a href="#fs-design">全栈系统设计 ★</a><a href="#fs-deploy">部署与可观测 ★</a><a href="#ssr-decide">SSR 决策 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">设计与上线</span><div class="toc-links"><a href="#fs-design">全栈系统设计 ★</a><a href="#tech-platform">技术中台服务 ★</a><a href="#fs-deploy">部署与可观测 ★</a><a href="#ssr-decide">SSR 决策 ★</a></div></div>
 </nav>
 <nav class="toc" data-toc="agent" aria-label="Agent 目录" hidden>
 <div class="toc-group"><span class="toc-label">Agent 主线</span><div class="toc-links"><a href="#ag-map">面试地图 ★</a><a href="#agent">AI Agent 循环</a><a href="#ag-design">Agent 系统设计 ★</a></div></div>
@@ -177,7 +177,7 @@ section.card{scroll-margin-top:16px}
 
 <header class="page-hero" data-hero="fullstack" hidden>
 <h1>全栈面试：<br>不止会调接口，要能讲清一整条链。</h1>
-<p>这一页单独练全栈。面试官不会因为你会写页面就默认你懂服务端——他会顺着一个请求往下挖：网关怎么鉴权、服务怎么校验、数据怎么存、缓存怎么失效、慢了怎么定位、上线怎么灰度回滚。你的定位要诚实而清楚：<strong>前端是主业，后端到能设计契约、能参与表设计与联调排障、能用 Node 独立跑通一条链的程度</strong>；Java / Spring 的深水区只到理解层，不冒充落地。复习顺序就一条线：能力地图 → 请求全链路 → Node 服务 → 接口 → 数据库 → 缓存队列 → SSR 框架 → 鉴权部署 → 系统设计。本次再加 Node 深挖三节：模块 · Buffer · Stream 与错误处理、洋葱模型 · 多进程 · Redis 三灾、生产化（校验 / 限流熔断 / 优雅关闭 / 日志监控）加 SSR 实证收口——全部按理解 / 演示层讲，Company SSR 只说参与。</p>
+<p>这一页单独练全栈。面试官不会因为你会写页面就默认你懂服务端——他会顺着一个请求往下挖：网关怎么鉴权、服务怎么校验、数据怎么存、缓存怎么失效、慢了怎么定位、上线怎么灰度回滚。你的定位要诚实而清楚：<strong>前端是主业，后端到能设计契约、能参与表设计与联调排障、能用 Node 独立跑通一条链的程度</strong>；Java / Spring 的深水区只到理解层，不冒充落地。复习顺序就一条线：能力地图 → 请求全链路 → Node 服务 → 接口 → 数据库 → 缓存队列 → SSR 框架 → 鉴权部署 → 系统设计。本次再加 Node 深挖三节：模块 · Buffer · Stream 与错误处理、洋葱模型 · 多进程 · Redis 三灾、生产化（校验 / 限流熔断 / 优雅关闭 / 日志监控）加 SSR 实证收口——全部按理解 / 演示层讲，Company SSR 只说参与。本次再加技术中台服务一节：先定边界再拆分，身份 / 权限 / API / 元数据 / 事件五能力、一致性与幂等、可靠性与延迟预算、以及「别变成瓶颈被业务绕开」这条组织翻车线，落回 Shop Deco 平台线讲。</p>
 <div class="howto"><span>🧭 先链路，后细节</span><span>📐 契约先行：接口 / 错误码 / 幂等</span><span>🗄️ 数据：表设计 + 索引 + 事务</span><span>🚀 部署：灰度 · 回滚 · 可观测</span></div>
 </header>
 
@@ -271,6 +271,42 @@ section.card{scroll-margin-top:16px}
 </div>
 </div>
 <div class="say"><b>一分钟讲法：</b><p>「上线这块我讲三件事：发布有门禁和灰度、回滚比定位优先、出问题靠 requestId 和链路追踪分段定位。我在前端做过分批迁移加白名单加测试门禁那套质量打法，全栈的灰度发布是同一个思想搬到服务端。」</p></div>
+</section>
+
+<section class="card" id="tech-platform" data-page="fullstack" hidden>
+<div class="kicker">全栈 · 系统设计 · 技术中台 ★</div><h2>实现一个技术中台服务要考虑什么：先服务业务，再谈技术</h2>
+<p class="sub">总纲先立住：中台是把多条业务线都在重复造的能力抽出来服务化，不是把轮子堆成一个大系统。面试按「边界 → 拆分 → 契约 → 身份 → 数据 → 事件 → 可靠 → 性能 → 演进」这个顺序答，每一步都说清取舍和翻车点，比一上来就拆微服务得分高得多。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 先定边界，再拆服务：顺序反了，中台必成大泥球</p>
+<div class="flow">
+<div class="node teal"><b>1 先定服务对象</b><small>服务哪几条业务线 / 哪些团队<br>谁用都没定，别急着写代码</small></div><div class="arrow">→</div>
+<div class="node blue"><b>2 列能力清单</b><small>只抽横向共性<br>身份 · 权限 · API · 元数据 · 事件</small></div><div class="arrow">→</div>
+<div class="node amber"><b>3 划清不做什么</b><small>不碰业务逻辑<br>不做数据中台交付</small></div><div class="arrow">→</div>
+<div class="node green"><b>4 从最痛一点切入</b><small>比如权限先跑通一个服务<br>验证复用价值再扩展，别一次建成</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 五个横向能力：一个服务一个职责，库表各自独立</p>
+<table>
+<tr><th style="width:16%">能力</th><th style="width:36%">提供什么</th><th>关键设计点</th></tr>
+<tr><td><strong>身份服务</strong></td><td>账号、登录态、组织与租户</td><td>只管「你是谁」：SSO / OIDC / JWT 签发与校验，不掺业务权限判断</td></tr>
+<tr><td><strong>权限服务</strong></td><td>角色、资源授权、策略校验</td><td>只管「你能干嘛」：RBAC + 资源级授权，与身份分开，改权限不惊动登录链</td></tr>
+<tr><td><strong>API 能力</strong></td><td>接口注册、网关、文档与版本</td><td>统一规范先行：命名、错误码、分页、版本与退役窗口（细则见 <a href="#api">接口设计那节</a>）</td></tr>
+<tr><td><strong>元数据服务</strong></td><td>资源、字段、字典、配置的统一描述</td><td>业务系统查同一份定义，避免每条线各维护一套枚举和字段口径</td></tr>
+<tr><td><strong>事件机制</strong></td><td>事件发布、订阅、投递与回放</td><td>服务间靠事件同步而非互查库表；Schema 版本化，消费端幂等</td></tr>
+</table>
+<div class="loop-note">拆分铁律：服务之间只通过标准接口 / 事件通信，绝不直连对方数据库——数据库是每个服务自己的，跨库直连等于把拆分拆了个寂寞。</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>① API 设计与治理</h4><ul><li><strong>统一规范：</strong>REST 还是 gRPC、命名、错误码、分页先定标准再写代码，治理靠评审 + 脚手架落地，不靠文档喊口号</li><li><strong>版本管理：</strong>向后兼容、灰度发布，老版本留退役窗口并通知调用方，别一上线就断别人的调用</li><li><strong>鉴权与限流：</strong>网关统一验 token / OAuth，超配额回 429、源站过载回 503</li><li><strong>文档即代码：</strong>OpenAPI 自动生成文档并随接口一起评审，别让文档和接口各写各的</li></ul></div>
+<div class="box"><h4>② 身份与权限</h4><ul><li><strong>认证与授权分开：</strong>认证管是谁（SSO、OIDC、JWT），授权管能干嘛（RBAC + 资源级），两件事两套模型（细则见 <a href="#security">安全·登录鉴权</a>）</li><li><strong>多租户先定隔离级别：</strong>数据隔离（分库 / 分 Schema）还是逻辑隔离（租户字段 + 行级过滤），选错后期迁移极贵</li><li><strong>审计日志必备：</strong>谁、何时、把谁的什么权限改成了什么，必须可查、可追责</li></ul></div>
+<div class="box"><h4>③ 数据与一致性</h4><ul><li><strong>跨服务不用强一致：</strong>服务间用事件驱动同步，接受最终一致，先把「能容忍多久不一致」和业务对齐</li><li><strong>分布式事务：</strong>用 Saga 把长事务拆成可补偿的步骤，别想着两阶段提交硬扛</li><li><strong>幂等到处都要：</strong>接口带幂等键、事件消费也要幂等——重试和重复投递是常态，重复执行才是事故（见 <a href="#api">幂等那节</a>）</li></ul></div>
+<div class="box"><h4>④ 事件机制</h4><ul><li><strong>事件总线：</strong>Kafka / RocketMQ 一类，事件 Schema 要版本化，加字段兼容、删字段走退役流程</li><li><strong>重试与死信：</strong>消费失败按退避重试，超过次数进死信队列并告警，别让消息丢了也不知道</li><li><strong>顺序性：</strong>同一业务实体的事件要保序，分区键按业务 id 选，别用随机键把顺序打散</li></ul></div>
+<div class="box"><h4>⑤ 可靠性：一个慢依赖不能拖垮整站</h4><ul><li><strong>四件套：</strong>每个下游调用必设超时；重试只对幂等操作且带退避；错误率过阈值熔断快速失败；熔断后有降级数据或降级功能兜底</li><li><strong>优雅上下线：</strong>多副本部署，发布时先摘流量、等在途请求跑完再下线（和 <a href="#node-prod">Node 生产化</a>那节同一套）</li><li><strong>可观测：</strong>trace id 全链路贯穿，指标、日志、告警齐全，健康检查接口单独留一个（见 <a href="#fs-deploy">部署与可观测</a>）</li></ul></div>
+<div class="box"><h4>⑥ 性能与扩展：中台慢，全站一起慢</h4><ul><li><strong>无状态优先：</strong>服务本身不存会话状态，状态外置到 Redis / DB，水平扩展靠加副本</li><li><strong>缓存有纪律：</strong>热点数据才进 Redis，穿透 / 击穿 / 雪崩三灾各有解法（见 <a href="#cache">缓存那节</a>）</li><li><strong>延迟预算：</strong>中台是高频被调用方——你慢 50ms，业务侧一次请求调你十次就放大成 500ms，所以 P99 要单独定预算并监控</li></ul></div>
+</div>
+<div class="box" style="margin-top:12px"><h4>⑦ 演进与组织：中台最大的翻车点不在技术，在变成瓶颈</h4><p><strong>治理靠工具不靠喊：</strong>标准要落进评审清单、脚手架模板和 CI 门禁里，新服务从脚手架生出来就自带规范，比事后逐个整改便宜得多。<strong>接入成本决定复用率：</strong>文档、SDK、示例、联调支持越齐，业务线越愿意用；反过来，中台团队响应慢、排期长、发布还互相耦合，业务线就会绕开你自己造轮子——中台一旦被绕开，投入就全打水漂。所以推进节奏是：先用一个最痛的能力证明价值 → 沉淀标准与脚手架 → 再逐个能力扩展，全程盯着接入方的等待时长和满意度，而不是只盯自己发了多少服务。</p></div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「实现技术中台服务，我先定边界再谈技术：先说清服务哪几条业务线、只抽身份、权限、API、元数据、事件这五个横向能力，不碰业务逻辑。拆分上一个服务一个职责、库表各自独立、只走接口和事件通信，从最痛的一个能力先跑通。往下依次是：API 先定统一规范和版本退役规则；认证授权分开、多租户隔离级别先定、权限变更留审计；跨服务用事件做最终一致、事务用 Saga、接口和消费都做幂等；事件要有 Schema 版本、重试和死信；可靠性靠超时、熔断、降级和优雅上下线，性能上无状态加缓存纪律，还要给中台单独定延迟预算——因为它慢 50 毫秒会被业务侧放大。最后一条是组织上的：治理靠脚手架和门禁、接入成本越低复用率越高，中台最大的风险是变成瓶颈被业务绕开。」</p></div>
+<div class="say"><b>落回你的实证这样接：</b><p>「我真正做过的平台线是 Shop Deco：DSL 协议、物料、渲染引擎、模板平台就是一套中台思维——协议先行、多端共用同一份 DSL、模板发布走版本和灰度；编辑器抽象成公司内部 NPM 包给多个团队接入，靠的就是接入成本低。Monorepo 加 npm 自动发布是我做过的平台工程化。身份权限这块我讲理解层，能落的例子是草稿权限那类资源级授权；API 网关、权限服务本身我没独立落地过，不冒充。」</p></div>
+<div class="trap"><strong>追问预警 + 口径红线：</strong>「为什么不一次把五个能力都建完？」→ 一次建成周期长、价值验证晚，先切最痛一点跑通闭环再扩展。「中台和微服务是一回事吗？」→ 不是：微服务是拆分手段，中台是能力复用的组织方式，单体里也能有中台能力，别混着答。口径上守住：Shop Deco 平台线和 Monorepo 发布是实证，身份 / 权限 / 网关按理解层 + 设计讲，别说成独立落地过中台后端服务。</div>
 </section>
 
 <!-- NODE CORE -->
@@ -2780,7 +2816,7 @@ function mergeSorted(first, m, second, n) {
 </div>
 <script>
 (function(){
-  var FS={ 'fs-map':1,'fs-node':1,'fs-design':1,'fs-deploy':1,'node-core':1,'node-scale':1,'node-prod':1,'backend':1,'api':1,'db':1,'cache':1,'security':1,'node-ssr':1,'node-loop':1,'next':1,'nuxt':1,'ssr-frameworks':1,'ssr-decide':1 };
+  var FS={ 'fs-map':1,'fs-node':1,'fs-design':1,'tech-platform':1,'fs-deploy':1,'node-core':1,'node-scale':1,'node-prod':1,'backend':1,'api':1,'db':1,'cache':1,'security':1,'node-ssr':1,'node-loop':1,'next':1,'nuxt':1,'ssr-frameworks':1,'ssr-decide':1 };
   var AG={ 'ag-map':1,'ag-design':1,'ag-tools':1,'ag-prod':1,'agent':1,'aidod':1,'sse':1,'rag':1,'agent-memory':1 };
   function pageOf(id){ if(FS[id]) return 'fullstack'; if(AG[id]) return 'agent'; return 'frontend'; }
   var cards=[].slice.call(document.querySelectorAll('section.card'));
