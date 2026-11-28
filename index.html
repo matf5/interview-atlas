@@ -151,6 +151,7 @@ section.card{scroll-margin-top:16px}
 <nav class="toc" data-toc="frontend" aria-label="目录">
 <div class="toc-group"><span class="toc-label">框架原理</span><div class="toc-links"><a href="#vue2">Vue2 响应式</a><a href="#vue3">Vue3 响应式 ★</a><a href="#vue-compare">Vue2/3 全对比 ★</a><a href="#vue-faq">Vue 高频题 ★</a><a href="#vue-upgrade">Vue2 升 Vue3 清单 ★</a><a href="#react">React ★</a><a href="#react-faq">React 高频追问 ★</a><a href="#state">状态管理六库 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">渲染与性能</span><div class="toc-links"><a href="#ssr">SSR 过程</a><a href="#company-ssr">Company SSR ★</a><a href="#micro-fe">微前端原理 ★</a><a href="#vlist">虚拟列表</a><a href="#eltable">Element UI 表格性能 ★</a><a href="#chart">10万点图表 ★</a><a href="#perf">性能 &amp; LCP ★</a><a href="#perf-scenarios">性能场景题 ★</a><a href="#perf-debug">性能排查与优化 ★</a></div></div>
+<div class="toc-group"><span class="toc-label">图形渲染</span><div class="toc-links"><a href="#render-modes">渲染总览 · 四条路径 ★</a><a href="#canvas-webgl">Canvas 2D · WebGL ★</a><a href="#render-perf">渲染性能优化 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">DSL 与架构</span><div class="toc-links"><a href="#dsl">DSL 架构</a><a href="#dsl-link">DSL 联动 ★</a><a href="#expr-engine">表达式引擎 ★</a><a href="#figma-dsl">Figma 转 DSL ★</a><a href="#lowcode">低代码全景 ★</a></div></div>
 <div class="toc-group"><span class="toc-label">JS 与基础</span><div class="toc-links"><a href="#loop">事件循环</a><a href="#more">深拷贝·设计模式</a><a href="#patterns">设计模式实例 ★</a><a href="#css">CSS 布局</a></div></div>
 <div class="toc-group"><span class="toc-label">构建与 Monorepo</span><div class="toc-links"><a href="#build">构建·TS</a><a href="#tooling">Webpack/Vite·npm 导出 ★</a><a href="#monorepo">pnpm·Nx/Turborepo ★</a></div></div>
@@ -167,7 +168,7 @@ section.card{scroll-margin-top:16px}
 <header class="hero" data-hero="frontend">
 <h1>看图记原理，<br>开口不卡壳。</h1>
 <p>Ma 的面试图解册 — 每张图只解决一件事：面试官问到时，你能指着流程说清「数据怎么流、瓶颈在哪、翻车怎么办」。前半按最近几场暴露的短板排序：Vue3 响应式、图表大数据、LCP 优先；后半补齐其他高频题和后端全链路（React、浏览器/HTTP、安全、构建、接口、数据库、缓存）。服务端渲染单独成簇细讲：先通用八步，再画 Company 店铺页那套请求时 SSR / Hybrid 的完整链路，然后 Next.js 与 Nuxt.js 分开画原理——三套对照着讲「自研 vs React 框架 vs Vue 框架」的取舍；跨端单独扩成总论 + 专题（第 29 节）：先用「怎么写、怎么跑、怎么画」三层模型讲清所有跨端框架的取舍，再分清 Node 是跨平台运行时而不是跨端 UI 框架，最后落到 RN 专题——新旧架构与三线程、冷启动五段拆解与预取/分包、FlatList 长列表、重渲染性能坑、与 Flutter / WebView / 原生的选型对照、打包与热更新边界，全按理解层讲，并明确纠正「RN 没有传统 SSR」。再新增一节底层引擎（第 30 节）：渲染引擎、JS 引擎、CPU / GPU 分工一次讲透——从 JS 源码经解析、解释与 JIT 变成机器码，到渲染引擎的布局、绘制、合成，再到 GPU 为什么只适合并行画像素、为什么 transform / opacity 最便宜。本次新增五节：DSL 组件联动（三层联动）、Figma 转 DSL 模板生产链、AIDOD 定位链路、SSE 流式与续跑、国际化/本地化——DSL 两节紧跟 DSL 架构，AIDOD 与 SSE 紧跟 Agent，国际化放在 Next/Nuxt 之后、和 SSR 的语言隔离与缓存键一起讲。再新增两节深挖：表达式引擎全流程（紧跟 DSL 联动，把 jsep 解析、AST 编译成闭包、两级缓存、作用域链与安全拦截画成完整链路，并附可开口讲的代码骨架）；设计模式实例图鉴（紧跟深拷贝速记，把适配器、策略、观察者与发布订阅、工厂、单例、模板方法/管线、解释器逐个落到你自己的代码例子上）。RAG 一节扩成 AI 专题：先讲 LLM 本身能干什么、不能干什么，再把 RAG 的离线建库与在线问答拆开细画（切块、混合检索、重排、排查链），然后接 Agent 与工具边界（Skill 管怎么做、MCP 管够不着的系统）、评测与安全，最后落回前端能讲的三类活，并守住 AIDOD 是指纹精确匹配、不是向量 RAG 这条线；紧跟着再加一节 Agent 上下文管理与记忆：模型本身无记忆、记忆是工程外挂，短期靠截断、摘要压缩与结构化状态表，长期分事实、情节、做法三类只写验证过的结论，并用 AIDOD 的 thread_id 与 stream_id 分清续跑与重连、讲清记忆与 RAG 的区别。本次再补齐四组：Vue2/3 全对比（生命周期对照、原理三层、API 破坏性变更、2.6→2.7 分批迁移）、React 高频追问（Fiber、Diff、Hooks 原理与并发）、状态管理六库（Redux / Zustand / MobX / Atom / Vuex / Pinia 按三派对照）、Node 事件循环（六阶段逐个讲、libuv 的角色与线程池分工，和浏览器那节对照背）；工程化深挖 Webpack/Vite、npm 包 exports 导出与双格式雷、pnpm 的 store 模型与 Nx / Turborepo 编排缓存。本次再补两节服务端渲染深挖：Node + Express 手写 SSR（以设计文档原件为准拆 render.tsx 那条链——Express 起服务、AsyncLocalStorage 逐请求隔离三 key、renderToPipeableStream 在 onAllReady 时 pipe 到 PassThrough 拼串、脱水只放行 shopInfo、失败回 500 空资源保协议形状，并对照一个本地跑通过的最小骨架讲 onShellReady 直出与 CSR 壳降级）；Next / Nuxt / 手写 Node 三方对照（框架定位、渲染模式、数据获取、缓存、部署、适用场景一张表收尾，Next 标理解/演示层、Nuxt 标没在生产用过）。本次再加一节低代码全景（紧跟 Figma 转 DSL，同在 DSL 与架构组）：五层分层（协议/物料/编辑器/渲染/平台）、业界实现对照（LowCodeEngine、amis、宜搭/微搭、Mendix/OutSystems、Retool）、出码原理三步（解析→转换→生成）、运行时与出码取舍表，并落回 Shop Deco 的运行时路线定位（模板高频变、免发版、三端同构，所以不出码）。本次再补微前端这一簇：Company SSR 那节按设计文档原件把 render.tsx 那条链拆到函数级（Host 向 Slot 要内容、getSlotSsrResult 汇总、buildChunkManifest 拼资源清单、只脱水 shopInfo、onAllReady + PassThrough 拼串、Host 拼一个原子 JSON、逐请求新建 store / StaticRouter / HelmetProvider 做隔离、注水三同）；紧跟着新增微前端原理一节——为什么要微前端（独立部署、团队自治、技术异构）、五种实现路线对照（路由分发、iframe、Web Components、Module Federation、single-spa/qiankun）、JS 沙箱与 CSS 隔离、应用间通信、共享依赖与版本管理、Manifest 注册表做部署与灰度、四个常见坑，并讲清自家 Host 壳 + Slot + Render Server + Manifest 注册表 + Module Federation 共享依赖为什么不是 iframe、不是多页，以及 Hybrid 与纯 SSR 在这套架构下的区别。本次再加一节表格性能优化（紧跟虚拟列表，Element UI 专题）：经典 el-table 用原生 table + header/body 两分区实现固定表头、固定列要渲染 6 个 table、一份数据三份 DOM 是卡顿根源，附 Gutter 错位、三区滚动同步、行高错位三个坑；优化走 sticky 单份 DOM 或 Element Plus 的 el-table-v2 虚拟化网格，并落到 500 行分页、2000 行虚拟滚动的经验分层（社区经验值、明标口径）。所有框架节都只讲原理、约束和翻车，不堆 API、不冒充落地。</p>
-<p style="color:var(--muted);margin:12px 0 0;font-size:14px">本次新增 46–51 节（224–227 四份材料）：46 节 H5 采集与 P75 聚合、47 节 RN 测量、48 节 SSR 决策与鉴权限流、49 节简历 LCP 数字防守、50 节某互联网公司 52 分钟复盘、51 节某工业软件公司工艺编辑器与 Coding 实操；另在性能、Figma 转 DSL、DSL、Agent 四节补了对应细节。本轮再补四节：Vue 高频题十二道（02C）、Vue2 升 Vue3 盘点清单与渐进路线（02D）、性能场景题十景（06B，先定位再优化）、性能排查与优化（06C，排查流程、工具箱、LCP/INP/CLS 三大指标的归因打法）。</p>
+<p style="color:var(--muted);margin:12px 0 0;font-size:14px">本次新增 46–51 节（224–227 四份材料）：46 节 H5 采集与 P75 聚合、47 节 RN 测量、48 节 SSR 决策与鉴权限流、49 节简历 LCP 数字防守、50 节某互联网公司 52 分钟复盘、51 节某工业软件公司工艺编辑器与 Coding 实操；另在性能、Figma 转 DSL、DSL、Agent 四节补了对应细节。本轮再补四节：Vue 高频题十二道（02C）、Vue2 升 Vue3 盘点清单与渐进路线（02D）、性能场景题十景（06B，先定位再优化）、性能排查与优化（06C，排查流程、工具箱、LCP/INP/CLS 三大指标的归因打法）。再新增 52–54 节图形渲染（PDF《Web 渲染体系完整梳理》全文梳理）：52 节 DOM / SVG / Canvas 2D / WebGL 四条路径与保留/即时模式、三条渲染管线，53 节 Canvas 2D 缩放与脏区、WebGL 一帧五步与 Draw Call 瓶颈、2D/3D 本质差异，54 节渲染性能优化（两个减半实验定位、七步优化顺序、选型决策树、精密制造场景映射、七道速查），3D 按理解层讲、实证只讲 Canvas 2D 大数据与 DOM 编辑器。</p>
 <div class="howto"><span>👀 先看图 · 30 秒</span><span>🗣️ 再读「一分钟讲法」</span><span>⚠️ 最后看追问与坑</span><span>📱 手机上可直接翻着背</span><span>🧭 后端题：先链路 → 再取舍 → 再翻车</span></div>
 <div class="page-switch">
 <a href="#/fullstack"><b>→ 全栈面试专页</b><p>后端全链路、接口与幂等、数据库、缓存与队列、Node 手写 SSR、Next / Nuxt、鉴权与部署可观测——单独成页，按「链路 → 契约 → 数据 → 部署」复习。</p><span>进入全栈页 →</span></a>
@@ -2810,7 +2811,200 @@ function mergeSorted(first, m, second, n) {
 
 
 
-<footer>本图册已拆成三页：左侧边栏切换「前端图册 / 全栈面试 / Agent 面试」，每页有自己的目录和讲法，链接用 #/fullstack 与 #/agent 直达，旧的 #章节 链接会自动跳到所属页面。用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、微前端原理、Element UI 表格性能、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ 微前端原理（03D，五路线对照 / 沙箱 / 通信 / 共享依赖 / Manifest 灰度 / 自家选型与 Hybrid 对比）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
+<!-- RENDER MODES 52 -->
+<section class="card" id="render-modes">
+<div class="kicker">渲染 · 52 · 图形渲染总览 ★</div><h2>DOM / SVG / Canvas 2D / WebGL：一张图看懂四条渲染路径</h2>
+<p class="sub">浏览器里“把东西画到屏幕上”有四条主要路径，它们不是互斥的，而是<strong>分层协作</strong>：DOM 负责界面，Canvas / WebGL 负责画面，SVG 补矢量交互。先立住这个分层，再谈任何一幅图的性能。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 全景表：四种方式的位置</p>
+<table>
+<tr><th style="width:14%">技术</th><th style="width:12%">渲染模式</th><th style="width:24%">谁在维护场景</th><th style="width:24%">主要计算资源</th><th>典型定位</th></tr>
+<tr><td><strong>DOM + CSS</strong></td><td>保留模式</td><td>浏览器（DOM 树 / 渲染树）</td><td>CPU 主导布局与绘制，GPU 参与合成</td><td>界面、表单、列表、文本密集</td></tr>
+<tr><td><strong>SVG</strong></td><td>保留模式</td><td>浏览器（矢量节点树）</td><td>CPU 为主</td><td>矢量图标、可交互图表、地图</td></tr>
+<tr><td><strong>Canvas 2D</strong></td><td>即时模式</td><td>你的代码</td><td>CPU 发绘制指令，光栅化可用 CPU 或 GPU</td><td>大规模 2D 图元、图表、晶圆图、游戏</td></tr>
+<tr><td><strong>WebGL / WebGPU</strong></td><td>即时模式</td><td>你的代码（Three.js 等库帮你管）</td><td>GPU 全管线，CPU 只负责提交指令</td><td>3D 数字孪生、仿真可视化、大规模节点</td></tr>
+</table>
+<div class="loop-note">关键认知：DOM 和 Canvas / WebGL 最终都要经过浏览器的<strong>合成（Compositing）</strong>阶段，由 GPU 把各图层合成为最终画面。区别在于“内容是怎么被画出来的”：DOM 是浏览器按样式规则替你画，Canvas / WebGL 是你用代码逐帧命令它画。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 它们如何共存：一个典型工业前端页面的分层</p>
+<div class="flow">
+<div class="node blue"><b>页面骨架（DOM）</b><small>工具栏、属性面板<br>设备列表、弹窗</small></div><div class="arrow">→</div>
+<div class="node teal"><b>主视图区（Canvas / WebGL）</b><small>晶圆图 / 产线 3D 场景<br>应力云图</small></div><div class="arrow">→</div>
+<div class="node amber"><b>叠加层（DOM 绝对定位）</b><small>标签、Tooltip、右键菜单<br>框选提示</small></div>
+</div>
+<p style="font-size:14px;color:var(--muted)">协作要点：覆盖层不要阻挡 Canvas 的鼠标事件（必要时用 <code>pointer-events: none</code>），并保证坐标换算一致——屏幕坐标 ↔ 画布坐标 ↔ 世界坐标，三套坐标要能互相换算。</p>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 本质区别：保留模式 vs 即时模式</p>
+<div class="grid2">
+<div class="box"><h4>保留模式（Retained）—— DOM / SVG：你声明“有什么”</h4><ul><li>创建一个 <code>&lt;div&gt;</code>，它就一直在那里，直到你删除它</li><li>改样式或位置，浏览器自动算布局、重绘、合成</li><li>浏览器能做增量优化：只重绘变化的部分</li><li>代价：节点数大时，布局（Layout）和样式计算成为主线程瓶颈</li></ul></div>
+<div class="box"><h4>即时模式（Immediate）—— Canvas 2D / WebGL：你命令“怎么画”</h4><ul><li>调用 <code>ctx.fillRect()</code> 后，Canvas 不记得这里有个矩形，只记得像素</li><li>要做交互（点击命中），必须自己维护几何数据并做命中测试</li><li>要做动画，必须每帧清空并重绘（或做局部脏矩形刷新）</li><li>优势：没有 DOM 节点开销，适合大量图元；控制粒度细</li></ul></div>
+</div>
+<table style="margin-top:12px">
+<tr><th style="width:18%">维度</th><th style="width:41%">保留模式（DOM）</th><th>即时模式（Canvas / WebGL）</th></tr>
+<tr><td><strong>场景由谁维护</strong></td><td>浏览器</td><td>你的代码</td></tr>
+<tr><td><strong>增量更新</strong></td><td>浏览器自动做</td><td>需手动实现（脏矩形 / 差分）</td></tr>
+<tr><td><strong>交互拾取</strong></td><td>原生事件 + 冒泡</td><td>手动命中测试 / Raycaster</td></tr>
+<tr><td><strong>文本排版</strong></td><td>原生、强大</td><td>弱（需手动换行 / 纹理）</td></tr>
+<tr><td><strong>大量图元</strong></td><td>节点多则慢</td><td>优势明显</td></tr>
+<tr><td><strong>可访问性</strong></td><td>原生支持</td><td>需额外补</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 三条渲染管线：从代码到像素，起点不同、汇合在合成</p>
+<div class="flow">
+<div class="node blue"><b>DOM 管线</b><small>HTML → DOM 树<br>CSS → CSSOM → 样式计算<br>→ Render Tree → Layout<br>→ Paint → 分层 → Composite</small></div><div class="arrow">→</div>
+<div class="node teal"><b>Canvas 2D 路径</b><small>JS 调 ctx.* → 绘制指令<br>→ 光栅化（CPU 或 GPU）<br>→ 得到位图 → 作为纹理参与合成</small></div><div class="arrow">→</div>
+<div class="node amber"><b>WebGL 管线</b><small>JS 提交 Draw Call<br>→ 顶点着色器 → 图元装配<br>→ 光栅化 → 片元着色器<br>→ 深度测试 / 混合 → 帧缓冲 → 合成</small></div>
+</div>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>为什么只改 transform / opacity 最便宜</h4><p>Layout 和 Paint 在主线程，Composite 可以在合成器线程和 GPU 上完成。只改变 transform、opacity 这类“仅合成属性”，可以<strong>跳过 Layout 和 Paint</strong>，动画更流畅。和第 30 节引擎那张 16.6ms 帧预算表是同一条道理。</p></div>
+<div class="box"><h4>常见误解：“用了 Canvas 就一定走 GPU”</h4><p>错。Canvas 2D 的规范<strong>不规定必须用 GPU</strong>，光栅化可能是 CPU 完成的；Chrome 默认走 GPU 加速的 Skia 后端，但在频繁 <code>getImageData</code> 时可能回退到 CPU，因为 GPU 回读像素的代价很高。WebGL 才是强制 GPU 的路径（软件回退 SwiftShader 是例外）。判断是否 GPU 加速，要看具体浏览器和调用模式。</p></div>
+</div>
+</div>
+<div class="say"><b>一分钟讲法：</b><p>「浏览器里画东西有四条路：DOM 和 SVG 是保留模式，你声明有什么、浏览器替你维护场景树，改了自动重绘，代价是节点多时布局成瓶颈；Canvas 2D 和 WebGL 是即时模式，你每帧命令它怎么画，画完即忘，命中和增量更新都得自己做，换来的是大量图元不卡。DOM 的管线是解析、样式、布局、绘制、分层、合成，Layout 和 Paint 在主线程、合成可以走 GPU，所以只动 transform 和 opacity 最便宜；Canvas 2D 是 JS 发指令、光栅化成位图再合成，光栅化不一定走 GPU；WebGL 是 JS 只提交 Draw Call，逐顶点、逐像素的计算全在 GPU 上。真实页面是混合的：DOM 做界面、Canvas 或 WebGL 做主视图、DOM 覆盖层做标签和菜单。」</p></div>
+<div class="trap"><strong>口径：</strong>WebGL / Three.js 按理解层讲，没有生产级 3D 项目；真正做过的是 Canvas 2D 大数据图表（见第 05 节 10 万点那节）和 DOM 可视化编辑器。面试先讲这两块实证，再讲 WebGL 的理解，别反过来。</div>
+</section>
+
+<!-- CANVAS WEBGL 53 -->
+<section class="card" id="canvas-webgl">
+<div class="kicker">渲染 · 53 · Canvas 2D 与 WebGL 深挖 ★</div><h2>Canvas 2D 每帧自己画，WebGL 把管线交给 GPU</h2>
+<p class="sub">52 节讲了四条路的分工，这一节把两条即时模式的路拆到能开口讲的程度：Canvas 2D 的缩放与脏区、WebGL 的一帧五步与 Draw Call 瓶颈、以及 2D 和 3D 到底差在哪。DOM 那半只讲边界，细节在第 06 节性能与第 30 节引擎里。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · DOM 渲染：浏览器替你维护场景图——优势、边界、优化要点</p>
+<div class="grid2">
+<div class="box"><h4>优势场景</h4><ul><li><strong>文本密集：</strong>段落、表格、表单、日志——原生排版能力无可替代</li><li><strong>可访问性：</strong>屏幕阅读器、键盘导航天然支持</li><li><strong>常规交互：</strong>按钮、下拉、拖拽、悬停，事件系统成熟</li><li><strong>SEO 与语义：</strong>内容可被爬虫和工具解析</li></ul></div>
+<div class="box"><h4>性能边界</h4><ul><li>节点数量到数千级，样式计算和布局开始明显变慢</li><li>频繁触发布局的属性（<code>width / top / left / margin</code>）会引发回流，代价高</li><li>大量绝对定位元素 + 阴影 / 圆角 / 滤镜，显著增加绘制成本</li><li>优化要点：动画优先用 <code>transform</code> 和 <code>opacity</code>；<code>will-change</code> 谨慎提升合成层；长列表用虚拟滚动（见第 04 节）；避免在滚动 / 缩放回调里读写布局属性（防布局抖动）</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · Canvas 2D：核心特征与缩放的两种层面</p>
+<p style="font-size:14px;color:var(--muted)">核心特征：基于 <code>&lt;canvas&gt;</code> 元素、2D 上下文绘图；即时模式，每帧重新提交绘制指令；没有内置场景图、没有命中测试、没有文本自动排版；像素级操作能力强（<code>getImageData / putImageData</code>）。适合：大规模 2D 图元（晶圆图、点位图、热力图、状态看板）、自定义图表、图像处理、2D 游戏与粒子效果。</p>
+<table>
+<tr><th style="width:16%">层面</th><th style="width:44%">做法</th><th>注意点</th></tr>
+<tr><td><strong>坐标系缩放</strong></td><td><code>ctx.scale(sx, sy)</code> + <code>save / restore</code></td><td>有状态，会影响后续所有绘制；需要重置变换矩阵</td></tr>
+<tr><td><strong>围绕鼠标缩放</strong></td><td><code>scale</code> + <code>translate</code> 组合，配合滚动容器</td><td>要计算平移补偿，保持鼠标下的内容视觉不动</td></tr>
+<tr><td><strong>性能优化</strong></td><td>离屏 Canvas 预缩放 + 缓存</td><td>避免每帧对同一图片重复 <code>drawImage</code> 缩放</td></tr>
+<tr><td><strong>像素风格</strong></td><td><code>imageSmoothingEnabled = false</code></td><td>启用最近邻采样，保持锐利边缘</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>易错点：别靠改宽高来缩放</h4><p>修改 <code>canvas.width</code> 或 <code>canvas.height</code> 会<strong>重置整个绘图状态并清空画布</strong>。做缩放时不要靠改这两个属性，而应通过变换矩阵和 CSS 尺寸来控制。高清屏还要处理 DPR：canvas 的宽高按 <code>CSS 尺寸 × dpr</code> 设，ctx 再 <code>scale(dpr, dpr)</code>，否则发虚；DPR 封顶到 2，低端机再降。</p></div>
+<div class="box"><h4>性能要点（四条）</h4><ul><li>大量动态对象时，用<strong>脏矩形</strong>刷新只重绘变化区域</li><li>频繁读取像素时，加 <code>willReadFrequently: true</code> 提示浏览器走 CPU 路径</li><li><strong>离屏渲染（OffscreenCanvas）</strong>可把绘制移出主线程</li><li>图元数量极大且需要交互时，评估是否应升级到 WebGL</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · WebGL / 3D：一帧到底发生了什么</p>
+<div class="flow">
+<div class="node plain"><b>① JS 提交</b><small>顶点数据进 Buffer<br>告诉 GPU 每个顶点有哪些 attribute</small></div><div class="arrow">→</div>
+<div class="node blue"><b>② 顶点着色器</b><small>每个顶点跑一次<br>算 MVP 矩阵变换，输出裁剪空间坐标</small></div><div class="arrow">→</div>
+<div class="node teal"><b>③ 光栅化</b><small>三角形拆成像素（片元）<br>varying 插值传给片元着色器</small></div><div class="arrow">→</div>
+<div class="node amber"><b>④ 片元着色器</b><small>每个像素跑一次<br>算颜色（采样纹理、算光照）</small></div><div class="arrow">→</div>
+<div class="node green"><b>⑤ 帧缓冲 → 合成</b><small>写进 Framebuffer<br>再参与浏览器合成</small></div>
+</div>
+<p style="font-size:14px;color:var(--muted)">WebGL 是裸 GPU API，不是 3D 引擎：它只干一件事——把顶点数据 + 着色器程序画成像素，3D 是你自己用矩阵算出来的。Three.js / Babylon.js 在其上封装了场景图、材质、相机、加载器：Scene 管层级，Camera 管视角，Renderer 管 WebGL 调用，Mesh = Geometry（形状）+ Material（材质）。<code>attribute</code> 是逐顶点数据，<code>uniform</code> 是全局常量（时间、光源位置），<code>varying</code> 是顶点到片元的插值通道。</p>
+<table>
+<tr><th style="width:18%">3D 关键机制</th><th style="width:38%">作用</th><th>与 2D 的差异</th></tr>
+<tr><td><strong>投影</strong></td><td>把 3D 坐标映射到 2D 屏幕</td><td>2D 无投影，直接平面坐标</td></tr>
+<tr><td><strong>深度缓冲（Z-buffer）</strong></td><td>自动处理遮挡</td><td>2D 靠绘制顺序（画家算法）</td></tr>
+<tr><td><strong>光照与材质</strong></td><td>计算表面颜色</td><td>2D 通常是纯色 / 渐变 / 贴图</td></tr>
+<tr><td><strong>相机</strong></td><td>透视或正交观察</td><td>2D 只有视口平移缩放</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>性能瓶颈的两条主线</h4><ul><li><strong>CPU 侧：</strong>Draw Call 次数、状态切换、JS 逻辑、矩阵计算。物体数量上千时，这往往才是真正的瓶颈</li><li><strong>GPU 侧：</strong>填充率（像素过多）、几何复杂度（三角形过多）、着色器开销、纹理带宽</li><li>优化主线：<strong>先诊断瓶颈在 CPU 还是 GPU，再对症下药</strong>。CPU 瓶颈优先做合批（InstancedMesh、几何合并）；GPU 瓶颈优先做减面、LOD、降低填充率。诊断方法见第 54 节图 A</li></ul></div>
+<div class="box"><h4>Three.js 藏了什么、你还得懂什么</h4><ul><li>藏了：矩阵运算、着色器编写、缓冲管理、渲染状态切换</li><li>还得懂：Draw Call 数（<code>renderer.info.render.calls</code> 能看）、几何与材质的 <code>dispose()</code>、纹理尺寸、LOD、实例化</li><li>翻车点：一个模型几百个 Mesh 就是几百个 Draw Call，Three.js 不会自动合批；着色器编译失败页面直接黑屏，错误只在控制台</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 2D 与 3D 的本质差异：是数据维度，不是 API 名字</p>
+<table>
+<tr><th style="width:16%">维度</th><th style="width:42%">2D 渲染</th><th>3D 渲染</th></tr>
+<tr><td><strong>坐标空间</strong></td><td>平面坐标（x, y）</td><td>三维坐标（x, y, z）+ 投影</td></tr>
+<tr><td><strong>遮挡处理</strong></td><td>绘制顺序（画家算法）</td><td>深度缓冲（Z-buffer）</td></tr>
+<tr><td><strong>光照</strong></td><td>通常无，或简单渐变</td><td>光照模型、材质、阴影</td></tr>
+<tr><td><strong>相机</strong></td><td>视口平移缩放</td><td>透视 / 正交相机、视锥</td></tr>
+<tr><td><strong>交互拾取</strong></td><td>点与矩形 / 多边形检测</td><td>射线与几何求交（Raycaster）</td></tr>
+<tr><td><strong>典型 API</strong></td><td>Canvas 2D</td><td>WebGL / WebGPU</td></tr>
+</table>
+<div class="loop-note">容易混淆的点：“2D 渲染”不等于“Canvas 2D”，“3D 渲染”也不等于“必须用 WebGL”。WebGL 完全可以渲染 2D 内容（很多 2D 引擎就是这么做的）；而 Canvas 2D 无法实现真正的 3D 投影管线。判断标准是<strong>数据维度和所需的渲染能力</strong>，不是 API 名字。工程场景补充：精密制造的工程图纸、2.5D 视图通常用<strong>正交相机（OrthographicCamera）</strong>，因为正交投影没有透视畸变，屏幕上量到的尺寸与真实尺寸成固定比例——这是“数据保真”在相机层面的体现。</div>
+</div>
+<div class="say"><b>一分钟讲法（WebGL 管线版）：</b><p>「WebGL 不是 Canvas 3D，它是裸 GPU API，一帧分五步：JS 把顶点数据写进 Buffer，顶点着色器对每个顶点算一次 MVP 矩阵变换，GPU 光栅化把三角形拆成像素，片元着色器对每个像素算一次颜色写进帧缓冲，最后参与合成。CPU 只负责提交 Draw Call 和管理资源，真正的逐顶点、逐像素计算全在 GPU 上。所以物体一多先卡的往往不是 GPU 算力，是 CPU 提交 Draw Call 的次数——这就是合批和 InstancedMesh 的价值。Canvas 2D 那边我做过大数据图表，做法是降采样加分桶保极值、按窗口取数、静态离屏缓存、只重画脏区，WebGL 这边我按理解层讲。」</p></div>
+<div class="trap"><strong>追问预警：</strong>「显存泄漏怎么防？」→ JS 垃圾回收不会释放 GPU 显存，几何、材质、纹理、渲染目标用完必须显式 <code>dispose()</code>，组件卸载时统一清理，只删 JS 引用不够。「每帧 new 对象会怎样？」→ GC 一触发就掉帧，复用 Vector3 / Matrix4，别在循环里 new。「阴影和后期处理为什么贵？」→ 按像素收费，低端机先关阴影、再降 DPR、再降模型精度（降级顺序见第 54 节）。</div>
+</section>
+
+<!-- RENDER PERF 54 -->
+<section class="card" id="render-perf">
+<div class="kicker">性能 · 54 · 图形渲染性能优化 ★</div><h2>渲染性能优化：先定位瓶颈，再按瓶颈选手段</h2>
+<p class="sub">图形渲染的性能题和 LCP 题是同一套纪律：<strong>先定位，再优化，最后同口径验证</strong>。这一节把 52–53 节的原理收成一套能直接用的打法：两个减半实验定瓶颈、七步优化顺序、分技术手段、选型决策树、精密制造场景映射，最后是七道面试速查。</p>
+<div class="diagram">
+<p style="margin:0 0 8px;font-weight:700;font-size:14px">图 A · 先定位：用毫秒，不用 FPS；两个减半实验定 CPU 还是 GPU</p>
+<div class="flow">
+<div class="node plain"><b>帧预算</b><small>60Hz 每帧 16.7ms<br>120Hz 每帧 8.3ms，要留余量<br>卡顿来自波动，不是平均值</small></div><div class="arrow">→</div>
+<div class="node amber"><b>实验 1：分辨率减半</b><small>帧时间不变 → CPU / 顶点瓶颈<br>明显下降 → GPU 片元瓶颈<br>（shader、overdraw、带宽）</small></div><div class="arrow">→</div>
+<div class="node teal"><b>实验 2：物体 / 三角形减半</b><small>帧时间不变 → 不是 Draw Call 瓶颈<br>明显下降 → Draw Call 或顶点是瓶颈</small></div><div class="arrow">→</div>
+<div class="node green"><b>再动手</b><small>CPU 与 GPU 重叠工作<br>帧率由较慢的一方决定<br>一次改一处，改完再量一次</small></div>
+</div>
+<p style="font-size:14px;color:var(--muted)">测量工具：Three.js 最便宜的三个数是 <code>renderer.info.render.calls</code>、<code>renderer.info.render.triangles</code>、<code>renderer.info.memory.geometries</code>，加 stats.js 看帧率，再加计时器区分 JS 时间与 <code>renderer.render()</code> 时间（后者只是排队提交命令，不等 GPU）。Web 指标看 P75 不看平均值（LCP 好 ≤2.5s、差 &gt;4.0s；INP 好 ≤200ms、差 &gt;500ms；CLS 好 ≤0.1），实验室用来复现、真实用户数据用来看 P75 分群（见第 46、06C 节）。</p>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 B · 标准优化顺序：七步，顺序不能乱</p>
+<div class="flow">
+<div class="node plain"><b>① 定位瓶颈</b><small>CPU / GPU / 主线程 / 像素</small></div><div class="arrow">→</div>
+<div class="node blue"><b>② 减提交量</b><small>Draw Call、DOM 节点、JS 量</small></div><div class="arrow">→</div>
+<div class="node amber"><b>③ 减每帧工作量</b><small>剔除、LOD、降采样、脏区</small></div><div class="arrow">→</div>
+<div class="node teal"><b>④ 减像素成本</b><small>DPR 封顶、纹理、shader</small></div><div class="arrow">→</div>
+<div class="node green"><b>⑤ 移出主线程</b><small>Worker、OffscreenCanvas</small></div><div class="arrow">→</div>
+<div class="node plain"><b>⑥ 低端机降级</b><small>先降 DPR、再关阴影<br>再降模型精度</small></div><div class="arrow">→</div>
+<div class="node green"><b>⑦ 同分组 P75 复测</b><small>同设备同网络分组前后比<br>同时看尾部与错误率</small></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 C · 性能对比总表（量级参考，不同硬件差异很大）</p>
+<table>
+<tr><th style="width:14%">维度</th><th style="width:28%">DOM</th><th style="width:29%">Canvas 2D</th><th>WebGL</th></tr>
+<tr><td><strong>渲染模式</strong></td><td>保留</td><td>即时</td><td>即时</td></tr>
+<tr><td><strong>主线程压力</strong></td><td>高（Layout / Paint）</td><td>中（JS 执行）</td><td>低–中（Draw Call）</td></tr>
+<tr><td><strong>GPU 利用</strong></td><td>仅合成</td><td>光栅化（视实现）</td><td>全管线</td></tr>
+<tr><td><strong>舒适图元规模</strong></td><td>数百到数千</td><td>数千到数万</td><td>合批后可达数十万</td></tr>
+<tr><td><strong>交互拾取</strong></td><td>原生</td><td>手动命中测试</td><td>Raycaster / 颜色拾取</td></tr>
+<tr><td><strong>文本能力</strong></td><td>强</td><td>中（手动排版）</td><td>弱（纹理 / SDF）</td></tr>
+<tr><td><strong>可访问性</strong></td><td>原生</td><td>需补</td><td>需补</td></tr>
+<tr><td><strong>开发成本</strong></td><td>低</td><td>中</td><td>高</td></tr>
+</table>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 D · 选型决策树：四个问题，问完就定</p>
+<div class="flow">
+<div class="node blue"><b>Q1 文本 / 表单 / 常规界面？</b><small>是 → 用 DOM</small></div><div class="arrow">→</div>
+<div class="node amber"><b>Q2 需要真 3D 空间、光照、深度遮挡？</b><small>是 → 用 WebGL（Three.js 等）</small></div><div class="arrow">→</div>
+<div class="node teal"><b>Q3 是 2D 但图元大（数千以上）或要像素级控制？</b><small>是 → 用 Canvas 2D</small></div><div class="arrow">→</div>
+<div class="node green"><b>Q4 图元不多，但要原生交互和可访问性？</b><small>是 → 优先 DOM / SVG</small></div>
+</div>
+<div class="loop-note">混合是常态：真实项目很少只用一种。常见组合是 DOM 做界面 + Canvas / WebGL 做主视图 + DOM 覆盖层做标签和菜单。选型的关键是让每种技术做它最擅长的事。没有真 3D 需求就不上 WebGL——上了 WebGL，成本是整条链路：模型制作、加载、渲染、性能、降级，都要有人兜底。</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 E · 分技术手段：瓶颈不同，手段完全不同</p>
+<div class="grid2">
+<div class="box"><h4>DOM / SVG：减节点、减重排</h4><ul><li>虚拟列表只挂可视行（见第 04 节）；一份数据别渲染三份 DOM</li><li>动画只动 transform / opacity；读写布局属性要批量分离，防布局抖动</li><li>SVG 节点到 5,000 以上明显掉帧，别硬扛，换 Canvas</li></ul></div>
+<div class="box"><h4>Canvas 2D：减绘制、减重画</h4><ul><li>降采样：分桶保极值（每桶留 min / max 和首尾，尖峰不丢；要更保形用 LTTB），简单隔点取样会丢尖峰</li><li>按窗口取数：只请求可视时间窗，缩放 / 平移再增量拉</li><li>分层：静态一层 + 交互一层，交互只重绘上层；静态背景离屏缓存，每帧只 drawImage 贴过来</li><li>同一填充 / 描边样式的图形放一起画，减少状态切换；命中用包围盒 / isPointInPath，复杂用离屏拾取</li></ul></div>
+<div class="box"><h4>WebGL / Three.js：先削 Draw Call，再治像素</h4><ul><li>每个 Mesh 每帧至少一个 Draw Call，每个约 0.1–0.5ms CPU 开销；预算量级：移动端 &lt;50/帧，桌面中端 &lt;100–200/帧，高端 &lt;500–1,000/帧</li><li>削 Draw Call 四种手段：相同材质的静态物体合并几何；同一几何 + 同一材质的大量重复物用 InstancedMesh；不同几何、同一材质、各要剔除用 BatchedMesh（r164+）；多张小图拼纹理图集，少切换纹理</li><li>剔除与 LOD：Three.js 默认按包围球自动视锥剔除，InstancedMesh 是整体包围球、要按块拆分才能剔除；THREE.LOD 近处高模、远处低模，可省约 50% 三角形，但本身不减 Draw Call，要和上面组合用</li></ul></div>
+<div class="box"><h4>像素与内存：低端机先降这里</h4><ul><li>DPR 封顶：<code>setPixelRatio(Math.min(devicePixelRatio, 2))</code>，低端机再降到 1.5 / 1</li><li>阴影贴图很贵，移动端先关；后期处理链按像素收费，低端机先降</li><li>加载：默认只发 glTF / GLB；几何用 Draco（典型 4–10×）、纹理用 KTX2 / Basis，渐进加载先低模占位再换高模</li><li>内存：几何、材质、纹理、渲染目标用完必须显式 dispose()；静态场景只在变化时渲染，不要空转 requestAnimationFrame</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 F · 精密制造场景的技术映射（场景题，不是已做项目）</p>
+<table>
+<tr><th style="width:32%">场景</th><th style="width:18%">推荐技术</th><th>理由</th></tr>
+<tr><td>设备参数面板、报警列表、工艺表单</td><td>DOM</td><td>文本密集、需要原生交互和可访问性</td></tr>
+<tr><td>晶圆图（Wafer Map）</td><td>Canvas 2D</td><td>数万 Die 的 2D 图元，需要缩放平移和着色</td></tr>
+<tr><td>2D 工艺流程图、状态看板</td><td>Canvas 2D / SVG</td><td>图元多则 Canvas，交互节点少则 SVG</td></tr>
+<tr><td>产线 3D 数字孪生、设备模型</td><td>WebGL</td><td>需要 3D 空间、相机、光照、深度遮挡</td></tr>
+<tr><td>芯片应力云图、仿真结果可视化</td><td>WebGL</td><td>大规模数据场映射到 3D 表面，需要 GPU 并行</td></tr>
+<tr><td>标签、Tooltip、右键菜单</td><td>DOM 覆盖层</td><td>文本渲染和交互成本最低</td></tr>
+</table>
+<div class="grid2" style="margin-top:12px">
+<div class="box"><h4>两个不可妥协的约束</h4><ul><li><strong>数据保真：</strong>节点位置和数值必须精确。性能优化只能是“何时渲染哪些数据”，不能是“丢弃关键数据”。聚合只能用于概览，下钻必须加载全量精确数据</li><li><strong>交互确定性：</strong>工程师依赖界面的即时反馈做判断。卡顿和拾取不准会直接影响决策，性能优化要以“稳定帧率 + 精确命中”为目标</li></ul></div>
+<div class="box"><h4>节点密集场景的优化顺序</h4><ul><li>1. 诊断：区分 CPU（Draw Call）瓶颈还是 GPU（填充率 / 几何）瓶颈</li><li>2. 渲染合批：InstancedMesh、按材质合并几何</li><li>3. 剔除与 LOD：视锥剔除、遮挡剔除、远近分级</li><li>4. 数据聚合：超过阈值先聚合，点击下钻再加载全量</li><li>5. 计算卸载：重计算放 Web Worker，主线程保持渲染循环</li><li>6. 内存管理：及时释放几何 / 材质 / 纹理，防止泄漏</li></ul></div>
+</div>
+<p style="margin:16px 0 8px;font-weight:700;font-size:14px">图 G · 面试速查：七道高频题的回答骨架</p>
+<table>
+<tr><th style="width:36%">问题</th><th>回答骨架（先说什么，再说什么）</th></tr>
+<tr><td><strong>Q1 DOM、Canvas、WebGL 的区别？</strong></td><td>先说渲染模式（保留 vs 即时）→ 再说谁维护场景 → 再说 CPU / GPU 分工 → 最后落到适用场景。不要只背 API 差异</td></tr>
+<tr><td><strong>Q2 Canvas 2D 一定走 GPU 吗？</strong></td><td>不一定。规范不强制；光栅化可能由 CPU 或 GPU 完成；频繁 getImageData 可能触发 CPU 路径；WebGL 才是强制 GPU 的路径</td></tr>
+<tr><td><strong>Q3 为什么大量物体时 WebGL 也会卡？</strong></td><td>瓶颈常在 CPU 的 Draw Call 提交，而不是 GPU 算力。用合批（InstancedMesh、几何合并）降低调用次数；再配合剔除和 LOD 控制参与渲染的物体数量</td></tr>
+<tr><td><strong>Q4 2D 和 3D 渲染的本质区别？</strong></td><td>坐标空间与投影、遮挡处理方式（画家算法 vs 深度缓冲）、光照与相机、拾取方式。强调“2D / 3D 是数据维度，不是 API 名字”</td></tr>
+<tr><td><strong>Q5 Canvas 缩放怎么实现？</strong></td><td>ctx.scale 改坐标系且有状态；围绕鼠标缩放要配合 translate 和滚动容器；性能上用离屏 Canvas 预缩放缓存；不要靠改 canvas.width 来缩放</td></tr>
+<tr><td><strong>Q6 DOM 动画为什么会卡？怎么优化？</strong></td><td>触发了 Layout / Paint。优先用 transform / opacity 走合成器线程；减少布局抖动；长列表虚拟滚动</td></tr>
+<tr><td><strong>Q7 精密制造场景怎么选型？</strong></td><td>按“界面 / 2D 图元 / 3D 空间”分层选型；强调数据保真和交互确定性；给出混合架构（DOM 界面 + Canvas 晶圆图 + WebGL 孪生 + DOM 覆盖层）</td></tr>
+</table>
+</div>
+<div class="say"><b>一分钟讲法（通用强答案结构，套任何渲染性能题）：</b><p>「指标 → 归因 → 修复 → 验证。我先定是哪个指标：帧时间用毫秒、看 60Hz 下 16.7ms 预算，Web 指标看 P75 不看平均值。然后拿两个减半实验定位：分辨率减半帧时间不变就是 CPU 瓶颈、明显下降就是 GPU 片元瓶颈；物体数减半同理，定 Draw Call 还是三角形。定位完再动手，顺序是减提交量、减每帧工作量、减像素成本、移出主线程、低端机降级。拿 WebGL 举例：几百个 Mesh 就是几百个 Draw Call，先合批和 InstancedMesh；拿 Canvas 大数据举例，我做过的是降采样分桶保极值、按窗口取数、静态离屏缓存、只重画脏区。改完回到同分组 P75 对比验收，不看平均值。」</p></div>
+<div class="trap"><strong>红线：</strong>① 本节的图元规模、Draw Call 开销与预算、DPR 与 LOD 节省比例都是<strong>量级参考</strong>，不同硬件差异很大，面试时说成预算 / 量级，不要说成绝对值。② 「LCP P75 从 4 秒优化到 2.5 秒」<strong>没有直接证据、不要讲</strong>；能讲的只有印尼站 4G 页面准备完成 P80 8.21s → 5.03s，且必须注明是 shopPageLoaded 终点、不是 LCP（证据链见第 49 节）。③ 3D / WebGL 按理解层讲，实证只讲 Canvas 2D 大数据 + DOM 编辑器；晶圆图、数字孪生、应力云图是场景映射与设计题，不是已做项目。</div>
+</section>
+
+
+
+
+
+<footer>本图册已拆成三页：左侧边栏切换「前端图册 / 全栈面试 / Agent 面试」，每页有自己的目录和讲法，链接用 #/fullstack 与 #/agent 直达，旧的 #章节 链接会自动跳到所属页面。用法：面试前一晚只翻 ★（Vue3、图表、LCP、Company SSR、Node 手写 SSR、微前端原理、Element UI 表格性能、DSL 联动、表达式引擎、Figma 转 DSL、设计模式实例、AIDOD、SSE、React、后端全链路、Next、Nuxt、SSR 三方对照、国际化、跨端总论·RN、引擎与 CPU/GPU、图形渲染总览·Canvas/WebGL·渲染性能优化）；候场时按目录从头滑一遍，每节只读加粗的一分钟讲法。复习顺序：DSL 簇按 架构（08）→ 联动（09）→ 表达式引擎（09B，联动的底层实现，按这份代码讲）→ Figma 转 DSL（10）连着练；设计模式按 深拷贝·速记（15）→ 实例图鉴（15B）练，每个模式先说问题再报名字；AI 簇按 Agent（11）→ AIDOD 定位链路（12）→ SSE 流式（13）→ RAG（14）；SSR 复习顺序：通用八步（03）→ Company 那套（03B，你参与的真项目）→ Node 手写 SSR（03C，按设计文档原件拆 Express / ALS 隔离 / 流式拼串 / 脱水白名单 / 失败保协议）→ 微前端原理（03D，五路线对照 / 沙箱 / 通信 / 共享依赖 / Manifest 灰度 / 自家选型与 Hybrid 对比）→ Next（26）与 Nuxt（27）→ SSR 三方对照（27B）收尾选型（Next 理解/演示层、Nuxt 没在生产用过）→ 国际化（28）补 SSR 语言隔离与缓存键 → 跨端总论 + RN（29）：先三层模型与四种渲染路线、Node 跨平台 vs 跨端，再 RN 新旧架构、三线程、冷启动五段与首屏预取、长列表、选型与发版，且 RN 没有传统 SSR → 引擎与硬件（30）：JS 引擎分层编译、渲染引擎四步、CPU/GPU 分工与 16.6ms 帧预算，和第 17 节浏览器链路、第 06 节 LCP 互相印证。图形渲染按 总览（52）→ Canvas/WebGL 深挖（53）→ 渲染性能优化（54）练，52 先立保留/即时与三条管线，53 再拆 Canvas 缩放与 WebGL 管线/合批，54 用定位→优化→选型→场景映射收尾，3D 按理解层讲、实证只讲 Canvas 2D 大数据与 DOM 编辑器。后端四节（22–25）按理解层讲，不冒充落地经验；Next / Nuxt 没在生产落地过就明说；RN 与引擎两节没做过原生层、没读过源码，只讲原理、瓶颈位置与取舍。<br>所有涉及你项目的说法都按已确认口径：MCP 只讲设计、LCP 不报未核实数字、Company SSR 只说参与且 SSG 接管是设计方案、RN 不冒充落地经历、RN 无传统 SSR 且 H5 SSR 只说参与未写 render.tsx、AIDOD 不报无证据的定位时长与误判率数字且指纹是精确匹配不是向量检索、国际化只是多市场背景且货币包是平台团队的（你是使用者）。</footer>
 </main>
 </div>
 </div>
